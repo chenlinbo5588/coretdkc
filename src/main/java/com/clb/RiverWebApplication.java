@@ -2,6 +2,7 @@ package com.clb;
 
 import com.clb.utils.Calculator;
 import com.clb.utils.Operation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,7 +30,6 @@ public class RiverWebApplication {
 	public Calculator calculator(Collection<Operation> operations) {
 		return new Calculator(operations);
 	}
-	*/
 
 	@Bean
 	public ApplicationRunner calculationRunner(Calculator calculator) {
@@ -39,5 +39,15 @@ public class RiverWebApplication {
 			calculator.calculate(137, 21, '-');
 		};
 	}
+	 */
+
+	@Bean
+	public ApplicationRunner calculationRunner(Calculator calculator,
+											   @Value("${lhs}") int lhs,
+											   @Value("${rhs}") int rhs,
+											   @Value("${op}") char op) {
+		return args -> calculator.calculate(lhs, rhs, op);
+	}
+
 
 }
