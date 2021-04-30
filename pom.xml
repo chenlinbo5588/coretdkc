@@ -85,8 +85,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
-		>>>>>>> bcbfd3f (arcgis proxy代理未完成)
 	</dependencies>
 
 	<build>
