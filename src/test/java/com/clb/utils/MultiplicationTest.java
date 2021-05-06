@@ -3,6 +3,7 @@ package com.clb.utils;
 import com.clb.componet.Multiplication;
 import org.junit.Test;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 

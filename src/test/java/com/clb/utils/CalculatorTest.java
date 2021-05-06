@@ -2,8 +2,8 @@ package com.clb.utils;
 
 
 import org.junit.Before;
+
 import org.junit.Test;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.Collections;
@@ -18,7 +18,7 @@ public class CalculatorTest {
     private Operation mockOperation;
 
     @Before
-    public void setup() {
+    private void setup() {
         mockOperation = Mockito.mock(Operation.class);
         calculator =  new Calculator(Collections.
                 singletonList(mockOperation));
