@@ -5,6 +5,15 @@ java.net.URL,
 java.net.URLEncoder,
 java.net.URLDecoder,
 java.net.MalformedURLException,
+java.io.BufferedReader,
+java.io.ByteArrayOutputStream,
+java.io.DataInputStream,
+java.io.FileNotFoundException,
+java.io.IOException,
+java.io.InputStream,
+java.io.InputStreamReader,
+java.io.OutputStream,
+java.io.Reader,
 java.util.Date,
 java.util.concurrent.ConcurrentHashMap,
 java.util.Map,
@@ -21,7 +30,6 @@ java.util.Iterator,
 java.util.Enumeration,
 java.util.HashMap,
 java.text.SimpleDateFormat" %>
-<%@ page import="java.io.*" %>
 
 <!-- ----------------------------------------------------------
 *
@@ -35,8 +43,6 @@ java.text.SimpleDateFormat" %>
 <%! final String version = "1.1.2";   %>
 
 <%!
-
-
     public static final class DataValidUtil {
         public static String removeCRLF(String inputLine) {
             String filteredLine = inputLine;
@@ -98,7 +104,7 @@ java.text.SimpleDateFormat" %>
     }
 
     //set the default values
-    String PROXY_REFERER = "http://localhost:8080/river/proxy";
+    String PROXY_REFERER = "http://localhost/proxy.jsp";
     String DEFAULT_OAUTH = "https://www.arcgis.com/sharing/oauth2/";
     int CLEAN_RATEMAP_AFTER = 10000;
 
@@ -109,42 +115,12 @@ java.text.SimpleDateFormat" %>
 
     //process the POST request body sent by the client
     private byte[] readRequestPostBody(HttpServletRequest request) throws IOException{
-
         int clength = request.getContentLength();
         if(clength > 0) {
-            System.out.println("into1");
-            System.out.println(request.getParameter("adds"));
-            System.out.println("into2");
-            System.out.println(request.getInputStream());
-            System.out.println("into3");
-            System.out.println(clength);
+            byte[] bytes = new byte[clength];
+            DataInputStream dataIs = new DataInputStream(request.getInputStream());
 
-            System.out.println(request.getMethod());
-
-            byte[] bytes = new byte[9999];
-
-            InputStream inputStream = request.getInputStream();
-
-
-            InputStream is = request.getInputStream();
-            File file = new File("E:\\2.txt");
-            FileOutputStream os = new FileOutputStream(file);
-            int ch;
-            System.out.println(is);
-            while ((ch = is.read(bytes)) > -1) {
-                os.write(bytes, 0, ch);
-            }
-            os.close();
-            is.close();
-
-            DataInputStream dataIs = new DataInputStream(inputStream);
-
-            System.out.println(request.getInputStream());
-
-            System.out.println("into6");
             dataIs.readFully(bytes);
-            //dataIs.read(bytes);
-            System.out.println("into5");
             dataIs.close();
             return bytes;
         }
@@ -156,7 +132,6 @@ java.text.SimpleDateFormat" %>
     private HttpURLConnection forwardToServer(HttpServletRequest request, String uri, byte[] postBody) throws IOException{
         //copy the client's request header to the proxy's request
         Enumeration headerNames = request.getHeaderNames();
-
         HashMap<String, String> mapHeaderInfo = new HashMap<String, String>();
         while (headerNames.hasMoreElements()) {
             String key = (String) headerNames.nextElement();
@@ -262,7 +237,6 @@ java.text.SimpleDateFormat" %>
 
     //simplified interface of doHTTPRequest, will eventually call the complete interface of doHTTPRequest
     private HttpURLConnection doHTTPRequest(String uri, String method) throws IOException{
-        System.out.println("into7");
         //build the bytes sent to server
         byte[] bytes = null;
 
@@ -1017,12 +991,8 @@ java.text.SimpleDateFormat" %>
 
     //check if the originalUri needs to be host-redirected
     private String uriHostRedirect(String originalUri, ServerUrl serverUrl) throws MalformedURLException{
-        System.out.println("into5");
         if (serverUrl.hostRedirect != null && !serverUrl.hostRedirect.isEmpty()){
-            System.out.println("into6");
             URL request = new URL(originalUri);
-            System.out.println(originalUri);
-
             String redirectHost = serverUrl.getHostRedirect();
             redirectHost = redirectHost.endsWith("/")?redirectHost.substring(0, redirectHost.length()-1):redirectHost;
             String queryString = request.getQuery();
@@ -1039,17 +1009,12 @@ java.text.SimpleDateFormat" %>
     String originalUri = request.getQueryString();
     _log(Level.INFO, "Creating request for: " + originalUri);
     ServerUrl serverUrl;
-    System.out.println("into8");
-    System.out.println( request.getQueryString());
-
-
 
     try {
         try {
 
             out.clear();
             out = pageContext.pushBody();
-
 
             //check if the originalUri to be proxied is empty
             if (originalUri == null || originalUri.isEmpty()){
@@ -1072,10 +1037,7 @@ java.text.SimpleDateFormat" %>
 
             //check the Referer in request header against the allowedReferer in proxy.config
             String[] allowedReferers = getConfig().getAllowedReferers();
-
-
             if (allowedReferers != null && allowedReferers.length > 0 && request.getHeader("referer") != null){
-
                 setReferer(request.getHeader("referer")); //replace PROXY_REFERER with real proxy
                 String httpReferer;
                 try{
@@ -1114,7 +1076,7 @@ java.text.SimpleDateFormat" %>
 
             return;
         }
-        System.out.println(serverUrl.getRateLimit());
+
         //Throttling: checking the rate limit coming from particular referrer
         if ( serverUrl.getRateLimit() > -1) {
             synchronized(_rateMapLock){
@@ -1154,12 +1116,10 @@ java.text.SimpleDateFormat" %>
                 application.setAttribute("rateMap_cleanup_counter", cnt);
             }
         }
-        System.out.println(request);
+
         //readying body (if any) of POST request
         byte[] postBody = readRequestPostBody(request);
-
         String post = new String(postBody);
-
         //check if the originalUri needs to be host-redirected
         String requestUri = uriHostRedirect(originalUri, serverUrl);
 

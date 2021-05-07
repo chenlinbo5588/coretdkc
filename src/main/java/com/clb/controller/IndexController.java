@@ -31,20 +31,12 @@ public class IndexController extends BaseController {
         return "river";
     }
 
-    @RequestMapping("/jsp")
-    public String jsp(Model model) {
-        model.addAttribute("message", "this is index jsp page!");
-        return "hello";
-    }
 
-    @RequestMapping("/html")
-    public String testThemleaf(Model model) {
-        model.addAttribute("message", "this is index html page!");
-        return "html/river";
-    }
+
+
     @RequestMapping("/proxy")
     public String proxy(HttpServletRequest request) {
-
+        System.out.println(request.getMethod());
         return "proxy";
     }
 
