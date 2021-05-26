@@ -3,6 +3,7 @@ package com.clb.service;
 import com.clb.common.ApiResult;
 import com.clb.common.userlogin.ApiResultI18n;
 import com.clb.UserSignUpBean;
+import com.clb.entity.User;
 
 import java.util.Map;
 
@@ -23,5 +24,9 @@ public interface UserService {
      * @return
      */
     ApiResultI18n signUp(UserSignUpBean userSignUpBean) throws Exception;
+
+    public User getUserById(int id);
+
+    public User getUserByName(String name);
 
 }

@@ -4283,3 +4283,271 @@ Caused by: java.io.IOException: 你的主机中的软件中止了一个已建立
 信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629325.1631287632%2C%22ymin%22%3A3346279.3335246444%2C%22xmax%22%3A629344.2723858345%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
 5月 07, 2021 8:05:25 上午 org.apache.jsp.jsp.proxy_jsp _log
 信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629325.1631287632%2C%22ymin%22%3A3346279.3335246444%2C%22xmax%22%3A629344.2723858345%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Log handler configured and initialized.
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0?f=json
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0?f=json
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer?f=json
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Matching credentials found in configuration file. OAuth 2.0 mode: false
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Matching credentials found in configuration file. OAuth 2.0 mode: false
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: [Info]: Querying security endpoint...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Token URL not cached.  Querying rest info page...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Matching credentials found in configuration file. OAuth 2.0 mode: false
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: [Info]: Querying security endpoint...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Token URL not cached.  Querying rest info page...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: [Info]: Querying security endpoint...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Token URL not cached.  Querying rest info page...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: [Info]: Service is secured by http://localhost/arcgis/tokens/: getting new token...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: [Info]: Service is secured by http://localhost/arcgis/tokens/: getting new token...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: [Info]: Service is secured by http://localhost/arcgis/tokens/: getting new token...
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Token obtained: 0ypIdeQvM-uizT7794Tc6WyC_KZANH-KsJqXnW2Q6FY.
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Token obtained: 0ypIdeQvM-uizT7794Tc6T8Zic3xqtnlhy2R5y0OO40.
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Token obtained: 0ypIdeQvM-uizT7794Tc6T8Zic3xqtnlhy2R5y0OO40.
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629363.3816429058%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346279.3335246444%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629363.3816429058%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346279.3335246444%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629363.3816429058%2C%22ymin%22%3A3346279.3335246444%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629363.3816429058%2C%22ymin%22%3A3346279.3335246444%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629344.2723858345%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629363.3816429058%2C%22ymax%22%3A3346279.3335246444%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:35 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629401.6001570484%2C%22ymax%22%3A3346279.3335246444%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629344.2723858345%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629363.3816429058%2C%22ymax%22%3A3346279.3335246444%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346279.3335246444%2C%22xmax%22%3A629401.6001570484%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629325.1631287632%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629344.2723858345%2C%22ymax%22%3A3346279.3335246444%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629325.1631287632%2C%22ymax%22%3A3346279.3335246444%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346279.3335246444%2C%22xmax%22%3A629325.1631287632%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.03732276771736148&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629344.2723858345%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.07464553543472296&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629344.2723858345%2C%22ymin%22%3A3346222.0057534305%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.07464553543472296&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629344.2723858345%2C%22ymin%22%3A3346222.0057534305%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.07464553543472296&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629420.7094141197%2C%22ymax%22%3A3346298.4427817157%7D&maxAllowableOffset=0.07464553543472296&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346222.0057534305%2C%22xmax%22%3A629344.2723858345%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.07464553543472296&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346222.0057534305%2C%22xmax%22%3A629420.7094141197%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.07464553543472296&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629458.9279282623%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629458.9279282623%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629458.9279282623%2C%22ymax%22%3A3346336.661295858%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629458.9279282623%2C%22ymax%22%3A3346336.661295858%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346336.661295858%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346336.661295858%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629458.9279282623%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629535.3649565474%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629458.9279282623%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629535.3649565474%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629229.6168434068%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629306.0538716919%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629458.9279282623%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629535.3649565474%2C%22ymax%22%3A3346336.661295858%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629229.6168434068%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629306.0538716919%2C%22ymax%22%3A3346336.661295858%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629153.1798151217%2C%22ymin%22%3A3346183.787239288%2C%22xmax%22%3A629229.6168434068%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629153.1798151217%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629229.6168434068%2C%22ymax%22%3A3346336.661295858%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629306.0538716919%2C%22ymin%22%3A3346336.661295858%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.14929107086944593&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629535.3649565474%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629229.6168434068%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629535.3649565474%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629229.6168434068%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629535.3649565474%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629688.2390131177%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:37 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629535.3649565474%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629688.2390131177%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629076.7427868365%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629229.6168434068%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629076.7427868365%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629229.6168434068%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629535.3649565474%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629229.6168434068%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629382.4908999772%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629535.3649565474%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629229.6168434068%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629382.4908999772%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629535.3649565474%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629688.2390131177%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629535.3649565474%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629688.2390131177%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629076.7427868365%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629229.6168434068%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A629076.7427868365%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629229.6168434068%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A628923.8687302661%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629076.7427868365%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A628923.8687302661%2C%22ymin%22%3A3346107.350211003%2C%22xmax%22%3A629076.7427868365%2C%22ymax%22%3A3346260.224267573%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/Line/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A628923.8687302661%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629076.7427868365%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&geometry=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A4549%2C%22wkid%22%3A4549%7D%2C%22xmin%22%3A628923.8687302661%2C%22ymin%22%3A3346260.224267573%2C%22xmax%22%3A629076.7427868365%2C%22ymax%22%3A3346413.0983241433%7D&maxAllowableOffset=0.29858214173889186&maxRecordCountFactor=3&outFields=OBJECTID&outSR=4549&resultType=tile&returnExceededLimitFeatures=false&spatialRel=esriSpatialRelIntersects&where=1%3D1&geometryType=esriGeometryEnvelope&inSR=4549
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84929?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84929?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84928?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84930?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84928?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84929?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84930?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84928?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84930?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84929?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84931?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84927?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84928?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84927?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84930?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84929?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84927?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84931?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84928?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84931?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84930?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84927?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84931?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84927?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84926?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84931?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84926?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84932?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84929?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84926?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84932?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84928?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84932?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84926?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84930?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84926?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84932?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84927?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84932?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84931?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84925?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84925?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84925?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84933?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84933?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84933?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84926?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84925?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84932?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84925?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84933?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84933?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98265/84924?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84925?blankTile=false
+5月 07, 2021 1:59:38 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98266/84924?blankTile=false
+5月 07, 2021 1:59:39 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98264/84924?blankTile=false
+5月 07, 2021 1:59:39 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98267/84924?blankTile=false
+5月 07, 2021 1:59:39 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84933?blankTile=false
+5月 07, 2021 1:59:39 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98263/84924?blankTile=false
+5月 07, 2021 1:59:39 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/basemap/map/MapServer/tile/6/98262/84924?blankTile=false
+5月 07, 2021 1:59:44 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/applyEdits
+5月 07, 2021 1:59:44 下午 org.apache.jsp.jsp.proxy_jsp _log
+信息: Creating request for: http://localhost/arcgis/rest/services/yaosu/wangge/FeatureServer/0/query?f=json&objectIds=21455&outFields=OBJECTID&outSR=4549&spatialRel=esriSpatialRelIntersects&where=1%3D1

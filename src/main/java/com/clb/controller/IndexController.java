@@ -24,12 +24,12 @@ public class IndexController extends BaseController {
         modelAndView.setViewName("html/river");
         return modelAndView;
     }
-    @RequestMapping("/getriver")
+   /* @RequestMapping("/getriver")
     public String getRiver(Model model) {
         List<River> riverDaoList = riverService.getRiverList();
         model.addAttribute("message",riverDaoList);
         return "river";
-    }
+    }*/
 
 
 

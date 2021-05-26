@@ -1,3 +1,4 @@
+
 package com.clb.service.impl;
 
 import com.clb.UserSignUpBean;
@@ -5,6 +6,7 @@ import com.clb.common.ApiResult;
 import com.clb.common.userlogin.ApiResultI18n;
 import com.clb.common.userlogin.ResponseCodeI18n;
 import com.clb.dao.UserDao;
+import com.clb.entity.User;
 import com.clb.entity.UserDO;
 import com.clb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,18 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+
+
+    @Override
+    public User getUserById(int id) {
+        return userDao.getUserById(id);
+    }
+
+    @Override
+    public User getUserByName(String name){
+        return userDao.getUserByName(name);
+    }
 
     /**
      * 列表查询

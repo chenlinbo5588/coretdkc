@@ -16,7 +16,7 @@ server:
   mvc:
     static-path-pattern: /**
   servlet:
-    context-path: /river
+    context-path:
   resource:
     static-locations: classpath:/static/,classpath:/public/,classpath:/templates/
 
@@ -39,8 +39,8 @@ spring.:
   application:
     name: coretdkcSystem
   datasource:
-    url: jdbc:postgresql://localhost:5432/river
-    username: river
+    url: jdbc:postgresql://localhost:5432/vueblog2?useUnicode=true&characterEncoding=utf-8
+    username: vueblog
     password: 123123
     driverClassName: org.postgresql.Driver
   thymeleaf:

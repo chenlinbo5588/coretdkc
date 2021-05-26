@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface RiverService {
 
-    public List<River> getRiverList();
+   /* public List<River> getRiverList();*/
 }
