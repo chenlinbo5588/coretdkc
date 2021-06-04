@@ -1,7 +1,7 @@
 package com.clb.api;
 
-import com.clb.common.userlogin.ApiResultI18n;
-import com.clb.common.userlogin.ResponseCodeI18n;
+import com.clb.common.utils.ApiResultI18n;
+import com.clb.common.utils.ResponseCodeI18n;
 import com.clb.common.exception.ParamsCheckException;
 import com.clb.service.UserService;
 import com.clb.UserSignUpBean;

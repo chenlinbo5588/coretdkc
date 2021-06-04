@@ -3,8 +3,9 @@ package com.clb.service.impl;
 
 import com.clb.UserSignUpBean;
 import com.clb.common.ApiResult;
-import com.clb.common.userlogin.ApiResultI18n;
-import com.clb.common.userlogin.ResponseCodeI18n;
+import com.clb.common.utils.ApiResultI18n;
+import com.clb.common.utils.LanguageEnum;
+import com.clb.common.utils.ResponseCodeI18n;
 import com.clb.dao.UserDao;
 import com.clb.entity.User;
 import com.clb.entity.UserDO;
@@ -40,12 +41,12 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public ApiResult queryList(Map<String, Object> map) {
+    public ApiResultI18n queryList(Map<String, Object> map) {
 
         // TODO 分页数据处理
         List<Object> list = userDao.queryListComplex(map);
 
-        return ApiResult.success(userDao.queryListComplex(map));
+        return ApiResultI18n.success(userDao.queryListComplex(map), LanguageEnum.LANGUAGE_ZH_CN.getLanguage());
     }
 
     /**

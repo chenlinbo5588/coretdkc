@@ -1,6 +1,8 @@
+# test
 lhs: 6
 rhs: 8
 op: "*"
+# config start
 server:
   port: 8080
   tomcat:
@@ -27,8 +29,7 @@ mybatis:
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-spring.:
-
+spring:
   mvc:
   suffix: .jsp
   prefix: classpath:/jsp/

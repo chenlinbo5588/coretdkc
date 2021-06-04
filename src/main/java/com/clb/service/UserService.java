@@ -1,7 +1,7 @@
 package com.clb.service;
 
 import com.clb.common.ApiResult;
-import com.clb.common.userlogin.ApiResultI18n;
+import com.clb.common.utils.ApiResultI18n;
 import com.clb.UserSignUpBean;
 import com.clb.entity.User;
 
@@ -15,7 +15,7 @@ public interface UserService {
      * @param map 分页信息
      * @return
      */
-    ApiResult queryList(Map<String, Object> map);
+    ApiResultI18n queryList(Map<String, Object> map);
 
     /**
      * 用户注册

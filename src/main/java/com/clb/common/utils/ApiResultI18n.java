@@ -1,4 +1,4 @@
-package com.clb.common.userlogin;
+package com.clb.common.utils;
 
 import lombok.Data;
 

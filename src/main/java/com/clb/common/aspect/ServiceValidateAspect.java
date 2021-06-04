@@ -1,4 +1,4 @@
-package com.clb.common.userlogin;
+package com.clb.common.aspect;
 
 import com.clb.BaseBean;
 import com.clb.common.annotation.ParamsCheck;

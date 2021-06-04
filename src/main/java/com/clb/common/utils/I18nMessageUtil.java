@@ -1,4 +1,4 @@
-package com.clb.common.userlogin;
+package com.clb.common.utils;
 
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;

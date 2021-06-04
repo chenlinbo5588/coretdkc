@@ -1,7 +1,6 @@
 package com.clb.common.exception;
 
-import com.clb.common.ResponseCode;
-import com.clb.common.userlogin.ResponseCodeI18n;
+import com.clb.common.utils.ResponseCodeI18n;
 import lombok.Data;
 
 @Data

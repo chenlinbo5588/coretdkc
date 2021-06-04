@@ -2,6 +2,8 @@ package com.clb.api;
 
 
 import com.clb.common.ApiResult;
+import com.clb.common.utils.ApiResultI18n;
+import com.clb.common.utils.LanguageEnum;
 import com.clb.entity.River;
 import com.clb.service.RiverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class UserController {
 
 
     @GetMapping("/list")
-    public ApiResult list() {
+    public ApiResultI18n list() {
 
         ArrayList<River> arrayList = new ArrayList<River>();
 
@@ -28,7 +30,7 @@ public class UserController {
         arrayList.add(new River(2,"name2","contente2"));
         arrayList.add(new River(3,"name3","contente3"));
 
-        return ApiResult.success(arrayList);
+        return ApiResultI18n.success(arrayList, LanguageEnum.LANGUAGE_ZH_CN.getLanguage());
 
         //return riverService.getRiverList();
 
