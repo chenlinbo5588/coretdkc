@@ -22,7 +22,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @Configuration
 public class ViewResolverConfiguration {
     /**用来定义 DispatcherServlet 应用上下文中的 bean*/
-   /* @Configuration
+    @Configuration
     @ComponentScan("com.clb.config")
     public class WebConfig implements WebMvcConfigurer {
         @Bean
@@ -78,5 +78,5 @@ public class ViewResolverConfiguration {
             registry.addResourceHandler("/img/**").addResourceLocations("classpath:/img/");
             registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         }
-    }*/
+    }
 }
