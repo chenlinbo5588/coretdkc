@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<base th:href="@{/}">
+
+<div th:replace="static/common/common_header :: common_header"/>
+<body>
+
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css"  />
+<link rel="stylesheet" href="http://www.myarcgis.com/4.11/esri/themes/light/main.css" />
+<script src="http://www.myarcgis.com/4.11/init.js"></script>
+<script src="../static/js/jquery.js"></script>
+<!--<script src="static/js/map.js"></script>-->
+
+<script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
+
+<div class="indexTitleBox ">
+    <div class="indexTitle W40">
+        <div class="indexTitleText">水域动态口监管信息化系统</div>
+        <div class="indexSubtitleText">Water condition monitoring system</div>
+    </div>
+    <div class="indexTitleButton W40">
+        <a class="indexButton indexButtonSy indexButtonClick"  th:href="@{index}">首页</a>
+        <a class="indexButton indexButtonXmgl" th:href="@{project/manage}">项目管理</a>
+    </div>
+    <div class="indexUser">
+        <div>您好,</div>
+        <div class="ml20 mr60">办公室 张三</div>
+    </div>
+</div>
+
+<div class="mapBox">
+    <div class="leftBox" id="leftBox">
+        <div class="leftButton leftButtonSygl" id="manage">水域管理</div>
+        <div class="leftButton leftButtonSybg" >水域变更</div>
+        <div class="leftButton leftButtonTjbb" >统计查询</div>
+    </div>
+    <div class="searchBox" id="searchBox">
+        <div class="searchInputBox">
+            <input placeholder="输入名称或者河道编码" class="searchInput" id ="searchInput">
+            <div class="screenButoon"></div>
+            <div class="searchButton" id="searchButton"></div>
+        </div>
+        <div class="infoList" id="infoList">
+
+
+        </div>
+    </div>
+    <div class="infoDivBox" id="infoDivBox" style="display:none">
+        <div class="infoDivBoxTitle">
+            <div class="infoDivBoxName">四灶江</div>
+            <div class="infoDivBoxType">一类河道</div>
+        </div>
+    </div>
+    <div id="viewDiv"></div>
+</div>
+
+<script th:src="${urls.getForLookupPath('/static/js/index.js')}"></script>
+</body>
+
+
+</html>
