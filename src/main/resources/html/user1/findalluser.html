@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${aaa}]] - 服务器错误。</title>
+</head>
+<body>
+<tr th:each="item,itemStat : ${aaa}">
+    <td th:text="${itemStat.count}">序号</td>
+    <td th:text="${item.userId}">代码</td>
+    <td th:text="${item.userName}">代码</td>
+    <td><a th:onclick="'javascript:add('+${item.userId}+')'">>编辑</a></td>
+    <input th:attr="type='button',value='编辑'">
+</tr>
+<input th:attr="type='button',value='添加'">
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>user</title>
+    </head>
+    <body class="container">
+    <br/>
+    <h1>添加用户</h1>
+    <br/><br/>
+    <div class="with:80%">
+        <form class="form-horizontal"   th:action="@{editauth}"  method="post">
+
+            <div class="form-group">
+                <label for="authName" class="col-sm-2 control-label">authName</label>
+                <div class="col-sm-10">
+
+                    <tr th:each="item,itemStat : ${bbb}">
+                        <input type="text" class="form-control" name="authName"  th:value="${item.authorityName}" id="authName" placeholder="authName"/>
+                        <input type="text" class="form-control" name="authId" hidden th:value="${item.authorityId}" id="authId" placeholder="authId"/>
+                    </tr>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                </div>
+            </div>
+        </form>
+    </div>
+    </body>
+    </html>

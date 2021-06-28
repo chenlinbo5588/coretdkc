@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>文件上传页面</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap.css}">
+    <script th:src="@{js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{js/bootstrap.boudel.min.js}"></script>
+</head>
+<body>
+<h1>文件上传页面</h1>
+<form id="perForm" method="POST" class="add_form" enctype="multipart/form-data">
+    <input type="text" id="name" name="name" vname="名称" maxlength="20">
+    <input class="upload_img_input" type="file" name="file" id="file" required="required" multiple accept="image/*,audio/*,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+    <div class="show_choose_img" id="show_choose_img"></div>
+    <input type="button" value="保存" onclick="save()">
+    <div id="preview" class="preview">
+        <img id="img" src="default.png">
+    </div>
+</form>
+
+</body>
+
+<script>
+function save() {
+		var formData = new FormData($('#perForm')[0]);
+		$.ajax({
+			url : '/saveimg',
+			type : 'post',
+			dataType : "json",
+			cache : false,//上传文件不需要缓存
+			data : formData,
+			processData : false,//data值是FormData对象，不需要对数据进行处理
+			contentType : false,//contentType值，因为是由<form>表单构造的FormData对象，且已经声明了属性enctype="multipart/form-data"，所以这里设置为false。
+			success : function(result) {
+				if (result.status == 1) {
+					alert('上传成功');
+				} else {
+
+				}
+			}
+		});
+	}
+	//这里是为了显示图片用的
+	 $(".upload_img_input").change(function() {
+		var files = this.files;
+		var image_html = "";
+		image_html = $("#show_choose_img").html();
+		for (var i = 0; i < files.length; i++) {
+			var objUrl = getObjectURL(files[i]);
+			if(files[i]['name'].indexOf("mp3") > 0 || files[i]['name'].indexOf("cd") > 0){
+			    image_html += '<div style="display:grid;"><audio src="'+objUrl+'" controls="controls"/></audio><a title="点击下载" href="javascript:void(0);">' + files[i]['name']  + '</a></div>'
+			}else if(files[i]['name'].indexOf("mp4") > 0 || files[i]['name'].indexOf("ogg") > 0){
+			    image_html += '<div style="display:grid;"><video src="'+objUrl+'" controls="controls"/></video><a title="点击下载" href="javascript:void(0);">' + files[i]['name']  + '</a></div>'
+			}else{
+			    image_html += '<div style="display:grid;"><img src="'+objUrl+'" style="width:300px;height:300px" /><a title="点击下载" href="javascript:void(0);">' + files[i]['name']  + '</a></div>'
+			}
+			image_html += '<input type="hidden" name="name[]" value="' + files[i]['name'] + '"/>';
+			image_html += '<input type="hidden" name="url[]" value="' + objUrl + '"/>';
+			image_html += '<input type="hidden" name="size[]" value="' + files[i]['size'] + '"/>';
+
+		}
+		$("#show_choose_img").html(image_html);
+	});
+	//  获取图片的url。是临时文件
+	 function getObjectURL(file) {
+		var url = null;
+		if (window.createObjectURL != undefined) { // basic
+			url = window.createObjectURL(file);
+		} else if (window.URL != undefined) { // mozilla(firefox)
+			url = window.URL.createObjectURL(file);
+		} else if (window.webkitURL != undefined) { // webkit or chrome
+			url = window.webkitURL.createObjectURL(file);
+		}
+		return url;
+	}
+
+  function preview(files) {
+    Object.keys(files).forEach(function (file) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(files[file]);
+      fileReader.onload = function () {
+        img.src = fileReader.result;
+        img.title = files[file].name;
+      };
+    })
+  }
+</script>
+
+</html>

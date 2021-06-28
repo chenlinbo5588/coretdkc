@@ -129,15 +129,62 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.5.3</version>
+        </dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>org.jodconverter</groupId>
+			<artifactId>jodconverter-core</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+
+		<!--springboot支持包，里面包括了自动配置类 -->
+		<!-- https://mvnrepository.com/artifact/org.jodconverter/jodconverter-spring-boot-starter -->
+		<dependency>
+			<groupId>org.jodconverter</groupId>
+			<artifactId>jodconverter-spring-boot-starter</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+
+		<!--jodconverter 本地支持包 -->
+		<!-- https://mvnrepository.com/artifact/org.jodconverter/jodconverter-local -->
+		<dependency>
+			<groupId>org.jodconverter</groupId>
+			<artifactId>jodconverter-local</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>

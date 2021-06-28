@@ -22,6 +22,13 @@ server:
   resource:
     static-locations: classpath:/static/,classpath:/public/,classpath:/templates/
 
+jodconverter:
+  local:
+    enabled: true
+    office-home: C:\Program Files (x86)\OpenOffice 4
+    max-tasks-per-process: 10
+    port-numbers: 8100
+
 mybatis:
   mapper-locations: classpath:/mybatis/*
   type-aliases-package: com.clb
@@ -29,21 +36,35 @@ mybatis:
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
+file:
+  upload:
+    temporarypath: /temp/
+    path: /statisimg/
+
 spring:
   mvc:
   suffix: .jsp
   prefix: classpath:/jsp/
+  main:
+    allow-bean-definition-overriding: true
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
+      max-file-size: 100MB
+      max-request-size: 100MB
   application:
     name: coretdkcSystem
   datasource:
-    url: jdbc:postgresql://localhost:5432/vueblog2?useUnicode=true&characterEncoding=utf-8
-    username: vueblog
-    password: 123123
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: lkynihao123
     driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
   thymeleaf:
     enabled: true
     cache: false
@@ -52,7 +73,10 @@ spring:
     suffix: .html
     prefix: classpath:/html/
 
+
   #json 时间戳统一转换
   jackson:
     date-format:   yyyy-MM-dd HH:mm:ss
     time-zone:   GMT+8
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>请先下载插件。链接: https://pan.baidu.com/s/1xoeoZ2sE7wTrMIWPjfWIWA 提取码: 23y5</h1>
+<h1>请输入相对位置如"/a.docx",选择在线编辑还是只读</h1>
+<input id="path" type="text">
+<div>
+    <input type="radio" id="readonly" name="type" value="true">
+    <label for="readonly">只读</label>
+</div>
+
+<div>
+    <input type="radio" id="write" name="type" value="false">
+    <label for="write">在线编辑</label>
+</div>
+<button id="btn">在线打开</button>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $('#btn').click(function () {
+        var path=$('#path').val();
+        var type=$("input[name='type']:checked").val()
+        let data={
+            path: path,
+            type: type
+        }
+        $.ajax({
+            url:"/view/open", //请求的url地址
+            dataType:"json", //返回格式为json
+            contentType: "application/json;charset=UTF-8",
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:JSON.stringify(data), //参数值
+            type:"post", //请求方式
+            success:function(req){
+               let a=window.open(req.msg)
+            }
+        });
+    })
+</script>
+</body>
+</html>
