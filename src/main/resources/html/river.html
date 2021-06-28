@@ -157,16 +157,12 @@
 
 
         view.on("double-click",function(evt){
-            console.log(evt);
-            console.log(view.scale);
             evt.stopPropagation();
         });
 
         view.on("mouse-wheel",function(evt){
             //evt.stopPropagation();
             //鼠标滚轮缩小
-            console.log(evt);
-            console.log(view.scale);
             if(evt.deltaY > 0 && view.scale > SCALE_MAX){
                 evt.stopPropagation();
                 return false;
@@ -189,7 +185,6 @@
         view.when(function () {
             view.popup.autoOpenEnabled = false; //disable popups
             view.map.layers.forEach(function (layer) {
-                console.log(layer.title);
                 if (layer.title === "Wwjcj.DBO.Point") {
                    /* editConfigPointLayer = {
                         layer: layer,

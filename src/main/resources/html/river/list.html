@@ -1,0 +1,18 @@
+<div class="infoItem" th:each="item,stat:${list}" th:data-id="${item.objectid}" th:data-index="${stat.index}"
+     xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="infoItemLeft" >
+        <img src="/static/img/search.png" class="infoItemLeftImg">
+        <div class="ml5">[[${item.name}]]</div>
+    </div>
+    <div class="infoItemRight">[[${item.fl}]][[${item.bm}]]</div>
+</div>
+
+<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
+    var list = [[${list}]];
+
+    $(".infoItem").click(function () {
+        var index = $(this).data('index');
+        var id = $(this).data('id');
+        findObjectId(id);
+    })
+</script>

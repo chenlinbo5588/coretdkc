@@ -1181,12 +1181,12 @@ java.text.SimpleDateFormat" %>
             _log("There was an error sending a response to the client.  Will not try again.", finalErr);
         }
     } catch (IOException e){
-        try {
-            _log("A fatal proxy error occurred.", e);
-            response.sendError(500, e.getLocalizedMessage());
-            return;
-        } catch (IOException finalErr){
-            _log("There was an error sending a response to the client.  Will not try again.", finalErr);
-        }
+//        try {
+//            _log("A fatal proxy error occurred.", e);
+//            response.sendError(500, e.getLocalizedMessage());
+//            return;
+//        } catch (IOException finalErr){
+//            _log("There was an error sending a response to the client.  Will not try again.", finalErr);
+//        }
     }
 %>

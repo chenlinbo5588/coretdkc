@@ -1,0 +1,64 @@
+.btw input{
+    width:60%;
+    margin-left:5%;
+    height:30px;
+    font-size: 16px;
+}
+.btw .searchButton{
+    width:60px;
+    height:30px;
+    background-color:#312E3D;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+    cursor: pointer;
+    margin-right:5%;
+}
+.riverSelectBox{
+    margin-top:20px;
+    width:90%;
+    margin-left:5%;
+    height:240px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom:1px solid red;
+}
+.riverSelectItem{
+    width:29%;
+    margin-left:3%;
+    height:80px;
+    border:1px solid black;
+    border-radius:50%;
+    cursor:pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:red;
+}
+.riverSelectItem:hover{
+    opacity: 0.5;
+}
+.click{
+    background-color:blue;
+}
+.searchResultBox {
+    width:90%;
+    margin-left:5%;
+    height:470px;
+    overflow: auto;
+}
+.searchResultItem{
+    margin-left:5%;
+    width:90%;
+    height:100px;
+    border:1px solid black;
+    margin-top:10px;
+    cursor: pointer;
+}

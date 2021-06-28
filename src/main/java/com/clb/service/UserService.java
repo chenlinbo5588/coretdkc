@@ -9,24 +9,5 @@ import java.util.Map;
 
 public interface UserService {
 
-    /**
-     * 列表查询
-     *
-     * @param map 分页信息
-     * @return
-     */
-    ApiResultI18n queryList(Map<String, Object> map);
-
-    /**
-     * 用户注册
-     *
-     * @param userSignUpBean 用户注册信息
-     * @return
-     */
-    ApiResultI18n signUp(UserSignUpBean userSignUpBean) throws Exception;
-
-    public User getUserById(int id);
-
-    public User getUserByName(String name);
 
 }

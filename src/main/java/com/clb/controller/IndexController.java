@@ -1,22 +1,28 @@
 package com.clb.controller;
 
-import com.clb.entity.River;
-import com.clb.service.RiverService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class IndexController extends BaseController {
 
-    @Resource
-    private RiverService riverService;
 
+
+
+
+
+
+    @RequestMapping("/addauth")
+    public String addAuthority() {
+        String authName;
+        authName = "adduser";
+        return "html/user/addauth";
+    }
     @RequestMapping("/river")
     public ModelAndView test() {
 
@@ -31,12 +37,18 @@ public class IndexController extends BaseController {
         return "river";
     }*/
 
+    @RequestMapping("/index")
+    public String index(HttpServletRequest request) {
 
 
+        return "html/index";
+    }
 
-    @RequestMapping("/proxy")
+
+    @RequestMapping("/river/proxy")
     public String proxy(HttpServletRequest request) {
-        System.out.println(request.getMethod());
+
+
         return "proxy";
     }
 

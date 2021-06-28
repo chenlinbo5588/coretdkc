@@ -11,14 +11,15 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Collection;
 
 @SpringBootApplication
-@ComponentScan("com.clb")       //加载@Service @Control注解类
 @MapperScan(value = "com.clb.dao")  //mybatis 需要扫描mapper接口 dao层
+@EnableJpaRepositories({"com.clb.repository.jpa"})
 public class RiverWebApplication  extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

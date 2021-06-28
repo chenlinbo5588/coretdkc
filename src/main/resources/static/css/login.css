@@ -19,7 +19,6 @@ body{
 }
 #login h1{
     color: #fff;
-
     letter-spacing: 1px;
     text-align: center;
 }
@@ -35,7 +34,6 @@ input{
     padding: 10px;
     font-size: 13px;
     color: #fff;
-
     border-top: 1px solid #312E3D;
     border-left: 1px solid #312E3D;
     border-right: 1px solid #312E3D;
@@ -43,6 +41,7 @@ input{
     border-radius: 4px;
     background-color: #2D2D3F;
 }
+
 .but{
     width: 300px;
     min-height: 20px;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<base th:href="@{/}">
+
+<div th:replace="static/common/common_header :: common_header"/>
+<link rel="stylesheet" type="text/css" media="all" href="/static/css/river.css"  />
+<script th:src="${urls.getForLookupPath('/static/js/river/manage.js')}"></script>
+<body>
+<div class ="btw">
+    <input class="" placeholder="请输入搜索河道名称" id="searchValue"  th:value="${value}">
+    <div class="searchButton" id="search">搜索</div>
+</div>
+<div class="riverSelectBox ">
+    <div class="riverSelectItem" th:each="item,stat:${riverTypes}" th:data-id="${item.select}">[[${item.type}]]</div>
+</div>
+<div class="searchResultBox">
+        <div class="searchResultItem" th:each="item,stat:${riverList}" th:data-id="${item.objectid}"  >
+        <div>河道名称：[[${item.name}]]</div>
+        <div>长度：[[${item.cd}]]</div>
+        <div>起始位置:[[${item.sname}]]</div>
+        <div>终点位置:[[${item.ename}]]</div>
+    </div>
+</div>
+
+</body>
+
+
+</html>

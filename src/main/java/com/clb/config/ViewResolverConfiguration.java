@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.VersionResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -75,8 +76,11 @@ public class ViewResolverConfiguration {
 
         @Override
         public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry.addResourceHandler("/img/**").addResourceLocations("classpath:/img/");
-            registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+            //registry.addResourceHandler("/img/**").addResourceLocations("classpath:/img/");
+            registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/")
+                    .resourceChain(false)
+                    .addResolver(new VersionResourceResolver()
+                            .addContentVersionStrategy("/**"));;
         }
     }
 }
