@@ -30,6 +30,12 @@ html,body{
     justify-content: space-between;
     align-items: center;
 }
+.czjz{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .boxh{
     display: flex;
@@ -120,8 +126,29 @@ html,body{
 .mr60{
     margin-right:60px;
 }
-.ml5{
-    margin-left:5px;
+.ml5 {
+    margin-left: 5px;
+}
+.ml15{
+    margin-left:15px;
+}
+.mb20{
+    margin-bottom:20px;
+}
+.mt10{
+    margin-top:10px;
+}
+.mb10{
+    margin-bottom:10px;
+}
+.ml60{
+    margin-left: 60px;
+}
+.mt15{
+    margin-top:15px;
+}
+.mt10{
+    margin-top:10px;
 }
 .mapBox{
     height: 90%;
@@ -136,13 +163,6 @@ html,body{
     width: 100%;
 
 }
-#infoDiv{
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    width:200px;
-    margin-left: 30px;
-}
-
 .indexTitleButton{
     display: flex;
 }
@@ -156,7 +176,7 @@ html,body{
     width: 60px;
     z-index:999;
     overflow: hidden;
-    border-top: 1px solid white;
+    border-top: 1px solid #94a1ba;
 }
 .leftButton{
     width:300px;
@@ -171,6 +191,7 @@ html,body{
     color:white;
     font-size: 16px;
     letter-spacing: 2px;
+
 }
 .leftButtonSygl{
     background-image: url(/static/img/sygl.png);
@@ -187,6 +208,15 @@ html,body{
     background-repeat: no-repeat;
     background-position: 5% 50%;
 }
+.mask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+}
 a{
     text-decoration:none;
     color:#333;
@@ -201,7 +231,6 @@ a{
 }
 .searchBox{
     position: fixed;
-    height:40%;
     background-color: white;
     top: 13%;
     left: 100px;
@@ -217,7 +246,6 @@ a{
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    border-bottom:1px solid #384a34;
     height:50px;
 }
 .screenButoon{
@@ -260,12 +288,11 @@ a{
     padding-left:15px;
     letter-spacing: 2px;
 }
-.infoList{
+.infoListBox{
     width:100%;
     height:325px;
     overflow: auto;
-
-
+    border-top:1px solid #384a34;
 }
 .infoItem{
     height:45px;
@@ -288,26 +315,105 @@ a{
 .infoItemRight{
     margin-right:10px;
 }
-.infoDivBoxTitle{
-    height:100px;
+
+.topRightBox{
+    width:60px;
+    height:120px;
+}
+.topRightButton{
+    margin-left:5px;
+    margin-top:10px;
+    width:45px;
+    height:45px;
+    background-color: #345aa2;
+    border:1px solid #000000;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.bottomRightButton{
+    margin-left:5px;
+    margin-top:10px;
+    width:45px;
+    height:45px;
+    background-color: #345aa2;
+    border:1px solid #000000;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.topRightBox .button1{
+     background-image: url(/static/img/button1.png);
+     background-repeat: no-repeat;
+     background-position: 50% 50%;
+ }
+.topRightBox .button2{
+    background-image: url(/static/img/button2.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.bottomRightBox .button1{
+    background-image: url(/static/img/tuceng.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.bottomRightBox{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+}
+.tucengSelectBox{
+    width:350px;
+
+}
+.tucengSelectTitle{
+    height:45px;
     width:100%;
     background-image: url(/static/img/bj2.png);
     color: white;
-}
-.infoDivBoxName{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     font-size: 18px;
-    margin-top:20px;
-    margin-left:30px;
-    letter-spacing: 3px;
+
+
 
 }
-.infoDivBoxType{
-    font-size:12px;
-    margin-top:15px;
-    margin-left:30px;
+.tucengItemBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width:100%;
+    background-color: white;
+    height:55px;
+    border-bottom:1px solid #cccccc;
 }
-
-
+.tucengItemBox .checkBox{
+    width:10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.tucengSelectTitle img{
+    width: 30px;
+    height: 30px;
+}
+.tucengItemBox img{
+    width:20px;
+    height: 20px;
+}
+.tucengItemBox .nameBox{
+    width:90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+}
 
 /* 去掉地图聚焦边框 */
 .esri-view-surface--inset-outline:focus::after {

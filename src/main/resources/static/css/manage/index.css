@@ -1,0 +1,274 @@
+.manageBox{
+    width: 100%;
+    height:100%;
+    background-color: white;
+
+}
+.manageBox .contain{
+    width:70%;
+    height: 100%;
+    margin-left:15%;
+}
+.titleBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+    border-bottom:1px solid #666666;
+    user-select:none;
+}
+.titleBox input{
+    width: 260px;
+    height:30px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border:1px solid black;
+}
+.titleBox .button{
+    width:85px;
+    height: 30px;
+    border-radius:5px;
+    background-color: #3965b6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin-left:30px;
+    cursor: pointer;
+    color:white;
+    user-select:none;
+}
+.caozuobutton{
+    width:70px;
+    height: 20px;
+    border-radius:5px;
+    background-color: #3965b6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin-left:15px;
+    cursor: pointer;
+    color:white;
+    user-select:none;
+}
+.titleBox .screen{
+    font-size: 12px;
+    margin-left:30px;
+    color:#3965b6;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.shuominBox{
+    width: 100%;
+    height:160px;
+    border-bottom:1px solid #666666;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color:#666666;
+    font-size: 12px;
+    font-weight: bold;
+
+}
+.shuominBox .biaoshi{
+    background-image: url(/static/img/gantanhao.png);
+    background-repeat: no-repeat;
+    background-position: 35px 50%;
+    padding-left:60px;
+}
+.manageBox .searchList{
+    height:550px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+.searchList .searchTopBox{
+    height:70px;
+    width:100%;
+    border-bottom:1px solid #666666;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size:12px;
+
+}
+.searchTopBox div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-left:5px;
+    height: 100%;
+}
+.searchItem a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:5px;
+    overflow: hidden;
+    height: 100%;
+}
+.searchItem a p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:#3965b6;
+}
+
+.searchList .searchContentBox{
+    height: 400px;
+    width: 100%;
+
+}
+.searchContentBox .searchItem{
+    height: 40px;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:  flex-start;
+    align-items: center;
+    font-size:12px;
+
+}
+.titleClick{
+    cursor: pointer;
+    user-select:none;
+}
+
+.paixushang{
+    background-image: url(/static/img/shang.png);
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+.paixuxia{
+    background-image: url(/static/img/xia.png);
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+.teduan{
+    flex: 0.7;
+}
+.chang{
+    flex: 2.5;
+ }
+.zhong{
+    flex: 2;
+}
+.duan{
+    flex: 1;
+}
+.techang{
+    flex: 3;
+}
+.hong{
+    background-image: url(/static/img/hong.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.huang{
+    background-image: url(/static/img/huang.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.lv{
+    background-image: url(/static/img/lv.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.searchBottompBox{
+    width:100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.pageBox{
+    padding-left: 50px;
+    padding-right:50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.pageItem{
+    width:20px;
+    height:20px;
+    margin-left:10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color:#545454;
+}
+.pageItemClick{
+   background-color: #3965b6;
+    color: white;
+}
+.allselect{
+    color:#3965b6;
+    cursor: pointer;
+    user-select:none;
+}
+.xmglTc{
+    position: fixed;
+    width: 260px;
+    height: 160px;
+    top: 40%;
+    left: 40%;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 1002;
+
+}
+.xmglTc .contain{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color:#6f6f6f;
+}
+.xmglTc .buttonBox{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.buttonBox .button{
+    width:70px;
+    height: 20px;
+    border-radius:5px;
+    background-color: #3965b6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin-left:20px;
+    cursor: pointer;
+    color:white;
+    user-select:none;
+}
+
+

@@ -45,7 +45,7 @@ public class EntityController {
     public ModelAndView findAllUser(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("html/user1/findalluser");
-        model.addAttribute("aaa",userRepository.findAll());
+//        model.addAttribute("aaa",userRepository.findAll());
         return modelAndView;
     }
 
