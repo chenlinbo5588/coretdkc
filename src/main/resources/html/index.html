@@ -96,7 +96,8 @@
         mapServerName:[[${mapConfig.mapServerName}]],
         mapServerPort: [[${mapConfig.port}]],
         xmHost:[[${mapConfig.xmhost}]],
-    }
+        arcgisToken: [[${arcgisToken.token}]]
+    };
     var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
 </script>
 <script th:src="${urls.getForLookupPath('/static/js/index.js')}"></script>

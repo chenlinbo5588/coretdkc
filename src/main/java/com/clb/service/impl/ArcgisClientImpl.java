@@ -1,13 +1,15 @@
 package com.clb.service.impl;
 
-import com.clb.pojo.arcgis.ArcgisQueryResult;
+import com.clb.componet.ArcgisConfig;
+import com.clb.dto.ArcgisToken;
 import com.clb.service.ArcgisClient;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 
 @Service
@@ -16,18 +18,37 @@ public class ArcgisClientImpl implements ArcgisClient {
     @Autowired
     RestTemplate restTemplate;
 
-    public String baseProxyUrl  ="http://localhost:8080/river/proxy?";
-    public String baseArcgisUrl = "http://localhost/arcgis/rest/services/";
+    @Autowired
+    ArcgisConfig arcgisConfig;
 
-    public ArcgisQueryResult queryByObjId(String id, Map<String,String[]> data){
-        Gson gson = new Gson();
-        String url = baseProxyUrl +data.get("mapurl")[0] +"/query?f=json&outFields=" +  data.get("outFields")[0] +"&spatialRel=esriSpatialRelIntersects&where=OBJECTID=" + id;
-
-        String result = restTemplate.getForObject(url, String.class);
-        ArcgisQueryResult arcgisQueryResult =  gson.fromJson(result, ArcgisQueryResult.class);
-
-        return arcgisQueryResult;
+    public String getArcgisServerUrl(){
+        return "http://" + arcgisConfig.getArcgisMapHost();
     }
 
 
+    @Override
+    public ArcgisToken fetchToken(String username, String password) {
+
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+        params.add("f", "json");
+        params.add("username", username);
+        params.add("password", password);
+        params.add("client", "requestip");
+        params.add("expiration", "1440");
+
+        ResponseEntity<String> result = restTemplate.postForEntity(getArcgisServerUrl() + "/arcgis/tokens/",params,String.class);
+        Gson gson = new Gson();
+
+        ArcgisToken token = null;
+
+        try {
+            token = gson.fromJson(result.getBody(),ArcgisToken.class);
+        } catch (Exception e){
+
+        } finally {
+
+        }
+
+        return token;
+    }
 }

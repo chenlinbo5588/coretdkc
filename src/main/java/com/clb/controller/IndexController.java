@@ -1,7 +1,8 @@
 package com.clb.controller;
 
+import com.clb.componet.ArcgisConfig;
 import com.clb.dto.ArcgisTc;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,8 @@ import java.util.List;
 @Controller
 public class IndexController extends BaseController {
 
-
-    @Value("${arcgisMapHost}")
-    private String arcgisMapHost;
-
-    @Value("${appMapServerName}")
-    private String appMapServerName;
-
+    @Autowired
+    ArcgisConfig arcgisConfig;
 
 
     @RequestMapping("/addauth")

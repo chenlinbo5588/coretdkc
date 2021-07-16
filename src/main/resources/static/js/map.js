@@ -12,6 +12,7 @@ var rightmap;
 var fxdata;
 function initIndexMap() {
     require([
+        "esri/config",
         "esri/Map",
         "esri/views/MapView",
         "esri/tasks/IdentifyTask",
@@ -30,13 +31,14 @@ function initIndexMap() {
         "esri/tasks/support/FindParameters",
         "esri/widgets/LayerList",
         "esri/views/draw/Draw",
-    ], function (Map,MapView, IdentifyTask, IdentifyParameters,FeatureLayer,GraphicsLayer, Graphic, TileLayer, urlUtils,esriConfig,WebTileLayer,QueryTask,Query,MapImageLayer,
+    ], function (esriConfig,Map,MapView, IdentifyTask, IdentifyParameters,FeatureLayer,GraphicsLayer, Graphic, TileLayer, urlUtils,esriConfig,WebTileLayer,QueryTask,Query,MapImageLayer,
                  FindTask,FindParameters,LayerList,Draw) {
 
-        urlUtils.addProxyRule({
-            urlPrefix: gloablConfig.mapHost+"/arcgis", // specify resource location
-            proxyUrl: "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/river/proxy" // specify location of proxy file
-        });
+          esriConfig.apiKey= gloablConfig.arcgisToken;
+//        urlUtils.addProxyRule({
+//            urlPrefix: gloablConfig.mapHost+"/arcgis", // specify resource location
+//            proxyUrl: "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/river/proxy" // specify location of proxy file
+//        });
 
         var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
         var tiledLayer = new WebTileLayer({
