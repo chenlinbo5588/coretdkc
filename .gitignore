@@ -34,6 +34,8 @@ build/
 ### VS Code ###
 .vscode/
 
+#thirdlib#
+/src/main/resources/static/js/thirdlib
 
 # arcgis proxy
 *.lck

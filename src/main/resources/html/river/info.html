@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/river/info.css')}"
       xmlns:th="http://www.w3.org/1999/xhtml" />
 
-<div class="infoBox">
+<div class="infoBox" th:if="${layerId == '1'}"  xmlns:th="http://www.w3.org/1999/xhtml" >
     <div class="infoTitleBox">
         <div class="infoName">[[${data.name}]]</div>
         <div class="infoType">[[${data.hdfl}]]</div>
@@ -97,9 +97,389 @@
             <div></div>
         </div>
     </div>
-
-
-
 </div>
+<div class="infoBox" th:if="${layerId == '3'}"  xmlns:th="http://www.w3.org/1999/xhtml" >
+    <div class="infoTitleBox">
+        <div class="infoName">[[${data.name}]]</div>
+        <div class="infoType">[[${data.type}]]</div>
+    </div>
+    <div class="infoContentBox">
+        <div class="infoContentItem">
+            <div class="name">水库编码</div>
+            <div class="content">[[${data.code}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在市</div>
+            <div class="content">[[${data.city}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在县</div>
+            <div class="content">[[${data.county}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">集雨面积</div>
+            <div class="content">[[${data.rcarea}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">总库容</div>
+            <div class="content">[[${data.tcr}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">兴利库容</div>
+            <div class="content">[[${data.ucr}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">正常蓄水位</div>
+            <div class="content">[[${data.npl}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">移民水位</div>
+            <div class="content">[[${data.iml}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">设计洪水位</div>
+            <div class="content">[[${data.dfl}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">校核洪水位</div>
+            <div class="content">[[${data.mfl}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属流域</div>
+            <div class="content">[[${data.bas}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属地形地貌</div>
+            <div class="content">[[${data.landform}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域面积</div>
+            <div class="content">[[${data.area}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">坝顶高程</div>
+            <div class="content">[[${data.ce}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">主要功能</div>
+            <div class="content">[[${data.function}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">建成时间</div>
+            <div class="content">[[${data.bldtm}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">管理单位</div>
+            <div class="content">[[${data.mu}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在乡镇</div>
+            <div class="content">[[${data.town}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">湖长</div>
+            <div class="content">[[${data.lchief}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">与三调差异</div>
+            <div class="content">[[${data.contdiff}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">是否属于特殊区域</div>
+            <div class="content">[[${data.spcl}]]</div>
+        </div>
+        <div class="line"></div>
+        <div class="infoContentItem">
+            <div class="title">关联项目 (0)</div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<div class="infoBox" th:if="${layerId == '5'}"  xmlns:th="http://www.w3.org/1999/xhtml" >
+    <div class="infoTitleBox">
+        <div class="infoName">[[${data.name}]]</div>
+    </div>
+    <div class="infoContentBox">
+        <div class="infoContentItem">
+            <div class="name">湖泊编码</div>
+            <div class="content">[[${data.code}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在市</div>
+            <div class="content">[[${data.city}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在县</div>
+            <div class="content">[[${data.county}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">最高允许蓄水位</div>
+            <div class="content">[[${data.masl}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">管理单位</div>
+            <div class="content">[[${data.mu}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在乡镇</div>
+            <div class="content">[[${data.town}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域面积</div>
+            <div class="content">[[${data.area}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">跨界类型</div>
+            <div class="content">[[${data.trntype}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属流域</div>
+            <div class="content">[[${data.bas}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属地形地貌</div>
+            <div class="content">[[${data.landform}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">平均水深</div>
+            <div class="content">[[${data.averdep}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域容积</div>
+            <div class="content">[[${data.vol}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">主要功能</div>
+            <div class="content">[[${data.function}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">是否重要水域</div>
+            <div class="content">[[${data.imp}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">湖长</div>
+            <div class="content">[[${data.lchief}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">与三调差异</div>
+            <div class="content">[[${data.contdiff}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">是否属于特殊区域</div>
+            <div class="content">[[${data.spcl}]]</div>
+        </div>
+        <div class="line"></div>
+        <div class="infoContentItem">
+            <div class="title">关联项目 (0)</div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<div class="infoBox" th:if="${layerId == '7'}"  xmlns:th="http://www.w3.org/1999/xhtml" >
+    <div class="infoTitleBox">
+        <div class="infoName">[[${data.name}]]</div>
+        <div class="infoType">[[${data.hdfl}]]</div>
+    </div>
+    <div class="infoContentBox">
+        <div class="infoContentItem">
+            <div class="name">山塘编码</div>
+            <div class="content">[[${data.code}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在市</div>
+            <div class="content">[[${data.city}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在县</div>
+            <div class="content">[[${data.county}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">坝高</div>
+            <div class="content">[[${data.dmh}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">集雨面积</div>
+            <div class="content">[[${data.rcarea}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在乡镇</div>
+            <div class="content">[[${data.town}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">整治时间</div>
+            <div class="content">[[${data.rnvtm}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">总容积</div>
+            <div class="content">[[${data.tcr}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">坝顶高程</div>
+            <div class="content">[[${data.ce}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">设计洪水位</div>
+            <div class="content">[[${data.dfl}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">正常蓄水位</div>
+            <div class="content">[[${data.npl}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属流域</div>
+            <div class="content">[[${data.bas}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属地形地貌</div>
+            <div class="content">[[${data.landform}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">主要功能</div>
+            <div class="content">[[${data.function}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域面积</div>
+            <div class="content">[[${data.area}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域容积</div>
+            <div class="content">[[${data.vol}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">是否重要水域</div>
+            <div class="content">[[${data.imp}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">与三调差异</div>
+            <div class="content">[[${data.contdiff}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">是否属于特殊区域</div>
+            <div class="content">[[${data.spcl}]]</div>
+        </div>
+        <div class="line"></div>
+        <div class="infoContentItem">
+            <div class="title">关联项目 (0)</div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<div class="infoBox" th:if="${layerId == '9'}"  xmlns:th="http://www.w3.org/1999/xhtml" >
+    <div class="infoTitleBox">
+        <div class="infoName">[[${data.name}]]</div>
+        <div class="infoType">[[${data.type}]]</div>
+    </div>
+    <div class="infoContentBox">
+        <div class="infoContentItem">
+            <div class="name">人工水道编码</div>
+            <div class="content">[[${data.code}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在市</div>
+            <div class="content">[[${data.city}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在县</div>
+            <div class="content">[[${data.county}]]</div>
+        </div>
 
+        <div class="infoContentItem">
+            <div class="name">长度</div>
+            <div class="content">[[${data.length}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">平均宽度</div>
+            <div class="content">[[${data.width}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域面积</div>
+            <div class="content">[[${data.area}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域容积</div>
+            <div class="content">[[${data.bas}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属罐区</div>
+            <div class="content">[[${data.ia}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属地形地貌</div>
+            <div class="content">[[${data.landform}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">起点位置名称</div>
+            <div class="content">[[${data.sname}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">终点位置名称</div>
+            <div class="content">[[${data.ename}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">是否重要水域</div>
+            <div class="content">[[${data.imp}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">与三调差异</div>
+            <div class="content">[[${data.contdiff}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">是否属于特殊区域</div>
+            <div class="content">[[${data.spcl}]]</div>
+        </div>
+        <div class="line"></div>
+        <div class="infoContentItem">
+            <div class="title">关联项目 (0)</div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<div class="infoBox" th:if="${layerId == '11'}"  xmlns:th="http://www.w3.org/1999/xhtml" >
+    <div class="infoTitleBox">
+        <div class="infoName">[[${data.name}]]</div>
+    </div>
+    <div class="infoContentBox">
+        <div class="infoContentItem">
+            <div class="name">其他水域编码</div>
+            <div class="content">[[${data.code}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在市</div>
+            <div class="content">[[${data.city}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所在县</div>
+            <div class="content">[[${data.county}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">跨界类型</div>
+            <div class="content">[[${data.trntype}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属流域</div>
+            <div class="content">[[${data.bas}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">所属地形地貌</div>
+            <div class="content">[[${data.landform}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域面积</div>
+            <div class="content">[[${data.area}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">平均水深</div>
+            <div class="content">[[${data.averdep}]]</div>
+        </div>
+        <div class="infoContentItem">
+            <div class="name">水域容积</div>
+            <div class="content">[[${data.vol}]]</div>
+        </div>
+        <div class="line"></div>
+        <div class="infoContentItem">
+            <div class="title">关联项目 (0)</div>
+            <div></div>
+        </div>
+    </div>
+</div>
 

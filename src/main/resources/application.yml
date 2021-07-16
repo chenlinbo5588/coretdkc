@@ -2,6 +2,11 @@
 lhs: 6
 rhs: 8
 op: "*"
+arcgisMapHost: 192.168.5.120
+xmHost: 127.0.0.1
+appMapServerName: river
+appMapServerPort: 8080
+
 # config start
 server:
   port: 8080
@@ -22,12 +27,7 @@ server:
   resource:
     static-locations: classpath:/static/,classpath:/public/,classpath:/templates/
 
-jodconverter:
-  local:
-    enabled: true
-    office-home: C:\Program Files (x86)\OpenOffice 4
-    max-tasks-per-process: 10
-    port-numbers: 8100
+
 
 mybatis:
   mapper-locations: classpath:/mybatis/*
@@ -55,7 +55,7 @@ spring:
   application:
     name: coretdkcSystem
   datasource:
-    url: jdbc:postgresql://localhost:5432/river?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:postgresql://192.168.5.120:5432/river?useUnicode=true&characterEncoding=utf-8
     username: postgres
     password: 123123
     driverClassName: org.postgresql.Driver

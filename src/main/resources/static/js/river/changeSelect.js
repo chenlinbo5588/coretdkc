@@ -1,77 +1,141 @@
 
-init("xinView");
-init("jiuView");
+var leftView;
+var rightView;
 
-function init(contain){
-    var identifyTask;
-    var identifyparams;
-    require([
-        "esri/Map",
-        "esri/views/MapView",
-        "esri/tasks/IdentifyTask",
-        "esri/tasks/support/IdentifyParameters",
-    ], function (Map,MapView, IdentifyTask, IdentifyParameters,) {
 
-        var view = new MapView({
-            container: contain,
-            map: map,
-            center: [121.25962011651083, 30.17229501748913],
-            zoom:13
-        });
-        view.ui.remove('attribution')
-        view.ui.remove("zoom");
 
-        view.when(function() {
-            view.on("click", executeIdentifyTask);
-            // Create identify task for the specified map service
-            identifyTask = new IdentifyTask({ url: "http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer"});
-            // Set the parameters for the Identify
-            identifyparams = new IdentifyParameters();
-            identifyparams.tolerance = 1;
-            identifyparams.returnGeometry =true;
-            identifyparams.layerIds = [1,3,5,7,9,11];
-            identifyparams.layerOption = "visible";
-            identifyparams.width = view.width;
-            identifyparams.height = view.height;
+$(function() {
 
-        });
+    leftView =initLeftView(leftView,"xinView");
+    rightView =initRightView(rightView,"jiuView");
 
-        function executeIdentifyTask(event) {
-            view.graphics.removeAll();
+    bindView();
 
-            identifyparams.geometry = event.mapPoint;
-            identifyparams.mapExtent = view.extent;
-            $("#viewDiv").css("cursor","wait");
-            identifyTask
-                .execute(identifyparams)
-                .then(function(response) {
-                    var results = response.results;
-                    if (results.length>0){
-                        var result = results[0].feature;
-                        var layerId = results[0].layerId;
-
-                        view.goTo(result.geometry.extent.expand(1)).then(function() {
-                            var selectionSymbol={
-                                type:"simple-fill",
-                                size:10,
-                                outline:{
-                                    color:"red",
-                                    width:2
-                                }
-                            };
-                            result.symbol= selectionSymbol;
-                            view.graphics.add(result);
-                            view.popup.open({
-                                title:result.attributes.selectName,
-                                location: event.mapPoint
-                            });
-                        });
-                    }
-                    $("#viewDiv").css("cursor","auto");
-                })
-        }
-
+    leftView.ui.add(document.getElementById("leftViewBox"), {
+        position: "top-right",
+        index: 1
     });
-}
+    rightView.ui.add(document.getElementById("rightViewBox"), {
+        position: "top-right",
+        index: 1
+    });
+    require([
+        "esri/widgets/LayerList",
+    ], function (LayerList) {
+        var layerList = new LayerList({
+            view: leftView,
+            listItemCreatedFunction: function(event) {
+                const item = event.item;
+                if(item.title == "Shuiyu"){
+                    item.title ="水域图层"
+                }else if(item.title == "Xzj"){
+                    item.title ="其他图层"
+                }else if(item.title == "Bgtx"){
+                    item.title ="变更图形图层"
+                }else if(item.title == "ditu"){
+                    item.title ="自定义影像"
+                }
+            }
+        },"shuiyu");
+        rightView.ui.add(document.getElementById("tucengSelectBox"), "bottom-right");
+    });
+    $("#bottomRightBox").show();
+    $("#leftViewBox").show();
+    $("#rightViewBox").show();
+
+    init();
+    function init(){
+        $(".searchBox").hide();
+        $("#bgSearchBox").show();
+    }
+
+    $("#tucengButton").click(function () {
+        $("#tucengSelectBox").toggle();
+    })
+    $(".ssButton img").click(function () {
+        $(".ssButton img").toggle();
+        $(".contentBox").toggle();
+        var value = $("#bgSearchInput").val();
+        console.log(value);
+        if(value !=""){
+            $("#bgInfoList").toggle();
+        }
+    })
+    
+    $(".name").click(function () {
+        var code = $(this).data("code");
+        var id = $(this).data("id");
+        $(".ssButton img").toggle();
+        $(".contentBox").toggle();
+        $("#bgList").show();
+
+        $.get(BASE_URL + "river/changeDetail?id=" + id, function (resp) {
+            $("#changeDetail").html(resp);
+        })
+        changeFindByCode(code,leftView,rightView);
+    });
+
+    $("#leftBox").mouseenter(function () {
+        $("#bgSearchBox").hide();
+    });
+    $("#leftBox").mouseleave(function () {
+        $("#bgSearchBox").show();
+    });
+
+    function bindView() {
+        var flagL=false,flagR=false;
+        leftView.watch("extent",function(){
+            if(flagL){
+                var Lextent=leftView.extent;
+                rightView.extent= Lextent;
+                flagR=false;
+            }else if(!flagL){
+                flagL=true;
+            }
+        });
+        rightView.watch("extent",function(){
+            if(flagR){
+                var Rextent=rightView.extent;
+                leftView.extent= Rextent;
+                flagL=false;
+            }else if(!flagR){
+                flagR=true;
+            }
+        });
+    }
+
+
+    $("#bgSearchInput").bind("input propertychange", function () {
+        var value = $(this).val();
+        if (value != "") {
+            $("#bgQinkong").show();
+        } else {
+            $("#bgQinkong").hide();
+        }
+    });
+    $("#bgQinkong").click(function () {
+        $("#bgSearchInput").val("");
+        $("#bgQinkong").hide();
+        $("#bgInfoList").empty();
+        $("#bgInfoList").hide();
+
+    })
+    $("#bgSearchButton").click(function () {
+        var value = $("#bgSearchInput").val();
+        if (value == "") {
+            $("#bgInfoList").empty();
+            $("#bgInfoList").hide();
+        } else {
+            $.get(BASE_URL + "river/bgSearch?value=" + value, function (resp) {
+                $(".ssButton img #open").hide();
+                $(".ssButton img #close").show();
+                $(".contentBox").hide();
+                $("#bgInfoList").show();
+                $("#bgInfoList").html(resp);
+            })
+        }
+    })
+
+})
 
 

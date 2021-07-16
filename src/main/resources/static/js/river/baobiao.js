@@ -33,15 +33,19 @@ $(function(){
             $(".typeItem").removeClass("typeItemClick");
             $(this).addClass("typeItemClick");
             var type = $(this).data("name");
+
             $.get(BASE_URL + "river/baobiao?type="+type,function(resp){
                 $("#baobiaoBox").html(resp);
                 $("#baobiaoBox").show();
             })
         })
     }
-    for(i=0;i<data.length;i++){
-        initTubiao(i);
-    }
+    setTimeout(function () {
+        for(i=0;i<data.length;i++){
+            initTubiao(i);
+        }
+    },800)
+
     function initTubiao(index) {
         var dom = document.getElementsByName("tubiao").item(index)
         var myChart = echarts.init(dom);
@@ -64,11 +68,10 @@ $(function(){
                         borderWidth: 2
                     },
                     label: {
-                        show: false,
-                        position: 'center'
-                    },
-                    labelLine: {
-                        show: false
+                        normal: {
+                            show: true,
+                            formatter: "{b}",
+                        },
                     },
                     data:data[index].data,
                 }

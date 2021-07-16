@@ -1,9 +1,6 @@
 package com.clb.service;
 
-import com.clb.entity.Project;
-import com.clb.entity.River;
-import com.clb.entity.Tubiao;
-import com.clb.entity.WaterTj;
+import com.clb.entity.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -33,6 +30,8 @@ public interface ProjectService {
     public void deleteProjectByIdList(String idList);
 
     public Project getProjectById(int id);
+
+    public List<InspectionRecord> getInspectionRecordsByProjectId(int projectId);
 
 
 }

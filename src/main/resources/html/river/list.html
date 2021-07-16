@@ -1,23 +1,82 @@
 <div class="infoListBox">
-    <div class="infoItem" th:each="item,stat:${list}" th:data-rcode="${item.rcode}" th:data-id="${item.id}"
+    <div class="infoItem" th:each="item,stat:${rvList}" th:data-identification="${item.identification}" th:data-id="${item.id}" data-layerId="1"
          xmlns:th="http://www.w3.org/1999/xhtml">
         <div class="infoItemLeft" >
             <img src="/static/img/tc_hd.png" class="infoItemLeftImg">
             <div class="ml5">[[${item.name}]]</div>
         </div>
-        <div class="infoItemRight">[[${item.hdfl}]][[${item.rcode}]]</div>
+        <div class="infoItemRight">[[${item.hdfl}]] [[${item.identification}]]</div>
     </div>
+
+    <div class="infoItem" th:each="item,stat:${rsList}" th:data-identification="${item.identification}" th:data-id="${item.id}" data-layerId="3"
+         xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="infoItemLeft" >
+            <img src="/static/img/shuiku.png" class="infoItemLeftImg">
+            <div class="ml5">[[${item.name}]]</div>
+        </div>
+        <div class="infoItemRight">水库 [[${item.identification}]]</div>
+    </div>
+
+    <div class="infoItem" th:each="item,stat:${lkList}" th:data-identification="${item.identification}" th:data-id="${item.id}" data-layerId="5"
+         xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="infoItemLeft" >
+            <img src="/static/img/hupo.png" class="infoItemLeftImg">
+            <div class="ml5">[[${item.name}]]</div>
+        </div>
+        <div class="infoItemRight">湖泊 [[${item.identification}]]</div>
+    </div>
+
+    <div class="infoItem" th:each="item,stat:${hpList}" th:data-identification="${item.identification}" th:data-id="${item.id}" data-layerId="7"
+         xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="infoItemLeft" >
+            <img src="/static/img/shantan.png" class="infoItemLeftImg">
+            <div class="ml5">[[${item.name}]]</div>
+        </div>
+        <div class="infoItemRight">山塘 [[${item.identification}]]</div>
+    </div>
+
+    <div class="infoItem" th:each="item,stat:${acList}" th:data-identification="${item.identification}" th:data-id="${item.id}" data-layerId="9"
+         xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="infoItemLeft" >
+            <img src="/static/img/rengongshuidao.png" class="infoItemLeftImg">
+            <div class="ml5">[[${item.name}]]</div>
+        </div>
+        <div class="infoItemRight">人工水道 [[${item.identification}]]</div>
+    </div>
+
+    <div class="infoItem" th:each="item,stat:${owList}" th:data-identification="${item.identification}" th:data-id="${item.id}" data-layerId="11"
+         xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="infoItemLeft" >
+            <img src="/static/img/qitashuiyu.png" class="infoItemLeftImg">
+            <div class="ml5">[[${item.name}]]</div>
+        </div>
+        <div class="infoItemRight">其他水域 [[${item.identification}]]</div>
+    </div>
+
 </div>
 <script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
     var list = [[${list}]];
-
-    $(".infoItem").click(function () {
-        var rcode = $(this).data('rcode');
-        var id = $(this).data('id');
-        findObjectId(rcode);
-        $.get(BASE_URL + "river/waterInfo?id="+id,function(resp){
+    initBack();
+    function  initBack() {
+        $("#back").unbind();
+        $("#back").click(function () {
+            $(".infoList").hide();
             $("#infoList").show();
-            $("#infoList").html(resp);
+        })
+    }
+    $(".infoItem").click(function () {
+        var identification = $(this).data('identification');
+        var id = $(this).data('id');
+        var layerId = $(this).data('layerid');
+
+        findByIdentification(identification);
+
+
+        $.get(BASE_URL + "river/waterInfo?id="+id+"&layerId="+layerId,function(resp){
+            $(".infoList").hide();
+            $("#back").show();
+            $("#infoDetail").show();
+            $("#infoDetail").html(resp);
         })
 
     })

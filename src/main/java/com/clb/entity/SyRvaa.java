@@ -15,8 +15,8 @@ public class SyRvaa {
     private String code;
     private String city;
     private String county;
-    private float length;
-    private float width;
+    private String length;
+    private String width;
     private String sname;
     private String ename;
     private String garde;
@@ -26,12 +26,12 @@ public class SyRvaa {
     private String bas;
     private String landform;
     private String function;
-    private float area;
-    private float vol;
+    private String area;
+    private String vol;
     private String mu;
     private String imp;
-    private Float sdl;
-    private Float edl;
+    private String sdl;
+    private String edl;
     private String rchief;
     private String remark;
     private String hdfl;
@@ -40,12 +40,17 @@ public class SyRvaa {
     private String hlm;
     private String ssqx;
     private Integer objectid;
-    private  String contdiff;
-    private  String spcl;
+    private String contdiff;
+    private String spcl;
+    private String identification;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Transient
+    private  float intersectionArea;
+    @Transient
+    private  int layerId;
 
 }

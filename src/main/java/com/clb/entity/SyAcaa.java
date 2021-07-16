@@ -18,10 +18,10 @@ public class SyAcaa {
     private String county;
     private String sname;
     private String ename;
-    private float length;
-    private float width;
-    private float area;
-    private float vol;
+    private String length;
+    private String width;
+    private String area;
+    private String vol;
     private String landform;
     private String town;
     private String ia;
@@ -30,10 +30,17 @@ public class SyAcaa {
     private String sshd;
     private String zya;
     private String ssqx;
+    private String contdiff;
+    private String spcl;
+    private String identification;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Transient
+    private  float intersectionArea;
+    @Transient
+    private  int layerId;
 
 }

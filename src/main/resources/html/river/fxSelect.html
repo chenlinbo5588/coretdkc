@@ -1,0 +1,218 @@
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/river/fxSelect.css')}"
+      xmlns:th="http://www.w3.org/1999/xhtml"/>
+<div class="fxBox"  xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="fxItem"  th:if="${syRvaas.size()>0}">
+        <div class="titleBox">
+            <div class="ssButton">
+                <img name="rvOpen" style="display: none" src="/static/img/xia.png"/>
+                <img name="rvOpen" style="" src="/static/img/you.png"/>
+            </div>
+            <img src="/static/img/hedao.png">
+            <div>河流 ( [[${syRvaas.size()}]] ) </div>
+        </div>
+        <div class="contentBox" id="rvContentBox" style="display: none">
+            <div class="contentItem" th:each="item,stat:${syRvaas}" th:data-identification="${item.identification}" name="itemClick">
+                <div class="contentItemTop ">
+                    <div class="boxh " >
+                        <div class="font16">[[${stat.index+1}]] .</div>
+                        <img src="/static/img/hedao.png">
+                        <div class="font16 ml5 mr5">[[${item.name}]]</div>
+                        <div class="font12">[[${item.hdfl}]] [[${item.identification}]]</div>
+                    </div>
+                    <div class="fxclick" th:data-id="${item.id}" th:data-layerId="${item.layerId}">
+                        完整信息
+                    </div>
+                </div>
+                <div class="contentItemBottom">
+                    <div>
+                        范围内水域面积
+                    </div>
+                    <div>
+                        [[${item.intersectionArea}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fxItem"  th:if="${syRsaas.size()>0}">
+        <div class="titleBox">
+            <div class="ssButton">
+                <img name="rsOpen" style="display: none" src="/static/img/xia.png"/>
+                <img name="rsOpen" style="" src="/static/img/you.png"/>
+            </div>
+            <img src="/static/img/shuiku.png">
+            <div>水库 ( [[${syRsaas.size()}]] ) </div>
+        </div>
+        <div class="contentBox" id="rsContentBox" style="display: none">
+            <div class="contentItem" th:each="item,stat:${syRsaas}" th:data-identification="${item.identification}" name="itemClick">
+                <div class="contentItemTop ">
+                    <div class="boxh " >
+                        <div class="font16">[[${stat.index+1}]] .</div>
+                        <img src="/static/img/shuiku.png">
+                        <div class="font16 ml5 mr5">[[${item.name}]]</div>
+                        <div class="font12">[[${item.type}]] [[${item.identification}]]</div>
+                    </div>
+                    <div class="fxclick" th:data-id="${item.id}" th:data-layerId="${item.layerId}">
+                        完整信息
+                    </div>
+                </div>
+                <div class="contentItemBottom">
+                    <div>
+                        范围内水域面积
+                    </div>
+                    <div>
+                        [[${item.intersectionArea}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fxItem"   th:if="${syLkaas.size()>0}">
+        <div class="titleBox">
+            <div class="ssButton">
+                <img name="lkOpen" style="display: none" src="/static/img/xia.png"/>
+                <img name="lkOpen" style="" src="/static/img/you.png"/>
+            </div>
+            <img src="/static/img/hupo.png">
+            <div>湖泊 ( [[${syLkaas.size()}]] ) </div>
+        </div>
+        <div class="contentBox" id="lkContentBox" style="display: none">
+            <div class="contentItem" th:each="item,stat:${syLkaas}" th:data-identification="${item.identification}" name="itemClick">
+                <div class="contentItemTop ">
+                    <div class="boxh " >
+                        <div class="font16">[[${stat.index+1}]] .</div>
+                        <img src="/static/img/hupo.png">
+                        <div class="font16 ml5 mr5">[[${item.name}]]</div>
+                        <div class="font12">[[${item.identification}]]</div>
+                    </div>
+                    <div class="fxclick" th:data-id="${item.id}" th:data-layerId="${item.layerId}">
+                        完整信息
+                    </div>
+                </div>
+                <div class="contentItemBottom">
+                    <div>
+                        范围内水域面积
+                    </div>
+                    <div>
+                        [[${item.intersectionArea}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fxItem" th:if="${syHpaas.size()>0}">
+        <div class="titleBox">
+            <div class="ssButton">
+                <img name="hpOpen" style="display: none" src="/static/img/xia.png"/>
+                <img name="hpOpen" style="" src="/static/img/you.png"/>
+            </div>
+            <img src="/static/img/shantan.png">
+            <div>山塘 ( [[${syHpaas.size()}]] ) </div>
+        </div>
+        <div class="contentBox" id="hpContentBox" style="display: none" >
+            <div class="contentItem" th:each="item,stat:${syHpaas}" th:data-identification="${item.identification}" name="itemClick">
+                <div class="contentItemTop ">
+                    <div class="boxh " th:data-identification="${item.identification}" name="itemClick">
+                        <div class="font16">[[${stat.index+1}]] .</div>
+                        <img src="/static/img/shantan.png">
+                        <div class="font16 ml5 mr5">[[${item.name}]]</div>
+                        <div class="font12">[[${item.type}]] [[${item.identification}]]</div>
+                    </div>
+                    <div class="fxclick" th:data-id="${item.id}" th:data-layerId="${item.layerId}">
+                        完整信息
+                    </div>
+                </div>
+                <div class="contentItemBottom">
+                    <div>
+                        范围内水域面积
+                    </div>
+                    <div>
+                        [[${item.intersectionArea}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fxItem" th:if="${syAcaas.size()>0}">
+        <div class="titleBox">
+            <div class="ssButton">
+                <img name="acOpen" style="display: none" src="/static/img/xia.png"/>
+                <img name="acOpen" style="" src="/static/img/you.png"/>
+            </div>
+            <img src="/static/img/rengongshuidao.png">
+            <div>人工水道 ( [[${syAcaas.size()}]] ) </div>
+        </div>
+        <div class="contentBox" id="acContentBox" style="display: none">
+            <div class="contentItem" th:each="item,stat:${syAcaas}" th:data-identification="${item.identification}" name="itemClick">
+                <div class="contentItemTop ">
+                    <div class="boxh " >
+                        <div class="font16">[[${stat.index+1}]] .</div>
+                        <img src="/static/img/rengongshuidao.png">
+                        <div class="font16 ml5 mr5">[[${item.name}]]</div>
+                        <div class="font12">[[${item.type}]] [[${item.identification}]]</div>
+                    </div>
+                    <div class="fxclick" th:data-id="${item.id}" th:data-layerId="${item.layerId}">
+                        完整信息
+                    </div>
+                </div>
+                <div class="contentItemBottom">
+                    <div>
+                        范围内水域面积
+                    </div>
+                    <div>
+                        [[${item.intersectionArea}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fxItem"  th:if="${syOwaas.size()>0}">
+        <div class="titleBox">
+            <div class="ssButton">
+                <img name="owOpen" style="display: none" src="/static/img/xia.png"/>
+                <img name="owOpen" style="" src="/static/img/you.png"/>
+            </div>
+            <img src="/static/img/qitashuiyu.png">
+            <div>其他水域 ( [[${syOwaas.size()}]] ) </div>
+        </div>
+        <div class="contentBox" id="owContentBox" style="display: none">
+            <div class="contentItem" th:each="item,stat:${syOwaas}" th:data-identification="${item.identification}" name="itemClick">
+                <div class="contentItemTop ">
+                    <div class="boxh " >
+                        <div class="font16">[[${stat.index+1}]] .</div>
+                        <img src="/static/img/qitashuiyu.png">
+                        <div class="font16 ml5 mr5">[[${item.name}]]</div>
+                    </div>
+                    <div class="fxclick" th:data-id="${item.id}" th:data-layerId="${item.layerId}">
+                        完整信息
+                    </div>
+                </div>
+                <div class="contentItemBottom">
+                    <div>
+                        范围内水域面积
+                    </div>
+                    <div>
+                        [[${item.intersectionArea}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+</script>
+
+
+<script th:src="${urls.getForLookupPath('/static/js/river/fxSelect.js')}"
+        xmlns:th="http://www.w3.org/1999/xhtml"></script>

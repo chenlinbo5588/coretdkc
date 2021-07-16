@@ -1,29 +1,19 @@
 package com.clb.api;
 
-import com.clb.dao.AuthorityRepository;
-import com.clb.dao.FileUploadDao;
 import com.clb.entity.FileUpload;
-import com.clb.entity.User1;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
-import org.jodconverter.DocumentConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.Calendar;
-import java.util.UUID;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
@@ -96,36 +86,9 @@ public class UploadController {
         }
         return "html/show";
     }
-    @Autowired
-    private DocumentConverter converter;  //用于转换
 
-    @ResponseBody
-    @RequestMapping("testPreview")
-    public void toPdfFile(HttpServletResponse response) {
-        File file = new File("D:\\testMyDoc\\doc\\test.docx");//需要转换的文件
-        try {
-            File newFile = new File("D:/testMyDoc");//转换之后文件生成的地址
-            if (!newFile.exists()) {
-                newFile.mkdirs();
-            }
-            String savePath="D:/testMyDoc/"; //pdf文件生成保存的路径
-            String fileName="JCccc"+ UUID.randomUUID().toString().replaceAll("-","").substring(0,6);
-            String fileType=".pdf"; //pdf文件后缀
-            String newFileMix=savePath+fileName+fileType;  //将这三个拼接起来,就是我们最后生成文件保存的完整访问路径了
 
-            //文件转化
-            converter.convert(file).to(new File(newFileMix)).execute();
-            //使用response,将pdf文件以流的方式发送的前端浏览器上
-            ServletOutputStream outputStream = response.getOutputStream();
-            InputStream in = new FileInputStream(new File(newFileMix));// 读取文件
-            int i = IOUtils.copy(in, outputStream);   // copy流数据,i为字节数
-            in.close();
-            outputStream.close();
-            System.out.println("流已关闭,可预览,该文件字节大小："+i);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
     @GetMapping("/mp3")
     public void mp3(HttpServletResponse response, HttpServletRequest request) {
 

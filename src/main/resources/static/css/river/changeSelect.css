@@ -10,3 +10,98 @@
     height:100%;
     border-right:2px solid #858282;
 }
+.viewTitle{
+    width:220px;
+    color:white;
+    height: 40px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3965b6;
+    border:1px solid white;
+}
+.tucengButton{
+    width:45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:20px;
+    margin-top: 25px;
+    background-color: #305291;
+    border:1px solid #8f8f8e;
+    background-image: url(/static/img/tuceng.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    cursor: pointer;
+    user-select: none;
+}
+.rightViewBox{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    box-shadow: none !important;
+
+}
+#bgSearchInput{
+    width: 320px;
+}
+
+.ssButton{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ssButton img{
+    width: 15px;
+    height: 15px;
+    cursor: pointer ;
+}
+.infoList .titleBox{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    margin-top: 10px;
+    font-size: 16px;
+    color:#425680;
+    justify-content: flex-start;
+    border-bottom:2px solid #7f7f7f;
+}
+.contentBox{
+    padding: 10px;
+    height:500px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+
+}
+.contentItem{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size:14px;
+    letter-spacing: 1px;
+}
+.contentItem .name{
+    color:#3965b6;
+    margin-left:15px;
+    cursor: pointer;
+}
+#bgQinkong{
+    right:70px;
+}
+
+
+

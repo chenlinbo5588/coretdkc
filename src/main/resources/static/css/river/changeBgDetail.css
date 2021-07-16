@@ -1,0 +1,115 @@
+.bgList{
+    font-size:14px;
+    color: white;
+    background-color: #3965b6;
+    position: fixed !important;
+    width: 730px;
+    max-height: 160px;
+    bottom: 5%;
+    left: 15%;
+    z-index:1001;
+    border-top-right-radius:3px;
+    border-top-left-radius:3px;
+    padding:  0px 5px;
+}
+.bgList .title{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.title img{
+    width:25px;
+    height: 25px;
+    cursor: pointer;
+}
+.bgListItem{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    box-sizing: border-box;
+    color:black;
+    background-color: white;
+}
+.bgListItem div {
+    border: 1px solid #7e9acf;
+    margin-top: -1px;
+    margin-right: -1px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bgListItem .cs{
+    flex: 1;
+}
+.bgListItem .bgsj{
+    flex: 2;
+}
+.bgListItem .xmmc{
+    flex: 4;
+}
+.bgListItem .bgdw{
+    flex: 4;
+}
+.bgListItem .bj{
+    flex: 2;
+}
+.bgListItemBox .bgListItem{
+    cursor: pointer;
+}
+.bgListItemBox{
+
+}
+.bgListItemBox::-webkit-scrollbar{
+    display:none;
+}
+.bgListItemBox .bj{
+    color:#466eba;
+}
+.bgListItemBox .bgListItem:hover{
+    background-color: #c3d0e9;
+}
+.bgDetail{
+    font-size:14px;
+    color: white;
+    background-color: #3965b6;
+    position: fixed !important;
+    width: 560px;
+    max-height: 160px;
+    bottom: 5%;
+    left: 55%;
+    z-index:1001;
+    border-top-right-radius:3px;
+    border-top-left-radius:3px;
+    padding:  0px 5px;
+}
+.bgDetail .title{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.sqdw{
+    flex: 1;
+}
+.shdw{
+    flex: 1;
+}
+.shzt{
+    flex: 1;
+}
+.bglmc{
+    flex: 1;
+}
+.bgq{
+    flex: 1;
+}
+.bgh{
+    flex: 1;
+}

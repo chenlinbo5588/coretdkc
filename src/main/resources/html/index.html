@@ -5,23 +5,23 @@
 <div th:replace="static/common/common_header :: common_header"/>
 <body>
 <div class="tc" id="tc" style="display: none">
-    <div class="mask"></div>
+    <div class="mask" id="mask"></div>
     <div id="tcBox"></div>
 </div>
 <link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/index.css')}"  />
 <script type="text/javascript" src="/static/js/echartsMin.js"></script>
 <script src="/static/js/jquery.js"></script>
-<script src="/static/js/plugInUnit/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" media="all" href="/static/js/plugInUnit/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
+<script src="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 
-<link rel="stylesheet" href="http://www.myarcgis.com/4.11/esri/themes/light/main.css" />
-<script src="http://www.myarcgis.com/4.11/init.js"></script>
+<link rel="stylesheet" href="/static/js/thirdlib/4.11/esri/themes/light/main.css" />
+<script src="/static/js/thirdlib/4.11/init.js"></script>
 <script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
 
 <div id="baobiaoBox" style="display: none;"></div>
 <div class="indexTitleBox ">
     <div class="indexTitle W40">
-        <div class="indexTitleText">水域动态口监管信息化系统</div>
+        <div class="indexTitleText">水域动态监管信息化系统</div>
         <div class="indexSubtitleText">Water condition monitoring system</div>
     </div>
     <div class="indexTitleButton W40">
@@ -30,30 +30,31 @@
     </div>
     <div class="indexUser">
         <div>您好,</div>
-        <div class="ml20 mr60">办公室 张三</div>
+        <div class="ml20 mr60">管理员</div>
     </div>
 </div>
 
 <div class="mapBox">
     <div class="leftBox" id="leftBox">
-        <div class="leftButton leftButtonSygl" id="manage">水域管理</div>
+        <a class="leftButton leftButtonSygl" id="manage" th:href="@{index}">水域管理</a>
         <div class="leftButton leftButtonSybg" id="riverChange">水域变更</div>
-        <div class="leftButton leftButtonTjbb" >统计查询</div>
     </div>
     <div class="searchBox" id="searchBox">
         <div class="searchInputBox">
             <input placeholder="输入名称或者河道编码" class="searchInput" id ="searchInput">
-            <div class="screenButoon"></div>
+            <img src="/static/img/qinkong.png" class="qinkong" style="display: none" id="qinkong">
+            <div class="fxButoon" id="fxButoon"></div>
             <div class="searchButton" id="searchButton"></div>
         </div>
-        <div class="infoList" id="infoList" style="display: none;">
-
-
+        <div class="infoList" id="back" style="display: none;">
+            <div class="mr5"><</div>
+            <div>返回搜索</div>
         </div>
+        <div class="infoList" id="infoList" style="display: none;"></div>
+        <div class="infoList" id="fxList" style="display: none;"></div>
+        <div class="infoList" id="infoDetail" style="display: none;"></div>
     </div>
 
-    <div class="" >
-    </div>
     <div class="topRightBox" id="topRightBox"  style="display: none">
         <div class="topRightButton button1" ></div>
         <div class="topRightButton button2" id="baobiao"> </div>
@@ -64,14 +65,8 @@
                 <img src="/static/img/tuceng.png">
                 <div class="ml15">图层选择</div>
             </div>
-            <div class="tucengItemBox" id="hedao" th:each="item,stat:${data}"  th:data-name="${item.selectName}">
-                    <div class="checkBox"><input type="checkbox"  th:data-name="${item.selectName}" checked></div>
-                    <div class="nameBox">
-                        <img src="/static/img/tc_hd.png">
-                        <div class="ml15">[[${item.name}]]</div>
-                    </div>
+            <div class="tucengItemBox" id="shuiyu">
             </div>
-
         </div>
         <div class="bottomRightButton button1" id="tuceng"></div>
     </div>
@@ -79,8 +74,31 @@
 
 </div>
 
+
+<div id="slide"></div>
+
+<div id="fxTc" class="fxTc" style="display: none">
+    <div class="contain">请选择构筑分析区域的方式</div>
+    <div class="buttonBox">
+        <div class="button" id="draw">
+            <div class="miaohui"></div>
+            <div>直接描绘</div>
+        </div>
+        <div class="button"  id="addDwg" style="margin-left:50px;">
+            <div class="tianjia"></div>
+            <div>添加图形文件</div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript"  >
+    var gloablConfig = {
+        mapHost:[[${mapConfig.host}]],
+        mapServerName:[[${mapConfig.mapServerName}]],
+        mapServerPort: [[${mapConfig.port}]],
+        xmHost:[[${mapConfig.xmhost}]],
+    }
+    var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
+</script>
 <script th:src="${urls.getForLookupPath('/static/js/index.js')}"></script>
 </body>
-
-
 </html>

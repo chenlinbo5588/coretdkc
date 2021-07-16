@@ -1,10 +1,7 @@
 package com.clb.service.impl;
 
 import com.clb.constant.DateConstant;
-import com.clb.entity.Project;
-import com.clb.entity.River;
-import com.clb.entity.Tubiao;
-import com.clb.entity.WaterTj;
+import com.clb.entity.*;
 import com.clb.repository.jpa.*;
 import com.clb.service.ProjectService;
 import com.clb.service.RiverService;
@@ -35,6 +32,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     ProjectRepository projectRepository;
+
+    @Autowired
+    InspectionRecordRepository inspectionRecordRepository;
 
     @Autowired
     RestTemplate restTemplate;
@@ -121,6 +121,11 @@ public class ProjectServiceImpl implements ProjectService {
         project.setYsdateS(Date.valueOf(sdf.format(project.getYsdate()*1000)));
 
         return project;
+    }
+
+    public List<InspectionRecord> getInspectionRecordsByProjectId(int projectId){
+        String filer = "glxmId=="+projectId ;
+        return inspectionRecordRepository.findAll(toSpecification(filer));
     }
 
 

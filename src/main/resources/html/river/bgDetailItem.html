@@ -1,0 +1,27 @@
+
+<div class="title">
+    <div class="W95 czjz">变更详情</div>
+    <img name="bgDetailButtonClose" src="/static/img/tuichu_wbj.png">
+</div>
+<div class="bgListItem"  >
+    <div class="sqdw">申请单位</div>
+    <div class="shdw">审核单位</div>
+    <div class="shzt">审核状态</div>
+    <div class="bglmc">变更列名称</div>
+    <div class="bgq">变更前值</div>
+    <div class="bgh">变更后值</div>
+</div>
+<div class="bgListItemBox">
+    <div class="bgListItem" th:each="item,stat:${data}" th:data-id="${item.id}" xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="sqdw">[[${item.sqdw}]]</div>
+        <div class="shdw">[[${item.bgdw}]]</div>
+        <div class="shzt">[[${item.bgdw}]]</div>
+        <div class="bglmc">[[${item.bgdw}]]</div>
+        <div class="bgq">[[${item.bgdw}]]</div>
+        <div class="bgh">[[${item.bgdw}]]</div>
+    </div>
+</div>
+
+
+
+<script th:src="${urls.getForLookupPath('/static/js/river/bgDetailItem.js')}" xmlns:th="http://www.w3.org/1999/xhtml"></script>

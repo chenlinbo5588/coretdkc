@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/river/changeBgDetail.css')}"  xmlns:th="http://www.w3.org/1999/xhtml"/>
+<div class="infoListBox">
+    <div class="infoItem" name="bgSearchItem" th:each="item,stat:${list}" th:data-code="${item.bgBm}" th:data-id="${item.id}" data-layerId="1"
+         xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="infoItemLeft" >
+            <img src="/static/img/tc_hd.png" class="infoItemLeftImg">
+            <div class="ml5">[[${item.projectName}]]</div>
+        </div>
+        <div class="infoItemRight">[[${item.getBgDateTime()}]]</div>
+    </div>
+</div>
+
+
+<script th:src="${urls.getForLookupPath('/static/js/river/bgSearch.js')}" xmlns:th="http://www.w3.org/1999/xhtml"></script>

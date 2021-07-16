@@ -1,0 +1,41 @@
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/river/changeBgDetail.css')}"  xmlns:th="http://www.w3.org/1999/xhtml"/>
+
+
+
+<div class="bgList" id="bgList" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="title">
+        <div class="W95 czjz">变更过程</div>
+        <img name="bgListButton" src="/static/img/tuichu_wbj.png">
+    </div>
+    <div class="bgListItem"  >
+        <div class="cs">次数</div>
+        <div class="bgsj">变更时间</div>
+        <div class="xmmc">项目名称</div>
+        <div class="bgdw">变更单位</div>
+        <div class="bj"></div>
+    </div>
+    <div class="bgListItemBox">
+        <div class="bgListItem" th:each="item,stat:${data}"  th:data-id="${item.id}"  name  ="item">
+            <div class="cs">[[${stat.index+1}]]</div>
+            <div class="bgsj">[[${item.getBgDateTime()}]]</div>
+            <div class="xmmc">[[${item.projectName}]]</div>
+            <div class="bgdw">[[${item.bgdw}]]</div>
+            <div class="bj ">编辑</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="bgDetail" id="bgDetail"  style="display:none;">
+
+
+</div>
+
+
+<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml">
+
+</script>
+
+
+<script th:src="${urls.getForLookupPath('/static/js/river/changeBgDetail.js')}"
+        xmlns:th="http://www.w3.org/1999/xhtml"></script>

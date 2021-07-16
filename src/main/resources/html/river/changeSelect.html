@@ -1,13 +1,62 @@
 <link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/river/changeSelect.css')}"  xmlns:th="http://www.w3.org/1999/xhtml"/>
 
 
+<div class="searchBox" id="bgSearchBox"  xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="searchInputBox">
+        <input placeholder="输入河道名称或者项目名称" class="searchInput" id ="bgSearchInput">
+        <img src="/static/img/qinkong.png" class="qinkong" style="display: none" id="bgQinkong">
+        <div class="searchButton" id="bgSearchButton"></div>
+    </div>
+    <div class="infoList" id="bgIndexList" >
+        <div class="">
+            <div class="titleBox">
+                <div class="ssButton">
+                    <img id="open" style="" src="/static/img/xia.png"/>
+                    <img id="close" style="display: none" src="/static/img/you.png"/>
+                </div>
+                <div>快捷项目列表</div>
+            </div>
+            <div class="contentBox">
+              <div class="contentItem" th:each="item,stat:${changeList}" >
+                  <div class="boxh">
+                      <div class="">[[${stat.index+1}]] .</div>
+                      <div class="name"  th:data-code="${item.bgBm}"  th:data-id="${item.id}">[[${item.projectName}]] </div>
+                  </div>
+                  <div class="boxh">
+                      <div class="">[[${item.getBgDateTime()}]]</div>
+                  </div>
+
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="infoList" id="bgInfoList" style="display: none;"></div>
+</div>
+<div id="changeDetail"></div>
+
 <div class="changeBox">
     <div class="halfViewDiv" id="xinView"></div>
     <div class="halfViewDiv" id="jiuView"></div>
 </div>
-<div>
-
+<div class="bottomRightBox" id="bottomRightBox" >
+    <div class="tucengSelectBox" id="tucengSelectBox" style="display: none">
+        <div class="tucengSelectTitle">
+            <img src="/static/img/tuceng.png">
+            <div class="ml15">图层选择</div>
+        </div>
+        <div class="tucengItemBox" id="shuiyu">
+        </div>
+    </div>
 </div>
+<div class="rightViewBox" id="rightViewBox">
+    <div class="viewTitle">变更水域</div>
+    <div class="tucengButton" id="tucengButton"></div>
+</div>
+<div class="leftViewBox" id="leftViewBox">
+    <div class="viewTitle" >水域现状</div>
+</div>
+
+
 <script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
 
 </script>

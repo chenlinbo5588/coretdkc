@@ -65,7 +65,14 @@ $(function(){
             })
         }
     })
+    initXcList();
+    function initXcList(){
+        $.get(BASE_URL +"manage/xcList?projectId="+id,function(resp){
+            $("#xcContentBox").html(resp);
+        })
+    }
     $("#quedin").click(function () {
         $("#tc").hide();
     })
+
 })

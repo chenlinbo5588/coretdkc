@@ -1,0 +1,17 @@
+
+<div class="xcContent" th:each="item,stat:${data}"  xmlns:th="http://www.w3.org/1999/xhtml" >
+    <div style="flex:1">[[${stat.index+1}]]</div>
+    <div style="flex:2.5">[[${item.xcryName}]]</div>
+    <div style="flex:3">[[${item.getXcdateTime()}]]</div>
+    <div style="flex:3.2">[[${item.xcjl}]]</div>
+    <div class="button" style="flex:2" >删除</div>
+</div>
+<div class="xcContent"  >
+    <div style="flex:1"><input ></input></div>
+    <div style="flex:2.5"><input></input></div>
+    <div style="flex:3"><input class="datepicker" ></input></div>
+    <div style="flex:3.2"><input ></input></div>
+    <div class="button" style="flex:2" id="xcSave">保存</div>
+</div>
+
+<script th:src="${urls.getForLookupPath('static/js/manage/xcList.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>

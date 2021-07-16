@@ -1,80 +1,79 @@
 
 var view;
 var map;
+var shuiyuFind;
+var shuiyuFindparams;
 var find;
 var findparams;
-var identify;
+var drawTool;
 var identifyparams;
-var qTask ;
-var params ;
-require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/tasks/IdentifyTask",
-    "esri/tasks/support/IdentifyParameters",
-    "esri/layers/FeatureLayer",
-    "esri/Graphic",
-    "esri/layers/TileLayer",
-    "esri/core/urlUtils",
-    "esri/config",
-    "esri/layers/WebTileLayer",
-    "esri/tasks/QueryTask",
-    "esri/tasks/support/Query",
-    "esri/layers/MapImageLayer",
-    "esri/tasks/FindTask",
-    "esri/tasks/support/FindParameters",
-    "esri/tasks/IdentifyTask",
-    "esri/tasks/support/IdentifyParameters",
-], function (Map,MapView, IdentifyTask, IdentifyParameters,FeatureLayer, Graphic, TileLayer, urlUtils,esriConfig,WebTileLayer,QueryTask,Query,MapImageLayer,FindTask,FindParameters) {
+var identifyTask;
+var rightmap;
+var fxdata;
+function initIndexMap() {
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/tasks/IdentifyTask",
+        "esri/tasks/support/IdentifyParameters",
+        "esri/layers/FeatureLayer",
+        "esri/layers/GraphicsLayer",
+        "esri/Graphic",
+        "esri/layers/TileLayer",
+        "esri/core/urlUtils",
+        "esri/config",
+        "esri/layers/WebTileLayer",
+        "esri/tasks/QueryTask",
+        "esri/tasks/support/Query",
+        "esri/layers/MapImageLayer",
+        "esri/tasks/FindTask",
+        "esri/tasks/support/FindParameters",
+        "esri/widgets/LayerList",
+        "esri/views/draw/Draw",
+    ], function (Map,MapView, IdentifyTask, IdentifyParameters,FeatureLayer,GraphicsLayer, Graphic, TileLayer, urlUtils,esriConfig,WebTileLayer,QueryTask,Query,MapImageLayer,
+                 FindTask,FindParameters,LayerList,Draw) {
 
-    urlUtils.addProxyRule({
-        urlPrefix: "192.168.5.120/arcgis", // specify resource location
-        proxyUrl: "http://localhost:8080/river/proxy" // specify location of proxy file
-    });
-    var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
-    var tiledLayer = new WebTileLayer({
-        title:"天地图",
-        urlTemplate:
-            "http://{subDomain}.tianditu.gov.cn/DataServer?T=img_w&x={col}&y={row}&l={level}&tk="+tdt_token,
-        subDomains: ["t0", "t1", "t2", "t3","t4", "t5", "t6", "t7"],
-    });
+        urlUtils.addProxyRule({
+            urlPrefix: gloablConfig.mapHost+"/arcgis", // specify resource location
+            proxyUrl: "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/river/proxy" // specify location of proxy file
+        });
 
-    var tiledLayer_poi = new WebTileLayer({
-        title:"天地图标注",
-        urlTemplate:
-            "http://{subDomain}.tianditu.gov.cn/DataServer?T=img_w&x={col}&y={row}&l={level}&tk="+tdt_token,
-        subDomains: ["t0", "t1", "t2", "t3","t4", "t5", "t6", "t7"],
-    });
-    // var template = {
-    //     title: "{NAME}",
-    //     content: [
-    //         {
-    //             type: "fields",
-    //             fieldInfos: [
-    //                 {
-    //                     fieldName: "NAME",
-    //                     label: "河道",
-    //                     format: {
-    //                             digitSeparator: true,
-    //                             places: 0
-    //                     }
-    //                 },
-    //                 {
-    //                     fieldName: "LENGTH",
-    //                     label: "河道长度",
-    //                     format: {
-    //                         digitSeparator: true,
-    //                         places: 0
-    //                     }
-    //                 }
-    //             ]
-    //         }
-    //     ]
-    // };
+        var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
+        var tiledLayer = new WebTileLayer({
+            title:"天地图",
+            urlTemplate:
+                "http://{subDomain}.tianditu.gov.cn/DataServer?T=img_w&x={col}&y={row}&l={level}&tk="+tdt_token,
+            subDomains: ["t0", "t1", "t2", "t3","t4", "t5", "t6", "t7"],
+        });
+        var tiledLayer2 = new WebTileLayer({
+            title:"天地图",
+            urlTemplate:
+                "http://{subDomain}.tianditu.gov.cn/DataServer?T=img_w&x={col}&y={row}&l={level}&tk="+tdt_token,
+            subDomains: ["t0", "t1", "t2", "t3","t4", "t5", "t6", "t7"],
+        });
 
-    river = new MapImageLayer({
-        url: "http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer",
-        sublayers: [{
+
+        var ditu = new TileLayer({
+            title:"ditu",
+            url:"http://"+gloablConfig.mapHost+"/arcgis/rest/services/yx2021/yxgjc/MapServer"
+        });
+        var tiledLayer_poi = new WebTileLayer({
+            title:"天地图标注",
+            visible:false,
+            urlTemplate:
+                "http://{subDomain}.tianditu.gov.cn/DataServer?T=cva_w&x={col}&y={row}&l={level}&tk="+tdt_token,
+            subDomains: ["t0", "t1", "t2", "t3","t4", "t5", "t6", "t7"],
+        });
+        var tiledLayer_poi2 = new WebTileLayer({
+            title:"天地图标注",
+            visible:false,
+            urlTemplate:
+                "http://{subDomain}.tianditu.gov.cn/DataServer?T=cva_w&x={col}&y={row}&l={level}&tk="+tdt_token,
+            subDomains: ["t0", "t1", "t2", "t3","t4", "t5", "t6", "t7"],
+        });
+        river = new MapImageLayer({
+            url: "http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/shuiyu/MapServer",
+            sublayers: [{
                 id: 11,
                 title:"其他水域",
                 visible: true,
@@ -124,235 +123,446 @@ require([
                 title:"河道水域",
                 id: 1,
                 visible: true,
-             },{
+            },{
                 title:"河道水域范围管理线",
                 id:0,
                 visible: true,
                 minScale:6000,
-             }
-        ]
-    });
+            }
+            ]
+        });
+
+        var other = new MapImageLayer({
+            url: "http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/xzj/MapServer",
+            sublayers: [{
+                id: 1,
+                title:"乡镇界",
+                visible: true,
+            },{
+                title:"水准点",
+                id: 0,
+                visible: false,
+            }]
+        });
+        var bgtx = new MapImageLayer({
+            url: "http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/bgtx/MapServer",
+            sublayers: [{
+                id: 2,
+                title:"其他水域变更",
+                visible: true,
+            },{
+                title:"水库变更",
+                id: 1,
+                visible: true,
+            },{
+                title:"河道变更",
+                id: 0,
+                visible: true,
+            }]
+        });
 
 
-    // var graphicsLayer = new GraphicsLayer();
-    //搜索
-    qTask = new QueryTask({
-        url: "http://192.168.5.120/arcgis/rest/services/river/shuiyu/FeatureServer/1"
-    });
-    params = new Query({
-        returnGeometry: true,
-        outFields: ["*"]
-    });
-    find = new FindTask({
-        url:"http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer"
-    });
-    findparams = new FindParameters({
-        layerIds: [1],
-        searchFields: ["name"]
-    });
 
-    map = new Map({
-        layers: [ tiledLayer,tiledLayer_poi,river]
+        shuiyuFind =  new FindTask({
+            url:"http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/shuiyu/MapServer"
+        });
+        shuiyuFindparams = new FindParameters({
+            layerIds: [1,3,5,7,9,11],
+            searchFields: ["identification"],
+            returnGeometry:true,
+        });
+
+        find = new FindTask({
+            url:"http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/bgtx/MapServer"
+        });
+        findparams = new FindParameters({
+            layerIds: [0,1,2],
+            searchFields: ["identification"],
+            returnGeometry:true,
+        });
+
+        map = new Map({
+            layers: [tiledLayer,tiledLayer_poi,ditu,other,river,]
+        });
+        rightmap =new Map({
+            layers: [tiledLayer2,tiledLayer_poi2,bgtx]
+        });
+        view = new MapView({
+            container: "viewDiv",
+            map: map,
+            center: [121.25962011651083, 30.17229501748913],
+            zoom:13
+        });
+        view.ui.remove('attribution')
+        view.ui.remove("zoom");
+
+        var layerList = new LayerList({
+            view: view,
+
+            listItemCreatedFunction: function(event) {
+                const item = event.item;
+                if(item.title == "Shuiyu"){
+                    item.title ="水域图层"
+                }else if(item.title == "Xzj"){
+                    item.title ="其他图层"
+                }else if(item.title == "Bgtx"){
+                    item.title ="变更图形图层"
+                }else if(item.title == "ditu"){
+                    item.title ="自定义影像"
+                }
+            }
+        },"shuiyu");
+
+        view.ui.add(document.getElementById("bottomRightBox"), {
+            position:"bottom-right",
+            index:0,
+        });
+        view.ui.add(document.getElementById("slide"), {
+            position:"bottom-right",
+            index:1,
+        });
+        view.ui.add(document.getElementById("topRightBox"), {
+            position: "top-right",
+            index: 1
+        });
+        $("#topRightBox").show();
+
+        $("#bottomRightBox").show();
+        //
+        // var graphicsLayer = new GraphicsLayer({title:"编辑图层"});
+        // map.add(graphicsLayer);
+        /*叠加分析*/
+        drawTool = new Draw({
+            view:view
+        });
+
+        // view.on("mouse-wheel",function(evt){
+        //
+        //    console.log(view.scale);
+        //
+        // });
+
+
+        view.when(function() {
+            view.on("click", executeIdentifyTask);
+            // Create identify task for the specified map service
+            identifyTask = new IdentifyTask({ url: "http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/shuiyu/MapServer"});
+            // Set the parameters for the Identify
+            identifyparams = new IdentifyParameters();
+            identifyparams.tolerance = 1;
+            identifyparams.returnGeometry =true;
+            identifyparams.layerIds = [1,3,5,7,9,11];
+            identifyparams.layerOption = "visible";
+            identifyparams.width = view.width;
+            identifyparams.height = view.height;
+
+        });
+
+        function executeIdentifyTask(event) {
+            view.graphics.removeAll();
+
+            identifyparams.geometry = event.mapPoint;
+            identifyparams.mapExtent = view.extent;
+            $("#viewDiv").css("cursor","wait");
+            identifyTask
+                .execute(identifyparams)
+                .then(function(response) {
+                    var results = response.results;
+                    if (results.length>0){
+                        var result = results[0].feature;
+                        var layerId = results[0].layerId;
+
+                        view.goTo(result.geometry.extent.expand(1)).then(function() {
+                            var selectionSymbol={
+                                type:"simple-fill",
+                                size:10,
+                                outline:{
+                                    color:"red",
+                                    width:2
+                                }
+                            };
+                            result.symbol= selectionSymbol;
+                            view.graphics.add(result);
+                            view.popup.open({
+                                title:result.attributes.selectName,
+                                location: event.mapPoint
+                            });
+                        });
+                    }
+                    $("#viewDiv").css("cursor","auto");
+                })
+        }
     });
-    view = new MapView({
-        container: "viewDiv",
-        map: map,
-        center: [121.25962011651083, 30.17229501748913],
-        zoom:13
-    });
+}
+function showPolygon(event) {
 
-    view.ui.remove('attribution')
-    view.ui.remove("zoom");
-
-    view.ui.add(document.getElementById("topRightBox"), {
-        position: "top-right",
-        index: 1
-    });
-    view.ui.add(document.getElementById("bottomRightBox"), {
-        position: "bottom-right",
-        index: 1
-    });
-    $("#bottomRightBox").show();
-    $("#topRightBox").show();
-
-    view.when(function() {
-        view.on("click", executeIdentifyTask);
-
-        // Create identify task for the specified map service
-        identifyTask = new IdentifyTask({ url: "http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer"});
-
-        // Set the parameters for the Identify
-        identifyparams = new IdentifyParameters();
-        identifyparams.tolerance = 1;
-        identifyparams.returnGeometry =true;
-        identifyparams.layerIds = [1,3,5,7,9,11];
-        identifyparams.layerOption = "visible";
-        identifyparams.width = view.width;
-        identifyparams.height = view.height;
-
-    });
-
-    function executeIdentifyTask(event) {
+    require([
+        "esri/geometry/Polygon",
+        "esri/Graphic",
+    ], function (Polygon,Graphic) {
+        var fillSymbol = {
+            type: "simple-fill",
+            outline: {
+                color: "red",
+                width: 2
+            }
+        };
+        var polygon = new Polygon({
+            rings: event.vertices,
+            spatialReference: view.spatialReference
+        });
+        var polygonGraphic = new Graphic({
+            geometry: polygon,
+            symbol: fillSymbol
+        });
         view.graphics.removeAll();
+        view.graphics.add(polygonGraphic);
+    });
 
-        identifyparams.geometry = event.mapPoint;
+}
+
+function fxPolygon(event) {
+
+    require([
+        "esri/geometry/Polygon",
+        "esri/geometry/geometryEngine",
+    ], function (Polygon,geometryEngine) {
+        var fillSymbol = {
+            type: "simple-fill",
+            outline: {
+                color: "red",
+                width: 2
+            }
+        };
+        var polygon = new Polygon({
+            rings: event.vertices,
+            spatialReference: view.spatialReference
+        });
+        setidentifyparamsLayerIds();
+        identifyparams.geometry = polygon;
         identifyparams.mapExtent = view.extent;
-        $("#viewDiv").css("cursor","wait");
+        var data =[];
+        fxdata = [];
         identifyTask
             .execute(identifyparams)
             .then(function(response) {
                 var results = response.results;
-                console.log(response);
                 if (results.length>0){
-                    var result = results[0].feature;
-                    var layerId = results[0].layerId;
+                    for(var i = 0;i<results.length;i++){
+                        
+                        var result = results[i].feature;
+                        var intersect = geometryEngine.intersect(result.geometry,polygon);
+                        var area = parseFloat(geometryEngine.planarArea(intersect, "square-meters"));
 
-                    view.goTo(result.geometry.extent.expand(1)).then(function() {
+                        var item = {};
+                        item.layerId = results[i].layerId ;
+                        item.identification = result.attributes.identification;
+                        item.area = area;
+                        data.push(item);
                         var selectionSymbol={
                             type:"simple-fill",
                             size:10,
                             outline:{
-                                color:"red",
+                                color:"yellow",
                                 width:2
                             }
                         };
                         result.symbol= selectionSymbol;
+                        result.geometry = intersect;
+                        fxdata.push(result);
                         view.graphics.add(result);
-                        view.popup.open({
-                            title:result.attributes.selectName,
-                            location: event.mapPoint
-                        });
-                    });
+                    }
+                    showfxPolygon(data);
                 }
-                $("#viewDiv").css("cursor","auto");
             })
+    });
 
+}
+function showfxPolygon(data) {
 
-        // Shows the results of the Identify in a popup once the promise is resolved
-        function showPopup(response) {
-            if (response.length > 0) {
-                view.popup.open({
-                    features: response,
-                    location: event.mapPoint
+    var param ={
+        fxdata:JSON.stringify(data)
+    };
+    $.post(BASE_URL+"/river/fxSelect",param ,function(result){
+        $(".infoList").hide();
+        $("#fxList").html(result);
+        $("#fxList").show();
+    });
+
+}
+function setidentifyparamsLayerIds(){
+
+    view.map.layers.forEach(function (layer) {
+        if(layer.title == "Shuiyu"){
+            identifyparams.layerIds = [];
+            for(i=0;i<layer.allSublayers.items.length;i=i+2){
+                if(layer.allSublayers.items[i].visible){
+                    identifyparams.layerIds.push(layer.allSublayers.items[i].id);
+                }
+            }
+        }
+    })
+
+}
+function initLeftView(view,contain){
+    var identifyTask;
+    var identifyparams;
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/tasks/IdentifyTask",
+        "esri/tasks/support/IdentifyParameters",
+    ], function (Map,MapView, IdentifyTask, IdentifyParameters,) {
+
+        view = new MapView({
+            container: contain,
+            map: map,
+            center: [121.25962011651083, 30.17229501748913],
+            zoom:13
+        });
+        view.ui.remove('attribution')
+        view.ui.remove("zoom");
+
+        view.when(function() {
+            view.on("click", executeIdentifyTask);
+
+            // Create identify task for the specified map service
+            identifyTask = new IdentifyTask({ url: "http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/shuiyu/MapServer"});
+            // Set the parameters for the Identify
+            identifyparams = new IdentifyParameters();
+            identifyparams.tolerance = 1;
+            identifyparams.returnGeometry =true;
+            identifyparams.layerOption = "visible";
+            identifyparams.width = view.width;
+            identifyparams.height = view.height;
+
+        });
+
+        function executeIdentifyTask(event) {
+            view.graphics.removeAll();
+
+            identifyparams.geometry = event.mapPoint;
+            identifyparams.mapExtent = view.extent;
+            $("#viewDiv").css("cursor","wait");
+            identifyTask
+                .execute(identifyparams)
+                .then(function(response) {
+                    var results = response.results;
+                    if (results.length>0){
+                        var result = results[0].feature;
+                        var layerId = results[0].layerId;
+
+                        view.goTo(result.geometry.extent.expand(1)).then(function() {
+                            var selectionSymbol={
+                                type:"simple-fill",
+                                size:10,
+                                outline:{
+                                    color:"red",
+                                    width:2
+                                }
+                            };
+                            result.symbol= selectionSymbol;
+                            view.graphics.add(result);
+                            view.popup.open({
+                                title:result.attributes.selectName,
+                                location: event.mapPoint
+                            });
+                        });
+                    }
+                    $("#viewDiv").css("cursor","auto");
+                })
+        }
+    });
+    return view;
+}
+
+function initRightView(view,contain){
+
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/tasks/IdentifyTask",
+        "esri/tasks/support/IdentifyParameters",
+    ], function (Map,MapView, IdentifyTask, IdentifyParameters,) {
+
+        view = new MapView({
+            container: contain,
+            map: rightmap,
+            center: [121.25962011651083, 30.17229501748913],
+            zoom:13
+        });
+        view.ui.remove('attribution')
+        view.ui.remove("zoom");
+    });
+    return view;
+}
+$(function() {
+    initIndexMap();
+})
+
+function findByIdentification(code){
+    shuiyuFindparams.searchText = code;
+    shuiyuFind.execute(shuiyuFindparams)
+        .then(function(response) {
+            var results = response.results;
+            if (results.length>0){
+                var result = results[0].feature;
+                view.goTo(result.geometry.extent.expand(1)).then(function() {
+                    var selectionSymbol={
+                        type:"simple-fill",
+                        size:10,
+                        outline:{
+                            color:"red",
+                            width:2
+                        }
+                    };
+                    result.symbol= selectionSymbol;
+                    view.graphics.add(result);
                 });
+
             }
             $("#viewDiv").css("cursor","auto");
-        }
-    }
+        })
+}
 
+function changeFindByCode(code,view1,view2){
 
-    // var sketch = new Sketch({
-    //     layer: graphicsLayer,
-    //     view: view
-    // });
-    /*var basemapToggle = new BasemapToggle({
-        view: view,
-        nextBasemap: "hybrid"
-    });*/
-    // view.ui.add(basemapToggle, 'top-right')
+    view1.graphics.removeAll();
+    view2.graphics.removeAll();
+    findparams.searchText = code;
 
-    // view.ui.add(sketch, "top-right");
+    $("#viewDiv").css("cursor","wait");
+    find.execute(findparams)
+        .then(function(response) {
+            var results = response.results;
+            if (results.length>0){
+                var result = results[0].feature;
 
-    // var search = new Search({
-    //     view: view,
-    //     allPlaceholder: "District or Senator",
-    //     activeSourceIndex: 1,
-    //     sources: [{
-    //         layer: featureLayer,
-    //         searchFields: ["NAME"],
-    //         displayField: "NAME",
-    //         exactMatch: false,
-    //         maxResults:6,
-    //         maxSuggestions: 6,
-    //         name: "网格",
-    //         placeholder: "输入网格名称",
-    //         outFields: ["Name"],
-    //         minSuggestCharacters: 0,
-    //     }],
-    //
-    // });
-    // view.ui.add(search, {
-    //     position: "top-left",
-    //     index: 0
-    // });
+                view1.goTo(result.geometry.extent.expand(1)).then(function() {
 
-    //http://www.arcgissdk.com/latest/sample-code/sandbox/index.html?sample=tasks-identify
+                });
+                view2.goTo(result.geometry.extent.expand(1)).then(function() {
+                    var selectionSymbol={
+                        type:"simple-fill",
+                        size:10,
+                        outline:{
+                            color:"red",
+                            width:2
+                        }
+                    };
+                    result.symbol= selectionSymbol;
+                    view2.graphics.add(result);
+                });
 
-
-    // function showInfo(attributes) {
-    //     document.getElementById("infoDiv").innerHTML =
-    //         "<div class='infoDivBox'>" +
-    //         "<div> 名称:" +
-    //         attributes.NAME +
-    //         "</div>" +
-    //         "<div> 长度: " +
-    //         attributes.LENGTH +
-    //         "</div>"+
-    //         "<div> 编号: " +
-    //         attributes.CKBH +
-    //         "</div>"+
-    //         "<div> 起点位置: " +
-    //         attributes.SNAME +
-    //         "</div>"+
-    //         "<div>终点位置: " +
-    //         attributes.ENAME +
-    //         "</div>"+
-    //         "</div>"
-    // }
-
-
-
-    // var editConfigPointLayer, editConfigPoliceLayer, editConfigLineLayer;
-    // view.when(function () {
-    //     view.popup.autoOpenEnabled = true; //disable popups
-    //     view.map.layers.forEach(function (layer) {
-    //        if (layer.title === "Shuiyu") {
-    //             editConfigPoliceLayer = {
-    //                 layer: layer,
-    //                 fieldConfig: [
-    //                     {
-    //                         name: "NAME",
-    //                         label: "河段名称"
-    //                     },
-    //                     {
-    //                         name: "LENGTH",
-    //                         label: "河段长度"
-    //                     },
-    //                     {
-    //                         name:"SNAME",
-    //                         label:"起点位置名称"
-    //                     },
-    //                     {
-    //                         name:"ENAME",
-    //                         label:"终点位置名称"
-    //                     }
-    //                 ]
-    //             };
-    //         }
-    //     });
-    //     var editor = new Editor({
-    //         view: view,
-    //         layerInfos: [editConfigPoliceLayer],
-    //     });
-    //     view.ui.add(editor, "top-right");
-    // });
-
-});
-
-
-function findObjectId(rcode){
-    console.log(rcode);
-    params.where = "RCODE="+rcode;
-
-    qTask.execute(params).then(ShowFindResult);
+            }
+            $("#viewDiv").css("cursor","auto");
+        })
 }
 
 function ShowFindResult(response){
-    console.log(response);
     var results = response.features[0];
     view.graphics.removeAll();
     view.goTo(results.geometry.extent.expand(1)).then(function() {
-
         var selectionSymbol={
             type:"simple-fill",
             size:10,

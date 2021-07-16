@@ -3,20 +3,14 @@ package com.clb.service;
 
 import com.clb.dao.UserRepository;
 import com.clb.entity.Project;
-import com.clb.entity.Tubiao;
-import com.clb.entity.User;
+import com.clb.dto.Tubiao;
 import com.clb.repository.jpa.ProjectRepository;
 
 import com.clb.repository.jpa.SyRvaaRepository;
-import io.github.perplexhub.rsql.RSQLJPASupport;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
@@ -26,7 +20,6 @@ import java.util.Map;
 
 import static io.github.perplexhub.rsql.RSQLJPASupport.toSort;
 import static io.github.perplexhub.rsql.RSQLJPASupport.toSpecification;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

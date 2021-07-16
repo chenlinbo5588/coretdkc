@@ -1,9 +1,6 @@
 package com.clb.controller;
 
-import com.clb.entity.Project;
-import com.clb.entity.River;
-import com.clb.entity.RiverType;
-import com.clb.entity.WaterTj;
+import com.clb.entity.*;
 import com.clb.service.ProjectService;
 import com.clb.service.RiverService;
 import org.springframework.data.domain.Page;
@@ -102,7 +99,15 @@ public class ManageController extends BaseController {
 
         return "html/manage/add";
     }
-
+    @RequestMapping("/xcList")
+    public String xcList(@RequestParam(value = "projectId", required = false,defaultValue = "48") int projectId, ModelMap map) {
+        List<InspectionRecord> inspectionRecords = new ArrayList<InspectionRecord>();
+        if(projectId !=0){
+            inspectionRecords  = projectService.getInspectionRecordsByProjectId(projectId);
+        }
+       map.put("data",inspectionRecords);
+        return "html/manage/xcList";
+    }
 
 
 

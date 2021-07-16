@@ -15,7 +15,6 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String pname;
     private String ptype;
     private Float mj;
@@ -24,6 +23,8 @@ public class Project {
     private int xcdate;
     private String jsdw;
     private String jcdw;
+    private String jldw;
+    private String ztwfzl;
     private int ysdate;
     private Integer addUid;
     private String addUsername;
@@ -34,6 +35,7 @@ public class Project {
     private String remark;
     private String xypj;
     private String xmydhxName;
+
 
     @Transient
     private  String jsd;
@@ -46,8 +48,8 @@ public class Project {
     @Transient
     private  Date ysdateS;
     @Transient
-    private  Date xcdateS;
 
+    private  Date xcdateS;
 
 
 }

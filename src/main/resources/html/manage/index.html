@@ -7,7 +7,6 @@
             <div class="boxh">
                 <input class="" placeholder="请输入项目名称或批准文号" id="xmhlSearch" th:value="${value}"  xmlns:th="http://www.w3.org/1999/xhtml" ></input>
                 <div class="button" id="xmglSearch">查询</div>
-                <div class="screen">仅显示需巡查目录</div>
             </div>
             <div class="boxh">
                 <div class="button" name="xmAdd">新增</div>
@@ -26,7 +25,7 @@
             <div class="searchTopBox"   xmlns:th="http://www.w3.org/1999/xhtml">
                 <div class="teduan allselect" >全选</div>
                 <div class="duan" ><p class="titleClick" style="width: 40px;" data-paixu="id" th:classappend="${paixu} == 'id'? ${paixuValue}:''">序号</p></div>
-                <div class="duan " ><p class="titleClick" style="width:55px;">警示灯</p></div>
+                <div class="duan " >警示灯</div>
                 <div class="chang ">项目名称</div>
                 <div class="duan " >联系人</div>
                 <div class="zhong "><p class="titleClick" style="width:70px;" data-paixu="mj" th:classappend="${paixu} == 'mj'? ${paixuValue}:''">用地面积</p></div>

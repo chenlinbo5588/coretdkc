@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 @Entity
@@ -15,13 +16,16 @@ public class InspectionRecord {
     private int id;
     private Integer glxmId;
     private String xcryName;
-    private String xcdate;
+    private float xcdate;
     private String xcjl;
-    private Integer xchdUid;
+    private String xchdUid;
     private Integer addUid;
     private String addUsername;
     private Integer reviseUid;
     private String reviseName;
 
-
+    public String getXcdateTime(){
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        return ft.format(getXcdate()*1000);
+    }
 }

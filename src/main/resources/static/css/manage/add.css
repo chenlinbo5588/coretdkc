@@ -32,6 +32,9 @@ input{
 .leftButoonBox{
     display: flex;
 }
+.rightButoonBox{
+    display: flex;
+}
 .topButtonBox{
     width: 40%;
     height:80px;
@@ -213,4 +216,9 @@ input{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.xcContent input{
+    outline: none;
+    width: 100%;
+    border:none;
 }

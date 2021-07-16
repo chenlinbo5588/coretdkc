@@ -1,8 +1,6 @@
-<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/river/baobiao.css')}"
-      xmlns:th="http://www.w3.org/1999/xhtml" />
-
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/river/baobiao.css')}" xmlns:th="http://www.w3.org/1999/xhtml" />
 <div class="mask"></div>
-<div class="baobiaoBox">
+<div class="baobiaoBox"  xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="baobiao">
         <div class="title">
             水域统计
@@ -52,7 +50,7 @@
                         <div class="ml20" th:if="${item.type == '水库' || item.type == '山塘' || item.type == '湖泊'}">([[${item.number}]]座)</div>
                     </div>
                     <div class="content">
-                        <div th:if="${item.length} > 0 "  >
+                        <div th:if="${item.length}>0"  >
                            总长度:[[${item.length}]]
                         </div>
                         <div >
@@ -65,14 +63,14 @@
                 </div>
             </div>
             <div class="tubiaoListBox">
-                <div class="tubiaoItem"   th:each="item,stat:${data}" th:classappend="${stat.index >0 ?'ml15':''}" xmlns:th="http://www.w3.org/1999/xhtml">
+                <div class="tubiaoItem"   th:each="item,stat:${data}" th:classappend="${stat.index >0 ?'ml15':''}">
                     <div class="tubiaoTitle">
                         <div class="yuan"></div>
                         <div>[[${item.name}]]</div>
                     </div>
                     <div name="tubiao" class="tubiao"></div>
                     <div  class="tubiaoDeatilsBox"  xmlns:th="http://www.w3.org/1999/xhtml">
-                        <div class="tubiaoDeatilsItem" th:each="item2,stat2:${item.data}" xmlns:th="http://www.w3.org/1999/xhtml">
+                        <div class="tubiaoDeatilsItem" th:each="item2,stat2:${item.data}" >
                             <div>[[${item2.name}]] ([[${item2.number}]][[${item2.numberDw}]]）</div>
                             <div>总[[${item2.type}]]:[[${item2.value}]][[${item2.dw}]]</div>
                             <div class="zb">占比:[[${item2.zb}]]%</div>
@@ -81,9 +79,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 <script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
     var data = [[${data}]];

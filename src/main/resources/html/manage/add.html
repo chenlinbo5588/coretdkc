@@ -7,11 +7,15 @@
                 <div class="button">图形导出</div>
                 <div class="button">清单打印</div>
             </div>
-            <div class="button" id="baocun">保存</div>
+            <div class="rightButoonBox">
+                <div class="button" id="baocun">保存</div>
+                <div class="button" id="backIndex">返回</div>
+            </div>
+
         </div>
     </div>
     <div class="contentBox">
-        <div class="title">项目管理基本信息表</div>
+        <div class="title">水土保持基本信息表</div>
         <div class="content">
             <div class="aLine">
                 <div><p>*</p>项目名称</div>
@@ -31,6 +35,12 @@
             </div>
         </div>
         <div class="content">
+            <div class="aLine">
+                <div><p>*</p>监理单位</div>
+                <input name="jldw" th:value="${data.jldw}">
+            </div>
+        </div>
+        <div class="content">
             <div class="halfLine">
                 <div><p>*</p>用地面积</div>
                 <input name="mj" th:value="${data.mj}">
@@ -46,8 +56,8 @@
                 <input name="fzrname" th:value="${data.fzrname}">
             </div>
             <div class="halfLine">
-                <div><p>*</p>用地红线名称</div>
-                <input  name="xmydhxName" th:value="${data.xmydhxName}">
+                <div><p>*</p>渣土挖方总量</div>
+                <input  name="ztwfzl" th:value="${data.ztwfzl}">
             </div>
         </div>
         <div class="content">
@@ -82,14 +92,10 @@
                 <div style="flex:2.5">巡查人员</div>
                 <div style="flex:3">巡察时间</div>
                 <div style="flex:3.2">说明</div>
-                <div class="button" style="flex:2">新增</div>
+                <div class="button" style="flex:2" id="xcAdd">新增</div>
             </div>
-            <div class="xcContent" th:if="false" xmlns:th="http://www.w3.org/1999/xhtml">
-                <div style="flex:1"></div>
-                <div style="flex:2.5"></div>
-                <div style="flex:3"></div>
-                <div style="flex:3.2"></div>
-                <div class="button" style="flex:2"></div>
+            <div class="xcContentBox" id="xcContentBox">
+
             </div>
         </div>
     </div>
@@ -104,7 +110,7 @@
 </div>
 
 <script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
-    var id = [[${id}]];
+    var id = [[${data.id}]];
 </script>
 
 <script th:src="${urls.getForLookupPath('/static/js/manage/add.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>
