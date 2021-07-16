@@ -60,9 +60,16 @@ spring:
     password: 123123
     driverClassName: org.postgresql.Driver
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: update
-    show-sql: true
+      use-new-id-generator-mappings: false
+    properties:
+      hibernate:
+        # 将format_sql 配置为ture，将会格式化sql语句，
+        format_sql: true
+        # 这个配置与show-sql: true配置重复，只配置一个即可
+        show_sql: true
 
 
   thymeleaf:
