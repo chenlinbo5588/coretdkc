@@ -429,51 +429,51 @@ function initLeftView(view,contain){
             view.on("click", executeIdentifyTask);
 
             // Create identify task for the specified map service
-            identifyTask = new IdentifyTask({ url: "http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/shuiyu/MapServer"});
-            // Set the parameters for the Identify
-            identifyparams = new IdentifyParameters();
-            identifyparams.tolerance = 1;
-            identifyparams.returnGeometry =true;
-            identifyparams.layerOption = "visible";
-            identifyparams.width = view.width;
-            identifyparams.height = view.height;
+            // identifyTask = new IdentifyTask({ url: "http://"+gloablConfig.mapHost+"/arcgis/rest/services/"+gloablConfig.mapServerName+"/shuiyu/MapServer"});
+            // // Set the parameters for the Identify
+            // identifyparams = new IdentifyParameters();
+            // identifyparams.tolerance = 1;
+            // identifyparams.returnGeometry =true;
+            // identifyparams.layerOption = "visible";
+            // identifyparams.width = view.width;
+            // identifyparams.height = view.height;
 
         });
 
-        function executeIdentifyTask(event) {
-            view.graphics.removeAll();
-
-            identifyparams.geometry = event.mapPoint;
-            identifyparams.mapExtent = view.extent;
-            $("#viewDiv").css("cursor","wait");
-            identifyTask
-                .execute(identifyparams)
-                .then(function(response) {
-                    var results = response.results;
-                    if (results.length>0){
-                        var result = results[0].feature;
-                        var layerId = results[0].layerId;
-
-                        view.goTo(result.geometry.extent.expand(1)).then(function() {
-                            var selectionSymbol={
-                                type:"simple-fill",
-                                size:10,
-                                outline:{
-                                    color:"red",
-                                    width:2
-                                }
-                            };
-                            result.symbol= selectionSymbol;
-                            view.graphics.add(result);
-                            view.popup.open({
-                                title:result.attributes.selectName,
-                                location: event.mapPoint
-                            });
-                        });
-                    }
-                    $("#viewDiv").css("cursor","auto");
-                })
-        }
+        // function executeIdentifyTask(event) {
+        //     view.graphics.removeAll();
+        //
+        //     identifyparams.geometry = event.mapPoint;
+        //     identifyparams.mapExtent = view.extent;
+        //     $("#viewDiv").css("cursor","wait");
+        //     identifyTask
+        //         .execute(identifyparams)
+        //         .then(function(response) {
+        //             var results = response.results;
+        //             if (results.length>0){
+        //                 var result = results[0].feature;
+        //                 var layerId = results[0].layerId;
+        //
+        //                 view.goTo(result.geometry.extent.expand(1)).then(function() {
+        //                     var selectionSymbol={
+        //                         type:"simple-fill",
+        //                         size:10,
+        //                         outline:{
+        //                             color:"red",
+        //                             width:2
+        //                         }
+        //                     };
+        //                     result.symbol= selectionSymbol;
+        //                     view.graphics.add(result);
+        //                     view.popup.open({
+        //                         title:result.attributes.selectName,
+        //                         location: event.mapPoint
+        //                     });
+        //                 });
+        //             }
+        //             $("#viewDiv").css("cursor","auto");
+        //         })
+        // }
     });
     return view;
 }

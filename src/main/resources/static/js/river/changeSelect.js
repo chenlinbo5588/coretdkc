@@ -23,6 +23,15 @@ $(function() {
         "esri/widgets/LayerList",
     ], function (LayerList) {
         var layerList = new LayerList({
+            view: rightView,
+            listItemCreatedFunction: function(event) {
+                const item = event.item;
+                if(item.title == "Bgtx"){
+                    item.title ="变更图层"
+                }
+            }
+        },"rshuiyu");
+        var layerList2 = new LayerList({
             view: leftView,
             listItemCreatedFunction: function(event) {
                 const item = event.item;
@@ -36,8 +45,9 @@ $(function() {
                     item.title ="自定义影像"
                 }
             }
-        },"shuiyu");
-        rightView.ui.add(document.getElementById("tucengSelectBox"), "bottom-right");
+        },"lshuiyu");
+        // leftView.ui.add(document.getElementById("leftTucengSelectBox"), "bottom-right");
+        // rightView.ui.add(document.getElementById("rightTucengSelectBox"), "bottom-right");
     });
     $("#bottomRightBox").show();
     $("#leftViewBox").show();
@@ -49,8 +59,11 @@ $(function() {
         $("#bgSearchBox").show();
     }
 
-    $("#tucengButton").click(function () {
-        $("#tucengSelectBox").toggle();
+    $("#rightTucengButton").click(function () {
+        $("#rightTucengSelectBox").toggle();
+    })
+    $("#leftTucengButton").click(function () {
+        $("#leftTucengSelectBox").toggle();
     })
     $(".ssButton img").click(function () {
         $(".ssButton img").toggle();
@@ -119,6 +132,12 @@ $(function() {
         $("#bgInfoList").empty();
         $("#bgInfoList").hide();
 
+    })
+    $("#fxbbButton").click(function () {
+        $.get(BASE_URL + "river/fx/baobiao", function (resp) {
+            $("#fxBaobiaoBox").html(resp);
+            $("#fxBaobiaoBox").show();
+        })
     })
     $("#bgSearchButton").click(function () {
         var value = $("#bgSearchInput").val();

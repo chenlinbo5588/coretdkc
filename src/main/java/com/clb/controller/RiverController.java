@@ -196,6 +196,11 @@ public class RiverController extends BaseController {
         map.put("type",type);
         return "html/river/baobiao";
     }
+    @RequestMapping("/fx/baobiao")
+    public String fxBaobiao(ModelMap map) throws InvocationTargetException, IllegalAccessException {
+
+        return "html/river/fxbaobiao";
+    }
 
 
     @RequestMapping("/bgDetailItem")

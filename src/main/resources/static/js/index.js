@@ -73,6 +73,8 @@ $(function () {
     })
     $("#xmgl").click(function () {
         $("#leftBox").hide();
+        $("#fxTishi").hide();
+
         $.get(BASE_URL + "manage/index", function (resp) {
             xmgl = true;
             $("#viewDiv").empty();
@@ -101,6 +103,7 @@ $(function () {
     $("#riverChange").click(function () {
         $("#manage").removeClass("cblclick");
         $(this).addClass("cblclick");
+        $("#fxTishi").hide();
         $.get(BASE_URL + "river/changeSelect", function (resp) {
             $(".infoList").hide();
             $("#viewDiv").removeClass();
