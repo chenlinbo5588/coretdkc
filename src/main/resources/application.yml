@@ -2,6 +2,15 @@
 lhs: 6
 rhs: 8
 op: "*"
+
+
+arcgis:
+  host: 192.168.5.120
+  mapServerName: river
+  username: yzb
+  password: 123123
+
+
 arcgisMapHost: 192.168.5.120
 xmHost: 192.168.5.120
 appMapServerName: river

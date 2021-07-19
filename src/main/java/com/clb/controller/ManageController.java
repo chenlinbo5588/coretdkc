@@ -77,7 +77,7 @@ public class ManageController extends BaseController {
     }
     @RequestMapping("/add")
     public String add(HttpServletRequest request, ModelMap map,
-                      @RequestParam(value = "page", required = false) int page,
+                      @RequestParam(value = "page", required = false,defaultValue = "1") int page,
                       @ModelAttribute(value="project") Project project) {
 
         if(project.getType() !=null){
