@@ -17,14 +17,14 @@ import java.util.Map;
 @Data
 public class MapControllerAdvice {
 
-    @Value("${arcgisMapHost}")
+    @Value("${arcgis.host}")
     private String arcgisMapHost;
 
-    @Value("${appMapServerName}")
+    @Value("${arcgis.mapServerName}")
     private String appMapServerName;
 
-    @Value("${appMapServerPort}")
-    private String appMapServerPort;
+    @Value("${server.port}")
+    private String port;
 
     @Value("${xmHost}")
     private String xmHost;
@@ -46,7 +46,7 @@ public class MapControllerAdvice {
         Map<String,Object> map = new HashMap<>();
         map.put("host",arcgisMapHost);
         map.put("mapServerName",appMapServerName);
-        map.put("port",appMapServerPort);
+        map.put("port",port);
         map.put("xmhost",xmHost);
 
         return map;

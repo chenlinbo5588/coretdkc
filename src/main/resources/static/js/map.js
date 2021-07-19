@@ -34,11 +34,11 @@ function initIndexMap() {
     ], function (esriConfig,Map,MapView, IdentifyTask, IdentifyParameters,FeatureLayer,GraphicsLayer, Graphic, TileLayer, urlUtils,esriConfig,WebTileLayer,QueryTask,Query,MapImageLayer,
                  FindTask,FindParameters,LayerList,Draw) {
 
-          esriConfig.apiKey= gloablConfig.arcgisToken;
-//        urlUtils.addProxyRule({
-//            urlPrefix: gloablConfig.mapHost+"/arcgis", // specify resource location
-//            proxyUrl: "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/river/proxy" // specify location of proxy file
-//        });
+          // esriConfig.apiKey= gloablConfig.arcgisToken;
+       urlUtils.addProxyRule({
+           urlPrefix: gloablConfig.mapHost+"/arcgis", // specify resource location
+           proxyUrl: "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/river/proxy" // specify location of proxy file
+       });
 
         var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
         var tiledLayer = new WebTileLayer({

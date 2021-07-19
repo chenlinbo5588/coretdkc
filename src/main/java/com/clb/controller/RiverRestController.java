@@ -17,15 +17,15 @@ public class RiverRestController {
     @Resource
     ArcgisClient arcgisClient;
 
-    @RequestMapping("/queryById/{id}")
-    public ArcgisQueryResult query(@PathVariable(name = "id") String id, HttpServletRequest request){
-
-        Map<String,String[]> data = request.getParameterMap();
-
-        ArcgisQueryResult arcgisQueryResult = arcgisClient.queryByObjId(id,data);
-
-        return arcgisQueryResult;
-    }
+//    @RequestMapping("/queryById/{id}")
+//    public ArcgisQueryResult query(@PathVariable(name = "id") String id, HttpServletRequest request){
+//
+//        Map<String,String[]> data = request.getParameterMap();
+//
+//        ArcgisQueryResult arcgisQueryResult = arcgisClient.queryByObjId(id,data);
+//
+//        return arcgisQueryResult;
+//    }
 
 
 }

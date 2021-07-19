@@ -12,7 +12,7 @@ arcgis:
 
 
 arcgisMapHost: 192.168.5.120
-xmHost: 127.0.0.1
+xmHost: 192.168.5.120
 appMapServerName: river
 appMapServerPort: 8080
 
