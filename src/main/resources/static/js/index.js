@@ -130,10 +130,14 @@ $(function () {
             drawAction.on("vertex-remove", showPolygon);
             drawAction.on("cursor-update", showPolygon);
             drawAction.on("draw-complete", fxPolygon);
+            $(".fxTishi").show();
             $("#tc").hide();
         })
     })
-
+    $( "#fxTishi" ).draggable();
+    $("#fxTishiClose").click(function () {
+        $(".fxTishi").hide();
+    })
     $("#slide").slider({
         value:100,
         step: 10,
@@ -142,6 +146,10 @@ $(function () {
 
         }
     });
+
+    $("#close").click(function () {
+        $(".infoList").hide();
+    })
 
 
 })

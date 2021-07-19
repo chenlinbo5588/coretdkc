@@ -48,7 +48,6 @@ public class Project {
     @Transient
     private  Date ysdateS;
     @Transient
-
     private  Date xcdateS;
 
 

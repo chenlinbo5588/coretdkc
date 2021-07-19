@@ -31,7 +31,9 @@ public interface ProjectService {
 
     public Project getProjectById(int id);
 
-    public List<InspectionRecord> getInspectionRecordsByProjectId(int projectId);
+    public List<InspectionRecord> getInspectionRecordsByGlxmId(int glxmId);
 
+    public void deleteXcjlById(int id);
 
+    public void saveXcjl(InspectionRecord inspectionRecord);
 }

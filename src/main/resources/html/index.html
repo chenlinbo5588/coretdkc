@@ -4,6 +4,16 @@
 
 <div th:replace="static/common/common_header :: common_header"/>
 <body>
+<script th:inline="javascript"  >
+    var gloablConfig = {
+        mapHost:[[${mapConfig.host}]],
+        mapServerName:[[${mapConfig.mapServerName}]],
+        mapServerPort: [[${mapConfig.port}]],
+        xmHost:[[${mapConfig.xmhost}]],
+    }
+    var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
+</script>
+
 <div class="tc" id="tc" style="display: none">
     <div class="mask" id="mask"></div>
     <div id="tcBox"></div>
@@ -46,9 +56,13 @@
             <div class="fxButoon" id="fxButoon"></div>
             <div class="searchButton" id="searchButton"></div>
         </div>
-        <div class="infoList" id="back" style="display: none;">
+        <div class="infoList back" id="back" style="display: none;">
             <div class="mr5"><</div>
             <div>返回搜索</div>
+        </div>
+        <div class="infoList back" id="close" style="display: none;">
+            <div class="mr5"><</div>
+            <div>关闭</div>
         </div>
         <div class="infoList" id="infoList" style="display: none;"></div>
         <div class="infoList" id="fxList" style="display: none;"></div>
@@ -90,16 +104,22 @@
         </div>
     </div>
 </div>
-<script th:inline="javascript"  >
-    var gloablConfig = {
-        mapHost:[[${mapConfig.host}]],
-        mapServerName:[[${mapConfig.mapServerName}]],
-        mapServerPort: [[${mapConfig.port}]],
-        xmHost:[[${mapConfig.xmhost}]],
-        arcgisToken: [[${arcgisToken.token}]]
-    };
-    var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
-</script>
+
+<div class="fxTishi" id="fxTishi" style="display: none">
+    <div class="titleBox">
+        <div>绘制叠加分析</div>
+        <img src="/static/img/tuichu2.png" id="fxTishiClose">
+    </div>
+    <div class="containBox">
+        <div class="contain">
+            <div>操作步骤:</div>
+            <div>1. 在地图上不断单击并移动鼠标左键，绘制一个面状区域;</div>
+            <div>2. 双击完成绘制;</div>
+            <div>3. 绘制完成会自动测算出与水域重叠的面积.</div>
+        </div>
+
+    </div>
+</div>
 <script th:src="${urls.getForLookupPath('/static/js/index.js')}"></script>
 </body>
 </html>

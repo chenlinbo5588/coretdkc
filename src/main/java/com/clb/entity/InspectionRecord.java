@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
 
@@ -23,6 +24,9 @@ public class InspectionRecord {
     private String addUsername;
     private Integer reviseUid;
     private String reviseName;
+
+    @Transient
+    private Date xcdateS;
 
     public String getXcdateTime(){
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");

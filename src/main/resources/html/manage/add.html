@@ -1,5 +1,7 @@
-<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/add.css')}" xmlns:th="http://www.w3.org/1999/xhtml" />
-<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/index.css')}" xmlns:th="http://www.w3.org/1999/xhtml" />
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/add.css')}"
+      xmlns:th="http://www.w3.org/1999/xhtml"/>
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/index.css')}"
+      xmlns:th="http://www.w3.org/1999/xhtml"/>
 <div class="manageDetailBox" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="topBox">
         <div class="topButtonBox">
@@ -11,97 +13,96 @@
                 <div class="button" id="baocun">保存</div>
                 <div class="button" id="backIndex">返回</div>
             </div>
-
         </div>
     </div>
-    <div class="contentBox">
-        <div class="title">水土保持基本信息表</div>
-        <div class="content">
-            <div class="aLine">
-                <div><p>*</p>项目名称</div>
-                <input name="pname" th:value="${data.pname}">
+    <div class="bottomBox">
+        <div class="contentBox">
+            <div class="title">水土保持基本信息表</div>
+            <div class="content">
+                <div class="aLine">
+                    <div><p>*</p>项目名称</div>
+                    <input name="pname" th:value="${data.pname}">
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="aLine">
-                <div><p>*</p>建设单位</div>
-                <input name="jsdw" th:value="${data.jsdw}">
+            <div class="content">
+                <div class="aLine">
+                    <div><p>*</p>建设单位</div>
+                    <input name="jsdw" th:value="${data.jsdw}">
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="aLine">
-                <div><p>*</p>监测单位</div>
-                <input name="jcdw" th:value="${data.jcdw}">
+            <div class="content">
+                <div class="aLine">
+                    <div><p>*</p>监测单位</div>
+                    <input name="jcdw" th:value="${data.jcdw}">
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="aLine">
-                <div><p>*</p>监理单位</div>
-                <input name="jldw" th:value="${data.jldw}">
+            <div class="content">
+                <div class="aLine">
+                    <div><p>*</p>监理单位</div>
+                    <input name="jldw" th:value="${data.jldw}">
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="halfLine">
-                <div><p>*</p>用地面积</div>
-                <input name="mj" th:value="${data.mj}">
+            <div class="content">
+                <div class="halfLine">
+                    <div><p>*</p>用地面积</div>
+                    <input name="mj" th:value="${data.mj}">
+                </div>
+                <div class="halfLine">
+                    <div><p>*</p>批复文号</div>
+                    <input name="pfwh" th:value="${data.pfwh}">
+                </div>
             </div>
-            <div class="halfLine">
-                <div><p>*</p>批复文号</div>
-                <input name="pfwh" th:value="${data.pfwh}">
+            <div class="content">
+                <div class="halfLine">
+                    <div><p>*</p>联系人</div>
+                    <input name="fzrname" th:value="${data.fzrname}">
+                </div>
+                <div class="halfLine">
+                    <div><p>*</p>渣土挖方总量</div>
+                    <input name="ztwfzl" th:value="${data.ztwfzl}">
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="halfLine">
-                <div><p>*</p>联系人</div>
-                <input name="fzrname" th:value="${data.fzrname}">
-            </div>
-            <div class="halfLine">
-                <div><p>*</p>渣土挖方总量</div>
-                <input  name="ztwfzl" th:value="${data.ztwfzl}">
-            </div>
-        </div>
-        <div class="content">
-            <div class="halfLine">
-                <div><p>*</p>验收时间</div>
-                <input class="datepicker" name="ysdateS" th:value="${data.ysdateS}==0?'':${data.ysdateS}">
+            <div class="content">
+                <div class="halfLine">
+                    <div><p>*</p>验收时间</div>
+                    <input class="datepicker" name="ysdateS" th:value="${data.ysdateS}==0?'':${data.ysdateS}">
 
-            </div>
-            <div class="halfLine">
-                <div><p>*</p>最近巡查时间</div>
-                <input class="datepicker"  name="xcdateS" th:value="${data.xcdateS}==0?'':${data.xcdateS}">
+                </div>
+                <div class="halfLine">
+                    <div><p>*</p>最近巡查时间</div>
+                    <input class="datepicker" name="xcdateS" th:value="${data.xcdateS}==0?'':${data.xcdateS}">
 
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="aLineC">
-                <div>备注</div>
-                <textarea name="remark" >[[${data.remark}]]</textarea>
+            <div class="content">
+                <div class="aLineC">
+                    <div>备注</div>
+                    <textarea name="remark">[[${data.remark}]]</textarea>
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="aLineC">
-                <div>效益评价</div>
-                <textarea name="xypj" >[[${data.xypj}]]</textarea>
+            <div class="content">
+                <div class="aLineC">
+                    <div>效益评价</div>
+                    <textarea name="xypj">[[${data.xypj}]]</textarea>
+                </div>
             </div>
-        </div>
-        <div class="line"></div>
-        <div class="xcBox">
-            <div class="xcTitle">巡查记录</div>
-            <div class="xcContent">
-                <div style="flex:1">序号</div>
-                <div style="flex:2.5">巡查人员</div>
-                <div style="flex:3">巡察时间</div>
-                <div style="flex:3.2">说明</div>
-                <div class="button" style="flex:2" id="xcAdd">新增</div>
-            </div>
-            <div class="xcContentBox" id="xcContentBox">
+            <div class="line"></div>
+            <div class="xcBox">
+                <div class="xcTitle">巡查记录</div>
+                <div class="xcContent">
+                    <div style="flex:1">序号</div>
+                    <div style="flex:2.5">巡查人员</div>
+                    <div style="flex:3">巡察时间</div>
+                    <div style="flex:3.2">说明</div>
+                    <div class="" style="flex:2" id="">操作</div>
+                </div>
+                <div class="xcContentBox" id="xcContentBox">
 
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <div id="xmxxTc" class="xmglTc" style="display: none">
     <div class="contain">请将项目信息填写完整</div>
     <div class="buttonBox">
@@ -109,8 +110,9 @@
     </div>
 </div>
 
-<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
+<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml">
     var id = [[${data.id}]];
+    var page = [[${page}]];
 </script>
 
-<script th:src="${urls.getForLookupPath('/static/js/manage/add.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>
+<script th:src="${urls.getForLookupPath('/static/js/manage/add.js')}" xmlns:th="http://www.w3.org/1999/xhtml"></script>

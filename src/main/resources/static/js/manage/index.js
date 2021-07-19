@@ -2,7 +2,6 @@
 
 $(function(){
 
-
     var id ="";
     var name;
     var flag =false;
@@ -101,12 +100,12 @@ $(function(){
 
     $("[name=pname]").click(function () {
         var id = $(this).data("id");
-        $.get(BASE_URL + "manage/edit?id="+id,function(resp){
+        $.get(BASE_URL + "manage/edit?id="+id+"&page="+page,function(resp){
             $("#viewDiv").html(resp);
         })
     })
     $("[name=xmAdd]").click(function () {
-        $.get(BASE_URL + "manage/add",function(resp){
+        $.get(BASE_URL + "manage/add?page"+page,function(resp){
             $("#viewDiv").html(resp);
         })
     })

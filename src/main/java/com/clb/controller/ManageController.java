@@ -76,18 +76,22 @@ public class ManageController extends BaseController {
         return "html/manage/index";
     }
     @RequestMapping("/add")
-    public String add(HttpServletRequest request, ModelMap map,@ModelAttribute(value="project") Project project) {
+    public String add(HttpServletRequest request, ModelMap map,
+                      @RequestParam(value = "page", required = false) int page,
+                      @ModelAttribute(value="project") Project project) {
 
         if(project.getType() !=null){
             projectService.saveProject(project);
             map.put("id",project.getId());
         }
         map.put("data",project);
-
+        map.put("page",page);
         return "html/manage/add";
     }
     @RequestMapping("/edit")
-    public String edit(@ModelAttribute(value="project") Project project, ModelMap map) {
+    public String edit(@ModelAttribute(value="project") Project project,
+                       @RequestParam(value = "page", required = false) int page,
+                       ModelMap map) {
 
         if(project.getType() ==null){
             project = projectService.getProjectById(project.getId());
@@ -96,21 +100,47 @@ public class ManageController extends BaseController {
         }
 
         map.put("data",project);
+        map.put("page",page);
 
         return "html/manage/add";
     }
     @RequestMapping("/xcList")
-    public String xcList(@RequestParam(value = "projectId", required = false,defaultValue = "48") int projectId, ModelMap map) {
+    public String xcList(@RequestParam(value = "glxmId", required = false) int glxmId, ModelMap map) {
         List<InspectionRecord> inspectionRecords = new ArrayList<InspectionRecord>();
-        if(projectId !=0){
-            inspectionRecords  = projectService.getInspectionRecordsByProjectId(projectId);
+        if(glxmId !=0){
+            inspectionRecords  = projectService.getInspectionRecordsByGlxmId(glxmId);
         }
        map.put("data",inspectionRecords);
+       map.put("glxmId",glxmId);
+       return "html/manage/xcList";
+    }
+    @RequestMapping("/xcDelete")
+    public String xcDelete(@RequestParam(value = "id", required = false) int id,
+                           @RequestParam(value = "glxmId", required = false) int glxmId ,
+                           ModelMap map) {
+        List<InspectionRecord> inspectionRecords = new ArrayList<InspectionRecord>();
+        if(id !=0){
+           projectService.deleteXcjlById(id);
+            if(glxmId !=0){
+                inspectionRecords = projectService.getInspectionRecordsByGlxmId(glxmId);
+            }
+        }
+        map.put("data",inspectionRecords);
+        map.put("glxmId",glxmId);
         return "html/manage/xcList";
     }
 
+    @RequestMapping("/xc/add")
+    public String add(@RequestParam(value = "glxmId", required = false) int glxmId ,@ModelAttribute(value="inspectionRecord") InspectionRecord inspectionRecord,ModelMap map) {
 
+        List<InspectionRecord> inspectionRecords = new ArrayList<InspectionRecord>();
+        if(glxmId !=0){
+            projectService.saveXcjl(inspectionRecord);
+            inspectionRecords = projectService.getInspectionRecordsByGlxmId(glxmId);
+        }
+        map.put("data",inspectionRecords);
+        map.put("glxmId",glxmId);
 
-
-
+        return "html/manage/xcList";
+    }
 }

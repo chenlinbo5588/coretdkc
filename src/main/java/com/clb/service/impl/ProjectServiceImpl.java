@@ -123,10 +123,18 @@ public class ProjectServiceImpl implements ProjectService {
         return project;
     }
 
-    public List<InspectionRecord> getInspectionRecordsByProjectId(int projectId){
-        String filer = "glxmId=="+projectId ;
+    public List<InspectionRecord> getInspectionRecordsByGlxmId(int glxmId){
+        String filer = "glxmId=="+glxmId ;
         return inspectionRecordRepository.findAll(toSpecification(filer));
     }
+    public void deleteXcjlById(int id){
+        inspectionRecordRepository.deleteById(Integer.valueOf(id));
+    }
 
+    public void saveXcjl(InspectionRecord inspectionRecord){
+
+        inspectionRecordRepository.save(inspectionRecord);
+
+    }
 
 }

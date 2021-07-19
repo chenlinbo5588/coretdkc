@@ -1,5 +1,6 @@
 package com.clb.controller;
 
+import com.clb.constant.DateConstant;
 import com.clb.dto.FxData;
 import com.clb.dto.Tubiao;
 import com.clb.dto.WaterTj;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 @RequestMapping("/river")
 @Controller
 public class RiverController extends BaseController {
@@ -62,27 +66,27 @@ public class RiverController extends BaseController {
                             HttpServletRequest request, ModelMap map) {
 
         switch (layerId){
-            case  "1":
+            case DateConstant.RV_LAYER_ID:
                 SyRvaa syRvaa = riverService.getRvById(id);
                 map.put("data",syRvaa);
                 break;
-            case  "3":
+            case  DateConstant.RS_LAYER_ID:
                 SyRsaa syRsaa = riverService.getRsById(id);
                 map.put("data",syRsaa);
                 break;
-            case  "5":
+            case  DateConstant.LK_LAYER_ID:
                 SyLkaa syLkaa  =riverService.getLkById(id);
                 map.put("data",syLkaa);
                 break;
-            case  "7":
+            case  DateConstant.HP_LAYER_ID:
                 SyHpaa syHpaa  =riverService.getHpById(id);
                 map.put("data",syHpaa);
                 break;
-            case  "9":
+            case  DateConstant.AC_LAYER_ID:
                 SyAcaa syAcaa  =riverService.getAcById(id);
                 map.put("data",syAcaa);
                 break;
-            case  "11":
+            case  DateConstant.OW_LAYER_ID:
                 SyOwaa syOwaa  =riverService.getOwById(id);
                 map.put("data",syOwaa);
                 break;
@@ -90,6 +94,41 @@ public class RiverController extends BaseController {
         map.put("layerId",layerId);
         return "html/river/info";
     }
+    @RequestMapping("water/info/ic")
+    public String waterInfoIc(@RequestParam(value = "identification", required = false) String identification,
+                            @RequestParam(value = "layerId", required = false,defaultValue = "0") String layerId,
+                            HttpServletRequest request, ModelMap map) {
+
+        switch (layerId){
+            case DateConstant.RV_LAYER_ID:
+                SyRvaa syRvaa = riverService.getRvaaByIdentification(identification);
+                map.put("data",syRvaa);
+                break;
+            case  DateConstant.RS_LAYER_ID:
+                SyRsaa syRsaa = riverService.getRsaaByIdentification(identification);
+                map.put("data",syRsaa);
+                break;
+            case  DateConstant.LK_LAYER_ID:
+                SyLkaa syLkaa  =riverService.getLkaaByIdentification(identification);
+                map.put("data",syLkaa);
+                break;
+            case  DateConstant.HP_LAYER_ID:
+                SyHpaa syHpaa  =riverService.getHpaaByIdentification(identification);
+                map.put("data",syHpaa);
+                break;
+            case  DateConstant.AC_LAYER_ID:
+                SyAcaa syAcaa  =riverService.getAcaaByIdentification(identification);
+                map.put("data",syAcaa);
+                break;
+            case  DateConstant.OW_LAYER_ID:
+                SyOwaa syOwaa  =riverService.getOwaaByIdentification(identification);
+                map.put("data",syOwaa);
+                break;
+        }
+        map.put("layerId",layerId);
+        return "html/river/info";
+    }
+
 
     @RequestMapping("/changeSelect")
     public String changeSelect( ModelMap map) {
@@ -124,7 +163,7 @@ public class RiverController extends BaseController {
 
         for(int i = 0;i<list.size();i++){
            switch (list.get(i).getLayerId()){
-               case  "1":
+               case  DateConstant.RV_LAYER_ID:
                    SyRvaa syRvaa  =riverService.getRvaaByIdentification(list.get(i).getIdentification());
                    if(syRvaa !=null){
                        syRvaa.setIntersectionArea(list.get(i).getArea());
@@ -132,7 +171,7 @@ public class RiverController extends BaseController {
                        syRvaas.add(syRvaa);
                    }
                    break;
-               case  "3":
+               case  DateConstant.RS_LAYER_ID:
                    SyRsaa syRsaa  =riverService.getRsaaByIdentification(list.get(i).getIdentification());
                    if(syRsaa !=null){
                        syRsaa.setIntersectionArea(list.get(i).getArea());
@@ -140,7 +179,7 @@ public class RiverController extends BaseController {
                        syRsaas.add(syRsaa);
                    }
                    break;
-               case  "5":
+               case  DateConstant.LK_LAYER_ID:
                    SyLkaa syLkaa  =riverService.getLkaaByIdentification(list.get(i).getIdentification());
                    if(syLkaa !=null){
                        syLkaa.setIntersectionArea(list.get(i).getArea());
@@ -148,7 +187,7 @@ public class RiverController extends BaseController {
                        syLkaas.add(syLkaa);
                    }
                    break;
-               case  "7":
+               case  DateConstant.HP_LAYER_ID:
                    SyHpaa syHpaa  =riverService.getHpaaByIdentification(list.get(i).getIdentification());
                    if(syHpaa !=null){
                        syHpaa.setIntersectionArea(list.get(i).getArea());
@@ -156,7 +195,7 @@ public class RiverController extends BaseController {
                        syHpaas.add(syHpaa);
                    }
                    break;
-               case  "9":
+               case  DateConstant.AC_LAYER_ID:
                    SyAcaa syAcaa  =riverService.getAcaaByIdentification(list.get(i).getIdentification());
                    if(syAcaa !=null){
                        syAcaa.setIntersectionArea(list.get(i).getArea());
@@ -164,7 +203,7 @@ public class RiverController extends BaseController {
                        syAcaas.add(syAcaa);
                    }
                    break;
-               case  "11":
+               case  DateConstant.OW_LAYER_ID:
                    SyOwaa syOwaa  =riverService.getOwaaByIdentification(list.get(i).getIdentification());
                    if(syOwaa !=null){
                        syOwaa.setIntersectionArea(list.get(i).getArea());

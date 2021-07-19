@@ -162,6 +162,7 @@ input{
     align-items: flex-start;
     padding-left: 10px;
     box-sizing: border-box;
+    resize: none;
 }
 .content .button{
     width:120px;

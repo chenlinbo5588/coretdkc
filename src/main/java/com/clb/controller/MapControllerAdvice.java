@@ -1,10 +1,6 @@
 package com.clb.controller;
 
-import com.clb.dto.ArcgisToken;
-import com.clb.service.ArcgisClient;
-import com.clb.service.impl.ArcgisClientImpl;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -30,18 +26,8 @@ public class MapControllerAdvice {
     private String xmHost;
 
 
-    @Value("${arcgis.username}")
-    private String arcgisUsername;
-
-    @Value("${arcgis.password}")
-    private String arcgisPassword;
-
-    @Autowired
-    ArcgisClient arcgisClient;
-
-
     @ModelAttribute(value = "mapConfig")
-    public Map<String,Object> mapConfig()
+    public Map<String,Object> mydata()
     {
         Map<String,Object> map = new HashMap<>();
         map.put("host",arcgisMapHost);
@@ -59,10 +45,5 @@ public class MapControllerAdvice {
 //        return arcgisMapHost;
 //    }
 
-    @ModelAttribute(value = "arcgisToken")
-    public ArcgisToken arcgisToken()
-    {
-        return arcgisClient.fetchToken(arcgisUsername,arcgisPassword);
-    }
 
 }

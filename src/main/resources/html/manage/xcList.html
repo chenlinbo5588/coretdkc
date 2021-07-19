@@ -4,14 +4,24 @@
     <div style="flex:2.5">[[${item.xcryName}]]</div>
     <div style="flex:3">[[${item.getXcdateTime()}]]</div>
     <div style="flex:3.2">[[${item.xcjl}]]</div>
-    <div class="button" style="flex:2" >删除</div>
+    <div class="button" style="flex:2" name="delete" th:data-id="${item.id}" th:data-name="${item.xcryName}" th:data-glxmId="${item.glxmId}">删除</div>
 </div>
-<div class="xcContent"  >
-    <div style="flex:1"><input ></input></div>
-    <div style="flex:2.5"><input></input></div>
-    <div style="flex:3"><input class="datepicker" ></input></div>
-    <div style="flex:3.2"><input ></input></div>
+<div class="xcContent" id="newXcbox" >
+    <div style="flex:1"></div>
+    <div style="flex:2.5"><input name="xcryName" ></input></div>
+    <div style="flex:3"><input class="datepicker"  name="xcdateS"></input></div>
+    <div style="flex:3.2"><input name="xcjl"></input></div>
     <div class="button" style="flex:2" id="xcSave">保存</div>
 </div>
+<div id="xmglTc" class="xmglTc" style="display: none">
+    <div class="contain">是否删除该巡查记录？</div>
+    <div class="buttonBox">
+        <div class="button" id="xmglTcDelet">删除</div>
+        <div class="button"  id="xmglTcCancel">取消</div>
+    </div>
+</div>
+<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
+    var glxmId = [[${glxmId}]];
 
-<script th:src="${urls.getForLookupPath('static/js/manage/xcList.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>
+</script>
+<script th:src="${urls.getForLookupPath('/static/js/manage/xcList.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>

@@ -24,7 +24,7 @@
         <div class="searchList">
             <div class="searchTopBox"   xmlns:th="http://www.w3.org/1999/xhtml">
                 <div class="teduan allselect" >全选</div>
-                <div class="duan" ><p class="titleClick" style="width: 40px;" data-paixu="id" th:classappend="${paixu} == 'id'? ${paixuValue}:''">序号</p></div>
+                <div class="duan" ><p style="width: 40px;" data-paixu="id">序号</p></div>
                 <div class="duan " >警示灯</div>
                 <div class="chang ">项目名称</div>
                 <div class="duan " >联系人</div>
@@ -37,7 +37,7 @@
             <div class="searchContentBox">
                 <div class="searchItem" th:each="item,stat:${projectPage.content}" xmlns:th="http://www.w3.org/1999/xhtml">
                     <a class="teduan"><input name="ck" type="checkbox" th:value="${item.id}" /></a>
-                    <a class="duan">[[${item.id}]]</a>
+                    <a class="duan">[[${stat.index+1+(page-1)*10}]]</a>
                     <a class="duan" th:classappend="${item.jsd}"></a>
                     <a class="chang" th:title="${item.pname}"><p  style="cursor: pointer" name="pname" th:data-id="${item.id}">[[${item.pname}]]</p></a>
                     <a class="duan">[[${item.fzrname}]]</a>
@@ -77,6 +77,5 @@
     var minPage = [[${minPage}]];
     var page =[[${page}]];
     var paixuTj = [[${paixuTj}]]
-
 </script>
 <script th:src="${urls.getForLookupPath('/static/js/manage/index.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>

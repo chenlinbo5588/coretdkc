@@ -61,19 +61,21 @@ $(function() {
         //view.graphics.removeAll();
         for(var i=0;i<fxdata.length;i++){
             if(identification == fxdata[i].attributes.identification){
-                //view.graphics.removeAll();
+                if(fxSlectData != undefined){
+                    view.graphics.remove(fxSlectData);
+                }
                 view.goTo(fxdata[i].geometry.extent.expand(1)).then(function() {
-                    // var selectionSymbol={
-                    //     type:"simple-fill",
-                    //     size:10,
-                    //     outline:{
-                    //         color:"yellow",
-                    //         width:2
-                    //     }
-                    // };
-                    // fxdata[i].symbol= selectionSymbol;
-                    // view.graphics.add(fxdata[i]);
-                    view.g
+                    var selectionSymbol={
+                        type:"simple-fill",
+                        size:10,
+                        outline:{
+                            color:"red",
+                            width:2
+                        }
+                    };
+                    fxdata[i].symbol= selectionSymbol;
+                    fxSlectData = fxdata[i];
+                    view.graphics.add(fxSlectData);
                 });
                 break;
             }

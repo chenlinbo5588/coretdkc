@@ -2,7 +2,6 @@ package com.clb.service;
 
 
 import com.clb.RiverWebApplication;
-import com.clb.dto.ArcgisToken;
 import com.clb.entity.River;
 
 import com.clb.pojo.arcgis.ArcgisQueryResult;
@@ -30,10 +29,6 @@ public class RiverServiceTests {
 
 
     @Autowired
-    ArcgisClient arcgisClient;
-
-
-    @Autowired
     RestTemplate restTemplate;
 
 
@@ -57,17 +52,6 @@ public class RiverServiceTests {
         Gson gson = new Gson();
         ArcgisQueryResult arcgisQueryResult =  gson.fromJson(result, ArcgisQueryResult.class);
         System.out.println(result);
-    }
-
-
-    @Test
-    public void testGetToken(){
-
-
-        ArcgisToken token = arcgisClient.fetchToken("yzb","123123");
-
-
-        System.out.println(token.toString());
     }
 
 

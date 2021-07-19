@@ -10,9 +10,9 @@ var identifyparams;
 var identifyTask;
 var rightmap;
 var fxdata;
+var fxSlectData;
 function initIndexMap() {
     require([
-        "esri/config",
         "esri/Map",
         "esri/views/MapView",
         "esri/tasks/IdentifyTask",
@@ -31,14 +31,17 @@ function initIndexMap() {
         "esri/tasks/support/FindParameters",
         "esri/widgets/LayerList",
         "esri/views/draw/Draw",
-    ], function (esriConfig,Map,MapView, IdentifyTask, IdentifyParameters,FeatureLayer,GraphicsLayer, Graphic, TileLayer, urlUtils,esriConfig,WebTileLayer,QueryTask,Query,MapImageLayer,
+    ], function (Map,MapView, IdentifyTask, IdentifyParameters,FeatureLayer,GraphicsLayer, Graphic, TileLayer, urlUtils,esriConfig,WebTileLayer,QueryTask,Query,MapImageLayer,
                  FindTask,FindParameters,LayerList,Draw) {
+
 
           // esriConfig.apiKey= gloablConfig.arcgisToken;
        urlUtils.addProxyRule({
            urlPrefix: gloablConfig.mapHost+"/arcgis", // specify resource location
            proxyUrl: "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/river/proxy" // specify location of proxy file
        });
+
+
 
         var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
         var tiledLayer = new WebTileLayer({
@@ -193,7 +196,7 @@ function initIndexMap() {
             container: "viewDiv",
             map: map,
             center: [121.25962011651083, 30.17229501748913],
-            zoom:13
+            zoom:11
         });
         view.ui.remove('attribution')
         view.ui.remove("zoom");
@@ -273,22 +276,14 @@ function initIndexMap() {
                     if (results.length>0){
                         var result = results[0].feature;
                         var layerId = results[0].layerId;
+                        var identification = result.attributes.identification;
 
                         view.goTo(result.geometry.extent.expand(1)).then(function() {
-                            var selectionSymbol={
-                                type:"simple-fill",
-                                size:10,
-                                outline:{
-                                    color:"red",
-                                    width:2
-                                }
-                            };
-                            result.symbol= selectionSymbol;
-                            view.graphics.add(result);
-                            view.popup.open({
-                                title:result.attributes.selectName,
-                                location: event.mapPoint
-                            });
+                            $.get(BASE_URL + "river/water/info/ic?identification="+identification+"&layerId="+layerId,function(resp){
+                                $("#close").show();
+                                $("#infoDetail").show();
+                                $("#infoDetail").html(resp);
+                            })
                         });
                     }
                     $("#viewDiv").css("cursor","auto");
@@ -381,12 +376,13 @@ function fxPolygon(event) {
 
 }
 function showfxPolygon(data) {
-
+    $("#fxTishi").hide();
     var param ={
         fxdata:JSON.stringify(data)
     };
     $.post(BASE_URL+"/river/fxSelect",param ,function(result){
         $(".infoList").hide();
+
         $("#fxList").html(result);
         $("#fxList").show();
     });
@@ -420,7 +416,7 @@ function initLeftView(view,contain){
             container: contain,
             map: map,
             center: [121.25962011651083, 30.17229501748913],
-            zoom:13
+            zoom:11
         });
         view.ui.remove('attribution')
         view.ui.remove("zoom");
@@ -491,7 +487,7 @@ function initRightView(view,contain){
             container: contain,
             map: rightmap,
             center: [121.25962011651083, 30.17229501748913],
-            zoom:13
+            zoom:11
         });
         view.ui.remove('attribution')
         view.ui.remove("zoom");
