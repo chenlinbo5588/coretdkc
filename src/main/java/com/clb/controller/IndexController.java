@@ -16,13 +16,6 @@ import java.util.List;
 public class IndexController extends BaseController {
 
 
-    @Value("${arcgisMapHost}")
-    private String arcgisMapHost;
-
-    @Value("${appMapServerName}")
-    private String appMapServerName;
-
-
 
     @RequestMapping("/addauth")
     public String addAuthority() {

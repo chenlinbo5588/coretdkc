@@ -85,6 +85,23 @@ $(function () {
             $("#viewDiv").html(resp);
         })
     })
+    $("#addShp").click(function () {
+        var file =$("#shpFile");
+        file.click();
+    })
+    $("#shpFile").change(function () {
+        loadshp("shpFile");
+        $("#tc").hide();
+    })
+    $("#addText").click(function () {
+        $(".fxBox").hide();
+        $("#txtInputBox").show();
+    })
+    $("#cancel").click(function () {
+        $(".fxBox").show();
+        $("#txtInputBox").hide();
+    })
+
     $('input[type="checkbox"]').click(function () {
         var name = $(this).data("name");
         view.map.layers.forEach(function (layer) {
@@ -121,7 +138,12 @@ $(function () {
 
         }
         $("#tc").show();
+        $(".fxBox").show();
+        $("#txtInputBox").hide();
+
         $("#mask").click(function () {
+            $(".fxBox").show();
+            $("#txtInputBox").hide();
             $("#tc").hide();
         })
         $("#draw").click(function () {

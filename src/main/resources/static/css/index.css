@@ -451,10 +451,10 @@ a{
 }
 .fxTc{
     position: fixed;
-    width: 480px;
+    width: 600px;
     height: 280px;
     top: 30%;
-    left: 35%;
+    left: 33%;
     background-color: white;
     border-radius: 5px;
     z-index: 1002;
@@ -481,6 +481,12 @@ a{
     cursor: pointer;
 
 }
+.fxTc .txtInputBox{
+    width: 80%;
+    height: 80%;
+    margin-top: 10%;
+    margin-left: 10%;
+}
 .buttonBox .button{
     font-size: 14px;
     color:#3965b6;
@@ -488,6 +494,31 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.txtInputBox textarea{
+    width: 100%;
+    height: 60%;
+    padding: 10px;
+    box-sizing: border-box;
+    resize:none;
+}
+.txtInputBox .txtButtonBox{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.txtButtonBox div{
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3965b6;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 
 }
 .button .miaohui{
@@ -514,6 +545,17 @@ a{
 }
 .cblclick{
     background-color:#3965b6 ;
+}
+.button .addText{
+    width: 120px;
+    height: 120px;
+    background-image: url(/static/img/wenben.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #365ea9;
+    border :1px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 .back{
     color:#425680;

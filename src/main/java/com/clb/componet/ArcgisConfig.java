@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Data
 public class ArcgisConfig {
 
-    @Value("${arcgisMapHost}")
+    @Value("${arcgis.host}")
     private String arcgisMapHost;
 
-    @Value("${appMapServerName}")
+    @Value("${arcgis.mapServerName}")
     private String appMapServerName;
 
 

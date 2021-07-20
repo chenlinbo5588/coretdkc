@@ -23,7 +23,7 @@
 <script src="/static/js/jquery.js"></script>
 <script src="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
-
+<script src="/static/js/thirdlib/shp2geojson/shapefile.js"></script>
 <link rel="stylesheet" href="/static/js/thirdlib/4.11/esri/themes/light/main.css" />
 <script src="/static/js/thirdlib/4.11/init.js"></script>
 <script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
@@ -92,19 +92,30 @@
 <div id="slide"></div>
 
 <div id="fxTc" class="fxTc" style="display: none">
-    <div class="contain">请选择构筑分析区域的方式</div>
-    <div class="buttonBox">
+    <div class="contain fxBox">请选择构筑分析区域的方式</div>
+    <div class="buttonBox fxBox">
         <div class="button" id="draw">
             <div class="miaohui"></div>
             <div>直接描绘</div>
         </div>
-        <div class="button"  id="addDwg" style="margin-left:50px;">
+        <div class="button fxBox"  id="addShp" style="margin-left:50px;">
             <div class="tianjia"></div>
             <div>添加图形文件</div>
         </div>
+        <div class="button fxBox"  id="addText" style="margin-left:50px;">
+            <div class="addText"></div>
+            <div>添加文本</div>
+        </div>
+    </div>
+    <div class="txtInputBox fxBox" id="txtInputBox" style="display: none">
+        <textarea placeholder="请粘贴坐标串信息"></textarea>
+        <div class="txtButtonBox">
+            <div id="queding">确定</div>
+            <div class="ml20"  id="cancel">关闭</div>
+        </div>
     </div>
 </div>
-
+<input type="file" id="shpFile"  accept=".shp" style="display: none">
 <div class="fxTishi" id="fxTishi" style="display: none">
     <div class="titleBox">
         <div>绘制叠加分析</div>

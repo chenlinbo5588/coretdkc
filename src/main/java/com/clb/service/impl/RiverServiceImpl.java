@@ -1,8 +1,7 @@
 package com.clb.service.impl;
 
-import com.clb.dto.Tubiao;
-import com.clb.dto.TubiaoData;
-import com.clb.dto.WaterTj;
+import com.clb.constant.DateConstant;
+import com.clb.dto.*;
 import com.clb.entity.*;
 import com.clb.repository.jpa.*;
 import com.clb.service.RiverService;
@@ -77,7 +76,6 @@ public class RiverServiceImpl implements RiverService {
 
         return syRvaaRepository.findAll(toSpecification(filer));
     }
-
 
 
     @SneakyThrows
@@ -342,9 +340,9 @@ public class RiverServiceImpl implements RiverService {
 
     public SyRvaa getRvaaByIdentification(String identification) {
         String filer = "identification==" + identification;
-        if(syRvaaRepository.findAll(toSpecification(filer)).size()>0){
+        if (syRvaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syRvaaRepository.findAll(toSpecification(filer)).get(0);
-        }else{
+        } else {
             return null;
         }
     }
@@ -352,9 +350,9 @@ public class RiverServiceImpl implements RiverService {
     public SyOwaa getOwaaByIdentification(String identification) {
         String filer = "identification==" + identification;
 
-        if(syOwaaRepository.findAll(toSpecification(filer)).size()>0){
+        if (syOwaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syOwaaRepository.findAll(toSpecification(filer)).get(0);
-        }else{
+        } else {
             return null;
         }
     }
@@ -362,115 +360,172 @@ public class RiverServiceImpl implements RiverService {
     public SyRsaa getRsaaByIdentification(String identification) {
         String filer = "identification==" + identification;
 
-        if(syRsaaRepository.findAll(toSpecification(filer)).size()>0){
+        if (syRsaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syRsaaRepository.findAll(toSpecification(filer)).get(0);
-        }else{
+        } else {
             return null;
         }
     }
 
     public SyLkaa getLkaaByIdentification(String identification) {
         String filer = "identification==" + identification;
-        if(syLkaaRepository.findAll(toSpecification(filer)).size()>0){
+        if (syLkaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syLkaaRepository.findAll(toSpecification(filer)).get(0);
-        }else{
+        } else {
             return null;
         }
     }
 
     public SyHpaa getHpaaByIdentification(String identification) {
         String filer = "identification==" + identification;
-        if(syHpaaRepository.findAll(toSpecification(filer)).size()>0){
+        if (syHpaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syHpaaRepository.findAll(toSpecification(filer)).get(0);
-        }else{
+        } else {
             return null;
         }
     }
 
     public SyAcaa getAcaaByIdentification(String identification) {
         String filer = "identification==" + identification;
-        if(syAcaaRepositoryaa.findAll(toSpecification(filer)).size()>0){
+        if (syAcaaRepositoryaa.findAll(toSpecification(filer)).size() > 0) {
             return syAcaaRepositoryaa.findAll(toSpecification(filer)).get(0);
-        }else{
+        } else {
             return null;
         }
     }
 
-    public SyRvaa getRvById(int id){
+    public SyRvaa getRvById(int id) {
         return syRvaaRepository.findAllById(Collections.singleton(id)).get(0);
     }
-    public SyRsaa getRsById(int id){
+
+    public SyRsaa getRsById(int id) {
         return syRsaaRepository.findAllById(Collections.singleton(id)).get(0);
     }
-    public SyLkaa getLkById(int id){
+
+    public SyLkaa getLkById(int id) {
         return syLkaaRepository.findAllById(Collections.singleton(id)).get(0);
     }
-    public SyHpaa getHpById(int id){
+
+    public SyHpaa getHpById(int id) {
         return syHpaaRepository.findAllById(Collections.singleton(id)).get(0);
     }
-    public SyAcaa getAcById(int id){
+
+    public SyAcaa getAcById(int id) {
         return syAcaaRepositoryaa.findAllById(Collections.singleton(id)).get(0);
     }
-    public SyOwaa getOwById(int id){
+
+    public SyOwaa getOwById(int id) {
         return syOwaaRepository.findAllById(Collections.singleton(id)).get(0);
     }
 
 
-    public List<SyRvaa> getRvLikeNameOrBm(String value){
+    public List<SyRvaa> getRvLikeNameOrBm(String value) {
         String filer = "name=like=" + value + ",identification=like=" + value;
         return syRvaaRepository.findAll(toSpecification(filer));
     }
-    public List<SyRsaa> getRsLikeNameOrBm(String value){
+
+    public List<SyRsaa> getRsLikeNameOrBm(String value) {
         String filer = "name=like=" + value + ",identification=like=" + value;
         return syRsaaRepository.findAll(toSpecification(filer));
     }
-    public List<SyLkaa> getLkLikeNameOrBm(String value){
+
+    public List<SyLkaa> getLkLikeNameOrBm(String value) {
         String filer = "name=like=" + value + ",identification=like=" + value;
         return syLkaaRepository.findAll(toSpecification(filer));
     }
-    public List<SyHpaa> getHpLikeNameOrBm(String value){
+
+    public List<SyHpaa> getHpLikeNameOrBm(String value) {
         String filer = "name=like=" + value + ",identification=like=" + value;
         return syHpaaRepository.findAll(toSpecification(filer));
     }
-    public List<SyAcaa> getAcLikeNameOrBm(String value){
+
+    public List<SyAcaa> getAcLikeNameOrBm(String value) {
         String filer = "name=like=" + value + ",identification=like=" + value;
         return syAcaaRepositoryaa.findAll(toSpecification(filer));
     }
 
-    public List<SyOwaa> getOwLikeNameOrBm(String value){
+    public List<SyOwaa> getOwLikeNameOrBm(String value) {
         String filer = "name=like=" + value + ",identification=like=" + value;
         return syOwaaRepository.findAll(toSpecification(filer));
     }
-    public List<ChangeWaterarea> getChangeWaterareaOrderBgdate(){
+
+    public List<ChangeWaterarea> getChangeWaterareaOrderBgdate() {
         Specification<ChangeWaterarea> specification = RSQLJPASupport.<ChangeWaterarea>toSort("bgdate,desc");
         return changeWaterareaRepository.findAll(specification);
     }
 
-    public List<ChangeWaterarea> getChangeWatersById(int id){
-        String filer = "id==" + id ;
+    public List<ChangeWaterarea> getChangeWatersById(int id) {
+        String filer = "id==" + id;
         ChangeWaterarea changeWaterarea = changeWaterareaRepository.findAll(toSpecification(filer)).get(0);
         List<ChangeWaterarea> changeWaterareas = new ArrayList<ChangeWaterarea>();
-        if(changeWaterarea.getProjectId() == null){
+        if (changeWaterarea.getProjectId() == null) {
             changeWaterareas.add(changeWaterarea);
-        }else{
-             filer = "projectId==" + changeWaterarea.getProjectId() ;
+        } else {
+            filer = "projectId==" + changeWaterarea.getProjectId();
             Specification<ChangeWaterarea> specification = RSQLJPASupport.<ChangeWaterarea>toSort("bgdate,asc").and(RSQLJPASupport.toSpecification(filer));
             changeWaterareas = changeWaterareaRepository.findAll(specification);
         }
         return changeWaterareas;
     }
 
-    public ChangeWaterarea getChangeWaterById(int id){
-        String filer = "id==" + id ;
+    public ChangeWaterarea getChangeWaterById(int id) {
+        String filer = "id==" + id;
         ChangeWaterarea changeWaterarea = changeWaterareaRepository.findAll(toSpecification(filer)).get(0);
         return changeWaterarea;
     }
-    public List<ChangeWaterarea> getCwLikeNameOrBm(String value){
+
+    public List<ChangeWaterarea> getCwLikeNameOrBm(String value) {
 
         String filer = "bgName=like=" + value + ",projectName=like=" + value;
         List<ChangeWaterarea> changeWaterareas = changeWaterareaRepository.findAll(toSpecification(filer));
         return changeWaterareas;
     }
 
+    public FxTableData getFxTableData() {
+        String[] syNames = DateConstant.SY_TYPENAME;
+        FxTableData fxTableData = new FxTableData();
+        fxTableData.setTypeName(DateConstant.FX_TYPENAME);
+        fxTableData.setXName(syNames);
+        FxTableList fxTableListAdd = new FxTableList();
+        FxTableList fxTableListReduce = new FxTableList();
+        FxTableList fxTableListSum = new FxTableList();
+        fxTableListAdd.setName(DateConstant.FX_TYPENAME[0]);
+        fxTableListReduce.setName(DateConstant.FX_TYPENAME[1]);
+        fxTableListSum.setName(DateConstant.FX_TYPENAME[2]);
+
+        fxTableListAdd.setType("bar");
+        fxTableListReduce.setType("bar");
+        fxTableListSum.setType("bar");
+        List<ChangeWaterarea> changeWaterareas;
+        float areaAdd = 0;
+        float areaReduce = 0;
+        float areaSum = 0;
+        for (int i = 0; i < syNames.length; i++) {
+            areaAdd = 0;
+            areaReduce = 0;
+            areaSum = 0;
+            //取每种水域类型的增加面积与减少面积 1为增加 2为减少
+            for (int n = 1; n < 3; n++) {
+                String filer = "syType==" + syNames[i] + ";bgAreatype==" + n;
+                changeWaterareas = changeWaterareaRepository.findAll(toSpecification(filer));
+                for (int o = 0; o < changeWaterareas.size(); o++) {
+                    if (n == 1) {
+                        areaAdd = areaAdd + changeWaterareas.get(o).getBgArea();
+                    } else {
+                        areaReduce = areaReduce + changeWaterareas.get(o).getBgArea();
+                    }
+                }
+            }
+            areaSum = areaAdd - areaReduce;
+            fxTableListAdd.getData().add(String.valueOf(areaAdd));
+            fxTableListReduce.getData().add(String.valueOf(-1.0*areaReduce));
+            fxTableListSum.getData().add(String.valueOf(areaSum));
+        };
+        fxTableData.getFxTableList().add(fxTableListAdd);
+        fxTableData.getFxTableList().add(fxTableListReduce);
+        fxTableData.getFxTableList().add(fxTableListSum);
+
+        return fxTableData;
+    }
 
 }

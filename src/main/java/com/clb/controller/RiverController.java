@@ -2,6 +2,7 @@ package com.clb.controller;
 
 import com.clb.constant.DateConstant;
 import com.clb.dto.FxData;
+import com.clb.dto.FxTableData;
 import com.clb.dto.Tubiao;
 import com.clb.dto.WaterTj;
 import com.clb.entity.*;
@@ -236,7 +237,12 @@ public class RiverController extends BaseController {
         return "html/river/baobiao";
     }
     @RequestMapping("/fx/baobiao")
-    public String fxBaobiao(ModelMap map) throws InvocationTargetException, IllegalAccessException {
+    public String fxBaobiao(ModelMap map) {
+
+        FxTableData fxTableData = riverService.getFxTableData();
+        map.put("data",fxTableData);
+
+
 
         return "html/river/fxbaobiao";
     }

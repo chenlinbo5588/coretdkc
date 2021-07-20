@@ -14,5 +14,8 @@ public class DateConstant {
     public final static String OW_LAYER_ID = "11";
 
 
+    public final static String[] SY_TYPENAME = {"河道","水库","山塘","湖泊","其他水域","人工水道"};
+
+    public final static String[] FX_TYPENAME = {"水域增加量","水域减少量","总体变化"};
 
 }

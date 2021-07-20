@@ -1,0 +1,39 @@
+
+.baobiaoBox {
+    position: fixed !important;
+    z-index: 1002;
+    width: 60%;
+    height: 500px;
+    top: 22%;
+    left: 20%;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    background-color: white;
+}
+
+.baobiaoBox .title {
+    font-size: 18px;
+    color: white;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #163571;
+}
+
+.baobiaoBox .content{
+    height: 450px;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #e8e8e8;
+}
+.fxbb{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+}

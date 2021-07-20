@@ -41,6 +41,7 @@ public class ChangeWaterarea {
     private Integer bgObjectid;
     private String bgqAttribute;
     private String bgName;
+    private int bgAreatype;
 
     public List<Map<String,String>> getBgLine(){
         Gson gson = new Gson();

@@ -22,7 +22,7 @@ public class MapControllerAdvice {
     @Value("${server.port}")
     private String port;
 
-    @Value("${xmHost}")
+    @Value("${project.host}")
     private String xmHost;
 
 

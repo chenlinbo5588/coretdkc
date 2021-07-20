@@ -1,5 +1,7 @@
 package com.clb.service;
 
+import com.clb.dto.FxTableData;
+import com.clb.dto.FxTableList;
 import com.clb.dto.Tubiao;
 import com.clb.dto.WaterTj;
 import com.clb.entity.*;
@@ -19,6 +21,10 @@ public interface RiverService {
     public List<SyRvaa> getByLikeNameAndTypes(String name,String[] types);
 
     public List<WaterTj> getTypeList();
+
+    public FxTableData getFxTableData();
+
+
 
     public List<Tubiao> getTubiaoList(String type) throws InvocationTargetException, IllegalAccessException;
 
