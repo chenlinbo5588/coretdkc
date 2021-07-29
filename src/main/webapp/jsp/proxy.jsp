@@ -188,6 +188,7 @@ java.text.SimpleDateFormat" %>
             }
 
             //copy the response content to the response to the client
+            clientResponse.setHeader("Access-Control-Allow-Origin","*");
             InputStream byteStream;
             if (con.getResponseCode() >= 400 && con.getErrorStream() != null){
                 if (ignoreAuthenticationErrors && (con.getResponseCode() == 498 || con.getResponseCode() == 499)) return true;

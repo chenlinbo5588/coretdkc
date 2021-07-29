@@ -25,6 +25,17 @@ public class MapControllerAdvice {
     @Value("${project.host}")
     private String xmHost;
 
+    @Value("${arcgis.outputDwgUrl}")
+    private String outputDwgUrl;
+
+    @Value("${arcgis.outputDwgDownloadUrl}")
+    private String outputDwgDownloadUrl;
+
+    @Value("${arcgis.outputallDwgUrl}")
+    private String outputallDwgUrl;
+
+    @Value("${arcgis.outputallDwgDownloadUrl}")
+    private String outputallDwgDownloadUrl;
 
     @ModelAttribute(value = "mapConfig")
     public Map<String,Object> mydata()
@@ -34,6 +45,12 @@ public class MapControllerAdvice {
         map.put("mapServerName",appMapServerName);
         map.put("port",port);
         map.put("xmhost",xmHost);
+        map.put("outputDwgUrl",outputDwgUrl);
+        map.put("outputDwgDownloadUrl",outputDwgDownloadUrl);
+        map.put("outputallDwgUrl",outputallDwgUrl);
+        map.put("outputallDwgDownloadUrl",outputallDwgDownloadUrl);
+
+
 
         return map;
     }

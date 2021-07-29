@@ -1,5 +1,8 @@
 
+
+
 $(function() {
+
 
     $("img[name=rvOpen]").click(function () {
         $("img[name=rvOpen]").show();
@@ -80,6 +83,13 @@ $(function() {
                 break;
             }
         }
+    })
+    $("#fxoutputDwg").click(function () {
+        dowloadOutputfxDwg(geodata);
+    })
+    $("#fxoutputshp").click(function () {
+        console.log("outpushp");
+        //dowloadOutputfxDwg(geodata);
     })
 
 

@@ -24,30 +24,80 @@ $(function() {
     ], function (LayerList) {
         var layerList = new LayerList({
             view: rightView,
-            listItemCreatedFunction: function(event) {
-                const item = event.item;
-                if(item.title == "Bgtx"){
-                    item.title ="变更图层"
+            listItemCreatedFunction: defineActions
+        },"rshuiyu");
+        layerList.on("trigger-action", function(event) {
+            var id = event.action.id;
+            if(  rslideName == event.item.title){
+                $("#rslideBox").hide();
+                rslideName = null;
+            }else{
+                rslideName = event.item.title;
+                $("#rslideBox").show();
+                if (id === "opacity") {
+                    if(event.item.layer.opacity == undefined){
+                        $("#rslideIndex").html(event.item.layer.layer.opacity*100 + "%");
+                        $("#rslide").slider({
+                            value:event.item.layer.layer.opacity*100,
+                            step: 10,
+                            slide: function(event2, ui) {
+                                $("#rslideIndex").html(ui.value + "%");
+                                event.item.layer.layer.opacity = ui.value/100;
+                            }
+                        });
+                    }else{
+                        $("#rslideIndex").html(event.item.layer.opacity*100 + "%");
+                        $("#rslide").slider({
+                            value:event.item.layer.opacity*100,
+                            step: 10,
+                            slide: function(event2, ui) {
+                                $("#rslideIndex").html(ui.value + "%");
+                                event.item.layer.opacity = ui.value/100;
+                            }
+                        });
+                    }
                 }
             }
-        },"rshuiyu");
+
+        });
         var layerList2 = new LayerList({
             view: leftView,
-            listItemCreatedFunction: function(event) {
-                const item = event.item;
-                if(item.title == "Shuiyu"){
-                    item.title ="水域图层"
-                }else if(item.title == "Xzj"){
-                    item.title ="其他图层"
-                }else if(item.title == "Bgtx"){
-                    item.title ="变更图形图层"
-                }else if(item.title == "ditu"){
-                    item.title ="自定义影像"
+            listItemCreatedFunction:defineActions
+        },"lshuiyu");
+        layerList2.on("trigger-action", function(event) {
+            var id = event.action.id;
+            if(  lslideName == event.item.title){
+                $("#lslideBox").hide();
+                lslideName = null;
+            }else{
+                lslideName = event.item.title;
+                $("#lslideBox").show();
+                if (id === "opacity") {
+                    if(event.item.layer.opacity == undefined){
+                        $("#lslideIndex").html(event.item.layer.layer.opacity*100 + "%");
+                        $("#lslide").slider({
+                            value:event.item.layer.layer.opacity*100,
+                            step: 10,
+                            slide: function(event2, ui) {
+                                $("#lslideIndex").html(ui.value + "%");
+                                event.item.layer.layer.opacity = ui.value/100;
+                            }
+                        });
+                    }else{
+                        $("#lslideIndex").html(event.item.layer.opacity*100 + "%");
+                        $("#lslide").slider({
+                            value:event.item.layer.opacity*100,
+                            step: 10,
+                            slide: function(event2, ui) {
+                                $("#lslideIndex").html(ui.value + "%");
+                                event.item.layer.opacity = ui.value/100;
+                            }
+                        });
+                    }
                 }
             }
-        },"lshuiyu");
-        // leftView.ui.add(document.getElementById("leftTucengSelectBox"), "bottom-right");
-        // rightView.ui.add(document.getElementById("rightTucengSelectBox"), "bottom-right");
+
+        });
     });
     $("#bottomRightBox").show();
     $("#leftViewBox").show();
@@ -60,9 +110,11 @@ $(function() {
     }
 
     $("#rightTucengButton").click(function () {
+        $("#rslideBox").hide();
         $("#rightTucengSelectBox").toggle();
     })
     $("#leftTucengButton").click(function () {
+        $("#lslideBox").hide();
         $("#leftTucengSelectBox").toggle();
     })
     $(".ssButton img").click(function () {

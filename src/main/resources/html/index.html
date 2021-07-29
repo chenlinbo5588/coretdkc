@@ -10,20 +10,30 @@
         mapServerName:[[${mapConfig.mapServerName}]],
         mapServerPort: [[${mapConfig.port}]],
         xmHost:[[${mapConfig.xmhost}]],
+        outputDwgUrl:[[${mapConfig.outputDwgUrl}]],
+        outputDwgDownloadUrl:[[${mapConfig.outputDwgDownloadUrl}]],
+        outputallDwgUrl:[[${mapConfig.outputallDwgUrl}]],
+        outputallDwgDownloadUrl:[[${mapConfig.outputallDwgDownloadUrl}]],
     }
     var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
 </script>
-
 <div class="tc" id="tc" style="display: none">
     <div class="mask" id="mask"></div>
     <div id="tcBox"></div>
 </div>
+<div class="toast" id="toast" ></div>
+<div  id="tempdiv" style="display: none"></div>
 <link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/index.css')}"  />
 <script type="text/javascript" src="/static/js/echartsMin.js"></script>
 <script src="/static/js/jquery.js"></script>
 <script src="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<link rel="stylesheet" href="/static/js/thirdlib/toast/css/toast.css">
+<script src="/static/js/thirdlib/toast/js/toast.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <script src="/static/js/thirdlib/shp2geojson/shapefile.js"></script>
+
+<script type="text/javascript" src="/static/js/tools/html2canvas.js" ></script>
+<script type="text/javascript" src="/static/js/tools/jquery.jqprint-0.3.js" ></script>
 <link rel="stylesheet" href="/static/js/thirdlib/4.11/esri/themes/light/main.css" />
 <script src="/static/js/thirdlib/4.11/init.js"></script>
 <script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
@@ -79,36 +89,42 @@
                 <img src="/static/img/tuceng.png">
                 <div class="ml15">图层选择</div>
             </div>
+            <div class="slideBox" id="slideBox" style="display: none">
+                <div class="mr5">不透明度</div>
+                <div id="slide" class="slide"></div>
+                <div id="slideIndex" class="slideIndex ml15"></div>
+            </div>
             <div class="tucengItemBox" id="shuiyu">
             </div>
         </div>
         <div class="bottomRightButton button1" id="tuceng"></div>
     </div>
     <div id="viewDiv"> </div>
-
 </div>
 
-
-<div id="slide"></div>
-
 <div id="fxTc" class="fxTc" style="display: none">
-    <div class="contain fxBox">请选择构筑分析区域的方式</div>
-    <div class="buttonBox fxBox">
+    <div class="contain fxbuttonbox">请选择构筑分析区域的方式</div>
+    <div class="buttonBox fxbuttonbox">
         <div class="button" id="draw">
             <div class="miaohui"></div>
             <div>直接描绘</div>
         </div>
-        <div class="button fxBox"  id="addShp" style="margin-left:50px;">
+        <div class="button fxbuttonbox"  id="addShp" style="margin-left:50px;">
             <div class="tianjia"></div>
             <div>添加图形文件</div>
         </div>
-        <div class="button fxBox"  id="addText" style="margin-left:50px;">
+        <div class="button fxbuttonbox"  id="addText" style="margin-left:50px;">
             <div class="addText"></div>
             <div>添加文本</div>
         </div>
     </div>
-    <div class="txtInputBox fxBox" id="txtInputBox" style="display: none">
-        <textarea placeholder="请粘贴坐标串信息"></textarea>
+    <div class="txtInputBox fxbuttonbox" id="txtInputBox" style="display: none">
+        <div id="radioBox" class="radioBox">
+            <input type="radio" name="radio-1" id="radio-1" value="CAD List" checked><span>CAD list 文本</span>
+            <input type="radio" name="radio-1" id="radio-2" value="X,Y"><span>X,Y 文本</span>
+            <input type="radio" name="radio-1" id="radio-3" value="Y,X"><span>Y,X 文本</span>
+        </div>
+        <textarea id="txtInput" placeholder="请粘贴坐标串信息"></textarea>
         <div class="txtButtonBox">
             <div id="queding">确定</div>
             <div class="ml20"  id="cancel">关闭</div>
@@ -131,6 +147,7 @@
 
     </div>
 </div>
+<script th:src="${urls.getForLookupPath('/static/js/tools/common.js')}"></script>
 <script th:src="${urls.getForLookupPath('/static/js/index.js')}"></script>
 </body>
 </html>

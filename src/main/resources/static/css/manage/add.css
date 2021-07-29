@@ -1,3 +1,6 @@
+.mask{
+    z-index:1002;
+}
 .manageDetailBox{
     width: 100%;
     height:100%;
@@ -12,7 +15,7 @@
 .manageDetailBox p{
     color:red;
     text-align: center;
-    margin-top:22px;
+    margin-top:8px;
     margin-right:5px;
 }
 input{
@@ -29,6 +32,16 @@ input{
     display: flex;
     align-items: center;
 }
+.bottomBox{
+     display: flex;
+     flex-direction:row;
+ }
+.bottomBox .left{
+    display: flex;
+    flex-direction:column;
+    width: 74%;
+}
+
 .leftButoonBox{
     display: flex;
 }
@@ -61,7 +74,7 @@ input{
     user-select:none;
 }
 .manageDetailBox .contentBox{
-    width: 45%;
+    width: 75%;
     margin-left: 25%;
     margin-top:60px;
     border-right:1px solid #e5e5e5;
@@ -131,7 +144,7 @@ input{
 
 }
 .halfLine div{
-    width:100px;
+    width:125px;
     display: flex;
     align-items: center;
 
@@ -183,8 +196,8 @@ input{
     justify-content: flex-start;
 }
 .xcBox{
-    height:1000px;
     width: 100%;
+    margin-bottom: 20px;
 }
 .xcBox .xcTitle{
     width: 100%;
@@ -222,4 +235,246 @@ input{
     outline: none;
     width: 100%;
     border:none;
+}
+
+#projectMapBox{
+    margin-top: 20px;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 50px;
+}
+
+
+.bottomBox .right{
+    display: flex;
+    flex-direction:column;
+    width: 25%;
+    padding-top: 60px;
+    padding-left: 60px;
+    box-sizing: border-box;
+}
+.uploadBox{
+    width: 280px;
+    border-radius: 5px;
+    border:1px solid #888888;
+    background-color: white;
+    position: fixed;
+    left:78%;
+    top:22%;
+}
+.uploadBox .uploadtitleBox{
+    width: 100%;
+    height:30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    letter-spacing: 1px;
+    background-color: #3965b6;
+
+
+}
+.uploadBox .uploadContentBox{
+    width:100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.uploadBox .uploadContentItemBox{
+    display: flex;
+    flex-direction: column;
+}
+.uploadContentItemBox .uploaditemBoxTitle{
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-color: #eeeeee;
+    color:#3965b6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 15px;
+    height: 30px;
+}
+.uploaditemBoxTitle img{
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+.uploadContentItemBox .uploaditemBox{
+    padding: 0px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    color:#3965b6;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.uploaditemName{
+    width: 120px;
+    overflow: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 100%;
+    border: none;
+
+}
+.uploaditemBox div{
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.uploaditemBox:hover{
+    border:1px solid black;
+}
+.uploadTime{
+    color: #6c757d;
+    font-size: 10px;
+    width: 70px;
+}
+[name=deleteFile]{
+    width: 35px;
+}
+.uploadFileButton{
+    margin-top:15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+    height: 30px;
+    background-color: #93d3ff;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.uploadTc{
+    position: fixed;
+    width: 500px;
+    height: 200px;
+    top: 35%;
+    left: 35%;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 1002;
+}
+.uploadTc .title{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    letter-spacing: 2px;
+    font-size: 12px;
+    background-color: #3965b6;
+}
+.uploadTc .folderSelectBox{
+    padding-left:30px;
+    padding-right: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    margin-top:15px;
+}
+
+.uploadTc .fileT{
+    width: 25%;
+    font-size: 14px;
+    color: #3965b6;
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height:100%;
+}
+.uploadTc .folderSelect{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.uploadTc .fileSelect{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.uploadTc .input{
+    border: 1px solid #bfbfbf;
+    width: 90%;
+    height: 22px;
+    display: flex;
+    align-items: center;
+}
+.uploadTc .fileSelect img{
+    width: 10%;
+    height: 20px;
+    border: 1px solid #bfbfbf;
+    margin-left: -1px;
+    cursor: pointer;
+}
+.uploadTc .select{
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+    color: #3965b6;
+    background-image: linear-gradient(white, #e3e3e3);
+    text-align: center;
+    text-align-last: center;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+}
+
+.uploadTc .contain{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color:#6f6f6f;
+}
+.uploadTc .manageButtonBox{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.uploadTc .manageButtonBox .button{
+    width:120px;
+    height: 25px;
+    border-radius:5px;
+    background-color: #3965b6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    color:white;
+    user-select:none;
+    margin-left: 20px;
 }

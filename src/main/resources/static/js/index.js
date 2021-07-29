@@ -90,18 +90,56 @@ $(function () {
         file.click();
     })
     $("#shpFile").change(function () {
-        loadshp("shpFile");
+        var flag = loadshp("shpFile",view,false);
         $("#tc").hide();
+        if(flag){
+            showMessage('加载成功',3000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
+        }else{
+            showMessage('加载失败,请检查文件正确性',3000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
+        }
+
     })
+    //根据文字添加图形
     $("#addText").click(function () {
-        $(".fxBox").hide();
+        $(".fxbuttonbox").hide();
         $("#txtInputBox").show();
     })
     $("#cancel").click(function () {
-        $(".fxBox").show();
+        $(".fxbuttonbox").show();
         $("#txtInputBox").hide();
     })
+    $("#queding").click(function () {
+        var value = $("#txtInput").val();
+        if(value == ""){
+            $(".fxbuttonbox").toast({
+                content:'请先输入坐标内容再点击确认',
+                duration:1500,
+                animateIn:'bounceInUp-hastrans',
+                animateOut:'bounceOutDown-hastrans',
+            });
+        }else{
+            var val=$('input:radio:checked').val();
+            var ring = getPoints(value,val);
+            if(ring.length >0){
+                $("#txtInput").val("");
+                var gr = creatrPolgnByRing(ring,view);
+                view.graphics.add(gr);
+                view.goTo(gr.geometry.extent.expand(1));
+                $("#tc").hide();
+                showMessage('加载成功',3000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
+            }else{
+                $(".fxbuttonbox").toast({
+                    content:'内容有误,无法解析，请确认选择类型或者文本内容是否错误！',
+                    duration:3000,
+                    animateIn:'bounceInUp-hastrans',
+                    animateOut:'bounceOutDown-hastrans',
+                });
+            }
+        }
+    })
 
+
+    /////
     $('input[type="checkbox"]').click(function () {
         var name = $(this).data("name");
         view.map.layers.forEach(function (layer) {
@@ -115,6 +153,7 @@ $(function () {
         })
     })
     $("#tuceng").click(function () {
+        $("#slideBox").hide();
         $("#tucengSelectBox").toggle();
     })
     $("#riverChange").click(function () {
@@ -138,15 +177,16 @@ $(function () {
 
         }
         $("#tc").show();
-        $(".fxBox").show();
+        $(".fxbuttonbox").show();
         $("#txtInputBox").hide();
 
         $("#mask").click(function () {
-            $(".fxBox").show();
+            $(".fxbuttonbox").show();
             $("#txtInputBox").hide();
             $("#tc").hide();
         })
         $("#draw").click(function () {
+            view.graphics.removeAll();
             var drawAction = drawTool.create("polygon", {mode: "click"});
             drawAction.on("vertex-add", showPolygon);
             drawAction.on("vertex-remove", showPolygon);
@@ -160,14 +200,7 @@ $(function () {
     $("#fxTishiClose").click(function () {
         $(".fxTishi").hide();
     })
-    $("#slide").slider({
-        value:100,
-        step: 10,
-        slide: function(event, ui) {
-            view.map.layers.items[3].opacity = ui.value/100;
 
-        }
-    });
 
     $("#close").click(function () {
         $(".infoList").hide();

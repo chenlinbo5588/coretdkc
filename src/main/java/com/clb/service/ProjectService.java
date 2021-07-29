@@ -36,4 +36,10 @@ public interface ProjectService {
     public void deleteXcjlById(int id);
 
     public void saveXcjl(InspectionRecord inspectionRecord);
+
+    public void saveFileUpload(ProjectAttachment projectAttachment);
+
+    public List<ProjectAttachment> getProjectAttachmentsByCategroyAndId(int id,String category);
+
+    public void delteProjectAttachmentById(int id);
 }

@@ -1,9 +1,13 @@
 package com.clb.service.impl;
 
 import com.clb.constant.DateConstant;
+import com.clb.entity.FileUpload;
 import com.clb.entity.InspectionRecord;
 import com.clb.entity.Project;
+import com.clb.entity.ProjectAttachment;
+import com.clb.repository.jpa.FileUploadRepository;
 import com.clb.repository.jpa.InspectionRecordRepository;
+import com.clb.repository.jpa.ProjectAttachmentRepository;
 import com.clb.repository.jpa.ProjectRepository;
 import com.clb.service.ProjectService;
 import io.github.perplexhub.rsql.RSQLJPASupport;
@@ -32,6 +36,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     InspectionRecordRepository inspectionRecordRepository;
+
+
+    @Autowired
+    ProjectAttachmentRepository projectAttachmentRepository;
+
 
     @Autowired
     RestTemplate restTemplate;
@@ -130,8 +139,24 @@ public class ProjectServiceImpl implements ProjectService {
 
     public void saveXcjl(InspectionRecord inspectionRecord){
 
+        inspectionRecord.setXcdate((int) (inspectionRecord.getXcdateS().getTime() /1000));
+
         inspectionRecordRepository.save(inspectionRecord);
 
     }
+    public void saveFileUpload(ProjectAttachment projectAttachment){
+        projectAttachment.setCategroy("project");
+        projectAttachmentRepository.save(projectAttachment);
+    }
+
+    public List<ProjectAttachment> getProjectAttachmentsByCategroyAndId(int id,String category){
+        String filer = "refId=="+id +";categroy=="+ category;
+        return projectAttachmentRepository.findAll(toSpecification(filer));
+    }
+
+    public void delteProjectAttachmentById(int id){
+        projectAttachmentRepository.deleteById(id);
+    }
+
 
 }

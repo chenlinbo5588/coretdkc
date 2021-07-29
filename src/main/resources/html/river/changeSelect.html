@@ -21,8 +21,7 @@
                 <div class="contentItem" th:each="item,stat:${changeList}">
                     <div class="boxh">
                         <div class="">[[${stat.index+1}]] .</div>
-                        <div class="name" th:data-code="${item.bgBm}" th:data-id="${item.id}">[[${item.projectName}]]
-                        </div>
+                        <div class="name" th:data-code="${item.bgBm}" th:data-id="${item.id}">[[${item.projectName}]]</div>
                     </div>
                     <div class="boxh">
                         <div class="">[[${item.getBgDateTime()}]]</div>
@@ -50,6 +49,11 @@
                     <img src="/static/img/tuceng.png">
                     <div class="ml15">图层选择</div>
                 </div>
+                <div class="slideBox" id="rslideBox"  style="display: none">
+                    <div class="mr5">不透明度</div>
+                    <div id="rslide" class="slide"></div>
+                    <div id="rslideIndex" class="slideIndex ml15"></div>
+                </div>
                 <div class="tucengItemBox" id="rshuiyu">
                 </div>
             </div>
@@ -68,6 +72,11 @@
                 <div class="tucengSelectTitle">
                     <img src="/static/img/tuceng.png">
                     <div class="ml15">图层选择</div>
+                </div>
+                <div class="slideBox" id="lslideBox"  style="display: none">
+                    <div class="mr5">不透明度</div>
+                    <div id="lslide" class="slide"></div>
+                    <div id="lslideIndex" class="slideIndex ml15"></div>
                 </div>
                 <div class="tucengItemBox" id="lshuiyu">
                 </div>

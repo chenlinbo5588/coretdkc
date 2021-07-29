@@ -100,12 +100,12 @@ $(function(){
 
     $("[name=pname]").click(function () {
         var id = $(this).data("id");
-        $.get(BASE_URL + "manage/edit?id="+id+"&page="+page,function(resp){
+        $.get(BASE_URL + "manage/select?id="+id+"&page="+page,function(resp){
             $("#viewDiv").html(resp);
         })
     })
     $("[name=xmAdd]").click(function () {
-        $.get(BASE_URL + "manage/add?page"+page,function(resp){
+        $.get(BASE_URL + "manage/add?page="+page,function(resp){
             $("#viewDiv").html(resp);
         })
     })
@@ -127,6 +127,7 @@ $(function(){
         $("#xmglTcDelet").unbind();
         $("#xmglTcDelet").html("删除");
         $("#xmglTcCancel").show();
+        $(".mask").unbind();
         $("#xmglTcDelet").click(function () {
             $("#tc").hide();
             deleteByid(id);
@@ -154,6 +155,7 @@ $(function(){
                 $("#tc").find("#tcBox").find("#xmglTc").show();
             }
             $("#tc").show();
+            $(".mask").unbind();
             $("#xmglTcDelet").unbind();
             $("#xmglTcDelet").html("确定");
             $("#xmglTcCancel").hide();

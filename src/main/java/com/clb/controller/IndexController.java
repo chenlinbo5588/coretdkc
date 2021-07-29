@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -36,17 +37,25 @@ public class IndexController extends BaseController {
         arcgisTcs.add(new ArcgisTc("山塘","山塘"));
         arcgisTcs.add(new ArcgisTc("人工水道","人工水道"));
         arcgisTcs.add(new ArcgisTc("其他水域","其他水域"));
-//        map.put("host",arcgisMapHost);
-//        map.put("mapServerName",appMapServerName);
         map.put("data",arcgisTcs);
-
-
         return "html/index";
     }
 
     @RequestMapping("/river/proxy")
     public String proxy(HttpServletRequest request) {
         return "proxy";
+    }
+
+    @RequestMapping("/tools/getriverImg")
+    public String get(@RequestParam(value = "x", required = true) float x,@RequestParam(value = "y", required = true) float y,@RequestParam(value = "flag", required = false) String flag,ModelMap map) {
+
+        //flag 权限判断
+        map.put("x",x);
+        map.put("y",y);
+
+
+
+        return "html/tools/riverImg";
     }
 
 

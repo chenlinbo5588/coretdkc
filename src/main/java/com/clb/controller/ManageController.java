@@ -88,8 +88,19 @@ public class ManageController extends BaseController {
         map.put("page",page);
         return "html/manage/add";
     }
+    @RequestMapping("/select")
+    public String select(HttpServletRequest request,int id,
+                       @RequestParam(value = "page", required = false) int page,
+                       ModelMap map) {
+        Project project = projectService.getProjectById(id);
+
+        map.put("data",project);
+        map.put("page",page);
+
+        return "html/manage/add";
+    }
     @RequestMapping("/edit")
-    public String edit(@ModelAttribute(value="project") Project project,
+    public String edit(HttpServletRequest request,Project project,
                        @RequestParam(value = "page", required = false) int page,
                        ModelMap map) {
 
@@ -113,6 +124,24 @@ public class ManageController extends BaseController {
        map.put("data",inspectionRecords);
        map.put("glxmId",glxmId);
        return "html/manage/xcList";
+    }
+
+    @RequestMapping("/file/list")
+    public String fileList(@RequestParam(value = "glxmId", required = false) int glxmId, ModelMap map) {
+
+        List<ProjectAttachment> projectAttachment = projectService.getProjectAttachmentsByCategroyAndId(glxmId,"project");
+        map.put("project",projectAttachment);
+
+        return "html/manage/fileList";
+    }
+    @RequestMapping("/delete/file")
+    public String deleteFile(@RequestParam(value = "id", required = false) int id,@RequestParam(value = "glxmId", required = false) int glxmId, ModelMap map) {
+
+        projectService.delteProjectAttachmentById(id);
+        List<ProjectAttachment> projectAttachment = projectService.getProjectAttachmentsByCategroyAndId(glxmId,"project");
+        map.put("project",projectAttachment);
+
+        return "html/manage/fileList";
     }
     @RequestMapping("/xcDelete")
     public String xcDelete(@RequestParam(value = "id", required = false) int id,
@@ -142,5 +171,11 @@ public class ManageController extends BaseController {
         map.put("glxmId",glxmId);
 
         return "html/manage/xcList";
+    }
+
+    @RequestMapping("/tools")
+    public String add(ModelMap map) {
+
+        return "html/manage/tools";
     }
 }

@@ -9,6 +9,10 @@ arcgis:
   mapServerName: river
   username: yzb
   password: 123123
+  outputDwgUrl: http://192.168.5.120/arcgis/rest/services/outputCAD/GPServer/outputCAD
+  outputDwgDownloadUrl: http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputCAD_gpserver/
+  outputallDwgUrl: http://192.168.5.120/arcgis/rest/services/outputAllDwg/GPServer/outputCADforList
+  outputallDwgDownloadUrl:  http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputalldwg_gpserver/
 
 project:
   host: 192.168.5.120
@@ -33,9 +37,6 @@ server:
     context-path:
   resource:
     static-locations: classpath:/static/,classpath:/public/,classpath:/templates/
-
-
-
 mybatis:
   mapper-locations: classpath:/mybatis/*
   type-aliases-package: com.clb
@@ -46,8 +47,8 @@ mybatis:
 
 file:
   upload:
-    temporarypath: /temp/
-    path: /statisimg/
+    temporarypath: D:/temp/
+    path: D:/uploadFile/
 
 spring:
   mvc:

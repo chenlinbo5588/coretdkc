@@ -1,0 +1,109 @@
+.toolsBox{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.toolsButtonBox{
+    width:150px;
+    margin-right: 10px;
+}
+.toolsButtonTitle{
+    height:25px;
+    width:100%;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background-color: #2b477b;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.bottomRightButton{
+    width:40px;
+    height:40px;
+}
+.tucengSelectBox{
+    width: 180px;
+}
+.toolsButton{
+    margin-left:5px;
+    margin-top:10px;
+    width:40px;
+    height:40px;
+    background-color: #345aa2;
+    border:1px solid #000000;
+    border-radius: 3px;
+    cursor: pointer;
+    background-image: url(/static/img/gongji.png);
+    background-size:30px 30px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.esri-component{
+    box-shadow: none !important;
+}
+.toolsItemButton{
+    cursor: pointer;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #cccccc;
+    color: black;
+}
+.toolsItemButton:hover{
+    background-color: #c3d0e9;
+}
+
+.viewDivMapBox {
+    position: fixed;
+    top:13%;
+    left: 10%;
+    height: 85%;
+    width: 80%;
+    z-index: 1002;
+    display: none;
+    background-color:#294374;
+}
+#viewDivMap{
+    width: 100%;
+    height: 95%;
+}
+.viewDivMapTitle{
+    height: 5%;
+    width: 100%;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #315292;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.viewDivMapTitle div{
+    margin-left: 50%;
+}
+.viewDivMapTitle img{
+    margin-right:10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.searchBox{
+    position: static;
+}
+.toolsmask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+}

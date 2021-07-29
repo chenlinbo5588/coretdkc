@@ -1,13 +1,15 @@
 <link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/add.css')}"
       xmlns:th="http://www.w3.org/1999/xhtml"/>
-<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/index.css')}"
-      xmlns:th="http://www.w3.org/1999/xhtml"/>
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/index.css')}" xmlns:th="http://www.w3.org/1999/xhtml"/>
+
+
+<input type="file" id="ulFile" multiple="multiple" maxlength="20" style="display: none">
 <div class="manageDetailBox" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="topBox">
         <div class="topButtonBox">
             <div class="leftButoonBox">
-                <div class="button">图形导出</div>
-                <div class="button">清单打印</div>
+                <div class="button" id="outputDt">图形导出</div>
+                <div class="button" id="outputData">清单打印</div>
             </div>
             <div class="rightButoonBox">
                 <div class="button" id="baocun">保存</div>
@@ -16,96 +18,136 @@
         </div>
     </div>
     <div class="bottomBox">
-        <div class="contentBox">
-            <div class="title">水土保持基本信息表</div>
-            <div class="content">
-                <div class="aLine">
-                    <div><p>*</p>项目名称</div>
-                    <input name="pname" th:value="${data.pname}">
+        <div class="left">
+            <div class="contentBox">
+                <div class="box" id="xinxibiao">
+                    <link rel="stylesheet" href="/static/css/manage/print.css" media="print" />
+                    <div class="title">水土保持基本信息表</div>
+                    <div class="content">
+                        <div class="aLine">
+                            <div><p>*</p>项目名称</div>
+                            <input name="pname" th:value="${data.pname}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="aLine">
+                            <div><p>*</p>建设单位</div>
+                            <input name="jsdw" th:value="${data.jsdw}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="aLine">
+                            <div><p>*</p>监测单位</div>
+                            <input name="jcdw" th:value="${data.jcdw}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="aLine">
+                            <div><p>*</p>监理单位</div>
+                            <input name="jldw" th:value="${data.jldw}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="halfLine">
+                            <div><p>*</p>用地面积</div>
+                            <input name="mj" th:value="${data.mj}" autocomplete="off" >
+                        </div>
+                        <div class="halfLine">
+                            <div><p>*</p>批复文号</div>
+                            <input name="pfwh" th:value="${data.pfwh}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="halfLine">
+                            <div><p>*</p>联系人</div>
+                            <input name="fzrname" th:value="${data.fzrname}" autocomplete="off">
+                        </div>
+                        <div class="halfLine">
+                            <div><p>*</p>渣土挖方总量</div>
+                            <input name="ztwfzl" th:value="${data.ztwfzl}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="halfLine">
+                            <div><p>*</p>验收时间</div>
+                            <input class="datepicker" name="ysdateS" th:value="${data.ysdateS}==0?'':${data.ysdateS}"
+                                   autocomplete="off" readonly="readonly">
+                        </div>
+                        <div class="halfLine">
+                            <div><p>*</p>最近巡查时间</div>
+                            <input class="datepicker" name="xcdateS" th:value="${data.xcdateS}==0?'':${data.xcdateS}"
+                                   autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="aLineC">
+                            <div>备注</div>
+                            <textarea name="remark">[[${data.remark}]]</textarea>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="aLineC">
+                            <div>效益评价</div>
+                            <textarea name="xypj">[[${data.xypj}]]</textarea>
+                        </div>
+                    </div>
                 </div>
+                <div class="line"></div>
+                <div class="xcBox">
+                    <div class="xcTitle">巡查记录</div>
+                    <div class="xcContent">
+                        <div style="flex:1">序号</div>
+                        <div style="flex:2.5">巡查人员</div>
+                        <div style="flex:3">巡察时间</div>
+                        <div style="flex:3.2">说明</div>
+                        <div class="" style="flex:2" id="">操作</div>
+                    </div>
+                    <div class="xcContentBox" id="xcContentBox"></div>
+                </div>
+                <div class="line"></div>
+                <div id="projectMapBox"></div>
             </div>
-            <div class="content">
-                <div class="aLine">
-                    <div><p>*</p>建设单位</div>
-                    <input name="jsdw" th:value="${data.jsdw}">
-                </div>
-            </div>
-            <div class="content">
-                <div class="aLine">
-                    <div><p>*</p>监测单位</div>
-                    <input name="jcdw" th:value="${data.jcdw}">
-                </div>
-            </div>
-            <div class="content">
-                <div class="aLine">
-                    <div><p>*</p>监理单位</div>
-                    <input name="jldw" th:value="${data.jldw}">
-                </div>
-            </div>
-            <div class="content">
-                <div class="halfLine">
-                    <div><p>*</p>用地面积</div>
-                    <input name="mj" th:value="${data.mj}">
-                </div>
-                <div class="halfLine">
-                    <div><p>*</p>批复文号</div>
-                    <input name="pfwh" th:value="${data.pfwh}">
-                </div>
-            </div>
-            <div class="content">
-                <div class="halfLine">
-                    <div><p>*</p>联系人</div>
-                    <input name="fzrname" th:value="${data.fzrname}">
-                </div>
-                <div class="halfLine">
-                    <div><p>*</p>渣土挖方总量</div>
-                    <input name="ztwfzl" th:value="${data.ztwfzl}">
-                </div>
-            </div>
-            <div class="content">
-                <div class="halfLine">
-                    <div><p>*</p>验收时间</div>
-                    <input class="datepicker" name="ysdateS" th:value="${data.ysdateS}==0?'':${data.ysdateS}">
+        </div>
+        <div class="right" id="right">
 
-                </div>
-                <div class="halfLine">
-                    <div><p>*</p>最近巡查时间</div>
-                    <input class="datepicker" name="xcdateS" th:value="${data.xcdateS}==0?'':${data.xcdateS}">
-
-                </div>
-            </div>
-            <div class="content">
-                <div class="aLineC">
-                    <div>备注</div>
-                    <textarea name="remark">[[${data.remark}]]</textarea>
-                </div>
-            </div>
-            <div class="content">
-                <div class="aLineC">
-                    <div>效益评价</div>
-                    <textarea name="xypj">[[${data.xypj}]]</textarea>
-                </div>
-            </div>
-            <div class="line"></div>
-            <div class="xcBox">
-                <div class="xcTitle">巡查记录</div>
-                <div class="xcContent">
-                    <div style="flex:1">序号</div>
-                    <div style="flex:2.5">巡查人员</div>
-                    <div style="flex:3">巡察时间</div>
-                    <div style="flex:3.2">说明</div>
-                    <div class="" style="flex:2" id="">操作</div>
-                </div>
-                <div class="xcContentBox" id="xcContentBox">
-
-                </div>
-            </div>
         </div>
     </div>
 </div>
+
+<div id="tools"></div>
+
+<canvas id="myCanvas" width="800" height="600" style="display:none;">
+</canvas>
+
+<div id="uploadTc" class="uploadTc" style="display: none">
+    <div class="title">文件上传</div>
+    <div class="contain">
+        <div class="folderSelectBox">
+            <div class="fileT">目标文件夹:</div>
+            <div class="folderSelect">
+                <select name="type" class="select" id="folder">
+                    <option value="1">材料文件</option>
+                    <option value="2">资质文件</option>
+                </select>
+            </div>
+        </div>
+        <div class="folderSelectBox">
+            <div class="fileT">选择文件:</div>
+            <div class="fileSelect">
+                <input class="input"/>
+                <img src="/static/img/uploadImg.png">
+            </div>
+        </div>
+    </div>
+    <div class="manageButtonBox">
+        <div class="button" id="upload">上传</div>
+        <div class="button" id="cancel">关闭</div>
+    </div>
+</div>
+
 <div id="xmxxTc" class="xmglTc" style="display: none">
     <div class="contain">请将项目信息填写完整</div>
-    <div class="buttonBox">
+    <div class="manageButtonBox">
         <div class="button" id="quedin">确定</div>
     </div>
 </div>
@@ -116,3 +158,4 @@
 </script>
 
 <script th:src="${urls.getForLookupPath('/static/js/manage/add.js')}" xmlns:th="http://www.w3.org/1999/xhtml"></script>
+

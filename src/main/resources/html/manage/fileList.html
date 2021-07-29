@@ -1,0 +1,36 @@
+<div class="uploadBox" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="uploadtitleBox">材料清单</div>
+    <div class="uploadContentBox">
+        <div class="uploadContentItemBox">
+            <div class="uploaditemBoxTitle">
+                <div>材料文件</div>
+                <img src="/static/img/xia.png">
+                <img src="/static/img/zuo.png" style="display:none">
+            </div>
+            <div class="uploaditemBox" th:each="item,stat:${project}" th:if="${item.pFolder  == '1'}" >
+                <div class="uploaditemName" th:data-url="${item.fileUrl}" th:data-id="${item.id}">[[${item.fileName}]]</div>
+                <div name="deleteFile" style="display: none">删除</div>
+                <div class="uploadTime">[[${item.getUploadTime()}]]</div>
+            </div>
+        </div>
+        <div class="uploadContentItemBox">
+            <div class="uploaditemBoxTitle">
+                <div class="">资质文件</div>
+                <img src="/static/img/xia.png">
+                <img src="/static/img/zuo.png" style="display:none">
+            </div>
+            <div class="uploaditemBox" th:each="item,stat:${project }" th:if="${item.pFolder  == '2'}" >
+                <div class="uploaditemName" th:data-url="${item.fileUrl}" th:data-id="${item.id}">[[${item.fileName}]]</div>
+                <div name="deleteFile" style="display: none">删除</div>
+                <div class="uploadTime">[[${item.getUploadTime()}]]</div>
+            </div>
+        </div>
+        <div class="uploadFileButton">上传文件</div>
+
+    </div>
+</div>
+
+<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
+
+</script>
+<script th:src="${urls.getForLookupPath('/static/js/manage/fileList.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>

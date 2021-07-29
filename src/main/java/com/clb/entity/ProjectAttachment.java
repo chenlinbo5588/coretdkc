@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +24,12 @@ public class ProjectAttachment {
     private String addUsername;
     private Integer editUid;
     private String editUsername;
+    private String pFolder;
+    private int fileUploadtime;
 
+    public String getUploadTime(){
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        return ft.format((float)getFileUploadtime()*1000);
+    }
 
 }

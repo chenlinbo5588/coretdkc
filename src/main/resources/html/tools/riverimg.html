@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<base th:href="@{/}">
+
+<div th:replace="static/common/common_header :: common_header"/>
+<link rel="stylesheet" href="/static/js/thirdlib/4.11/esri/themes/light/main.css" />
+<script src="/static/js/thirdlib/4.11/init.js"></script>
+<script th:src="${urls.getForLookupPath('/static/js/tools/common.js')}"></script>
+<body>
+<script src="/static/js/jquery.js"></script>
+
+
+<script th:inline="javascript"  >
+    var gloablConfig = {
+        mapHost:[[${mapConfig.host}]],
+        mapServerName:[[${mapConfig.mapServerName}]],
+        mapServerPort: [[${mapConfig.port}]],
+        xmHost:[[${mapConfig.xmhost}]],
+        outputDwgUrl:[[${mapConfig.outputDwgUrl}]],
+        outputDwgDownloadUrl:[[${mapConfig.outputDwgDownloadUrl}]],
+        outputallDwgUrl:[[${mapConfig.outputallDwgUrl}]],
+        outputallDwgDownloadUrl:[[${mapConfig.outputallDwgDownloadUrl}]],
+    }
+        var x = [[${x}]];
+        var y = [[${y}]];
+        getOpenImg(x,y);
+        console.log(x);
+        console.log(y);
+</script>
+
+
+</body>
+</html>
