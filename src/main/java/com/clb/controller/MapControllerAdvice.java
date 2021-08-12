@@ -34,22 +34,51 @@ public class MapControllerAdvice {
     @Value("${arcgis.outputallDwgUrl}")
     private String outputallDwgUrl;
 
-    @Value("${arcgis.outputallDwgDownloadUrl}")
-    private String outputallDwgDownloadUrl;
+    @Value("${arcgis.featureToCadDownloadUrl}")
+    private String featureToCadDownloadUrl;
+
+    @Value("${arcgis.featureToCadurl}")
+    private String featureToCadurl;
+
+    @Value("${arcgis.featureUrl.temppolygonUrl}")
+    private String temppolygonUrl;
+    @Value("${arcgis.featureUrl.riverUrl}")
+    private String riverUrl;
+    @Value("${arcgis.featureUrl.otherUrl}")
+    private String otherUrl;
+    @Value("${arcgis.featureUrl.bgtxUrl}")
+    private String bgtxUrl;
+
+    @Value("${arcgis.featureUrl.hxUrl}")
+    private String hxUrl;
+    @Value("${arcgis.featureUrl.hxSearchUrl}")
+    private String hxSearchUrl;
+    @Value("${arcgis.featureUrl.riverQzjUrl}")
+    private String riverQzjUrl;
+
+    @Value("${arcgis.geometryServerUrl}")
+    private String geometryServerUrl;
 
     @ModelAttribute(value = "mapConfig")
-    public Map<String,Object> mydata()
-    {
-        Map<String,Object> map = new HashMap<>();
-        map.put("host",arcgisMapHost);
-        map.put("mapServerName",appMapServerName);
-        map.put("port",port);
-        map.put("xmhost",xmHost);
-        map.put("outputDwgUrl",outputDwgUrl);
-        map.put("outputDwgDownloadUrl",outputDwgDownloadUrl);
-        map.put("outputallDwgUrl",outputallDwgUrl);
-        map.put("outputallDwgDownloadUrl",outputallDwgDownloadUrl);
-
+    public Map<String, Object> mydata() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("host", arcgisMapHost);
+        map.put("mapServerName", appMapServerName);
+        map.put("port", port);
+        map.put("xmhost", xmHost);
+        map.put("outputDwgUrl", outputDwgUrl);
+        map.put("outputDwgDownloadUrl", outputDwgDownloadUrl);
+        map.put("outputallDwgUrl", outputallDwgUrl);
+        map.put("featureToCadDownloadUrl", featureToCadDownloadUrl);
+        map.put("featureToCadurl", featureToCadurl);
+        map.put("temppolygonUrl", temppolygonUrl);
+        map.put("riverUrl", riverUrl);
+        map.put("otherUrl", otherUrl);
+        map.put("bgtxUrl", bgtxUrl);
+        map.put("hxUrl", hxUrl);
+        map.put("hxSearchUrl", hxSearchUrl);
+        map.put("riverQzjUrl", riverQzjUrl);
+        map.put("geometryServerUrl", geometryServerUrl);
 
 
         return map;

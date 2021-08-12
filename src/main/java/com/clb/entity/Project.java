@@ -1,5 +1,6 @@
 package com.clb.entity;
 
+import com.clb.constant.DateConstant;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 @Entity
@@ -25,12 +27,12 @@ public class Project {
     private Float mj;
     private String contacter;
     private String pfwh;
-    private int xcdate;
+    private Long xcdate;
     private String jsdw;
     private String jcdw;
     private String jldw;
     private String ztwfzl;
-    private int ysdate;
+    private Long ysdate;
     private Integer addUid;
     private String addUsername;
     private Integer editUid;
@@ -54,6 +56,23 @@ public class Project {
     private  Date ysdateS;
     @Transient
     private  Date xcdateS;
+
+
+
+    public String getXypjIsSelect(){
+        long data = System.currentTimeMillis() / 1000;
+        if(data  - getYsdate() > DateConstant.ONE_MONTH_SECONDS * 6){
+            return "";
+        }else{
+            return "xypj";
+        }
+    }
+
+    public String getXcDateTime(){
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        return ft.format(getXcdate()*1000);
+
+    }
 
 
 }

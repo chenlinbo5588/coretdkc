@@ -11,6 +11,9 @@ import com.clb.repository.jpa.ProjectAttachmentRepository;
 import com.clb.repository.jpa.ProjectRepository;
 import com.clb.service.ProjectService;
 import io.github.perplexhub.rsql.RSQLJPASupport;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,43 +48,46 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     RestTemplate restTemplate;
 
+    private int projectNumber = 12;
+
     public Page<Project> getallProject(){
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, projectNumber);
         Specification<Project> specification = RSQLJPASupport.<Project>toSort("id,asc");
         return dealPage(projectRepository.findAll(specification,pageable)) ;
     }
 
     public Page<Project> getallProject(String value){
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, projectNumber);
         String filer = "pname=like="+value +",pfwh=like="+ value;
         Specification<Project> specification = RSQLJPASupport.<Project>toSpecification(filer).and(toSort("id,asc"));
         return dealPage(projectRepository.findAll(specification,pageable));
     }
     public Page<Project> getallProject(int page){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, projectNumber);
         Specification<Project> specification = RSQLJPASupport.<Project>toSort("id,asc");
         return dealPage(projectRepository.findAll(specification,pageable)) ;
     }
     public Page<Project> getallProject(int page, String value){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, projectNumber);
         String filer = "pname=like="+value +",pfwh=like="+ value;
         Specification<Project> specification = RSQLJPASupport.<Project>toSpecification(filer).and(toSort("id,asc"));
-        return dealPage(projectRepository.findAll(toSpecification(filer),PageRequest.of(page, 10)));
+        return dealPage(projectRepository.findAll(specification,pageable));
     }
     public Page<Project> getallProjectPx(int page,String paixu){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, projectNumber);
         Specification<Project> specification = RSQLJPASupport.<Project>toSort(paixu);
         return dealPage(projectRepository.findAll(specification,pageable)) ;
     }
     public Page<Project> getallProjectPx(int page, String value,String paixu){
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, projectNumber);
         String filer = "pname=like="+value +",pfwh=like="+ value;
         Specification<Project> specification = RSQLJPASupport.<Project>toSpecification(filer).and(toSort(paixu));
-        return dealPage(projectRepository.findAll(toSpecification(filer),PageRequest.of(page, 10)));
+        return dealPage(projectRepository.findAll(specification,pageable));
     }
 
     public Page<Project> dealPage(Page<Project> projects){
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+
         if (projects.getContent().size()>0){
             for (int i=0;i<projects.getContent().size();i++) {
                 long data = System.currentTimeMillis() / 1000;
@@ -94,7 +100,9 @@ public class ProjectServiceImpl implements ProjectService {
                 }
                 long xcdata = projects.getContent().get(i).getXcdate();
                 long ysdata = projects.getContent().get(i).getYsdate();
-                projects.getContent().get(i).setZjxcsj(sdf.format(xcdata*1000));
+                if(xcdata !=0){
+                    projects.getContent().get(i).setZjxcsj(sdf.format(xcdata*1000));
+                }
                 projects.getContent().get(i).setYssj(sdf.format(ysdata*1000));
             }
         }
@@ -114,24 +122,54 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     public void saveProject(Project project){
-        project.setXcdate((int) (project.getXcdateS().getTime() /1000));
-        project.setYsdate((int) (project.getYsdateS().getTime() /1000));
 
+        if(project.getXcdateS()!=null ){
+            project.setXcdate( (project.getXcdateS().getTime() /1000));
+        }else{
+            project.setXcdate(Long.valueOf(0));
+        }
+        if(project.getYsdateS() !=null){
+            project.setYsdate( (project.getYsdateS().getTime() /1000));
+        }else{
+            project.setYsdate(Long.valueOf(0));
+        }
         projectRepository.save(project);
     }
     public Project getProjectById(int id){
 
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         Project project = projectRepository.findAllById(Collections.singleton(id)).get(0);
-        project.setXcdateS(Date.valueOf(sdf.format(project.getXcdate()*1000)));
-        project.setYsdateS(Date.valueOf(sdf.format(project.getYsdate()*1000)));
-
+        if(project.getXcdate() !=0 ){
+            project.setXcdateS(Date.valueOf(sdf.format(project.getXcdate()*1000)));
+        }
+        if(project.getYsdate() !=0){
+            project.setYsdateS(Date.valueOf(sdf.format(project.getYsdate()*1000)));
+        }
         return project;
     }
 
     public List<InspectionRecord> getInspectionRecordsByGlxmId(int glxmId){
         String filer = "glxmId=="+glxmId ;
         return inspectionRecordRepository.findAll(toSpecification(filer));
+    }
+
+    public Long setLastXcdateByGlxmId(int glxmId){
+        String filer = "glxmId=="+glxmId ;
+
+        Specification<InspectionRecord> specification = RSQLJPASupport.<InspectionRecord>toSpecification(filer).and(toSort("xcdate,desc"));
+        List<InspectionRecord> inspectionRecords =  inspectionRecordRepository.findAll(specification);
+        Project project = projectRepository.findAllById(Collections.singleton(glxmId)).get(0);
+        if(inspectionRecords.size()>0){
+            project.setXcdate(inspectionRecords.get(0).getXcdate());
+            projectRepository.save(project);
+            return inspectionRecords.get(0).getXcdate();
+        }else{
+            project.setXcdate((long) 0);
+            projectRepository.save(project);
+            return Long.valueOf(0);
+        }
+
+
     }
     public void deleteXcjlById(int id){
         inspectionRecordRepository.deleteById(Integer.valueOf(id));
@@ -142,6 +180,10 @@ public class ProjectServiceImpl implements ProjectService {
         inspectionRecord.setXcdate((int) (inspectionRecord.getXcdateS().getTime() /1000));
 
         inspectionRecordRepository.save(inspectionRecord);
+
+//        Project project = projectRepository.findAllById(Collections.singleton(inspectionRecord.getGlxmId())).get(0);
+//        project.setXcdate((int) (inspectionRecord.getXcdateS().getTime() /1000));
+//        projectRepository.save(project);
 
     }
     public void saveFileUpload(ProjectAttachment projectAttachment){
@@ -156,6 +198,44 @@ public class ProjectServiceImpl implements ProjectService {
 
     public void delteProjectAttachmentById(int id){
         projectAttachmentRepository.deleteById(id);
+    }
+    public List<Project> getOverTimeProject(){
+
+        long data = System.currentTimeMillis() / 1000;
+        long overTime = data -  DateConstant.ONE_MONTH_SECONDS * 6;
+        String filer = "xcdate<" + overTime;
+
+        return projectRepository.findAll(toSpecification(filer));
+    }
+
+    public XSSFWorkbook outputExcel(String value){
+        List<Project> projects ;
+        if(!value.equals("")){
+            String filer = "pname=like="+value +",pfwh=like="+ value;
+            projects =  projectRepository.findAll(toSpecification(filer));
+        }else{
+            projects = projectRepository.findAll();
+        }
+        XSSFWorkbook wb = new XSSFWorkbook();
+        Sheet sheet = wb.createSheet("项目信息");//创建一张表
+        Row titleRow = sheet.createRow(0);//创建第一行，起始为0
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        for(int i=0;i<DateConstant.PROJECT_EXCEL.length;i++){
+            titleRow.createCell(i).setCellValue(DateConstant.PROJECT_EXCEL[i]);//第一列
+        }
+        int cell = 1;
+        for (Project project : projects) {
+            Row row = sheet.createRow(cell);//从第二行开始保存数据
+            row.createCell(0).setCellValue(cell);
+            row.createCell(1).setCellValue(project.getPname());//将数据库的数据遍历出来
+            row.createCell(2).setCellValue(project.getFzrname());
+            row.createCell(3).setCellValue(project.getMj());
+            row.createCell(4).setCellValue(project.getPfwh());
+            row.createCell(5).setCellValue(sdf.format(project.getXcdate()*1000));
+            row.createCell(6).setCellValue(sdf.format(project.getYsdate()*1000));
+            cell++;
+        }
+        return wb;
     }
 
 

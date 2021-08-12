@@ -6,9 +6,8 @@ var rightView;
 
 $(function() {
 
-    leftView =initLeftView(leftView,"xinView");
-    rightView =initRightView(rightView,"jiuView");
-
+    leftView = initLeftView(leftView,"xinView");
+    rightView = initRightView(rightView,"jiuView");
     bindView();
 
     leftView.ui.add(document.getElementById("leftViewBox"), {
@@ -19,9 +18,34 @@ $(function() {
         position: "top-right",
         index: 1
     });
-    require([
+     require([
         "esri/widgets/LayerList",
-    ], function (LayerList) {
+        "esri/widgets/TimeSlider",
+        "esri/TimeExtent",
+        "esri/layers/FeatureLayer",
+    ],  (LayerList,TimeSlider,TimeExtent,FeatureLayer)=> {
+
+        var timeSlider = new TimeSlider({
+            container: "timeSlider",
+            view: leftView,
+            mode: "time-window",
+            timeVisible: false, // show the time stamps on the timeslider
+            loop: false,
+            layout:"compact",
+            fullTimeExtent: {
+                start: new Date(2011, 2, 3),
+                end: new Date(2022, 2, 5)
+            },
+            timeExtent: {
+                start: new Date(2011, 2, 1),
+                end: new Date(2022, 2, 28)
+            }
+        });
+        timeSlider.watch("timeExtent", (timeExtent) => {
+            console.log("Time extent now starts at", timeExtent.start, "and finishes at:", timeExtent.end);
+        });
+
+
         var layerList = new LayerList({
             view: rightView,
             listItemCreatedFunction: defineActions
@@ -33,6 +57,7 @@ $(function() {
                 rslideName = null;
             }else{
                 rslideName = event.item.title;
+
                 $("#rslideBox").show();
                 if (id === "opacity") {
                     if(event.item.layer.opacity == undefined){
@@ -107,16 +132,31 @@ $(function() {
     function init(){
         $(".searchBox").hide();
         $("#bgSearchBox").show();
+
+
+
+
     }
 
-    $("#rightTucengButton").click(function () {
+    $("#rightTucengButton").mouseenter(function () {
         $("#rslideBox").hide();
-        $("#rightTucengSelectBox").toggle();
+        $("#rightTucengSelectBox").show();
     })
-    $("#leftTucengButton").click(function () {
+    $("#rightTucengSelectBox").mouseleave(function () {
+        $("#rslideBox").hide();
+        $("#rightTucengSelectBox").hide();
+    })
+
+    $("#leftTucengButton").mouseenter(function () {
         $("#lslideBox").hide();
-        $("#leftTucengSelectBox").toggle();
+        $("#leftTucengSelectBox").show();
     })
+    $("#leftTucengSelectBox").mouseleave(function () {
+        $("#lslideBox").hide();
+        $("#leftTucengSelectBox").hide();
+    })
+
+
     $(".ssButton img").click(function () {
         $(".ssButton img").toggle();
         $(".contentBox").toggle();

@@ -14,7 +14,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 120px;
+    height: 100px;
     width: 100%;
     border-bottom:1px solid #666666;
     user-select:none;
@@ -69,7 +69,7 @@
 }
 .shuominBox{
     width: 100%;
-    height:160px;
+    height:100px;
     border-bottom:1px solid #666666;
     display: flex;
     flex-direction: column;
@@ -80,20 +80,31 @@
     font-weight: bold;
 
 }
+.shuominBox .jieshao{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 60px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
 .shuominBox .biaoshi{
     background-image: url(/static/img/gantanhao.png);
     background-repeat: no-repeat;
     background-position: 35px 50%;
     padding-left:60px;
+    height: 15px;
 }
 .manageBox .searchList{
-    height:550px;
+    height:600px;
     width:100%;
     display: flex;
     flex-direction: column;
 }
 .searchList .searchTopBox{
-    height:70px;
+    height:50px;
     width:100%;
     border-bottom:1px solid #666666;
     display: flex;
@@ -127,7 +138,7 @@
 }
 
 .searchList .searchContentBox{
-    height: 400px;
+    height: 480px;
     width: 100%;
 
 }
@@ -171,6 +182,27 @@
 .techang{
     flex: 3;
 }
+.jieshao .jslv{
+    background-image: url(/static/img/lv.png);
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    padding-left: 20px;
+    height: 14px;
+}
+.jieshao .jshong{
+    background-image: url(/static/img/hong.png);
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    height: 14px;
+    padding-left: 20px;
+}
+.jieshao .jshuang{
+    background-image: url(/static/img/huang.png);
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    padding-left: 20px;
+    height: 14px;
+}
 .hong{
     background-image: url(/static/img/hong.png);
     background-repeat: no-repeat;
@@ -188,12 +220,18 @@
 }
 .searchBottompBox{
     width:100%;
-    height: 100px;
+    height: 60px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-
+    padding-right: 25px;
+    box-sizing: border-box;
+}
+.searchBottompBox .allnumber{
+    font-size: 12px;
+    color:#adb0b5;
+    margin-left: 20px;
 }
 .pageBox{
     padding-left: 50px;
@@ -233,7 +271,7 @@
     left: 40%;
     background-color: white;
     border-radius: 5px;
-    z-index: 1002;
+    z-index: 1004;
 
 }
 .xmglTc .contain{
@@ -270,5 +308,9 @@
     color:white;
     user-select:none;
 }
-
+.xypj{
+    cursor: none;
+    pointer-events:none;
+    background-color: #6c757d;
+}
 

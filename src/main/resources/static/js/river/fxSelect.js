@@ -1,7 +1,4 @@
-
-
-
-$(function() {
+$(function () {
 
 
     $("img[name=rvOpen]").click(function () {
@@ -40,7 +37,7 @@ $(function() {
         e.stopPropagation();
         var id = $(this).data("id");
         var layerId = $(this).data("layerid");
-        $.get(BASE_URL + "river/waterInfo?id="+id+"&layerId="+layerId,function(resp){
+        $.get(BASE_URL + "river/waterInfo?id=" + id + "&layerId=" + layerId, function (resp) {
             $(".infoList").hide();
             $("#back").show();
             $("#infoDetail").show();
@@ -48,7 +45,8 @@ $(function() {
         })
     })
     initBack();
-    function  initBack() {
+
+    function initBack() {
         $("#back").unbind();
         $("#back").click(function () {
             $(".infoList").hide();
@@ -62,36 +60,43 @@ $(function() {
 
         var identification = $(this).data("identification");
         //view.graphics.removeAll();
-        for(var i=0;i<fxdata.length;i++){
-            if(identification == fxdata[i].attributes.identification){
-                if(fxSlectData != undefined){
+        for (var i = 0; i < fxdata.length; i++) {
+            if (identification == fxdata[i].attributes.identification) {
+                if (fxSlectData != undefined) {
                     view.graphics.remove(fxSlectData);
                 }
-                view.goTo(fxdata[i].geometry.extent.expand(1)).then(function() {
-                    var selectionSymbol={
-                        type:"simple-fill",
-                        size:10,
-                        outline:{
-                            color:"red",
-                            width:2
+                view.goTo(fxdata[i].geometry.extent.expand(1)).then(function () {
+                    var selectionSymbol = {
+                        type: "simple-fill",
+                        size: 10,
+                        outline: {
+                            color: "red",
+                            width: 2
                         }
                     };
-                    fxdata[i].symbol= selectionSymbol;
+                    fxdata[i].symbol = selectionSymbol;
                     fxSlectData = fxdata[i];
                     view.graphics.add(fxSlectData);
                 });
                 break;
             }
         }
+
     })
     $("#fxoutputDwg").click(function () {
-        dowloadOutputfxDwg(geodata);
+        if (daochuStatus == false) {
+
+            daochuStatus = true;
+            dowloadOutputfxDwg(sj);
+        } else {
+            showMessage('正在导出文件中,请耐心等待', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+        }
+
     })
     $("#fxoutputshp").click(function () {
         console.log("outpushp");
         //dowloadOutputfxDwg(geodata);
     })
-
 
 
 })

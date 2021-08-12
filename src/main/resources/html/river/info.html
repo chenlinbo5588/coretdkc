@@ -29,19 +29,19 @@
         </div>
         <div class="infoContentItem">
             <div class="name">长度</div>
-            <div class="content">[[${data.length}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.length,1,2)}]]千米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">平均宽度</div>
-            <div class="content">[[${data.width}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.width,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">水域面积</div>
-            <div class="content">[[${data.area}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.width,1,4)}]]平方千米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">水域容积</div>
-            <div class="content">[[${data.bas}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.vol,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">跨界类型</div>
@@ -85,11 +85,11 @@
         </div>
         <div class="infoContentItem">
             <div class="name">起点设计水位</div>
-            <div class="content">[[${data.sdl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.sdl,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">终点设计水位</div>
-            <div class="content">[[${data.edl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.edl,1,2)}]]米</div>
         </div>
         <div class="line"></div>
         <div class="infoContentItem">
@@ -122,27 +122,27 @@
         </div>
         <div class="infoContentItem">
             <div class="name">总库容</div>
-            <div class="content">[[${data.tcr}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.tcr,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">兴利库容</div>
-            <div class="content">[[${data.ucr}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.ucr,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">正常蓄水位</div>
-            <div class="content">[[${data.npl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.npl,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">移民水位</div>
-            <div class="content">[[${data.iml}]]</div>
+            <div class="content">[[${data.iml}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">设计洪水位</div>
-            <div class="content">[[${data.dfl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.dfl,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">校核洪水位</div>
-            <div class="content">[[${data.mfl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.mfl,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">所属流域</div>
@@ -214,7 +214,7 @@
         </div>
         <div class="infoContentItem">
             <div class="name">最高允许蓄水位</div>
-            <div class="content">[[${data.masl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.masl,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">管理单位</div>
@@ -226,7 +226,7 @@
         </div>
         <div class="infoContentItem">
             <div class="name">水域面积</div>
-            <div class="content">[[${data.area}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.area,1,4)}]]平方千米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">跨界类型</div>
@@ -242,11 +242,11 @@
         </div>
         <div class="infoContentItem">
             <div class="name">平均水深</div>
-            <div class="content">[[${data.averdep}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.averdep,1,4)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">水域容积</div>
-            <div class="content">[[${data.vol}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.vol,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">主要功能</div>
@@ -295,11 +295,11 @@
         </div>
         <div class="infoContentItem">
             <div class="name">坝高</div>
-            <div class="content">[[${data.dmh}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.dmh,1,4)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">集雨面积</div>
-            <div class="content">[[${data.rcarea}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.rcarea,1,4)}]]平方千米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">所在乡镇</div>
@@ -307,11 +307,11 @@
         </div>
         <div class="infoContentItem">
             <div class="name">整治时间</div>
-            <div class="content">[[${data.rnvtm}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.rnvtm,1,4)}]]</div>
         </div>
         <div class="infoContentItem">
             <div class="name">总容积</div>
-            <div class="content">[[${data.tcr}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.tcr,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">坝顶高程</div>
@@ -319,11 +319,11 @@
         </div>
         <div class="infoContentItem">
             <div class="name">设计洪水位</div>
-            <div class="content">[[${data.dfl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.dfl,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">正常蓄水位</div>
-            <div class="content">[[${data.npl}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.npl,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">所属流域</div>
@@ -339,11 +339,11 @@
         </div>
         <div class="infoContentItem">
             <div class="name">水域面积</div>
-            <div class="content">[[${data.area}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.area,1,4)}]]平方千米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">水域容积</div>
-            <div class="content">[[${data.vol}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.vol,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">是否重要水域</div>
@@ -385,19 +385,19 @@
 
         <div class="infoContentItem">
             <div class="name">长度</div>
-            <div class="content">[[${data.length}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.length,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">平均宽度</div>
-            <div class="content">[[${data.width}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.width,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">水域面积</div>
-            <div class="content">[[${data.area}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.area,1,4)}]]平方千米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">水域容积</div>
-            <div class="content">[[${data.bas}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.vol,1,4)}]]万立方米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">所属罐区</div>
@@ -465,15 +465,15 @@
         </div>
         <div class="infoContentItem">
             <div class="name">水域面积</div>
-            <div class="content">[[${data.area}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.area,1,4)}]]平方千米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">平均水深</div>
-            <div class="content">[[${data.averdep}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.averdep,1,2)}]]米</div>
         </div>
         <div class="infoContentItem">
             <div class="name">水域容积</div>
-            <div class="content">[[${data.vol}]]</div>
+            <div class="content">[[${#numbers.formatDecimal(data.vol,1,4)}]]万立方米</div>
         </div>
         <div class="line"></div>
         <div class="infoContentItem">

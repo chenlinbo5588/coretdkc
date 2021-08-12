@@ -17,7 +17,7 @@ public class InspectionRecord {
     private int id;
     private Integer glxmId;
     private String xcryName;
-    private float xcdate;
+    private long xcdate;
     private String xcjl;
     private String xchdUid;
     private Integer addUid;

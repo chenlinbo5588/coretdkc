@@ -13,10 +13,29 @@
         outputDwgUrl:[[${mapConfig.outputDwgUrl}]],
         outputDwgDownloadUrl:[[${mapConfig.outputDwgDownloadUrl}]],
         outputallDwgUrl:[[${mapConfig.outputallDwgUrl}]],
-        outputallDwgDownloadUrl:[[${mapConfig.outputallDwgDownloadUrl}]],
+        featureToCadDownloadUrl:[[${mapConfig.featureToCadDownloadUrl}]],
+        featureToCadurl:[[${mapConfig.featureToCadurl}]],
+        temppolygonUrl:[[${mapConfig.temppolygonUrl}]],
+        riverUrl:[[${mapConfig.riverUrl}]],
+        otherUrl:[[${mapConfig.otherUrl}]],
+        bgtxUrl:[[${mapConfig.bgtxUrl}]],
+        hxSearchUrl:[[${mapConfig.hxSearchUrl}]],
+        hxUrl:[[${mapConfig.hxUrl}]],
+        geometryServerUrl:[[${mapConfig.geometryServerUrl}]],
+
     }
     var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
 </script>
+
+<div id="loadingMask" style="display:none;">
+    <div class="liadloging">
+            <div class="ldlConten">
+                <img src="/static/img/loading.gif"/>
+                <p>加载中请稍后......</p>
+            </div>
+    </div>
+    <div class="floatLayer"></div>
+</div>
 <div class="tc" id="tc" style="display: none">
     <div class="mask" id="mask"></div>
     <div id="tcBox"></div>
@@ -34,8 +53,8 @@
 
 <script type="text/javascript" src="/static/js/tools/html2canvas.js" ></script>
 <script type="text/javascript" src="/static/js/tools/jquery.jqprint-0.3.js" ></script>
-<link rel="stylesheet" href="/static/js/thirdlib/4.11/esri/themes/light/main.css" />
-<script src="/static/js/thirdlib/4.11/init.js"></script>
+<link rel="stylesheet" href="/static/js/thirdlib/4.20/esri/css/main.css" />
+<script src="/static/js/thirdlib/4.20/init.js"></script>
 <script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
 
 <div id="baobiaoBox" style="display: none;"></div>
@@ -80,10 +99,19 @@
     </div>
 
     <div class="topRightBox" id="topRightBox"  style="display: none">
-        <div class="topRightButton button1" ></div>
-        <div class="topRightButton button2" id="baobiao"> </div>
-    </div>
-    <div class="bottomRightBox" id="bottomRightBox" style="display: none">
+        <div class="xcListbox" id="xcListbox" style="display: none;">
+            <div class="xcTitle">
+                <img src="/static/img/xctx.png">
+                <div class="">巡查提醒</div>    
+            </div>
+            <div class="xcListItem" th:each="item,stat:${projectList}" >
+                <div class="boxh">
+                    <div>[[${item.pname}]]</div>
+                </div>
+                <div class="xcTime">上次巡查时间: [[${item.getXcDateTime()}]]</div>
+                <div class="xcButton" th:data-id="${item.id}" name="xcButton">跳转</div>
+            </div>
+        </div>
         <div class="tucengSelectBox" id="tucengSelectBox" style="display: none">
             <div class="tucengSelectTitle">
                 <img src="/static/img/tuceng.png">
@@ -97,7 +125,14 @@
             <div class="tucengItemBox" id="shuiyu">
             </div>
         </div>
-        <div class="bottomRightButton button1" id="tuceng"></div>
+        <div>
+            <div class="topRightButton button1" id="xcList" ></div>
+            <div class="topRightButton button2" id="baobiao"> </div>
+            <div class="bottomRightButton button3" id="tuceng"></div>
+        </div>
+    </div>
+    <div class="bottomRightBox" id="bottomRightBox" style="display: none">
+
     </div>
     <div id="viewDiv"> </div>
 </div>

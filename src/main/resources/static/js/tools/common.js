@@ -35,11 +35,11 @@ function getPoints(txt, format) {
                 } else {
                     if (xyTemp && xyTemp.length >= 2) {
                         if ('Y,X' == format) {
-                            // rings.push([xyTemp[1],xyTemp[0]]);
-                            rings.push(latLng2WebMercator2(parseFloat(xyTemp[1]), parseFloat(xyTemp[0])));
+                            rings.push([xyTemp[1], xyTemp[0]]);
+                            // rings.push(latLng2WebMercator2(parseFloat(xyTemp[1]), parseFloat(xyTemp[0])));
                         } else {
-                            // rings.push([xyTemp[0],xyTemp[1]]);
-                            rings.push(latLng2WebMercator2(parseFloat(xyTemp[0]), parseFloat(xyTemp[1])));
+                            rings.push([xyTemp[0], xyTemp[1]]);
+                            // rings.push(latLng2WebMercator2(parseFloat(xyTemp[0]), parseFloat(xyTemp[1])));
                         }
                     }
                 }
@@ -60,16 +60,35 @@ function latLng2WebMercator2(lng, lat) {
     return [x, y];
 }
 
+
+function timestampToTime(timestamp) {
+
+    if (timestamp == 0) {
+        return "无数据";
+    } else {
+        var date = new Date(timestamp * 1000);
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+        D = date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate();
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y + M + D;
+    }
+
+
+}
+
 function creatrPolgnByRing(ring, view) {
     var gr;
     var polygon
     require([
         "esri/geometry/Polygon",
         'esri/Graphic',
-    ], function (
+    ], (
         Polygon,
         Graphic
-    ) {
+    ) => {
         // console.log(view.spatialReference);
         polygon = new Polygon({
             rings: ring,
@@ -94,7 +113,7 @@ function lateralArea(view, evt) {
         "esri/Graphic",
         "esri/geometry/geometryEngine",
         "esri/geometry/Polygon",
-    ], function (Polyline, Point, Graphic, geometryEngine, Polygon) {
+    ], (Polyline, Point, Graphic, geometryEngine, Polygon) => {
         view.graphics.removeAll();
         var polygon = new Polygon({
             rings: evt.vertices,
@@ -122,7 +141,7 @@ function lateralArea(view, evt) {
                     color: "white",
                     haloColor: "black",
                     haloSize: "1px",
-                    text: (geometryEngine.geodesicArea(graphic.geometry) / 1000000).toFixed(2) + "平方千米",
+                    text: Math.abs((geometryEngine.geodesicArea(graphic.geometry)).toFixed(2)) + "平方米",
                     xoffset: 3,
                     yoffset: 3,
                     font: {  // autocast as new Font()
@@ -146,8 +165,7 @@ function dist(view, evt) {
         "esri/geometry/Point",
         "esri/Graphic",
         "esri/geometry/geometryEngine",
-
-    ], function (Polyline, Point, Graphic, geometryEngine) {
+    ], (Polyline, Point, Graphic, geometryEngine) => {
         view.graphics.removeAll();
         var polyline = {
             type: "polyline", // autocasts as Polyline
@@ -176,7 +194,7 @@ function dist(view, evt) {
                     color: "white",
                     haloColor: "black",
                     haloSize: "1px",
-                    text: (geometryEngine.geodesicLength(graphic.geometry) / 1000).toFixed(2) + "千米",
+                    text: (geometryEngine.geodesicLength(graphic.geometry)).toFixed(2) + "米",
                     xoffset: 3,
                     yoffset: 3,
                     font: {  // autocast as new Font()
@@ -200,7 +218,7 @@ function analyseM(view, evt) {
         "esri/geometry/Polygon",
         "esri/Graphic",
         "esri/geometry/geometryEngine",
-    ], function (Polygon, Graphic, geometryEngine) {
+    ], (Polygon, Graphic, geometryEngine) => {
         var polygon = new Polygon({
             rings: evt.vertices,
             spatialReference: view.spatialReference
@@ -210,9 +228,7 @@ function analyseM(view, evt) {
             symbol: selectionSymbolR
         });
         if (evt.type == "draw-complete") {
-
             fxByPolygon(polygon, view);
-
 
             // identifyparams.geometry = polygon;
             // identifyparams.mapExtent = view.extent;
@@ -298,7 +314,7 @@ function initTools(view, contain, position) {
 function initLayerList(view, contain, boxcontain, position) {
     require([
         "esri/widgets/LayerList",
-    ], function (LayerList) {
+    ], (LayerList) => {
         $("#" + contain).empty();
         var layerList = new LayerList({
             view: view,
@@ -342,59 +358,26 @@ function initLayerList(view, contain, boxcontain, position) {
 }
 
 function openCkMap() {
+
+
     $(".infoList").empty();
     $("#fxList").hide();
-    if (view.container == "projectMapBox") {
+
+    if (container == "viewDivMap") {
 
     } else {
         $(".viewDivMapBox").show();
         $(".toolsmask").show();
         $("#searchBox").css("position", "static");
         $("#searchBox").show();
-        initTools(view, 'searchBox', 'top-left');
-        view.container = "viewDivMap";
+        projectView =  changeProjectView(projectView,"viewDivMap");
+        initTools(projectView, 'searchBox', 'top-left');
+        initTools(projectView, 'toolsBox', 'top-right');
+        initLayerList(projectView, 'shuiyu', 'bottomRightBox', 'bottom-right');
     }
 
 }
 
-function printingMap(view) {
-
-    require([
-        "esri/widgets/LayerList",
-        "esri/tasks/PrintTask",
-        "esri/tasks/support/PrintTemplate",
-        "esri/tasks/support/PrintParameters",
-    ], function (LayerList, PrintTask, PrintTemplate, PrintParameters) {
-        console.log("1");
-
-        var printTask = new PrintTask({
-            url: printToolsUrl
-        });
-
-
-        var template = new PrintTemplate();
-
-        template.exportOptions = {
-            width: 1200,
-            height: 1200,
-            dpi: 96
-        };
-
-        var params = new PrintParameters({
-            view: view,
-            template: template
-        });
-        template.format = "PDF";
-        template.layout = "MAP_ONLY";
-        printTask.execute(params).then(function (result) {
-            console.log("2121");
-            if (result != null) {
-                window.open(result.url);
-            }
-        })
-
-    });
-}
 
 function addFeature(feature, edits) {
     feature
@@ -418,10 +401,10 @@ function deleteFeature(feature, edits) {
 
 function dowloadOutputShp(id) {
     require([
-        "shpwrite",
-        "arcgis-to-geojson",
-        "esri/tasks/support/Query",
-    ], function (shpwrite, arcgis2geojson, Query) {
+        "esri/shpwrite",
+        "esri/arcgis-to-geojson",
+        "esri/rest/support/Query",
+    ], (shpwrite, arcgis2geojson, Query) => {
         var options = {
             folder: 'output',//文件夹名字
             types: {
@@ -434,93 +417,136 @@ function dowloadOutputShp(id) {
         query.where = "projectId =" + id;
         query.returnGeometry = true;
         hxaa.queryFeatures(query).then(function (results) {
-            var geojsons = arcgis2geojson.arcgisToGeoJSON(results);//转化数据为GeoJSON
-            shpwrite.download(geojsons, options) //下载数据
+            console.log(results);
+            if (results.features.length > 0) {
+                var geojsons = arcgis2geojson.arcgisToGeoJSON(results);//转化数据为GeoJSON
+                shpwrite.download(geojsons, options) //下载数据
+            } else {
+                showMessage('未导入红线,请先导入红线', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+            }
+            daochuStatus = false;
         });
-
-
     });
 }
 
 function outputMap(id) {
     require([
-        "esri/tasks/support/Query",
-        "esri/tasks/support/FeatureSet",
-        "esri/geometry/geometryEngine",
-    ], function ( Query,FeatureSet,geometryEngine) {
-        const query = new Query();
-        query.where = "projectId =" + id;
-        query.returnGeometry = true;
-        var polygon;
-        hxaa.queryFeatures(query).then(function (results) {
-
-            var polygons = results.features;
-            if(polygons.length>0){
-                var in_features = new FeatureSet();
-                polygon =  polygons[0].geometry;
-                identifyparams.geometry = polygon;
-                identifyparams.mapExtent = view.extent;
-                var data = [];
-                fxdata = [];
-                identifyTask
-                    .execute(identifyparams)
-                    .then(function (response) {
-                        var items = response.results;
-                        if (items.length > 0) {
-                            for (var i = 0; i < items.length; i++) {
-                                var item = items[i].feature;
-                                var intersect = geometryEngine.intersect(item.geometry, polygon);
-                                if(intersect !=null){
-                                    item.symbol = selectionSymbolY;
-                                    item.geometry = intersect;
-                                    in_features.features.push(item);
-                                }
-                            }
-                            geodata = JSON.stringify(in_features);
-                            dowloadOutputfxDwg(geodata);
-                        }else{
-                            showMessage('红线中无图层,导出失败',2000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
+        "esri/rest/support/Query",
+        'esri/Graphic',
+    ], (Query, Graphic) => {
+        if (daochuStatus == false) {
+            daochuStatus = true;
+            const query = new Query();
+            query.where = "projectId =" + id;
+            query.returnGeometry = true;
+            var polygon;
+            hxaa.queryFeatures(query).then(function (results) {
+                var polygons = results.features;
+                if (polygons.length > 0) {
+                    polygon = polygons[0].geometry;
+                    sj = Date.parse(new Date()) + "" + Math.round(Math.random() * 100);
+                    var tempfeature = new Graphic({
+                        geometry: polygon,
+                        attributes: {
+                            flag: sj
                         }
-                    })
-            }else{
-                showMessage('未导入红线,无法导出图形',2000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
-            }
-
-
-
-
-
-        });
+                    });
+                    console.log(tempfeature);
+                    addFeature(temppolygon, tempfeature);
+                    dowloadOutputfxDwg(sj);
+                    showMessage('导出中,导出后会自动下载', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+                } else {
+                    daochuStatus = false;
+                    showMessage('未导入红线,无法导出图形', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+                }
+            });
+        } else {
+            showMessage('正在导出文件中,请耐心等待', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+        }
     })
 }
 
-function dowloadOutputfxDwg(geodata) {
+function dowloadOutputfxDwg(sj) {
     require([
         "esri/tasks/Geoprocessor",
-        //"esri/tasks/workflow/JobTask"
-    ], function (Geoprocessor) {
+        "esri/rest/support/FeatureSet",
+    ], (Geoprocessor, FeatureSet) => {
+
+
         var outputGpurl = gloablConfig.outputallDwgUrl;
-        var downloadurl = gloablConfig.outputallDwgDownloadUrl;
+        var downloadurl = gloablConfig.featureToCadDownloadUrl;
+        var featureToCadurl = gloablConfig.featureToCadurl;
+
+        var flag = 0;
+        var featureSet = new FeatureSet();
+        featureSets = [new FeatureSet(), new FeatureSet(), new FeatureSet(), new FeatureSet(), new FeatureSet(), new FeatureSet()];
         //http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputCAD_gpserver/j48042049f1dd4cc8a5aa3cf5d1038a3e/scratch/ExportCAD.DWG
         var gp = new Geoprocessor(outputGpurl);
-        // console.log(geodata);
+        var featuregp = new Geoprocessor(featureToCadurl);
         var params = {
-            feature: geodata,
-            outputFile: "分析图形",
-            format: "JSON",
+            bm: sj,
+            // outputFile: "分析图形",
+            f: "JSON",
         };
 
-        gp.submitJob(params).then(function (request) {
-            // console.log(request);
-            if (request.jobStatus == "job-succeeded") {
-                downloadurl = downloadurl + request.jobId + "/scratch/分析图形.DWG";
-                var a = document.createElement("a");
-                a.setAttribute("id", "download");
-                document.body.appendChild(a);
-                var triggerDownload = $("#download").attr("href", downloadurl).attr("download", "分析图形.dwg");
-                triggerDownload[0].click();
-                document.body.removeChild(a);
-            }
+        var outputString = ["outputrv", "outputac", "outputhp", "outputlk", "outputow", "outputrs"];
+
+        showMessage('导出中,需要大概几分钟时间,请耐心等待', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+        gp.submitJob(params).then(function (gpjobInfo) {
+            const jobid = gpjobInfo.jobId;
+            const gpoptions = {
+                interval: 1500,
+                statusCallback: (j) => {
+                    console.log("Job Status: ", j.jobStatus);
+                }
+            };
+            gpjobInfo.waitForJobCompletion(gpoptions).then((request) => {
+                daochuStatus = false;
+                if (request.jobStatus == "job-succeeded") {
+                    for (var n = 0; n < outputString.length; n++) {
+                        var p = n;
+                        gpjobInfo.fetchResultData(outputString[n]).then(function (results) {
+                            flag++;
+                            for (var i = 0; i < results.value.features.length; i++) {
+                                featureSet.features.push(results.value.features[i]);
+                            }
+                            if (flag == 6) {
+                                var params2 = {
+                                    inputFeature: JSON.stringify(featureSet),
+                                    f: "JSON",
+                                };
+                                featuregp.submitJob(params2).then(function (featuregpjobInfo) {
+                                    const options2 = {
+                                        interval: 1500,
+                                        statusCallback: (j) => {
+                                            console.log("featuregp  Status: ", j.jobStatus);
+                                        }
+                                    };
+                                    featuregpjobInfo.waitForJobCompletion(options2).then((repo) => {
+                                        if (repo.jobStatus == "job-succeeded") {
+                                            downloadurl = downloadurl + repo.jobId + "/scratch/导出cad.dwg";
+                                            var a = document.createElement("a");
+                                            a.setAttribute("id", "download");
+                                            document.body.appendChild(a);
+                                            var triggerDownload = $("#download").attr("href", downloadurl).attr("download", "分析图形.dwg");
+                                            triggerDownload[0].click();
+                                            document.body.removeChild(a);
+
+                                        } else if (repo.jobStatus == "job-failed") {
+                                            showMessage('导出失败,请联系管理员', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+                                        }
+                                    });
+                                })
+                            }
+                        });
+                    }
+                } else if (request.jobStatus == "job-failed") {
+                    showMessage('导出失败,请联系管理员', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+                }
+
+            });
+
+
         });
 
     });
@@ -532,8 +558,8 @@ function dowloadOutputfxDwg(geodata) {
 function dowloadOutputDwg(id) {
     require([
         "esri/tasks/Geoprocessor",
-        //"esri/tasks/workflow/JobTask"
-    ], function (Geoprocessor) {
+        "esri/rest/support/Query",
+    ], (Geoprocessor, Query) => {
         var outputGpurl = gloablConfig.outputDwgUrl;
         var downloadurl = gloablConfig.outputDwgDownloadUrl;
 
@@ -543,47 +569,38 @@ function dowloadOutputDwg(id) {
         var params = {
             projectId: id,
         };
-
-        // gp.getResultData("j48042049f1dd4cc8a5aa3cf5d1038a3e","ExportCAD.DWG").then(function(resp){
-        //     console.log(resp);
-        // });
-
-        gp.submitJob(params).then(function (request) {
-            console.log(request);
-            if (request.jobStatus == "job-succeeded") {
-                downloadurl = downloadurl + request.jobId + "/scratch/ExportCAD.DWG";
-                var a = document.createElement("a");
-                a.setAttribute("id", "download");
-                document.body.appendChild(a);
-                var triggerDownload = $("#download").attr("href", downloadurl).attr("download", "红线cad.dwg");
-                triggerDownload[0].click();
-                document.body.removeChild(a);
+        var query = new Query();
+        query.where = "projectId =" + id;
+        query.returnGeometry = true;
+        hxaa.queryFeatures(query).then(function (results) {
+            if (results.features.length > 0) {
+                showMessage('导出中,请耐心等待', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+                gp.submitJob(params).then(function (gpjobInfo) {
+                    const gpoptions = {
+                        interval: 1500,
+                        statusCallback: (j) => {
+                            console.log("Job Status: ", j.jobStatus);
+                        }
+                    };
+                    gpjobInfo.waitForJobCompletion(gpoptions).then((request) => {
+                        daochuStatus =false;
+                        if (request.jobStatus == "job-succeeded") {
+                            downloadurl = downloadurl + request.jobId + "/scratch/导出红线.DWG";
+                            var a = document.createElement("a");
+                            a.setAttribute("id", "download");
+                            document.body.appendChild(a);
+                            var triggerDownload = $("#download").attr("href", downloadurl).attr("download", "红线cad.dwg");
+                            triggerDownload[0].click();
+                            document.body.removeChild(a);
+                        }
+                    });
+                });
+            } else {
+                daochuStatus =false;
+                showMessage('未导入红线,请先导入红线', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
             }
         });
-
-        /*
-        var jobTask = new JobTask("http://localhost/arcgis/rest/services/river/outputShp/GPServer/outputShp/submitJob");
-        var params = {
-            projectId: 48,
-        };
-        jobTask.getAttachments("jb1d487859f4f4627985f4027ad30eb23").then(function(resp){
-            console.log(resp);
-        });
-
-        jobTask.createJobs(params).then(function(data){
-            console.log(data);
-
-            jobTask.getJob("j20fc2243dc034d8390f58440a5a07399").then(function(resp){
-                console.log(resp)
-            }, function(error){
-                console.log(error);
-            });
-        });
-         */
-
     });
-
-
 }
 
 function getOpenImg(x, y) {
@@ -596,10 +613,10 @@ function getOpenImg(x, y) {
         "dojo/request",
         "esri/geometry/geometryEngine",
         "esri/geometry/Point",
-    ], function (PrintTask, PrintTemplate, PrintParameters, MapImageLayer, Task, request, geometryEngine, Point) {
+    ], (PrintTask, PrintTemplate, PrintParameters, MapImageLayer, Task, request, geometryEngine, Point) => {
 
         var river = new MapImageLayer({
-            url: "http://" + gloablConfig.mapHost + "/arcgis/rest/services/" + gloablConfig.mapServerName + "/shuiyu2/MapServer",
+            url: gloablConfig.riverQzjUrl,
         });
         var point = new Point({
             x: x,
@@ -608,13 +625,16 @@ function getOpenImg(x, y) {
                 wkid: 4326,
             }
         });
-        var result = geometryEngine.geodesicBuffer(point, 1500, "meters");
+        var result = geometryEngine.geodesicBuffer(point, 2000, "meters");
         var param = river.createExportImageParameters(result.extent, 1700, 1000);
-        var url = "http://192.168.5.120:8080/river/proxy?http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer/export?bbox=" + param.bbox + "&bboxSR=" + param.bboxSR + "&dpi=96&f=image&gdbVersion=" + param.gdbVersion + "&imageSR=" + param.imageSR + "&size=" + param.size + "&transparent=" + param.transparent + "&layers=show:1,3,5,7,9";
+
+        //url需修改
+        var url = "http://192.168.5.120:8080/river/proxy?http://192.168.5.120/arcgis/rest/services/river/shuiyu2/MapServer/export?bbox=" + param.bbox + "&bboxSR=" + param.bboxSR + "&dpi=96&f=image&gdbVersion=" + param.gdbVersion + "&imageSR=" + param.imageSR + "&size=" + param.size + "&transparent=" + param.transparent;
         window.location = url;
 
     });
 }
+
 function isNumber(value) {
     var patrn = /^(-)?\d+(\.\d+)?$/;
     if (patrn.exec(value) == null || value == "") {

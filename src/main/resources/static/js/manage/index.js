@@ -134,6 +134,16 @@ $(function(){
         })
         $("#tc").show();
     })
+    $("[name=daochu]").click(function () {
+        var value = $("#xmhlSearch").val();
+        window.open(BASE_URL + "manage/export/project?value="+value);
+    })
+    $("[name=xypj]").click(function () {
+        var id = $(this).data("id");
+        $.get(BASE_URL + "manage/select?id="+id+"&page="+page,function(resp){
+            $("#viewDiv").html(resp);
+        })
+    })
     $("#xmglTcCancel").click(function () {
         $("#tc").hide();
     })

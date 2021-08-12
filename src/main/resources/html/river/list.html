@@ -68,7 +68,6 @@
         var identification = $(this).data('identification');
         var id = $(this).data('id');
         var layerId = $(this).data('layerid');
-
         findByIdentification(identification);
         $.get(BASE_URL + "river/waterInfo?id="+id+"&layerId="+layerId,function(resp){
             $(".infoList").hide();

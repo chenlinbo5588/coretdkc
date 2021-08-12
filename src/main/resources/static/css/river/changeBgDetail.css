@@ -5,7 +5,7 @@
     position: fixed !important;
     width: 730px;
     max-height: 160px;
-    bottom: 5%;
+    top:85%;
     left: 15%;
     z-index:1001;
     border-top-right-radius:3px;
@@ -34,16 +34,23 @@
     color:black;
     background-color: white;
 }
-.bgListItem div {
+.bgListItem a {
     border: 1px solid #7e9acf;
     margin-top: -1px;
     margin-right: -1px;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+    text-align: center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    box-sizing: border-box;
+    padding: 0px 5px;
+    line-height:30px;
+
 }
+
+
 .bgListItem .cs{
     flex: 1;
 }
@@ -81,7 +88,7 @@
     position: fixed !important;
     width: 560px;
     max-height: 160px;
-    bottom: 5%;
+    top: 85%;
     left: 55%;
     z-index:1001;
     border-top-right-radius:3px;
@@ -96,20 +103,20 @@
     align-items: center;
 }
 .sqdw{
-    flex: 1;
+    width: 95px;
 }
 .shdw{
-    flex: 1;
+    width: 95px;
 }
 .shzt{
-    flex: 1;
+    width: 95px;
 }
 .bglmc{
-    flex: 1;
+    width: 95px;
 }
 .bgq{
-    flex: 1;
+    width: 95px;
 }
 .bgh{
-    flex: 1;
+    width: 95px;
 }

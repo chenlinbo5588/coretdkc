@@ -1,10 +1,17 @@
-
 var baobiaoSelect = false;
 var xmgl = false;
+$(document).bind("ajaxSend", function () {
+    $("#loadingMask").show();
+}).bind("ajaxComplete", function () {
+    $("#loadingMask").hide();
+});
+
+
 $(function () {
 
     var animate = false;
     init();
+
     function init() {
         $("#manage").addClass("cblclick");
         $("#riverChange").removeClass("cblclick");
@@ -71,6 +78,31 @@ $(function () {
             })
         }
     })
+    // $("#xcList").click(function () {
+    //     $("#xcListbox").toggle();
+    // })
+
+    $("#xcList").mouseenter(function () {
+        $("#xcListbox").show();
+    })
+    $("#xcListbox").mouseleave(function () {
+        $("#xcListbox").hide();
+    })
+    $("[name=xcButton]").click(function () {
+        var id = $(this).data("id");
+
+        $("#leftBox").hide();
+        $("#fxTishi").hide();
+        $.get(BASE_URL + "manage/select?id=" + id + "&type=index", function (resp) {
+            xmgl = true;
+            $("#viewDiv").empty();
+            $("#viewDiv").removeClass();
+            $("#searchBox").hide();
+            $("#sy").removeClass("indexButtonClick");
+            $("#xmgl").addClass("indexButtonClick");
+            $("#viewDiv").html(resp);
+        })
+    })
     $("#xmgl").click(function () {
         $("#leftBox").hide();
         $("#fxTishi").hide();
@@ -86,18 +118,12 @@ $(function () {
         })
     })
     $("#addShp").click(function () {
-        var file =$("#shpFile");
+        var file = $("#shpFile");
         file.click();
     })
     $("#shpFile").change(function () {
-        var flag = loadshp("shpFile",view,false);
+        var flag = loadshp("shpFile", view, false);
         $("#tc").hide();
-        if(flag){
-            showMessage('加载成功',3000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
-        }else{
-            showMessage('加载失败,请检查文件正确性',3000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
-        }
-
     })
     //根据文字添加图形
     $("#addText").click(function () {
@@ -110,29 +136,29 @@ $(function () {
     })
     $("#queding").click(function () {
         var value = $("#txtInput").val();
-        if(value == ""){
+        if (value == "") {
             $(".fxbuttonbox").toast({
-                content:'请先输入坐标内容再点击确认',
-                duration:1500,
-                animateIn:'bounceInUp-hastrans',
-                animateOut:'bounceOutDown-hastrans',
+                content: '请先输入坐标内容再点击确认',
+                duration: 1500,
+                animateIn: 'bounceInUp-hastrans',
+                animateOut: 'bounceOutDown-hastrans',
             });
-        }else{
-            var val=$('input:radio:checked').val();
-            var ring = getPoints(value,val);
-            if(ring.length >0){
+        } else {
+            var val = $('input:radio:checked').val();
+            var ring = getPoints(value, val);
+            if (ring.length > 0) {
                 $("#txtInput").val("");
-                var gr = creatrPolgnByRing(ring,view);
+                var gr = creatrPolgnByRing(ring, view);
                 view.graphics.add(gr);
                 view.goTo(gr.geometry.extent.expand(1));
                 $("#tc").hide();
-                showMessage('加载成功',3000,true,'bounceInUp-hastrans','bounceOutDown-hastrans');
-            }else{
+                showMessage('加载成功', 3000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+            } else {
                 $(".fxbuttonbox").toast({
-                    content:'内容有误,无法解析，请确认选择类型或者文本内容是否错误！',
-                    duration:3000,
-                    animateIn:'bounceInUp-hastrans',
-                    animateOut:'bounceOutDown-hastrans',
+                    content: '内容有误,无法解析，请确认选择类型或者文本内容是否错误！',
+                    duration: 3000,
+                    animateIn: 'bounceInUp-hastrans',
+                    animateOut: 'bounceOutDown-hastrans',
                 });
             }
         }
@@ -152,10 +178,19 @@ $(function () {
             }
         })
     })
-    $("#tuceng").click(function () {
+
+    // $("#tuceng").click(function () {
+    //     $("#slideBox").hide();
+    //     $("#tucengSelectBox").toggle();
+    // })
+    $("#tuceng").mouseenter(function () {
         $("#slideBox").hide();
-        $("#tucengSelectBox").toggle();
+        $("#tucengSelectBox").show();
     })
+    $("#tucengSelectBox").mouseleave(function () {
+        $("#slideBox").hide();
+        $("#tucengSelectBox").hide();
+    });
     $("#riverChange").click(function () {
         $("#manage").removeClass("cblclick");
         $(this).addClass("cblclick");
@@ -196,7 +231,7 @@ $(function () {
             $("#tc").hide();
         })
     })
-    $( "#fxTishi" ).draggable();
+    $("#fxTishi").draggable();
     $("#fxTishiClose").click(function () {
         $(".fxTishi").hide();
     })

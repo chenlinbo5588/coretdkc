@@ -8,19 +8,19 @@
         <img name="bgListButton" src="/static/img/tuichu_wbj.png">
     </div>
     <div class="bgListItem"  >
-        <div class="cs">次数</div>
-        <div class="bgsj">变更时间</div>
-        <div class="xmmc">项目名称</div>
-        <div class="bgdw">变更单位</div>
-        <div class="bj"></div>
+        <a class="cs">次数</a>
+        <a class="bgsj">变更时间</a>
+        <a class="xmmc">项目名称</a>
+        <a class="bgdw">变更单位</a>
+<!--        <div class="bj"></div>-->
     </div>
     <div class="bgListItemBox">
         <div class="bgListItem" th:each="item,stat:${data}"  th:data-id="${item.id}"  name  ="item">
-            <div class="cs">[[${stat.index+1}]]</div>
-            <div class="bgsj">[[${item.getBgDateTime()}]]</div>
-            <div class="xmmc">[[${item.projectName}]]</div>
-            <div class="bgdw">[[${item.bgdw}]]</div>
-            <div class="bj ">编辑</div>
+            <a class="cs" >[[${stat.index+1}]]</a>
+            <a class="bgsj" th:title="${item.getBgDateTime()}">[[${item.getBgDateTime()}]]</a>
+            <a class="xmmc" th:title="${item.projectName}">[[${item.projectName}]]</a>
+            <a class="bgdw" th:title="${item.projectName}">[[${item.bgdw}]]</a>
+<!--            <div class="bj ">编辑</div>-->
         </div>
     </div>
 </div>

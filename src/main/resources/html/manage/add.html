@@ -74,8 +74,8 @@
                                    autocomplete="off" readonly="readonly">
                         </div>
                         <div class="halfLine">
-                            <div><p>*</p>最近巡查时间</div>
-                            <input class="datepicker" name="xcdateS" th:value="${data.xcdateS}==0?'':${data.xcdateS}"
+                            <div>最近巡查时间</div>
+                            <input class="datepicker" name="xcdateS" id="xcdateS" th:value="${data.xcdateS}==null?'无数据':${data.xcdateS}"
                                    autocomplete="off" readonly="readonly">
                         </div>
                     </div>
@@ -116,8 +116,7 @@
 
 <div id="tools"></div>
 
-<canvas id="myCanvas" width="800" height="600" style="display:none;">
-</canvas>
+
 
 <div id="uploadTc" class="uploadTc" style="display: none">
     <div class="title">文件上传</div>
@@ -155,6 +154,7 @@
 <script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml">
     var id = [[${data.id}]];
     var page = [[${page}]];
+    var type = [[${type}]];
 </script>
 
 <script th:src="${urls.getForLookupPath('/static/js/manage/add.js')}" xmlns:th="http://www.w3.org/1999/xhtml"></script>

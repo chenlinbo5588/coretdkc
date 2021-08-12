@@ -4,21 +4,27 @@
     <img name="bgDetailButtonClose" src="/static/img/tuichu_wbj.png">
 </div>
 <div class="bgListItem"  >
-    <div class="sqdw">申请单位</div>
-    <div class="shdw">审核单位</div>
-    <div class="shzt">审核状态</div>
-    <div class="bglmc">变更列名称</div>
-    <div class="bgq">变更前值</div>
-    <div class="bgh">变更后值</div>
+    <a class="sqdw">申请单位</a>
+    <a class="shdw">审核单位</a>
+    <a class="shzt">审核状态</a>
+    <a class="shzt">变更类型</a>
+    <a class="bglmc">面积更改类型</a>
+    <a class="bglmc">更改面积(km²)</a>
+<!--    <div class="bglmc">变更列名称</div>-->
+<!--    <div class="bgq">变更前值</div>-->
+<!--    <div class="bgh">变更后值</div>-->
 </div>
 <div class="bgListItemBox">
     <div class="bgListItem" th:each="item,stat:${data}" th:data-id="${item.id}" xmlns:th="http://www.w3.org/1999/xhtml">
-        <div class="sqdw">[[${item.sqdw}]]</div>
-        <div class="shdw">[[${item.bgdw}]]</div>
-        <div class="shzt">[[${item.bgdw}]]</div>
-        <div class="bglmc">[[${item.bgdw}]]</div>
-        <div class="bgq">[[${item.bgdw}]]</div>
-        <div class="bgh">[[${item.bgdw}]]</div>
+        <a class="sqdw" th:title="${item.sqdw}">[[${item.sqdw}]]</a>
+        <a class="shdw" th:title="${item.bgdw}">[[${item.bgdw}]]</a>
+        <a class="shzt" th:title="${item.bgdw}">[[${item.bgdw}]]</a>
+        <a class="shzt" th:title="${item.bgType == 1?'图形变更':'属性变更'}">[[${item.bgType == 1?'图形变更':'属性变更'}]]</a>
+        <a class="bglmc" th:title="${item.bgType == 1?'图形变更':'属性变更'}">[[${item.bgAreatype == 1?'增加':'减少'}]]</a>
+        <a class="bglmc" th:title="${#numbers.formatDecimal(item.bgArea,1,4)}">[[${#numbers.formatDecimal(item.bgArea,1,4)}]]</a>
+<!--        <div class="bglmc">[[${item.bgdw}]]</div>-->
+<!--        <div class="bgq">[[${item.bgdw}]]</div>-->
+<!--        <div class="bgh">[[${item.bgdw}]]</div>-->
     </div>
 </div>
 

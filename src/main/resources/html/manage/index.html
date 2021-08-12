@@ -1,53 +1,63 @@
 <link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/manage/index.css')}"
       xmlns:th="http://www.w3.org/1999/xhtml"/>
 
-<div class="manageBox" >
+<div class="manageBox">
     <div class="contain">
         <div class="titleBox">
             <div class="boxh">
-                <input class="" placeholder="请输入项目名称或批准文号" id="xmhlSearch" th:value="${value}"  xmlns:th="http://www.w3.org/1999/xhtml" ></input>
+                <input class="" placeholder="请输入项目名称或批准文号" id="xmhlSearch" th:value="${value}"
+                       xmlns:th="http://www.w3.org/1999/xhtml"></input>
                 <div class="button" id="xmglSearch">查询</div>
             </div>
             <div class="boxh">
                 <div class="button" name="xmAdd">新增</div>
                 <div class="button" name="alldelete">删除</div>
-                <div class="button">导出</div>
+                <div class="button" name="daochu">导出</div>
             </div>
         </div>
         <div class="shuominBox">
-                <div class="biaoshi">根据最新巡查时间</div>
-                <div class="ml60 mt10">A：最近巡查（三个月内巡查）显示绿色;</div>
-                <div class="ml60 mt10">B：超过三个月未巡查（大于3个月小于6个月）显示黄色</div>
-                <div class="ml60 mt10">C：超过六个月未巡查（大于6个月）显示红色</div>
-                <div class="biaoshi mt10"> 根据验收时间，当前时间超过项目验收时间6个月，进入效益评价;</div>
+            <div class="biaoshi">根据最新巡查时间</div>
+            <div class="jieshao ">
+                <div class="jslv">最近巡查（三个月内巡查）显示绿色;</div>
+                <div class="jshuang">超过三个月未巡查（大于3个月小于6个月）显示黄色</div>
+                <div class="jshong">超过六个月未巡查（大于6个月）显示红色</div>
+            </div>
+            <div class="biaoshi mt10"> 根据验收时间，当前时间超过项目验收时间6个月，进入效益评价;</div>
         </div>
         <div class="searchList">
-            <div class="searchTopBox"   xmlns:th="http://www.w3.org/1999/xhtml">
-                <div class="teduan allselect" >全选</div>
-                <div class="duan" ><p style="width: 40px;" data-paixu="id">序号</p></div>
-                <div class="duan " >警示灯</div>
+            <div class="searchTopBox" xmlns:th="http://www.w3.org/1999/xhtml">
+                <div class="teduan allselect">全选</div>
+                <div class="duan"><p style="width: 40px;" data-paixu="id">序号</p></div>
+                <div class="duan ">警示灯</div>
                 <div class="chang ">项目名称</div>
-                <div class="duan " >联系人</div>
-                <div class="zhong "><p class="titleClick" style="width:70px;" data-paixu="mj" th:classappend="${paixu} == 'mj'? ${paixuValue}:''">用地面积</p></div>
+                <div class="duan ">联系人</div>
+                <div class="zhong "><p class="titleClick" style="width:70px;" data-paixu="mj"
+                                       th:classappend="${paixu} == 'mj'? ${paixuValue}:''">用地面积</p></div>
                 <div class="zhong ">批准文号</div>
-                <div class="chang "><p class="titleClick" style="width:115px;" data-paixu="xcdate" th:classappend="${paixu} == 'xcdate'? ${paixuValue}:''">最近一次巡查时间</p></div>
-                <div class="chang " ><p class="titleClick" style="width:70px;" data-paixu="ysdate" th:classappend="${paixu} == 'ysdate'? ${paixuValue}:''">验收时间</p></div>
-                <div class="techang" >操作</div>
+                <div class="chang "><p class="titleClick" style="width:115px;" data-paixu="xcdate"
+                                       th:classappend="${paixu} == 'xcdate'? ${paixuValue}:''">最近一次巡查时间</p></div>
+                <div class="chang "><p class="titleClick" style="width:70px;" data-paixu="ysdate"
+                                       th:classappend="${paixu} == 'ysdate'? ${paixuValue}:''">验收时间</p></div>
+                <div class="techang">操作</div>
             </div>
             <div class="searchContentBox">
-                <div class="searchItem" th:each="item,stat:${projectPage.content}" xmlns:th="http://www.w3.org/1999/xhtml">
-                    <a class="teduan"><input name="ck" type="checkbox" th:value="${item.id}" /></a>
-                    <a class="duan">[[${stat.index+1+(page-1)*10}]]</a>
+                <div class="searchItem" th:each="item,stat:${projectPage.content}"
+                     xmlns:th="http://www.w3.org/1999/xhtml">
+                    <a class="teduan"><input name="ck" type="checkbox" th:value="${item.id}"/></a>
+                    <a class="duan">[[${stat.index+1+(page-1)*12}]]</a>
                     <a class="duan" th:classappend="${item.jsd}"></a>
-                    <a class="chang" th:title="${item.pname}"><p  style="cursor: pointer" name="pname" th:data-id="${item.id}">[[${item.pname}]]</p></a>
+                    <a class="chang" th:title="${item.pname}"><p style="cursor: pointer" name="pname"
+                                                                 th:data-id="${item.id}">[[${item.pname}]]</p></a>
                     <a class="duan">[[${item.fzrname}]]</a>
                     <a class="zhong">[[${item.mj}]]</a>
                     <a class="zhong">[[${item.pfwh}]]</a>
-                    <a class="chang">[[${item.zjxcsj}]]</a>
+                    <a class="chang">[[${item.zjxcsj==null?"无数据":item.zjxcsj}]] </a>
                     <a class="chang">[[${item.yssj}]]</a>
                     <a class="boxh techang">
-                        <div class="caozuobutton" name="delete" th:data-name="${item.pname}"  th:data-id="${item.id}">删除</div>
-                        <div class="caozuobutton" name="xypj">效益评价</div>
+                        <div class="caozuobutton" name="delete" th:data-name="${item.pname}" th:data-id="${item.id}">
+                            删除
+                        </div>
+                        <div class="caozuobutton" th:data-id="${item.id}" name="xypj" th:classappend="${item.getXypjIsSelect()}">效益评价</div>
                     </a>
                 </div>
             </div>
@@ -55,12 +65,15 @@
                 <div class="caozuobutton" id="first">首页</div>
                 <div class="caozuobutton" id="previous">上一页</div>
                 <div class="pageBox">
-                    <div class="pageItem" th:classappend="${page == item}?'pageItemClick':''" th:data-page="${item}" th:each="item,i:${#numbers.sequence(selectMinPage,selectMaxPage)}" xmlns:th="http://www.w3.org/1999/xhtml">
+                    <div class="pageItem" th:classappend="${page == item}?'pageItemClick':''" th:data-page="${item}"
+                         th:each="item,i:${#numbers.sequence(selectMinPage,selectMaxPage)}"
+                         xmlns:th="http://www.w3.org/1999/xhtml">
                         [[${item}]]
                     </div>
                 </div>
                 <div class="caozuobutton" id="next">下一页</div>
                 <div class="caozuobutton" id="last">尾页</div>
+                <div class="allnumber">总记[[${allNumber}]]条记录</div>
             </div>
         </div>
     </div>
@@ -69,13 +82,14 @@
     <div class="contain">是否删除该项目？</div>
     <div class="manageButtonBox">
         <div class="button" id="xmglTcDelet">删除</div>
-        <div class="button"  id="xmglTcCancel">取消</div>
+        <div class="button" id="xmglTcCancel">取消</div>
     </div>
 </div>
-<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml" >
+<script th:inline="javascript" xmlns:th="http://www.w3.org/1999/xhtml">
     var maxPage = [[${maxPage}]];
     var minPage = [[${minPage}]];
-    var page =[[${page}]];
+    var page = [[${page}]];
     var paixuTj = [[${paixuTj}]]
 </script>
-<script th:src="${urls.getForLookupPath('/static/js/manage/index.js')}"  xmlns:th="http://www.w3.org/1999/xhtml"></script>
+<script th:src="${urls.getForLookupPath('/static/js/manage/index.js')}"
+        xmlns:th="http://www.w3.org/1999/xhtml"></script>

@@ -11,8 +11,18 @@ arcgis:
   password: 123123
   outputDwgUrl: http://192.168.5.120/arcgis/rest/services/outputCAD/GPServer/outputCAD
   outputDwgDownloadUrl: http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputCAD_gpserver/
-  outputallDwgUrl: http://192.168.5.120/arcgis/rest/services/outputAllDwg/GPServer/outputCADforList
-  outputallDwgDownloadUrl:  http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputalldwg_gpserver/
+  outputallDwgUrl: http://192.168.5.120/arcgis/rest/services/outputAllDwg/GPServer/outputCadPolygon/
+  featureToCadDownloadUrl:  http://192.168.5.120/arcgis/rest/directories/arcgisjobs/featuretocad_gpserver/
+  featureToCadurl: http://192.168.5.120/arcgis/rest/services/featureToCad/GPServer/featureToCad
+  geometryServerUrl: http://192.168.5.120/arcgis/rest/services/Utilities/Geometry/GeometryServer
+  featureUrl:
+    temppolygonUrl: http://192.168.5.120/arcgis/rest/services/river/temp/FeatureServer/0
+    riverUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer
+    riverQzjUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu2/MapServer
+    otherUrl: http://192.168.5.120/arcgis/rest/services/river/other/MapServer
+    bgtxUrl: http://192.168.5.120/arcgis/rest/services/river/bgtx/MapServer
+    hxUrl: http://192.168.5.120/arcgis/rest/services/river/hxaa/FeatureServer/0
+    hxSearchUrl:  http://192.168.5.120/arcgis/rest/services/river/hxaa/MapServer
 
 project:
   host: 192.168.5.120

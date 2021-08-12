@@ -129,4 +129,10 @@
     user-select: none;
 }
 
-
+#timeSlider {
+    position: absolute;
+    width:300px;
+    height: 150px;
+    left: 5%;
+    bottom: 20px;
+}

@@ -1,10 +1,11 @@
-body{
+body {
     margin: 0px;
 }
-html,body{
-   width: 100%;
-   height: 100%;
-   background-color:#294374;
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #294374;
 }
 
 ::-webkit-scrollbar {
@@ -30,80 +31,94 @@ html,body{
     justify-content: space-between;
     align-items: center;
 }
-.czjz{
+
+.czjz {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.boxh{
+.boxh {
     display: flex;
     align-items: center;
 }
-.jz{
+
+.jz {
     align-items: center;
 }
-.ydq{
+
+.ydq {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
 }
+
 .indexTitle {
-    font-size:24px;
-    width:380px;
-    height:100%;
-    margin-left:20px;
+    font-size: 24px;
+    width: 380px;
+    height: 100%;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    color:white;
+    color: white;
 }
-.indexTitleBox{
-    width:100%;
-    height:10%;
-    background-color:#294374;
+
+.indexTitleBox {
+    width: 100%;
+    height: 10%;
+    background-color: #294374;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
-.W90{
-    width:90%;
+
+.W90 {
+    width: 90%;
 }
-.W95{
-    width:95%;
+
+.W95 {
+    width: 95%;
 }
-.W80{
-    width:80%;
+
+.W80 {
+    width: 80%;
 }
-.W40{
-    width:40%;
+
+.W40 {
+    width: 40%;
 }
-.font16{
+
+.font16 {
     font-size: 16px;
 }
-.font14{
+
+.font14 {
     font-size: 14px;
 }
-.font12{
+
+.font12 {
     font-size: 12px;
 }
-.indexButton{
-    width:160px;
-    height:40px;
+
+.indexButton {
+    width: 160px;
+    height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size:16px;
+    font-size: 16px;
     background-color: #213043;
-    color:white;
+    color: white;
 }
-.indexButtonSy{
+
+.indexButtonSy {
     background-image: url(/static/img/shouye.png);
     background-repeat: no-repeat;
     background-position: 41px 13px;
@@ -111,68 +126,84 @@ html,body{
     border-top-left-radius: 40px;
 
 }
-.indexButtonXmgl{
+
+.indexButtonXmgl {
     background-image: url(/static/img/xmgl.png);
     background-repeat: no-repeat;
     background-position: 25px 13px;
     border-bottom-right-radius: 40px;
     border-top-right-radius: 40px;
 }
-.indexButtonClick{
-    background-color:#57ca7d;
+
+.indexButtonClick {
+    background-color: #57ca7d;
 }
-.indexUser{
-    font-size:16px;
-    margin-right:20px;
+
+.indexUser {
+    font-size: 16px;
+    margin-right: 20px;
     height: 100%;
     display: flex;
-    color:white;
+    color: white;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    width:20%;
+    width: 20%;
     background-image: url(/static/img/login.png);
     background-repeat: no-repeat;
     background-position: 100% 50%;
 
 }
-.mr20{
-    margin-left:20px;
+
+.mr20 {
+    margin-left: 20px;
 }
-.mr5{
+
+.mr5 {
     margin-right: 5px;
 }
-.ml20{
-    margin-left:20px;
+
+.ml20 {
+    margin-left: 20px;
 }
-.mr60{
-    margin-right:60px;
+
+.mr60 {
+    margin-right: 60px;
 }
+
 .ml5 {
     margin-left: 5px;
 }
-.ml15{
-    margin-left:15px;
+
+.ml15 {
+    margin-left: 15px;
 }
-.mb20{
-    margin-bottom:20px;
+
+.mb20 {
+    margin-bottom: 20px;
 }
-.mt10{
-    margin-top:10px;
+
+.mt10 {
+    margin-top: 10px;
 }
-.mb10{
-    margin-bottom:10px;
+
+.mb10 {
+    margin-bottom: 10px;
 }
-.ml60{
+
+.ml60 {
     margin-left: 60px;
 }
-.mt15{
-    margin-top:15px;
+
+.mt15 {
+    margin-top: 15px;
 }
-.mt10{
-    margin-top:10px;
+
+.mt10 {
+    margin-top: 10px;
 }
-.mapBox{
+
+.mapBox {
     height: 90%;
     width: 100%;
     display: flex;
@@ -185,209 +216,244 @@ html,body{
     width: 100%;
 
 }
-.indexTitleButton{
+
+.indexTitleButton {
     display: flex;
 }
+
 .leftBox {
     position: fixed;
-    height:100%;
-    background:url("/static/img/bj.png");
+    height: 100%;
+    background: url("/static/img/bj.png");
     background-repeat: repeat;
     top: 10%;
     left: 0;
     width: 60px;
-    z-index:999;
+    z-index: 999;
     overflow: hidden;
     border-top: 1px solid #94a1ba;
 }
-.leftButton{
-    width:300px;
-    height:60px;
+
+.leftButton {
+    width: 300px;
+    height: 60px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-top:1px solid #3f5682;
-    border-bottom:1px solid #3f5682;
-    color:white;
+    border-top: 1px solid #3f5682;
+    border-bottom: 1px solid #3f5682;
+    color: white;
     font-size: 16px;
     letter-spacing: 2px;
 
 }
-.leftButtonSygl{
+
+.leftButtonSygl {
     background-image: url(/static/img/sygl.png);
     background-repeat: no-repeat;
     background-position: 5% 50%;
 }
-.leftButtonSybg{
+
+.leftButtonSybg {
     background-image: url(/static/img/sybg.png);
     background-repeat: no-repeat;
     background-position: 5% 50%;
 }
-.leftButtonTjbb{
+
+.leftButtonTjbb {
     background-image: url(/static/img/tjbb.png);
     background-repeat: no-repeat;
     background-position: 5% 50%;
 }
-.mask{
+
+.mask {
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1004;
 }
-a{
-    text-decoration:none;
-    color:#333;
+
+a {
+    text-decoration: none;
+    color: #333;
 }
-.indexSubtitleText{
+
+.indexSubtitleText {
     font-size: 12px;
 }
-.indexTitleText{
+
+.indexTitleText {
     font-size: 24px;
-    letter-spacing:4px;
+    letter-spacing: 4px;
     font-weight: bold;
 }
-.searchBox{
+
+.searchBox {
     position: fixed;
     top: 13%;
     left: 100px;
     width: 400px;
-    z-index:1003;
+    z-index: 1003;
     overflow: hidden;
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
-.searchInputBox{
+
+.searchInputBox {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     background-color: white;
-    height:50px;
+    height: 50px;
 }
-.fxButoon{
+
+.fxButoon {
     background-image: url(/static/img/fx.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    width:60px;
-    height:30px;
-    border-left:1px solid #294374;
-    border-right:1px solid #294374;
+    width: 60px;
+    height: 30px;
+    border-left: 1px solid #294374;
+    border-right: 1px solid #294374;
     cursor: pointer;
 }
-.searchButton{
+
+.searchButton {
     background-image: url(/static/img/search.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    width:60px;
-    height:30px;
+    width: 60px;
+    height: 30px;
     cursor: pointer;
 
 }
-.infoDivBox{
+
+.infoDivBox {
     position: fixed;
-    height:40%;
+    height: 40%;
     background-color: white;
     top: 58%;
     left: 100px;
     width: 400px;
-    z-index:998;
+    z-index: 998;
     overflow: hidden;
-    display:flex;
+    display: flex;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
-.searchInput{
-    width:280px;
-    height:40px;
-    border:none;
-    font-size:16px;
-    padding-left:15px;
+
+.searchInput {
+    width: 280px;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+    padding-left: 15px;
     letter-spacing: 2px;
 }
-.infoListBox{
-    width:100%;
-    height:325px;
+
+.infoListBox {
+    width: 100%;
+    height: 325px;
     overflow: auto;
     background-color: white;
-    margin-top:10px;
+    margin-top: 10px;
 }
-.infoItem{
-    height:45px;
-    border-bottom:1px solid #e9ecf1;
-    font-size:14px;
-    color:#656c76;
+
+.infoItem {
+    height: 45px;
+    border-bottom: 1px solid #e9ecf1;
+    font-size: 14px;
+    color: #656c76;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
 }
-.infoItem:hover{
+
+.infoItem:hover {
     opacity: 0.5;
 }
-.infoItemLeft{
-    margin-left:10px;
+
+.infoItemLeft {
+    margin-left: 10px;
     display: flex;
 }
-.infoItemRight{
-    margin-right:10px;
+
+.infoItemRight {
+    margin-right: 10px;
 }
 
-.topRightBox{
-    width:60px;
-    height:120px;
+.topRightBox {
+    box-shadow: none !important;
+    display: flex;
 }
-.topRightButton{
-    margin-left:5px;
-    margin-top:10px;
-    width:45px;
-    height:45px;
+
+.topRightButton {
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 45px;
+    height: 45px;
     background-color: #345aa2;
-    border:1px solid #000000;
+    border: 1px solid #000000;
     border-radius: 3px;
     cursor: pointer;
 }
-.bottomRightButton{
-    margin-left:5px;
-    margin-top:10px;
-    width:45px;
-    height:45px;
+
+.bottomRightButton {
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 45px;
+    height: 45px;
     background-color: #345aa2;
-    border:1px solid #000000;
+    border: 1px solid #000000;
     border-radius: 3px;
     cursor: pointer;
 }
-.topRightBox .button1{
-     background-image: url(/static/img/button1.png);
-     background-repeat: no-repeat;
-     background-position: 50% 50%;
- }
-.topRightBox .button2{
+
+.topRightBox .button1 {
+    background-image: url(/static/img/button1.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.topRightBox .button2 {
     background-image: url(/static/img/button2.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
-.bottomRightBox .button1{
+.topRightBox .button3{
     background-image: url(/static/img/tuceng.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
-.bottomRightBox{
+
+
+.bottomRightBox .button1 {
+    background-image: url(/static/img/tuceng.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.bottomRightBox {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
 }
-.tucengSelectBox{
-    width:220px;
+
+.tucengSelectBox {
+    width: 220px;
 }
-.tucengSelectTitle{
-    height:45px;
-    width:100%;
+
+.tucengSelectTitle {
+    height: 45px;
+    width: 100%;
     background-image: url(/static/img/bj2.png);
     color: white;
     display: flex;
@@ -396,60 +462,68 @@ a{
     align-items: center;
     font-size: 14px;
 }
-.tucengItemBox{
+
+.tucengItemBox {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width:100%;
+    width: 100%;
     background-color: white;
-    height:250px;
-    border-bottom:1px solid #cccccc;
+    height: 250px;
+    border-bottom: 1px solid #cccccc;
 }
-.tucengItemBox .checkBox{
-    width:10%;
+
+.tucengItemBox .checkBox {
+    width: 10%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
 }
-.tucengSelectTitle img{
+
+.tucengSelectTitle img {
     width: 25px;
     height: 25px;
 }
-.tucengItemBox img{
-    width:20px;
+
+.tucengItemBox img {
+    width: 20px;
     height: 20px;
 }
-.tucengItemBox .nameBox{
-    width:90%;
+
+.tucengItemBox .nameBox {
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size:16px;
+    font-size: 16px;
 }
-.tucengItemBox ul{
+
+.tucengItemBox ul {
     width: 100%;
     height: 100%;
 }
 
 
-    /* 去掉地图聚焦边框 */
+/* 去掉地图聚焦边框 */
 .esri-view-surface--inset-outline:focus::after {
     outline: none !important;
 }
-.qinkong{
+
+.qinkong {
     position: absolute;
     right: 120px;
     width: 15px;
-    height:15px;
-    margin-left:5px;
+    height: 15px;
+    margin-left: 5px;
     cursor: pointer;
 }
-.fxTc{
+
+.fxTc {
     position: fixed;
     width: 600px;
     height: 280px;
@@ -457,10 +531,11 @@ a{
     left: 33%;
     background-color: white;
     border-radius: 5px;
-    z-index: 1002;
+    z-index: 1004;
 
 }
-.fxTc .contain{
+
+.fxTc .contain {
     height: 90px;
     width: 100%;
     display: flex;
@@ -468,10 +543,11 @@ a{
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    color:#3965b6;
+    color: #3965b6;
     letter-spacing: 1px;
 }
-.fxTc .buttonBox{
+
+.fxTc .buttonBox {
     height: 150px;
     width: 100%;
     display: flex;
@@ -481,42 +557,48 @@ a{
     cursor: pointer;
 
 }
-.fxTc .txtInputBox{
+
+.fxTc .txtInputBox {
     width: 80%;
     height: 100%;
     margin-top: 5%;
     margin-left: 10%;
 }
-.fxTc .txtInputBox .radioBox{
+
+.fxTc .txtInputBox .radioBox {
     margin-bottom: 20px;
     font-size: 12px;
     color: #56536A;
     display: flex;
     align-items: center;
 }
-.buttonBox .button{
+
+.buttonBox .button {
     font-size: 14px;
-    color:#3965b6;
+    color: #3965b6;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.txtInputBox textarea{
+
+.txtInputBox textarea {
     width: 100%;
     height: 50%;
     padding: 10px;
     box-sizing: border-box;
-    resize:none;
+    resize: none;
 }
-.txtInputBox .txtButtonBox{
+
+.txtInputBox .txtButtonBox {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.txtButtonBox div{
+
+.txtButtonBox div {
     width: 100px;
     height: 30px;
     display: flex;
@@ -528,44 +610,49 @@ a{
     border-radius: 5px;
 
 }
-.button .miaohui{
+
+.button .miaohui {
     width: 120px;
     height: 120px;
     background-image: url(/static/img/miaohui.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: #365ea9;
-    border :1px solid black;
+    border: 1px solid black;
     border-radius: 5px;
     margin-bottom: 20px;
 }
-.button .tianjia{
+
+.button .tianjia {
     width: 120px;
     height: 120px;
     background-image: url(/static/img/tianjia.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: #365ea9;
-    border :1px solid black;
+    border: 1px solid black;
     border-radius: 5px;
     margin-bottom: 20px;
 }
-.cblclick{
-    background-color:#3965b6 ;
+
+.cblclick {
+    background-color: #3965b6;
 }
-.button .addText{
+
+.button .addText {
     width: 120px;
     height: 120px;
     background-image: url(/static/img/wenben.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: #365ea9;
-    border :1px solid black;
+    border: 1px solid black;
     border-radius: 5px;
     margin-bottom: 20px;
 }
-.back{
-    color:#425680;
+
+.back {
+    color: #425680;
     font-size: 16px;
     padding: 15px;
     height: 50px;
@@ -575,58 +662,64 @@ a{
     background-color: white;
     display: flex;
     flex-direction: row;
-    margin-top:10px;
+    margin-top: 10px;
     user-select: none;
     cursor: pointer;
 }
 
 
-.slide{
+.slide {
     width: 80px;
     height: 2px !important;
-    margin-top:5px;
+    margin-top: 5px;
     border-radius: 0px !important;
 }
-.slideIndex{
-    width: 20px ;
+
+.slideIndex {
+    width: 20px;
 }
-.slide span{
+
+.slide span {
     border-radius: 50% !important;
-    margin-top:-4px !important;
+    margin-top: -4px !important;
 
 }
-.fxTishi{
-    width:440px;
-    height:200px;
+
+.fxTishi {
+    width: 440px;
+    height: 200px;
     font-size: 12px;
-    color:#686868;
+    color: #686868;
     letter-spacing: 1px;
-    position:  fixed;
+    position: fixed;
     bottom: 5%;
-    left:27%;
+    left: 27%;
     z-index: 1002;
 }
-.fxTishi .titleBox{
-     width:100%;
-     height:35px;
-     padding: 5px 10px;
-     box-sizing: border-box;
+
+.fxTishi .titleBox {
+    width: 100%;
+    height: 35px;
+    padding: 5px 10px;
+    box-sizing: border-box;
     background-color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-.fxTishi .containBox{
+
+.fxTishi .containBox {
     width: 100%;
-    height:180px;
+    height: 180px;
     background-color: #ebebeb;
     padding: 10px;
     box-sizing: border-box;
 }
-.fxTishi .containBox .contain{
+
+.fxTishi .containBox .contain {
     width: 100%;
-    height:100%;
+    height: 100%;
     background-color: #ebebeb;
     display: flex;
     padding: 0px 10px;
@@ -636,10 +729,12 @@ a{
     align-items: start;
     border: 1px solid #5e5e5e;
 }
-.fxTishi .containBox .contain div{
-   margin-top: 10px;
+
+.fxTishi .containBox .contain div {
+    margin-top: 10px;
 }
-.slideBox{
+
+.slideBox {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -649,3 +744,87 @@ a{
     background-color: white;
     font-size: 12px;
 }
+
+.xcListbox {
+    display: flex;
+
+    width: 400px;
+    margin-right: 20px;
+    flex-direction: column;
+}
+
+.xcListbox .xcTitle {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2a4477;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid black;
+    background-color: white;
+}
+
+.xcListbox .xcListItem {
+    background-color: white;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #656c76;
+    padding: 0px 10px;
+    box-sizing: border-box;
+}
+
+.xcListbox .xcButton {
+    width: 50px;
+    height: 20px;
+    border: 1px solid #0056ff;
+    color: #0056ff;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.xcListbox .xcTime {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.floatLayer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #474444;
+    z-index: 99990;
+    top: 0px;
+    left: 0px;
+    opacity: 0.50;
+}
+
+.liadloging {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    z-index: 99995;
+}
+
+.ldlConten {
+    overflow: hidden;
+}
+
+.ldlConten img {
+    width: 80px;
+}
+
+.ldlConten p {
+    font-size: 20px;
+    color: #26a0ce;
+}
+

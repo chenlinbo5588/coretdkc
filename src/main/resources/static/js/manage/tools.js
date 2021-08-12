@@ -1,4 +1,4 @@
-
+var project ;
 $(function(){
 
     $("#toolsButton").click(function () {
@@ -21,43 +21,55 @@ $(function(){
         }else if(id=="import"){
             inputshp();
         }else if(id=="outputshp"){
-            dowloadOutputShp(projectId);
+            if(daochuStatus == false){
+                daochuStatus =true;
+                dowloadOutputShp(projectId);
+            }else{
+                showMessage('导出中，请勿重复点击s', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+            }
+
         }else if(id="outputdwg"){
-            dowloadOutputDwg(projectId);
+            if(daochuStatus == false){
+                daochuStatus =true;
+                dowloadOutputDwg(projectId);
+            }else{
+                showMessage('导出中，请勿重复点击', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+            }
+
         }
     })
 
     function createcj() {
-        drawTool.view = view;
+        drawTool.view = projectView;
         var action = drawTool.create("polyline", {mode: "click"});
         action.on("vertex-add", function (evt) {
-            dist(view, evt);
+            dist(projectView, evt);
         });
         action.on("vertex-remove", function (evt) {
-            dist(view, evt);
+            dist(projectView, evt);
         });
         action.on("cursor-update", function (evt) {
-            dist(view, evt);
+            dist(projectView, evt);
         });
         action.on("draw-complete", function (evt) {
-            dist(view, evt);
+            dist(projectView, evt);
         });
 
     }
     function createcm() {
-        drawTool.view = view;
+        drawTool.view = projectView;
         var action = drawTool.create("polygon", {mode: "click"});
         action.on("vertex-add", function (evt) {
-            lateralArea(view, evt);
+            lateralArea(projectView, evt);
         });
         action.on("vertex-remove", function (evt) {
-            lateralArea(view, evt);
+            lateralArea(projectView, evt);
         });
         action.on("cursor-update", function (evt) {
-            lateralArea(view, evt);
+            lateralArea(projectView, evt);
         });
         action.on("draw-complete", function (evt) {
-            lateralArea(view, evt);
+            lateralArea(projectView, evt);
         });
 
     }
@@ -67,41 +79,41 @@ $(function(){
     }
     $("#shpFile").unbind();
     $("#shpFile").change(function () {
-        loadshp("shpFile",view,true);
+        loadshp("shpFile",projectView,true);
     })
     $(".toolsmask").click(function () {
         $(".viewDivMapBox").hide();
         $(".toolsmask").hide();
         $("#searchBox").hide();
-        view.graphics.removeAll();
-        view.container = "projectMapBox";
+        projectView.graphics.removeAll();
+        projectView.container = "projectMapBox";
 
     })
     $(".viewDivMapTitle img").click(function () {
         $(".viewDivMapBox").hide();
         $(".mask").hide();
         $("#searchBox").hide();
-        view.graphics.removeAll();
-        view.container = "projectMapBox";
+        projectView.graphics.removeAll();
+        projectView.container = "projectMapBox";
     })
 
     function openBigMap() {
 
         openCkMap();
-        view.graphics.removeAll();
-        drawTool.view = view;
+        projectView.graphics.removeAll();
+        drawTool.view = projectView;
         var drawAction = drawTool.create("polygon", {mode: "click"});
         drawAction.on("vertex-add", function (evt) {
-            analyseM(view,evt)
+            analyseM(projectView,evt)
         });
         drawAction.on("vertex-remove" , function (evt) {
-            analyseM(view,evt)
+            analyseM(projectView,evt)
         });
         drawAction.on("cursor-update",function (evt) {
-            analyseM(view,evt)
+            analyseM(projectView,evt)
         });
         drawAction.on("draw-complete", function (evt) {
-            analyseM(view,evt)
+            analyseM(projectView,evt)
         });
 
     }

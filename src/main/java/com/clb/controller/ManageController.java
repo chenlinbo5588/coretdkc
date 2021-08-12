@@ -3,6 +3,7 @@ package com.clb.controller;
 import com.clb.entity.*;
 import com.clb.service.ProjectService;
 import com.clb.service.RiverService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +78,8 @@ public class ManageController extends BaseController {
         map.put("value",value);
         map.put("paixuTj",paixu);
         map.put("projectPage",projectPage);
+        map.put("allNumber",projectPage.getTotalElements());
+
 
         return "html/manage/index";
     }
@@ -90,10 +98,13 @@ public class ManageController extends BaseController {
     }
     @RequestMapping("/select")
     public String select(HttpServletRequest request,int id,
-                       @RequestParam(value = "page", required = false) int page,
+                       @RequestParam(value = "page", required = false,defaultValue = "0") int page,
+                         @RequestParam(value = "type", required = false) String type,
                        ModelMap map) {
         Project project = projectService.getProjectById(id);
-
+        if(type !=null){
+            map.put("type",type);
+        }
         map.put("data",project);
         map.put("page",page);
 
@@ -104,7 +115,7 @@ public class ManageController extends BaseController {
                        @RequestParam(value = "page", required = false) int page,
                        ModelMap map) {
 
-        if(project.getType() ==null){
+        if(project.getType() == null){
             project = projectService.getProjectById(project.getId());
         }else{
             projectService.saveProject(project);
@@ -139,6 +150,8 @@ public class ManageController extends BaseController {
 
         projectService.delteProjectAttachmentById(id);
         List<ProjectAttachment> projectAttachment = projectService.getProjectAttachmentsByCategroyAndId(glxmId,"project");
+
+
         map.put("project",projectAttachment);
 
         return "html/manage/fileList";
@@ -154,6 +167,11 @@ public class ManageController extends BaseController {
                 inspectionRecords = projectService.getInspectionRecordsByGlxmId(glxmId);
             }
         }
+        //更新项目巡查时间
+        Long xcdata = projectService.setLastXcdateByGlxmId(glxmId);
+        map.put("xcdate",xcdata);
+
+
         map.put("data",inspectionRecords);
         map.put("glxmId",glxmId);
         return "html/manage/xcList";
@@ -167,6 +185,11 @@ public class ManageController extends BaseController {
             projectService.saveXcjl(inspectionRecord);
             inspectionRecords = projectService.getInspectionRecordsByGlxmId(glxmId);
         }
+
+        //更新项目巡查时间
+        Long xcdata = projectService.setLastXcdateByGlxmId(glxmId);
+        map.put("xcdate",xcdata);
+
         map.put("data",inspectionRecords);
         map.put("glxmId",glxmId);
 
@@ -177,5 +200,28 @@ public class ManageController extends BaseController {
     public String add(ModelMap map) {
 
         return "html/manage/tools";
+    }
+    @RequestMapping("/export/project")
+    public void goodsExcel(HttpServletResponse response,
+                           @RequestParam(value = "value", required = false,defaultValue = "") String value
+                         ){
+
+        XSSFWorkbook wb =projectService.outputExcel(value);
+        String fileName = "项目报表.xlsx";
+        OutputStream outputStream =null;
+        try {
+            fileName = URLEncoder.encode(fileName,"UTF-8");
+            //设置ContentType请求信息格式
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+            outputStream = response.getOutputStream();
+            wb.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

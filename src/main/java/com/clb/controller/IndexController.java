@@ -1,6 +1,8 @@
 package com.clb.controller;
 
 import com.clb.dto.ArcgisTc;
+import com.clb.entity.Project;
+import com.clb.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,8 @@ import java.util.List;
 public class IndexController extends BaseController {
 
 
+    @Resource
+    ProjectService projectService;
 
     @RequestMapping("/addauth")
     public String addAuthority() {
@@ -29,15 +34,19 @@ public class IndexController extends BaseController {
     @RequestMapping("/index")
     public String index(HttpServletRequest request,ModelMap map) {
 
-        List<ArcgisTc> arcgisTcs = new ArrayList<ArcgisTc>();
+//        List<ArcgisTc> arcgisTcs = new ArrayList<ArcgisTc>();
+//
+//        arcgisTcs.add(new ArcgisTc("河道","河道水域"));
+//        arcgisTcs.add(new ArcgisTc("水库","水库"));
+//        arcgisTcs.add(new ArcgisTc("湖泊","湖泊"));
+//        arcgisTcs.add(new ArcgisTc("山塘","山塘"));
+//        arcgisTcs.add(new ArcgisTc("人工水道","人工水道"));
+//        arcgisTcs.add(new ArcgisTc("其他水域","其他水域"));
+//        map.put("data",arcgisTcs);
 
-        arcgisTcs.add(new ArcgisTc("河道","河道水域"));
-        arcgisTcs.add(new ArcgisTc("水库","水库"));
-        arcgisTcs.add(new ArcgisTc("湖泊","湖泊"));
-        arcgisTcs.add(new ArcgisTc("山塘","山塘"));
-        arcgisTcs.add(new ArcgisTc("人工水道","人工水道"));
-        arcgisTcs.add(new ArcgisTc("其他水域","其他水域"));
-        map.put("data",arcgisTcs);
+        List<Project> project= projectService.getOverTimeProject();
+        map.put("projectList",project);
+        int a = 111;
         return "html/index";
     }
 

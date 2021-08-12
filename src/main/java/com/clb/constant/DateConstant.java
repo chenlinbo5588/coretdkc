@@ -18,4 +18,6 @@ public class DateConstant {
 
     public final static String[] FX_TYPENAME = {"水域增加量","水域减少量","总体变化"};
 
+    public final static String[] PROJECT_EXCEL = {"序号","项目名称","联系人","用地面积","批准文号","最近一次巡查时间","验收时间"};
+
 }
