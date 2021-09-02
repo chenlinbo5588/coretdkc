@@ -28,7 +28,7 @@ var container = "";
 
 function defineActions(event) {
     var item = event.item;
-    if (item.title == "天地图" || item.title == "天地图标注" || item.title == "Other" || item.title == "Shuiyu" || item.title == "Bgtx" || item.title == "ditu") {
+    if (item.title == "天地图" || item.title == "天地图标注" || item.title == "Other" || item.title == "Shuiyu" || item.title == "BGTX" ) {
         layerItemList.push(item.layer);
         item.actionsSections = [
             [
@@ -39,15 +39,12 @@ function defineActions(event) {
                 }
             ]
         ];
-
         if (item.title == "Other") {
             item.title = "其他图层";
         } else if (item.title == "Shuiyu") {
             item.title = "水域图层";
-        } else if (item.title == "Bgtx") {
+        } else if (item.title == "BGTX") {
             item.title = "变更图形";
-        } else if (item.title == "ditu") {
-            item.title = "其他影像图";
         }
     }
 }
@@ -76,17 +73,23 @@ function initIndexMap() {
         "esri/geometry/support/webMercatorUtils",
         'esri/layers/support/TileInfo',
         "esri/geometry/Point",
+        "esri/identity/IdentityManager",
+        "esri/WebMap",
     ], (Map, MapView, IdentifyTask, IdentifyParameters, FeatureLayer, GraphicsLayer, Graphic, TileLayer, urlUtils, esriConfig, WebTileLayer, QueryTask, Query, MapImageLayer,
-                 FindTask, FindParameters, LayerList, Draw, SpatialReference, webMercatorUtils, TileInfo, Point) => {
-        // esriConfig.apiKey= gloablConfig.arcgisToken;
-        urlUtils.addProxyRule({
-            urlPrefix: gloablConfig.mapHost + "/arcgis", // specify resource location
-            proxyUrl: "http://" + gloablConfig.xmHost + ":" + gloablConfig.mapServerPort + "/river/proxy" // specify location of proxy file
+        FindTask, FindParameters, LayerList, Draw, SpatialReference, webMercatorUtils, TileInfo, Point, IdentityManager,WebMap) => {
+
+        // esriConfig.portalUrl = "https://j1e2z89dc5bgu24.arcgis.cn/arcgis"
+        // IdentityManager.registerToken({
+        //     server: "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services",
+        //     token: "kobCYUp9hm0vwNW_okH5imIr9l8ON5XhlAyaLFPy4sO7FUQ2EvzeGjJDyqoaJzIF2ffEm6dEIynnGi5QxrugtXV0hEjeg3HyuhMmSoohDhT3ifqRSSrnzbgCDDEPG529lvoF0W4usr51gIk4TLGqMzt0avoefobpNzaLcRdLDds."
+        // });
+        // "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/sharing/rest/content/items/c6e5e4cc2b494d4a82d264b0665d95ba"
+
+        IdentityManager.registerToken({
+            server: "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services",
+            token: gloablConfig.proToken
         });
-        urlUtils.addProxyRule({
-            urlPrefix: "www.myarcgis.com", // specify resource location
-            proxyUrl: "http://" + gloablConfig.xmHost + ":" + gloablConfig.mapServerPort + "/river/proxy" // specify location of proxy file
-        });
+        console.log(gloablConfig.proToken);
         var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
 
         var tileInfo = new TileInfo({
@@ -142,14 +145,7 @@ function initIndexMap() {
             },
         });
 
-        var ditu = new TileLayer({
-            title: "ditu",
-            url: "http://" + gloablConfig.mapHost + "/arcgis/rest/services/yx2021/yxgjc/MapServer",
-            tileInfo: tileInfo,
-            spatialReference: {
-                wkid: 4326
-            },
-        });
+
         var tiledLayer_poi = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=cva_c&X={col}&Y={row}&L={level}&tk=" + tdt_token, {
             title: "天地图标注",
             subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
@@ -246,8 +242,6 @@ function initIndexMap() {
             }
             ]
         });
-
-
 
         var other = new MapImageLayer({
 
@@ -357,11 +351,13 @@ function initIndexMap() {
 
 
         map = new Map({
-            layers: [tiledLayer, tiledLayer_poi, other, river, ditu],
+            layers: [tiledLayer, tiledLayer_poi, other, river],
             spatialReference: {
                 wkid: 4326
             },
         });
+
+
         rightmap = new Map({
             layers: [tiledLayer2, tiledLayer_poi2, bgtx],
             spatialReference: {
@@ -372,8 +368,9 @@ function initIndexMap() {
             container: "viewDiv",
             map: map,
             scale: 120000,
-            // zoom:13,
+            //
             center: [121.29207073988186, 30.245057849724848],
+            // center: [40628681.31655, 3345771.92225],
             spatialReference: {
                 wkid: 4326
             },
@@ -399,21 +396,18 @@ function initIndexMap() {
             view: view
         });
 
-        // view.on("mouse-wheel",function(evt){
-        //
-        //    console.log(view.scale);
-        //
-        // });
+
         view.on("click", function (e) {
             // geom = webMercatorUtils.xyToLngLat(e.mapPoint.x, e.mapPoint.y);
             // console.log(geom[0], geom[1]);
+            console.log(view.scale);
             console.log(e.mapPoint.x + "," + e.mapPoint.y);
             // getOpenImg(e.mapPoint.x,+e.mapPoint.y);
         });
 
         view.when(function () {
             view.on("click", executeIdentifyTask);
-            // Create identify task for the specified map service
+
 
             identifyTask = new IdentifyTask({url: gloablConfig.riverUrl});
 
@@ -425,7 +419,7 @@ function initIndexMap() {
             identifyparams.layerOption = "visible";
             identifyparams.width = view.width;
             identifyparams.height = view.height;
-            //加载layerlist
+            // 加载layerlist
             var layerList = new LayerList({
                 view: view,
                 listItemCreatedFunction: defineActions,
@@ -511,7 +505,7 @@ function loadshp(ysId, view, save) {
         'esri/Graphic',
         "esri/tasks/GeometryService",
         "esri/rest/support/ProjectParameters"
-    ], ( Color,Point,Polyline,Polygon, GraphicsLayer,Graphic,GeometryService,ProjectParameters) =>{
+    ], (Color, Point, Polyline, Polygon, GraphicsLayer, Graphic, GeometryService, ProjectParameters) => {
         //加载方法
         console.log(view.extent);
         let input = document.getElementById(ysId).files[0]; //获取导入的文件
@@ -529,10 +523,10 @@ function loadshp(ysId, view, save) {
                     var polygonPath = result.value.geometry.coordinates[0];
                     var str = polygonPath[0][0];
 
-                    if(str.toString().substring(0,2) =="40"){
+                    if (str.toString().substring(0, 2) == "40") {
                         var polygon = new Polygon({
                             rings: polygonPath,
-                            spatialReference:{
+                            spatialReference: {
                                 wkid: 4528
                             }
                         });
@@ -562,7 +556,7 @@ function loadshp(ysId, view, save) {
                                 projectView.graphics.add(gr);
                                 projectView.goTo(request[0].extent.expand(1));
                                 fxByPolygon(request[0], projectView);
-                            }else{
+                            } else {
                                 fxByPolygon(request[0], view);
                                 view.graphics.add(gr);
                                 view.goTo(request[0].extent.expand(1));
@@ -570,15 +564,15 @@ function loadshp(ysId, view, save) {
                             showMessage('加载成功', 3000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
                         });
 
-                    }else if(str.toString().substring(0,2) =="12"){
+                    } else if (str.toString().substring(0, 2) == "12") {
                         var polygon = new Polygon({
                             rings: polygonPath,
-                            spatialReference:view.spatialReference,
+                            spatialReference: view.spatialReference,
                         });
                         var gr = new Graphic({
                             geometry: polygon,
                             symbol: selectionSymbolR,
-                            spatialReference:view.spatialReference,
+                            spatialReference: view.spatialReference,
                         });
                         if (save) {
                             findHxaaAndDelete(id);
@@ -596,13 +590,13 @@ function loadshp(ysId, view, save) {
 
 
                             fxByPolygon(polygon, projectView);
-                        }else{
+                        } else {
                             fxByPolygon(polygon, view);
                             view.graphics.add(gr);
                             view.goTo(gr.geometry.extent.expand(1));
                             showMessage('加载成功', 3000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
                         }
-                    }else{
+                    } else {
                         showMessage('该shp坐标系暂不支持', 3000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
                     }
                 } else {
@@ -641,7 +635,7 @@ function showPolygon(event) {
     require([
         "esri/geometry/Polygon",
         "esri/Graphic",
-    ], (Polygon, Graphic) =>{
+    ], (Polygon, Graphic) => {
 
         var polygon = new Polygon({
             rings: event.vertices,
@@ -663,7 +657,7 @@ function fxByPolygon(polygon, fxview) {
         "esri/Graphic",
         "esri/geometry/Extent",
         "esri/geometry/SpatialReference",
-    ],(geometryEngine, Graphic,Extent,SpatialReference)=>{
+    ], (geometryEngine, Graphic, Extent, SpatialReference) => {
         identifyparams.geometry = polygon;
         sj = Date.parse(new Date()) + "" + Math.round(Math.random() * 100);
         var tempfeature = new Graphic({
@@ -673,8 +667,8 @@ function fxByPolygon(polygon, fxview) {
             }
         });
         addFeature(temppolygon, tempfeature);
-        identifyparams.mapExtent =  new Extent(180, 90, -180, -90,
-            new SpatialReference({ wkid:4326 }) );
+        identifyparams.mapExtent = new Extent(180, 90, -180, -90,
+            new SpatialReference({wkid: 4326}));
         var data = [];
         fxdata = [];
         identifyTask
@@ -710,7 +704,7 @@ function fxPolygon(event) {
         "esri/geometry/Polygon",
         "esri/geometry/geometryEngine",
         "esri/Graphic",
-    ],(Polygon, geometryEngine, Graphic)=>{
+    ], (Polygon, geometryEngine, Graphic) => {
         var polygon = new Polygon({
             rings: event.vertices,
             spatialReference: view.spatialReference,
@@ -801,7 +795,7 @@ function showfxPolygon(data, view) {
 function initLeftView(view, contain) {
     require([
         "esri/views/MapView",
-    ],(MapView)=> {
+    ], (MapView) => {
         view = new MapView({
             container: contain,
             map: map,
@@ -826,7 +820,7 @@ function initRightView(view, contain) {
 
     require([
         "esri/views/MapView",
-    ],(MapView)=> {
+    ], (MapView) => {
         view = new MapView({
             container: contain,
             map: rightmap,
@@ -841,7 +835,8 @@ function initRightView(view, contain) {
     });
     return view;
 }
-function changeProjectView(view,contain){
+
+function changeProjectView(view, contain) {
     require([
         "esri/Map",
         "esri/views/MapView",
@@ -861,7 +856,7 @@ function changeProjectView(view,contain){
     return view;
 }
 
-function initProjectView(contain,id) {
+function initProjectView(contain, id) {
 
     require([
         "esri/Map",
@@ -872,7 +867,7 @@ function initProjectView(contain,id) {
         "esri/rest/support/FindParameters",
         "esri/tasks/GeometryService",
         "esri/rest/support/ProjectParameters",
-    ], function (Map, MapView,LayerList,FeatureLayer,FindTask,FindParameters,GeometryService,ProjectParameters) {
+    ], function (Map, MapView, LayerList, FeatureLayer, FindTask, FindParameters, GeometryService, ProjectParameters) {
         projectId = id;
         hxaa = new FeatureLayer({
             url: gloablConfig.hxUrl,
@@ -917,7 +912,7 @@ function initProjectView(contain,id) {
                                 result.symbol = selectionSymbolR;
                                 result.geometry = request[0];
                                 view.graphics.add(result);
-                                container =contain;
+                                container = contain;
 
                             });
                         });
@@ -933,6 +928,7 @@ function initProjectView(contain,id) {
 $(function () {
     initIndexMap();
 })
+
 //todo
 function findHxaaAndDelete(id) {
     projectFindparams.searchText = id;
@@ -945,11 +941,12 @@ function findHxaaAndDelete(id) {
             }
         })
 }
+
 function findByIdentification(code) {
     require([
         "esri/tasks/GeometryService",
         "esri/rest/support/ProjectParameters"
-    ],(GeometryService, ProjectParameters)=>{
+    ], (GeometryService, ProjectParameters) => {
         shuiyuFindparams.searchText = code;
         shuiyuFind.execute(shuiyuFindparams)
             .then(function (response) {
@@ -979,7 +976,7 @@ function changeFindByCode(code, view1, view2) {
     require([
         "esri/tasks/GeometryService",
         "esri/rest/support/ProjectParameters"
-    ], (GeometryService, ProjectParameters)=> {
+    ], (GeometryService, ProjectParameters) => {
         view1.graphics.removeAll();
         view2.graphics.removeAll();
         findparams.searchText = code;

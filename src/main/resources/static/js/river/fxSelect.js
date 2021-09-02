@@ -85,7 +85,6 @@ $(function () {
     })
     $("#fxoutputDwg").click(function () {
         if (daochuStatus == false) {
-
             daochuStatus = true;
             dowloadOutputfxDwg(sj);
         } else {

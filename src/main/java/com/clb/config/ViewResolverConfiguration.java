@@ -26,54 +26,53 @@ public class ViewResolverConfiguration {
     @Configuration
     @ComponentScan("com.clb.config")
     public class WebConfig implements WebMvcConfigurer {
-        @Bean
-        public ViewResolver viewResolver() {
-            InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-            resolver.setPrefix("/jsp/");
-            resolver.setSuffix(".jsp");
-            resolver.setViewNames("*");
-            resolver.setOrder(2);
-            return resolver;
-        }
+//        @Bean
+//        public ViewResolver viewResolver() {
+//            InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//            resolver.setPrefix("/jsp/");
+//            resolver.setSuffix(".jsp");
+//            resolver.setViewNames("*");
+//            resolver.setOrder(2);
+//            return resolver;
+//        }
 
-        @Bean
-        public ITemplateResolver templateResolver() {
-            SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-            templateResolver.setTemplateMode("HTML5");
-            templateResolver.setPrefix("classpath:/");
-            templateResolver.setSuffix(".html");
-            templateResolver.setCharacterEncoding("utf-8");
-            templateResolver.setCacheable(false);
-            return templateResolver;
-        }
+//        @Bean
+//        public ITemplateResolver templateResolver() {
+//            SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+//            templateResolver.setTemplateMode("HTML5");
+//            templateResolver.setPrefix("classpath:/");
+//            templateResolver.setSuffix(".html");
+//            templateResolver.setCharacterEncoding("utf-8");
+//            templateResolver.setCacheable(false);
+//            return templateResolver;
+//        }
 
-        @Bean
-        public SpringTemplateEngine templateEngine() {
-            SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-            templateEngine.setTemplateResolver(templateResolver());
-            // templateEngine
-            return templateEngine;
-        }
+//        @Bean
+//        public SpringTemplateEngine templateEngine() {
+//            SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+//            templateEngine.setTemplateResolver(templateResolver());
+//            // templateEngine
+//            return templateEngine;
+//        }
         @Bean
         WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> enableDefaultServlet() {
             return (factory) -> factory.setRegisterDefaultServlet(true);
         }
 
-        @Bean
-        public ThymeleafViewResolver viewResolverThymeLeaf() {
-            ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-            viewResolver.setTemplateEngine(templateEngine());
-            viewResolver.setCharacterEncoding("utf-8");
-            viewResolver.setOrder(1);
-            viewResolver.setViewNames(new String[]{"html/*", "vue/*"});
-            return viewResolver;
-        }
+//        @Bean
+//        public ThymeleafViewResolver viewResolverThymeLeaf() {
+//            ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//            viewResolver.setTemplateEngine(templateEngine());
+//            viewResolver.setCharacterEncoding("utf-8");
+//            viewResolver.setOrder(1);
+//            viewResolver.setViewNames(new String[]{"html/*", "vue/*"});
+//            return viewResolver;
+//        }
 
         @Override
         public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
             configurer.enable();
         }
-
         @Override
         public void addResourceHandlers(ResourceHandlerRegistry registry) {
             //registry.addResourceHandler("/img/**").addResourceLocations("classpath:/img/");

@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 @Data
 public class ArcgisConfig {
 
+    @Value("${arcgis.prourl}")
+    private String prourl;
+
     @Value("${arcgis.host}")
-    private String arcgisMapHost;
+    private String ip;
 
-    @Value("${arcgis.mapServerName}")
-    private String appMapServerName;
-
+    @Value("${project.host}")
+    private String appHost;
 
 }

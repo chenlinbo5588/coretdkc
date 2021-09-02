@@ -1,6 +1,9 @@
 package com.clb.controller;
 
+import com.clb.dto.ArcgisToken;
+import com.clb.service.ArcgisClient;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +15,10 @@ import java.util.Map;
 @ControllerAdvice
 @Data
 public class MapControllerAdvice {
+
+    @Autowired
+    ArcgisClient arcgisClient;
+
 
     @Value("${arcgis.host}")
     private String arcgisMapHost;
@@ -59,6 +66,15 @@ public class MapControllerAdvice {
     @Value("${arcgis.geometryServerUrl}")
     private String geometryServerUrl;
 
+    @Value("${arcgis.token.username}")
+    private String username;
+
+    @Value("${arcgis.token.password}")
+    private String password;
+
+    @Value("${arcgis.token.referer}")
+    private String referer;
+
     @ModelAttribute(value = "mapConfig")
     public Map<String, Object> mydata() {
         Map<String, Object> map = new HashMap<>();
@@ -80,9 +96,12 @@ public class MapControllerAdvice {
         map.put("riverQzjUrl", riverQzjUrl);
         map.put("geometryServerUrl", geometryServerUrl);
 
+        ArcgisToken token = arcgisClient.fetchToken(username,password,referer);
 
+        map.put("token",token.getToken());
         return map;
     }
+
 
 //    @ModelAttribute
 //    public String maphost(Model model)

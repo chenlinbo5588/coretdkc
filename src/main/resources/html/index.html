@@ -22,7 +22,7 @@
         hxSearchUrl:[[${mapConfig.hxSearchUrl}]],
         hxUrl:[[${mapConfig.hxUrl}]],
         geometryServerUrl:[[${mapConfig.geometryServerUrl}]],
-
+        proToken:[[${mapConfig.token}]]
     }
     var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
 </script>
@@ -102,7 +102,7 @@
         <div class="xcListbox" id="xcListbox" style="display: none;">
             <div class="xcTitle">
                 <img src="/static/img/xctx.png">
-                <div class="">巡查提醒</div>    
+                <div class="">巡查提醒</div>
             </div>
             <div class="xcListItem" th:each="item,stat:${projectList}" >
                 <div class="boxh">

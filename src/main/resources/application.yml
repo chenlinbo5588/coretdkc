@@ -5,24 +5,45 @@ op: "*"
 
 
 arcgis:
+  prourl: j1e2z89dc5bgu24.arcgis.cn
   host: 192.168.5.120
   mapServerName: river
   username: yzb
   password: 123123
-  outputDwgUrl: http://192.168.5.120/arcgis/rest/services/outputCAD/GPServer/outputCAD
-  outputDwgDownloadUrl: http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputCAD_gpserver/
-  outputallDwgUrl: http://192.168.5.120/arcgis/rest/services/outputAllDwg/GPServer/outputCadPolygon/
-  featureToCadDownloadUrl:  http://192.168.5.120/arcgis/rest/directories/arcgisjobs/featuretocad_gpserver/
-  featureToCadurl: http://192.168.5.120/arcgis/rest/services/featureToCad/GPServer/featureToCad
-  geometryServerUrl: http://192.168.5.120/arcgis/rest/services/Utilities/Geometry/GeometryServer
+  outputDwgUrl: https://test.sy/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
+  outputDwgDownloadUrl:  http://test.sy:8080/download/
+  outputallDwgUrl:  https://test.sy/arcgis/rest/services/tools/outputPolygon/GPServer/outputCadPolygon
+  featureToCadDownloadUrl:  http://test.sy:8080/download/
+  featureToCadurl: https://test.sy/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
+  geometryServerUrl: https://test.sy/arcgis/rest/services/Utilities/Geometry/GeometryServer
+#  outputDwgUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
+#  outputDwgDownloadUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/directories/arcgisjobs/tools/outputCAD_gpserver/
+#  outputallDwgUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCadPolygon/GPServer/outputCadPolygon
+#  featureToCadDownloadUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/directories/arcgisjobs/tools/featuretocad_gpserver/
+#  featureToCadurl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
+#  geometryServerUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/Utilities/Geometry/GeometryServer
+
+
   featureUrl:
-    temppolygonUrl: http://192.168.5.120/arcgis/rest/services/river/temp/FeatureServer/0
-    riverUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer
-    riverQzjUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu2/MapServer
-    otherUrl: http://192.168.5.120/arcgis/rest/services/river/other/MapServer
-    bgtxUrl: http://192.168.5.120/arcgis/rest/services/river/bgtx/MapServer
-    hxUrl: http://192.168.5.120/arcgis/rest/services/river/hxaa/FeatureServer/0
-    hxSearchUrl:  http://192.168.5.120/arcgis/rest/services/river/hxaa/MapServer
+    temppolygonUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
+    riverUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu/MapServer
+    riverQzjUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu2/MapServer
+    otherUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/qt/MapServer
+    bgtxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/BGTX/MapServer
+    hxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/FeatureServer/0
+    hxSearchUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/MapServer
+#    temppolygonUrl: http://192.168.5.120/arcgis/rest/services/river/temp/FeatureServer/0
+#    riverUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer
+#    riverQzjUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu2/MapServer
+#    otherUrl: http://192.168.5.120/arcgis/rest/services/river/other/MapServer
+#    bgtxUrl: http://192.168.5.120/arcgis/rest/services/river/bgtx/MapServer
+#    hxUrl: http://192.168.5.120/arcgis/rest/services/river/hxaa/FeatureServer/0
+#    hxSearchUrl:  http://192.168.5.120/arcgis/rest/services/river/hxaa/MapServer
+  token:
+    username: siteadmin
+    password: d/AyzpE4K+tj+oPt+6zRBQ==
+    #password: kGGHjSUL0cAUij1rDbNJbg==
+    referer: 192.168.5.120:8080/index
 
 project:
   host: 192.168.5.120
@@ -61,9 +82,9 @@ file:
     path: D:/uploadFile/
 
 spring:
-  mvc:
-  suffix: .jsp
-  prefix: classpath:/jsp/
+#  mvc:
+#  suffix: .jsp
+#  prefix: classpath:/jsp/
   main:
     allow-bean-definition-overriding: true
   servlet:
@@ -96,7 +117,7 @@ spring:
     mode: HTML
     encoding: UTF-8
     suffix: .html
-    prefix: classpath:/html/
+    prefix: classpath:/
   jackson:
     date-format:   yyyy-MM-dd HH:mm:ss
     time-zone:   GMT+8

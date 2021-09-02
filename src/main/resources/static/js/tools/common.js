@@ -360,7 +360,6 @@ function initLayerList(view, contain, boxcontain, position) {
 function openCkMap() {
 
 
-    $(".infoList").empty();
     $("#fxList").hide();
 
     if (container == "viewDivMap") {
@@ -370,7 +369,7 @@ function openCkMap() {
         $(".toolsmask").show();
         $("#searchBox").css("position", "static");
         $("#searchBox").show();
-        projectView =  changeProjectView(projectView,"viewDivMap");
+        projectView = changeProjectView(projectView, "viewDivMap");
         initTools(projectView, 'searchBox', 'top-left');
         initTools(projectView, 'toolsBox', 'top-right');
         initLayerList(projectView, 'shuiyu', 'bottomRightBox', 'bottom-right');
@@ -413,8 +412,8 @@ function dowloadOutputShp(id) {
                 polygon: 'hxpolygon'
             }
         };
-        const query = new Query();
-        query.where = "projectId =" + id;
+        var query = new Query();
+        query.where = "projectId = '" + id + "'";
         query.returnGeometry = true;
         hxaa.queryFeatures(query).then(function (results) {
             console.log(results);
@@ -425,6 +424,7 @@ function dowloadOutputShp(id) {
                 showMessage('未导入红线,请先导入红线', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
             }
             daochuStatus = false;
+
         });
     });
 }
@@ -437,7 +437,7 @@ function outputMap(id) {
         if (daochuStatus == false) {
             daochuStatus = true;
             const query = new Query();
-            query.where = "projectId =" + id;
+            query.where = "projectId = '" + id + "'";
             query.returnGeometry = true;
             var polygon;
             hxaa.queryFeatures(query).then(function (results) {
@@ -480,7 +480,7 @@ function dowloadOutputfxDwg(sj) {
         var flag = 0;
         var featureSet = new FeatureSet();
         featureSets = [new FeatureSet(), new FeatureSet(), new FeatureSet(), new FeatureSet(), new FeatureSet(), new FeatureSet()];
-        //http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputCAD_gpserver/j48042049f1dd4cc8a5aa3cf5d1038a3e/scratch/ExportCAD.DWG
+
         var gp = new Geoprocessor(outputGpurl);
         var featuregp = new Geoprocessor(featureToCadurl);
         var params = {
@@ -488,9 +488,9 @@ function dowloadOutputfxDwg(sj) {
             // outputFile: "分析图形",
             f: "JSON",
         };
+        console.log(params);
 
         var outputString = ["outputrv", "outputac", "outputhp", "outputlk", "outputow", "outputrs"];
-
         showMessage('导出中,需要大概几分钟时间,请耐心等待', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
         gp.submitJob(params).then(function (gpjobInfo) {
             const jobid = gpjobInfo.jobId;
@@ -513,8 +513,10 @@ function dowloadOutputfxDwg(sj) {
                             if (flag == 6) {
                                 var params2 = {
                                     inputFeature: JSON.stringify(featureSet),
+                                    daochuUrl: "/home/arcgis/download/" + gpjobInfo.jobId,
                                     f: "JSON",
                                 };
+
                                 featuregp.submitJob(params2).then(function (featuregpjobInfo) {
                                     const options2 = {
                                         interval: 1500,
@@ -524,11 +526,12 @@ function dowloadOutputfxDwg(sj) {
                                     };
                                     featuregpjobInfo.waitForJobCompletion(options2).then((repo) => {
                                         if (repo.jobStatus == "job-succeeded") {
-                                            downloadurl = downloadurl + repo.jobId + "/scratch/导出cad.dwg";
+                                            var url = downloadurl + gpjobInfo.jobId + ".DWG";
+                                            console.log(url);
                                             var a = document.createElement("a");
                                             a.setAttribute("id", "download");
                                             document.body.appendChild(a);
-                                            var triggerDownload = $("#download").attr("href", downloadurl).attr("download", "分析图形.dwg");
+                                            var triggerDownload = $("#download").attr("href", url).attr("download", "分析图形.dwg");
                                             triggerDownload[0].click();
                                             document.body.removeChild(a);
 
@@ -570,7 +573,7 @@ function dowloadOutputDwg(id) {
             projectId: id,
         };
         var query = new Query();
-        query.where = "projectId =" + id;
+        query.where = "projectId = '" + id + "'";
         query.returnGeometry = true;
         hxaa.queryFeatures(query).then(function (results) {
             if (results.features.length > 0) {
@@ -583,7 +586,7 @@ function dowloadOutputDwg(id) {
                         }
                     };
                     gpjobInfo.waitForJobCompletion(gpoptions).then((request) => {
-                        daochuStatus =false;
+                        daochuStatus = false;
                         if (request.jobStatus == "job-succeeded") {
                             downloadurl = downloadurl + request.jobId + "/scratch/导出红线.DWG";
                             var a = document.createElement("a");
@@ -596,7 +599,7 @@ function dowloadOutputDwg(id) {
                     });
                 });
             } else {
-                daochuStatus =false;
+                daochuStatus = false;
                 showMessage('未导入红线,请先导入红线', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
             }
         });

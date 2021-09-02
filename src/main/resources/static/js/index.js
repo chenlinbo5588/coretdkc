@@ -53,14 +53,26 @@ $(function () {
     $("#qinkong").click(function () {
         $("#searchInput").val("");
         $("#qinkong").hide();
-        $(".infoList").empty();
+        $(".infoList").each(function (){
+            var id = $(this).attr("id");
+            if(id =='back' || id =='close' ){
+            }else{
+                $(this).empty();
+            }
+        });
         $(".infoList").hide();
 
     })
     $("#searchButton").click(function () {
         var value = $("#searchInput").val();
         if (value == "") {
-            $(".infoList").empty();
+            $(".infoList").each(function (){
+                var id = $(this).attr("id");
+                if(id =='back' || id =='close' ){
+                }else{
+                    $(this).empty();
+                }
+            });
             $(".infoList").hide();
         } else {
             $.get(BASE_URL + "river/indexSearch?value=" + value, function (resp) {

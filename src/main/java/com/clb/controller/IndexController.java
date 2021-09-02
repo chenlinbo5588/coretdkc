@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,13 +49,17 @@ public class IndexController extends BaseController {
 
         List<Project> project= projectService.getOverTimeProject();
         map.put("projectList",project);
-        int a = 111;
         return "html/index";
     }
-
+    @RequestMapping("/test")
+    public String test(ModelMap map)  {
+      return "html/river/test";
+    }
     @RequestMapping("/river/proxy")
-    public String proxy(HttpServletRequest request) {
-        return "proxy";
+    public void  proxy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.getRequestDispatcher("/jsp/proxy.jsp").forward(request,response);
+
     }
 
     @RequestMapping("/tools/getriverImg")
