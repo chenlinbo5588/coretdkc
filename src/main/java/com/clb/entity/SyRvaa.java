@@ -15,7 +15,7 @@ public class SyRvaa {
     private String code;
     private String city;
     private String county;
-    private String length;
+    private Double length;
     private String width;
     private String sname;
     private String ename;

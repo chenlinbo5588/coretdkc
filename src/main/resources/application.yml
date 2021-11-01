@@ -5,17 +5,16 @@ op: "*"
 
 
 arcgis:
-  prourl: j1e2z89dc5bgu24.arcgis.cn
-  host: 192.168.5.120
-  mapServerName: river
-  username: yzb
-  password: 123123
-  outputDwgUrl: https://test.sy/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
-  outputDwgDownloadUrl:  http://test.sy:8080/download/
-  outputallDwgUrl:  https://test.sy/arcgis/rest/services/tools/outputPolygon/GPServer/outputCadPolygon
-  featureToCadDownloadUrl:  http://test.sy:8080/download/
-  featureToCadurl: https://test.sy/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
-  geometryServerUrl: https://test.sy/arcgis/rest/services/Utilities/Geometry/GeometryServer
+#  prourl: gis2.sy.gov
+#  host: gis2.sy.gov
+  prourl: gis2.sy.gov
+  host: gis2.sy.gov
+  outputDwgUrl: https://gis2.sy.gov/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
+  outputDwgDownloadUrl:  http://www.myarcgis.com/download/
+  outputallDwgUrl:  https://gis2.sy.gov/arcgis/rest/services/tools/outputPolygon/GPServer/outputCadPolygon
+  featureToCadDownloadUrl:  http://www.myarcgis.com/download/
+  featureToCadurl: https://gis2.sy.gov/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
+  geometryServerUrl: https://gis2.sy.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer
 #  outputDwgUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
 #  outputDwgDownloadUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/directories/arcgisjobs/tools/outputCAD_gpserver/
 #  outputallDwgUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCadPolygon/GPServer/outputCadPolygon
@@ -25,28 +24,28 @@ arcgis:
 
 
   featureUrl:
-    temppolygonUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
-    riverUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu/MapServer
-    riverQzjUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu2/MapServer
-    otherUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/qt/MapServer
-    bgtxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/BGTX/MapServer
-    hxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/FeatureServer/0
+    temppolygonUrl: https://gis2.sy.gov/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
+    riverUrl: https://gis2.sy.gov/arcgis/rest/services/SY/shuiyu/MapServer
+    riverQzjUrl: https://gis2.sy.gov/arcgis/rest/services/SY/shuiyu2/MapServer
+    otherUrl: https://gis2.sy.gov/arcgis/rest/services/SY/qt/MapServer
+    bgtxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/BGTX/MapServer
+    hxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/HXAA/FeatureServer/0
     hxSearchUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/MapServer
-#    temppolygonUrl: http://192.168.5.120/arcgis/rest/services/river/temp/FeatureServer/0
-#    riverUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu/MapServer
-#    riverQzjUrl: http://192.168.5.120/arcgis/rest/services/river/shuiyu2/MapServer
-#    otherUrl: http://192.168.5.120/arcgis/rest/services/river/other/MapServer
-#    bgtxUrl: http://192.168.5.120/arcgis/rest/services/river/bgtx/MapServer
-#    hxUrl: http://192.168.5.120/arcgis/rest/services/river/hxaa/FeatureServer/0
-#    hxSearchUrl:  http://192.168.5.120/arcgis/rest/services/river/hxaa/MapServer
+#    temppolygonUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/temp/FeatureServer/0
+#    riverUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/shuiyu/MapServer
+#    riverQzjUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/shuiyu2/MapServer
+#    otherUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/other/MapServer
+#    bgtxUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/bgtx/MapServer
+#    hxUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/hxaa/FeatureServer/0
+#    hxSearchUrl:  http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/hxaa/MapServer
   token:
     username: siteadmin
     password: d/AyzpE4K+tj+oPt+6zRBQ==
     #password: kGGHjSUL0cAUij1rDbNJbg==
-    referer: 192.168.5.120:8080/index
+    referer: gis2.sy.gov/index
 
 project:
-  host: 192.168.5.120
+  host: gis2.sy.gov
 
 
 # config start
@@ -94,9 +93,10 @@ spring:
   application:
     name: coretdkcSystem
   datasource:
-    url: jdbc:postgresql://192.168.5.120:5432/river?useUnicode=true&characterEncoding=utf-8
-    username: yzb
-    password: 123123
+    url: jdbc:postgresql://localhost:5432/sy
+#    url: jdbc:postgresql://j1e2z89dc5bgu24.arcgis.cn:5432/shuiyu
+    username: sde
+    password: sde123
     driverClassName: org.postgresql.Driver
   jpa:
     show-sql: true

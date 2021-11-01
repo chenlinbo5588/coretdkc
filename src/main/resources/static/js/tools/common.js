@@ -437,7 +437,7 @@ function outputMap(id) {
         if (daochuStatus == false) {
             daochuStatus = true;
             const query = new Query();
-            query.where = "projectId = '" + id + "'";
+            query.where = "projectId ='" + id +"'";
             query.returnGeometry = true;
             var polygon;
             hxaa.queryFeatures(query).then(function (results) {
@@ -513,7 +513,7 @@ function dowloadOutputfxDwg(sj) {
                             if (flag == 6) {
                                 var params2 = {
                                     inputFeature: JSON.stringify(featureSet),
-                                    daochuUrl: "/home/arcgis/download/" + gpjobInfo.jobId,
+                                    daochuUrl: "D:/project/sdk/4.20/4.20/download/" + gpjobInfo.jobId,
                                     f: "JSON",
                                 };
 
@@ -571,6 +571,7 @@ function dowloadOutputDwg(id) {
         var gp = new Geoprocessor(outputGpurl);
         var params = {
             projectId: id,
+            daochuUrl: "D:/project/sdk/4.20/4.20/download/红线"+id,
         };
         var query = new Query();
         query.where = "projectId = '" + id + "'";
@@ -588,7 +589,7 @@ function dowloadOutputDwg(id) {
                     gpjobInfo.waitForJobCompletion(gpoptions).then((request) => {
                         daochuStatus = false;
                         if (request.jobStatus == "job-succeeded") {
-                            downloadurl = downloadurl + request.jobId + "/scratch/导出红线.DWG";
+                            downloadurl = downloadurl + "红线"+id+".dwg";
                             var a = document.createElement("a");
                             a.setAttribute("id", "download");
                             document.body.appendChild(a);
@@ -632,7 +633,7 @@ function getOpenImg(x, y) {
         var param = river.createExportImageParameters(result.extent, 1700, 1000);
 
         //url需修改
-        var url = "http://192.168.5.120:8080/river/proxy?http://192.168.5.120/arcgis/rest/services/river/shuiyu2/MapServer/export?bbox=" + param.bbox + "&bboxSR=" + param.bboxSR + "&dpi=96&f=image&gdbVersion=" + param.gdbVersion + "&imageSR=" + param.imageSR + "&size=" + param.size + "&transparent=" + param.transparent;
+        var url = "http://gis2.sy.gov:8080/river/proxy?http://gis2.sy.gov/arcgis/rest/services/SY/shuiyu2/MapServer/export?bbox=" + param.bbox + "&bboxSR=" + param.bboxSR + "&dpi=96&f=image&gdbVersion=" + param.gdbVersion + "&imageSR=" + param.imageSR + "&size=" + param.size + "&transparent=" + param.transparent;
         window.location = url;
 
     });

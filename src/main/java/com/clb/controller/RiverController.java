@@ -104,6 +104,7 @@ public class RiverController extends BaseController {
             case DateConstant.RV_LAYER_ID:
                 SyRvaa syRvaa = riverService.getRvaaByIdentification(identification);
                 map.put("data",syRvaa);
+                System.out.println(syRvaa.getName());
                 break;
             case  DateConstant.RS_LAYER_ID:
                 SyRsaa syRsaa = riverService.getRsaaByIdentification(identification);
@@ -127,6 +128,8 @@ public class RiverController extends BaseController {
                 break;
         }
         map.put("layerId",layerId);
+        System.out.println(layerId);
+
         return "html/river/info";
     }
 

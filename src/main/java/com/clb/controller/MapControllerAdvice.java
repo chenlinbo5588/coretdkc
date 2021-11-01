@@ -23,9 +23,6 @@ public class MapControllerAdvice {
     @Value("${arcgis.host}")
     private String arcgisMapHost;
 
-    @Value("${arcgis.mapServerName}")
-    private String appMapServerName;
-
     @Value("${server.port}")
     private String port;
 
@@ -79,7 +76,7 @@ public class MapControllerAdvice {
     public Map<String, Object> mydata() {
         Map<String, Object> map = new HashMap<>();
         map.put("host", arcgisMapHost);
-        map.put("mapServerName", appMapServerName);
+
         map.put("port", port);
         map.put("xmhost", xmHost);
         map.put("outputDwgUrl", outputDwgUrl);
@@ -97,8 +94,8 @@ public class MapControllerAdvice {
         map.put("geometryServerUrl", geometryServerUrl);
 
         ArcgisToken token = arcgisClient.fetchToken(username,password,referer);
-
         map.put("token",token.getToken());
+
         return map;
     }
 

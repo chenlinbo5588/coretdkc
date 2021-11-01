@@ -25,25 +25,25 @@ $(function() {
         "esri/layers/FeatureLayer",
     ],  (LayerList,TimeSlider,TimeExtent,FeatureLayer)=> {
 
-        var timeSlider = new TimeSlider({
-            container: "timeSlider",
-            view: leftView,
-            mode: "time-window",
-            timeVisible: false, // show the time stamps on the timeslider
-            loop: false,
-            layout:"compact",
-            fullTimeExtent: {
-                start: new Date(2011, 2, 3),
-                end: new Date(2022, 2, 5)
-            },
-            timeExtent: {
-                start: new Date(2011, 2, 1),
-                end: new Date(2022, 2, 28)
-            }
-        });
-        timeSlider.watch("timeExtent", (timeExtent) => {
-            console.log("Time extent now starts at", timeExtent.start, "and finishes at:", timeExtent.end);
-        });
+        // var timeSlider = new TimeSlider({
+        //     container: "timeSlider",
+        //     view: leftView,
+        //     mode: "time-window",
+        //     timeVisible: false, // show the time stamps on the timeslider
+        //     loop: false,
+        //     layout:"compact",
+        //     fullTimeExtent: {
+        //         start: new Date(2011, 2, 3),
+        //         end: new Date(2022, 2, 5)
+        //     },
+        //     timeExtent: {
+        //         start: new Date(2011, 2, 1),
+        //         end: new Date(2022, 2, 28)
+        //     }
+        // });
+        // timeSlider.watch("timeExtent", (timeExtent) => {
+        //     console.log("Time extent now starts at", timeExtent.start, "and finishes at:", timeExtent.end);
+        // });
 
 
         var layerList = new LayerList({

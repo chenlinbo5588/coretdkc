@@ -50,10 +50,7 @@ public class UploadController {
     @Resource
     ProjectService projectService;
 
-    @GetMapping("/")
-    public String uploadPage() {
-        return "html/upload";
-    }
+
  
     @PostMapping("/upload")
     public String create(HttpServletResponse response,HttpServletRequest request) throws IOException {

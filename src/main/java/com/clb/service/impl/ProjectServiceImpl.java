@@ -44,7 +44,6 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     ProjectAttachmentRepository projectAttachmentRepository;
 
-
     @Autowired
     RestTemplate restTemplate;
 
@@ -59,8 +58,8 @@ public class ProjectServiceImpl implements ProjectService {
     public Page<Project> getallProject(String value){
         Pageable pageable = PageRequest.of(0, projectNumber);
         String filer = "pname=like="+value +",pfwh=like="+ value;
-        Specification<Project> specification = RSQLJPASupport.<Project>toSpecification(filer).and(toSort("id,asc"));
-        return dealPage(projectRepository.findAll(specification,pageable));
+        Specification<Project> specification = RSQLJPASupport.<Project>toSpecification(filer);
+        return projectRepository.findAll(specification,pageable);
     }
     public Page<Project> getallProject(int page){
         Pageable pageable = PageRequest.of(page, projectNumber);
@@ -91,19 +90,27 @@ public class ProjectServiceImpl implements ProjectService {
         if (projects.getContent().size()>0){
             for (int i=0;i<projects.getContent().size();i++) {
                 long data = System.currentTimeMillis() / 1000;
-                if((data - projects.getContent().get(i).getXcdate())< DateConstant.ONE_MONTH_SECONDS * 3){
-                    projects.getContent().get(i).setJsd("lv");
-                }else if((data - projects.getContent().get(i).getXcdate())>DateConstant.ONE_MONTH_SECONDS  * 3 && (data - projects.getContent().get(i).getXcdate())<DateConstant.ONE_MONTH_SECONDS * 6){
-                    projects.getContent().get(i).setJsd("huang");
-                }else if((data - projects.getContent().get(i).getXcdate())>DateConstant.ONE_MONTH_SECONDS * 6){
+                if(projects.getContent().get(i).getXcdate() !=null){
+                    if((data - projects.getContent().get(i).getXcdate())< DateConstant.ONE_MONTH_SECONDS * 3){
+                        projects.getContent().get(i).setJsd("lv");
+                    }else if((data - projects.getContent().get(i).getXcdate())>DateConstant.ONE_MONTH_SECONDS  * 3 && (data - projects.getContent().get(i).getXcdate())<DateConstant.ONE_MONTH_SECONDS * 6){
+                        projects.getContent().get(i).setJsd("huang");
+                    }else if((data - projects.getContent().get(i).getXcdate())>DateConstant.ONE_MONTH_SECONDS * 6){
+                        projects.getContent().get(i).setJsd("hong");
+                    }
+                    long xcdata = projects.getContent().get(i).getXcdate();
+                    projects.getContent().get(i).setZjxcsj(sdf.format(xcdata*1000));
+                }else{
                     projects.getContent().get(i).setJsd("hong");
                 }
-                long xcdata = projects.getContent().get(i).getXcdate();
-                long ysdata = projects.getContent().get(i).getYsdate();
-                if(xcdata !=0){
-                    projects.getContent().get(i).setZjxcsj(sdf.format(xcdata*1000));
+
+                if(projects.getContent().get(i).getYsdate() !=null){
+                    long ysdata = projects.getContent().get(i).getYsdate();
+                    projects.getContent().get(i).setYssj(sdf.format(ysdata*1000));
+                }else{
+                    projects.getContent().get(i).setYssj(sdf.format(0));
                 }
-                projects.getContent().get(i).setYssj(sdf.format(ysdata*1000));
+
             }
         }
         return projects;
@@ -123,26 +130,23 @@ public class ProjectServiceImpl implements ProjectService {
 
     public void saveProject(Project project){
 
-        if(project.getXcdateS()!=null ){
-            project.setXcdate( (project.getXcdateS().getTime() /1000));
-        }else{
-            project.setXcdate(Long.valueOf(0));
+        if(project.getYsdateS() != null ){
+            project.setYsdate(project.getYsdateS().getTime()/1000);
         }
-        if(project.getYsdateS() !=null){
-            project.setYsdate( (project.getYsdateS().getTime() /1000));
-        }else{
-            project.setYsdate(Long.valueOf(0));
+        if(project.getXcdateS() !=null){
+            project.setXcdate(project.getXcdateS().getTime()/1000);
         }
+
         projectRepository.save(project);
     }
     public Project getProjectById(int id){
 
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         Project project = projectRepository.findAllById(Collections.singleton(id)).get(0);
-        if(project.getXcdate() !=0 ){
+        if(project.getXcdate() !=null ){
             project.setXcdateS(Date.valueOf(sdf.format(project.getXcdate()*1000)));
         }
-        if(project.getYsdate() !=0){
+        if(project.getYsdate() !=null){
             project.setYsdateS(Date.valueOf(sdf.format(project.getYsdate()*1000)));
         }
         return project;

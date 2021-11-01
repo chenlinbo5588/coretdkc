@@ -28,7 +28,7 @@ var container = "";
 
 function defineActions(event) {
     var item = event.item;
-    if (item.title == "天地图" || item.title == "天地图标注" || item.title == "Other" || item.title == "Shuiyu" || item.title == "BGTX" ) {
+    if (item.title == "天地图" || item.title == "天地图标注" || item.title == "Qt" || item.title == "Shuiyu" || item.title == "BGTX" ) {
         layerItemList.push(item.layer);
         item.actionsSections = [
             [
@@ -39,7 +39,7 @@ function defineActions(event) {
                 }
             ]
         ];
-        if (item.title == "Other") {
+        if (item.title == "Qt") {
             item.title = "其他图层";
         } else if (item.title == "Shuiyu") {
             item.title = "水域图层";
@@ -86,7 +86,7 @@ function initIndexMap() {
         // "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/sharing/rest/content/items/c6e5e4cc2b494d4a82d264b0665d95ba"
 
         IdentityManager.registerToken({
-            server: "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services",
+            server: "https://gis2.sy.gov/arcgis/rest/services",
             token: gloablConfig.proToken
         });
         console.log(gloablConfig.proToken);
@@ -168,7 +168,7 @@ function initIndexMap() {
 
         temppolygon = new FeatureLayer({
             url: gloablConfig.temppolygonUrl,
-            title: "水准点",
+
         });
 
         river = new MapImageLayer({
@@ -292,7 +292,7 @@ function initIndexMap() {
                 visible: false,
             }, {
                 title: "水准点",
-                id: 2,
+                id: 0,
                 visible: false,
             }]
         });
@@ -481,11 +481,15 @@ function initIndexMap() {
                         var identification = result.attributes.identification;
                         view.goTo(result.geometry.extent.expand(1)).then(function () {
                             $.get(BASE_URL + "river/water/info/ic?identification=" + identification + "&layerId=" + layerId, function (resp) {
+
+
                                 $(".infoList").hide();
                                 $("#close").show();
                                 $("#infoDetail").show();
                                 $("#infoDetail").html(resp);
                             })
+                            result.symbol = selectionSymbolR;
+                            view.graphics.add(result);
                         });
                     }
                     $("#viewDiv").css("cursor", "auto");
@@ -959,6 +963,7 @@ function findByIdentification(code) {
                         outSpatialReference: view.spatialReference,
                     });
                     geomSer.project(params).then(function (request) {
+                        view.graphics.removeAll();
                         view.goTo(request[0].extent.expand(1)).then(function () {
                             result.symbol = selectionSymbolR;
                             result.geometry = request[0];

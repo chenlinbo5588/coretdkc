@@ -48,6 +48,7 @@ public class RiverWebApplication  extends SpringBootServletInitializer {
 	}
 	 */
 
+/*
 	@Bean
 	public ApplicationRunner calculationRunner(Calculator calculator,
 											   @Value("${lhs}") int lhs,
@@ -55,6 +56,7 @@ public class RiverWebApplication  extends SpringBootServletInitializer {
 											   @Value("${op}") char op) {
 		return args -> calculator.calculate(lhs, rhs, op);
 	}
+*/
 
 
 }

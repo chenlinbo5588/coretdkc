@@ -34,7 +34,7 @@ public class IndexController extends BaseController {
     }
 
 
-    @RequestMapping("/index")
+    @RequestMapping({"/", "/index"})
     public String index(HttpServletRequest request,ModelMap map) {
 
 //        List<ArcgisTc> arcgisTcs = new ArrayList<ArcgisTc>();

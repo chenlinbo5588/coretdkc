@@ -35,30 +35,30 @@ public class RiverConfig {
 //
 //
 
-    @Bean
-    public RestTemplate getRestTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-        SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
-            @Override
-            public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-                return true;
-            }
-        }).build();
+        @Bean
+        public RestTemplate getRestTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
+                @Override
+                public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+                    return true;
+                }
+            }).build();
 
-        SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext,
-                new String[]{"TLSv1"},
-                null,
-                NoopHostnameVerifier.INSTANCE);
+            SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext,
+                    new String[]{"TLSv1"},
+                    null,
+                    NoopHostnameVerifier.INSTANCE);
 
-        CloseableHttpClient httpClient = HttpClients.custom()
-                .setSSLSocketFactory(csf)
-                .build();
+            CloseableHttpClient httpClient = HttpClients.custom()
+                    .setSSLSocketFactory(csf)
+                    .build();
 
-        HttpComponentsClientHttpRequestFactory requestFactory =
-                new HttpComponentsClientHttpRequestFactory();
+            HttpComponentsClientHttpRequestFactory requestFactory =
+                    new HttpComponentsClientHttpRequestFactory();
 
-        requestFactory.setHttpClient(httpClient);
-        RestTemplate restTemplate = new RestTemplate(requestFactory);
-        return restTemplate;
-    }
+            requestFactory.setHttpClient(httpClient);
+            RestTemplate restTemplate = new RestTemplate(requestFactory);
+            return restTemplate;
+        }
 
 }
