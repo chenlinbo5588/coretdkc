@@ -171,6 +171,7 @@ public class RiverController extends BaseController {
                    SyRvaa syRvaa  =riverService.getRvaaByIdentification(list.get(i).getIdentification());
                    if(syRvaa !=null){
                        syRvaa.setIntersectionArea(list.get(i).getArea());
+                       syRvaa.setIntersectionLength((float) (list.get(i).getArea()/(Double.valueOf(syRvaa.getArea())*1000000)*syRvaa.getLength()*1000));
                        syRvaa.setLayerId(Integer.parseInt(list.get(i).getLayerId()));
                        syRvaas.add(syRvaa);
                    }

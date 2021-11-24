@@ -82,6 +82,8 @@
 .fxclick{
     cursor: pointer;
     color: #6e8cca;
+    width: 65px;
+    text-align: center;
 }
 div[name="itemClick"]{
     cursor: pointer;

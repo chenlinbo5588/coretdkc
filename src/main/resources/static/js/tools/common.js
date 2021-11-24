@@ -159,6 +159,73 @@ function lateralArea(view, evt) {
     });
 }
 
+function drawPolygon(evt) {
+    require([
+        "esri/geometry/Polyline",
+        "esri/geometry/Point",
+        "esri/Graphic",
+        "esri/geometry/geometryEngine",
+        "esri/geometry/Polygon",
+    ], (Polyline, Point, Graphic, geometryEngine, Polygon) => {
+        view.graphics.removeAll();
+        var polygon = new Polygon({
+            rings: evt.vertices,
+            spatialReference: view.spatialReference
+        });
+        const lineSymbol = {
+            type: "simple-line", // autocasts as SimpleLineSymbol()
+            color: [226, 119, 40],
+            width: 4
+        };
+        var graphic = new Graphic({
+            geometry: polygon,
+            symbol: lineSymbol
+        });
+        if (evt.type == "draw-complete") {
+            graphicsLayer.add(graphic);
+            drawTool.destroy();
+        } else {
+            view.graphics.add(graphic);
+        }
+
+
+    });
+}
+
+function drawPoint(evt) {
+    require([
+        "esri/geometry/Polyline",
+        "esri/Graphic",
+        "esri/geometry/geometryEngine",
+        "esri/geometry/Point"
+    ], (Polyline, Graphic, geometryEngine, Point) => {
+
+
+        graphicsLayer.add();
+        const point = {
+            type: "point",
+            longitude: evt.coordinates[0],
+            latitude: evt.coordinates[1]
+        };
+        const markerSymbol = {
+            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+            color: [226, 119, 40],
+            outline: {
+                // autocasts as new SimpleLineSymbol()
+                color: [255, 255, 255],
+                width: 2
+            }
+        };
+
+        // Create a graphic and add the geometry and symbol to it
+        const pointGraphic = new Graphic({
+            geometry: point,
+            symbol: markerSymbol
+        });
+        graphicsLayer.add(pointGraphic);
+        drawTool.destroy();
+    });
+}
 function dist(view, evt) {
     require([
         "esri/geometry/Polyline",
@@ -228,36 +295,7 @@ function analyseM(view, evt) {
             symbol: selectionSymbolR
         });
         if (evt.type == "draw-complete") {
-            fxByPolygon(polygon, view);
-
-            // identifyparams.geometry = polygon;
-            // identifyparams.mapExtent = view.extent;
-            // var data = [];
-            // fxdata = [];
-            // identifyTask
-            //     .execute(identifyparams)
-            //     .then(function (response) {
-            //         var results = response.results;
-            //         if (results.length > 0) {
-            //             for (var i = 0; i < results.length; i++) {
-            //                 var result = results[i].feature;
-            //                 var intersect = geometryEngine.intersect(result.geometry, polygon);
-            //                 if (intersect != null) {
-            //                     var area = parseFloat(geometryEngine.geo(intersect, "square-meters"));
-            //                     var item = {};
-            //                     item.layerId = results[i].layerId;
-            //                     item.identification = result.attributes.identification;
-            //                     item.area = area;
-            //                     data.push(item);
-            //                     result.symbol = selectionSymbolY;
-            //                     result.geometry = intersect;
-            //                     fxdata.push(result);
-            //                     view.graphics.add(result);
-            //                 }
-            //             }
-            //             selectfxResult(view, data);
-            //         }
-            //     })
+            // fxByPolygon(polygon, view);
         } else {
             view.graphics.removeAll();
             view.graphics.add(polygonGraphic);
@@ -398,6 +436,287 @@ function deleteFeature(feature, edits) {
         })
 }
 
+
+function initcltools(){
+
+    require([
+        "esri/widgets/DistanceMeasurement2D",
+        "esri/widgets/AreaMeasurement2D",
+    ], (DistanceMeasurement2D, AreaMeasurement2D) => {
+        //测距测面积
+        document
+            .getElementById("distanceButton")
+            .addEventListener("click", function () {
+                setActiveWidget(null);
+                if (!this.classList.contains("active")) {
+                    setActiveWidget("distance");
+                } else {
+                    setActiveButton(null);
+                }
+            });
+
+        document
+            .getElementById("areaButton")
+            .addEventListener("click", function () {
+                setActiveWidget(null);
+                if (!this.classList.contains("active")) {
+                    setActiveWidget("area");
+                } else {
+                    setActiveButton(null);
+                }
+            });
+
+        function setActiveWidget(type) {
+            drawing = true;
+            switch (type) {
+                case "distance":
+                    activeWidget = new DistanceMeasurement2D({
+                        view: view,
+                        unit: "meters"
+                    });
+
+                    // skip the initial 'new measurement' button
+                    activeWidget.viewModel.start();
+
+                    view.ui.add({
+                        component: activeWidget,
+                        position: "top-right",
+                        index: 0
+                    });
+                    setActiveButton(document.getElementById("distanceButton"));
+                    break;
+                case "area":
+                    activeWidget = new AreaMeasurement2D({
+                        view: view,
+                        unit: "square-meters"
+                    });
+                    // skip the initial 'new measurement' button
+                    activeWidget.viewModel.start();
+                    view.ui.add({
+                        component: activeWidget,
+                        position: "top-right",
+                        index: 0
+                    });
+                    setActiveButton(document.getElementById("areaButton"));
+                    break;
+                case null:
+                    if (activeWidget) {
+                        view.ui.remove(activeWidget);
+                        activeWidget.destroy();
+                        activeWidget = null;
+                        drawing =false;
+                    }
+                    break;
+            }
+        }
+
+        function setActiveButton(selectedButton) {
+            // focus the view to activate keyboard shortcuts for sketching
+            view.focus();
+            var elements = document.getElementsByClassName("active");
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].classList.remove("active");
+            }
+            if (selectedButton) {
+                selectedButton.classList.add("active");
+            }
+        }
+
+
+
+
+        var currentGraphic;
+        var pointsGraph = [];
+        var clipboard = new Clipboard('#copyBtn');
+        clipboard.on('success', function(e) {
+            showToast('success','复制成功');
+        });
+
+        var getPoints = function(txt,format,autoDropDH){
+            ///console.log(txt);
+            var mt,i = 0,rings = [],targetRing = [], regAr, regNum = /(\d+(\.\d+)?)/ig;
+
+            if('CAD List' == format){
+                regAr = new RegExp('(X=.*Z=)','img');
+            }else if('X,Y' == format || 'Y,X' == format ) {
+                regAr = /^(.*)$/igm;
+            }
+
+
+            mt = txt.match(regAr);
+            //console.log(mt);
+            if(mt && mt.length != 0){
+                if(format == 'CAD List'){
+                    for(i = 0; i < mt.length; i++ ){
+                        var temp = mt[i].replace(/X=/g,'').replace(/Y=/g,',').replace(/Z=/g,'').replace(/ /g,'').split(',');
+                        rings.push(temp);
+                    }
+                }else if('X,Y' == format || 'Y,X' == format) {
+                    for(i = 0; i < mt.length; i++ ){
+                        var xyTemp = mt[i].match(regNum);
+                        //console.log(xyTemp);
+
+                        if(xyTemp && xyTemp.length == 2){
+                            if('Y,X' == format){
+                                rings.push([xyTemp[1],xyTemp[0]]);
+                            }else{
+                                rings.push(xyTemp);
+                            }
+                        }
+                    }
+                }
+
+
+                if(autoDropDH){
+                    for(i = 0; i < rings.length; i++ ){
+                        var temp2 = '',temp1 = '';
+                        if(rings[i][0].indexOf('.') != -1){
+                            temp2 = rings[i][0].substring(0,rings[i][0].indexOf('.'));
+                            temp1 = rings[i][0].substring(rings[i][0].indexOf('.'),rings[i][0].length);
+                        }else{
+                            temp2 = rings[i][0];
+                        }
+
+                        if(temp2.length > 6){
+                            rings[i][0] = temp2.substring(temp2.length - 6,temp2.length) + temp1;
+                        }
+                    }
+                }
+
+                for(i = 0; i < rings.length; i++ ){
+                    targetRing.push([parseFloat(rings[i][0]),parseFloat(rings[i][1])]);
+                }
+                //console.log(targetRing);
+            }
+
+            return targetRing;
+        }
+
+
+
+
+
+        function getPanPoints(){
+            var graphicsList = graphicsLayer.graphics.items, i = 0, j = 0;
+            //console.log(graphicsList);
+
+            var textarea = $("textarea[name=points]:eq(0)");
+            var pointsHTML = [];
+            var pointsArray = [];
+
+            for(i = 0; i < graphicsList.length; i++){
+                //console.log(graphicsList[i].geometry.type.toLowerCase());
+                if(graphicsList[i].geometry.type.toLowerCase() == 'multipoint'){
+                    for(j = 0; j < graphicsList[i].geometry.points.length; j++){
+                        pointsArray.push(graphicsList[i].geometry.points[j]);
+                    }
+                }else if(graphicsList[i].geometry.type.toLowerCase() == 'point'){
+                    pointsArray.push([graphicsList[i].geometry.x,graphicsList[i].geometry.y]);
+                }
+            }
+
+            if(pointsArray.length == 0){
+                showToast('info','请先用画笔画出点');
+                return;
+            }
+            for(i = 0; i < pointsArray.length; i++){
+                pointsHTML.push((i + 1) + "," + parseFloat(pointsArray[i][0]).toFixed(3) + ',' + parseFloat(pointsArray[i][1]).toFixed(3) + ",3.0\r\n");
+            }
+            // for(i = 0; i < pointsArray.length; i++){
+            //     pointsHTML.push(parseFloat(pointsArray[i][0]).toFixed(3) + ',' + parseFloat(pointsArray[i][1]).toFixed(3) + "\r\n");
+            // }
+            commonDialog = $("#showDlg" ).dialog({
+                title: "获得展点坐标dat",
+                autoOpen: false,
+                width: 480,
+                height:420,
+                modal: true
+            }).html('<textarea id="cadDatTxt" style="width:100%;height:300px;">' + pointsHTML.join('') +
+                '</textarea><div><input type="button" class="msbtn" id="copyBtn" name="copyBtn" value="复制到黏贴板" data-clipboard-action="copy" data-clipboard-target="#cadDatTxt"/></div>').dialog('open');
+
+            //console.log(pointsHTML);
+
+            $("input[name=format]").each(function(){
+                if($(this).val() == 'X,Y'){
+                    $(this).prop('checked',true);
+                }
+            });
+            textarea.val(pointsHTML.join(''));
+        }
+
+        function getPanPolygon(){
+
+            var graphicsList = graphicsLayer.graphics.items, i = 0, j = 0,k = 0;
+
+            var pointsHTML = [];
+            var pointsArray = [];
+            var rings ;
+
+            for(i = 0; i < graphicsList.length; i++){
+                console.log(graphicsList[i].geometry.type.toLowerCase());
+                if(graphicsList[i].geometry.type.toLowerCase() == 'polygon'){
+                    rings = graphicsList[i].geometry.rings;
+                    for(j = 0; j < rings.length; j++){
+                        for(k = 0; k < rings[j].length; k++){
+                            pointsArray.push([rings[j][k][0],rings[j][k][1]]);
+                        }
+                    }
+                }
+            }
+
+            if(pointsArray.length == 0){
+                showToast('info','请先用画笔画出面');
+                return;
+            }
+
+            for(i = 0; i < pointsArray.length; i++){
+                pointsHTML.push((i + 1) + "," + parseFloat(pointsArray[i][0]).toFixed(3) + ',' + parseFloat(pointsArray[i][1]).toFixed(3) + ",3.0\r\n");
+            }
+
+            commonDialog = $("#showDlg" ).dialog({
+                title: "获得展点坐标dat",
+                autoOpen: false,
+                width: 480,
+                height:420,
+                modal: true
+            }).html('<textarea id="cadDatTxt" style="width:100%;height:300px;">' + pointsHTML.join('') +
+                '</textarea><div><input type="button" class="msbtn" id="copyBtn" name="copyBtn" value="复制到黏贴板" data-clipboard-action="copy" data-clipboard-target="#cadDatTxt"/></div>').dialog('open');
+
+        }
+
+
+        $("div[name=getGraphicPoint]").bind('click',getPanPoints);
+        $("div[name=getGraphicPolygon]").bind('click',getPanPolygon);
+        $("div[name=drawPolygon]").bind('click',function (){
+            drawing =true;
+            var action = drawTool.create("polygon", {mode: "click"});
+            action.on("vertex-add", function (evt) {
+                drawPolygon(evt);
+            });
+            action.on("vertex-remove", function (evt) {
+                drawPolygon(evt);
+            });
+            action.on("cursor-update", function (evt) {
+                drawPolygon(evt);
+            });
+            action.on("draw-complete", function (evt) {
+                drawPolygon(evt);
+            });
+
+        });
+        $("div[name=drawPoint]").bind('click',function (){
+            drawing =true;
+            var action = drawTool.create("point", {mode: "click"});
+            action.on("draw-complete", function (evt) {
+                drawPoint(evt);
+            });
+        });
+
+
+
+    });
+}
 function dowloadOutputShp(id) {
     require([
         "esri/shpwrite",
@@ -648,3 +967,12 @@ function isNumber(value) {
     }
 }
 
+function closeCj() {
+    if (activeWidget) {
+        view.ui.remove(activeWidget);
+        activeWidget.destroy();
+        activeWidget = null;
+    } else {
+    }
+
+}

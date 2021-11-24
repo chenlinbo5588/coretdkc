@@ -400,9 +400,6 @@ a {
     margin-top: 10px;
     width: 45px;
     height: 45px;
-    background-color: #345aa2;
-    border: 1px solid #000000;
-    border-radius: 3px;
     cursor: pointer;
 }
 
@@ -411,34 +408,27 @@ a {
     margin-top: 10px;
     width: 45px;
     height: 45px;
-    background-color: #345aa2;
-    border: 1px solid #000000;
-    border-radius: 3px;
     cursor: pointer;
 }
 
 .topRightBox .button1 {
     background-image: url(/static/img/button1.png);
     background-repeat: no-repeat;
-    background-position: 50% 50%;
 }
 
 .topRightBox .button2 {
     background-image: url(/static/img/button2.png);
     background-repeat: no-repeat;
-    background-position: 50% 50%;
 }
 .topRightBox .button3{
     background-image: url(/static/img/tuceng.png);
     background-repeat: no-repeat;
-    background-position: 50% 50%;
 }
 
 
 .bottomRightBox .button1 {
     background-image: url(/static/img/tuceng.png);
     background-repeat: no-repeat;
-    background-position: 50% 50%;
 }
 
 .bottomRightBox {
@@ -827,4 +817,93 @@ a {
     font-size: 20px;
     color: #26a0ce;
 }
+.action-button {
+    font-size: 16px;
+    background-color:white ;
+    border: 1px solid #d3d3d3;
+    color: black;
+    height: 32px;
+    width: 32px;
+    text-align: center;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
 
+.action-button:hover,
+.action-button:focus {
+    background: #eca72b;
+    color: #e4e4e4;
+}
+
+.active {
+
+}
+.indexToolsBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height:260px;
+    margin-left: 5px;
+    background-color: #06024875;
+ }
+
+.indexToolsBox div {
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.tools{
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-image: url(/static/img/gongji.png);
+    background-repeat: no-repeat;
+}
+.indexToolsBox .cj{
+    background-image: url(/static/img/icon/cj.png);
+    background-repeat: no-repeat;
+}
+.indexToolsBox .cj :hover{
+   opacity: 0.5;
+}
+.indexToolsBox .cm{
+    background-image: url(/static/img/icon/cm.png);
+    background-repeat: no-repeat;
+}
+.indexToolsBox .hd{
+    background-image: url(/static/img/icon/drawPoint.png);
+    background-repeat: no-repeat;
+}
+.indexToolsBox .hm{
+    background-image: url(/static/img/icon/drawPolygon.png);
+    background-repeat: no-repeat;
+}
+.indexToolsBox .hqd{
+    background-image: url(/static/img/icon/extractPoint.png);
+    background-repeat: no-repeat;
+}
+.indexToolsBox .hqm{
+    background-image: url(/static/img/icon/extractPolygon.png);
+    background-repeat: no-repeat;
+}
+.ui-dialog{
+    z-index:2001 !important;
+}
+.ui-widget-overlay{
+    z-index:2000 !important;
+}
+.jwdBox{
+    background-color: white;
+    color: black;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+}

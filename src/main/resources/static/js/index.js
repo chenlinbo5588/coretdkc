@@ -90,9 +90,12 @@ $(function () {
             })
         }
     })
-    // $("#xcList").click(function () {
-    //     $("#xcListbox").toggle();
-    // })
+    $("#tools").click(function () {
+        $(".indexToolsBox").toggle("fast");
+        closeCj();
+    });
+
+
 
     $("#xcList").mouseenter(function () {
         $("#xcListbox").show();
@@ -233,6 +236,7 @@ $(function () {
             $("#tc").hide();
         })
         $("#draw").click(function () {
+            drawing = true;
             view.graphics.removeAll();
             var drawAction = drawTool.create("polygon", {mode: "click"});
             drawAction.on("vertex-add", showPolygon);

@@ -22,8 +22,8 @@
     border-top-left-radius: 10px;
 }
 .bottomRightButton{
-    width:40px;
-    height:40px;
+    width:45px;
+    height:45px;
 }
 .tucengSelectBox{
     width: 180px;
@@ -31,16 +31,14 @@
 .toolsButton{
     margin-left:5px;
     margin-top:10px;
-    width:40px;
-    height:40px;
+    width:45px;
+    height:45px;
     background-color: #345aa2;
     border:1px solid #000000;
     border-radius: 3px;
     cursor: pointer;
     background-image: url(/static/img/gongji.png);
-    background-size:30px 30px;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
 }
 .esri-component{
     box-shadow: none !important;

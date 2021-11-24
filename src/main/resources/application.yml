@@ -3,12 +3,17 @@ lhs: 6
 rhs: 8
 op: "*"
 
+#appkey: e2a6205ec33511e9b83200ff5f8a2c01
+#appsecret: 03ecfc8cc33611e9b83200ff
+appkey: f6c00a004f764f92a6afd64ab451bb23
+appsecret: 7a53ca1ab59147d1
+
+ticketValidateUrl: https://sgpt.zjwater.com/oapi/water-manage-auth/api/ssologin/validateTicket
+sptUrl: https://sgpt.zjwater.com
 
 arcgis:
-#  prourl: gis2.sy.gov
-#  host: gis2.sy.gov
+#  prourl: j1e2z89dc5bgu24.arcgis.cn
   prourl: gis2.sy.gov
-  host: gis2.sy.gov
   outputDwgUrl: https://gis2.sy.gov/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
   outputDwgDownloadUrl:  http://www.myarcgis.com/download/
   outputallDwgUrl:  https://gis2.sy.gov/arcgis/rest/services/tools/outputPolygon/GPServer/outputCadPolygon
@@ -21,8 +26,6 @@ arcgis:
 #  featureToCadDownloadUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/directories/arcgisjobs/tools/featuretocad_gpserver/
 #  featureToCadurl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
 #  geometryServerUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/Utilities/Geometry/GeometryServer
-
-
   featureUrl:
     temppolygonUrl: https://gis2.sy.gov/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
     riverUrl: https://gis2.sy.gov/arcgis/rest/services/SY/shuiyu/MapServer
@@ -30,25 +33,19 @@ arcgis:
     otherUrl: https://gis2.sy.gov/arcgis/rest/services/SY/qt/MapServer
     bgtxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/BGTX/MapServer
     hxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/HXAA/FeatureServer/0
-    hxSearchUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/MapServer
-#    temppolygonUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/temp/FeatureServer/0
-#    riverUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/shuiyu/MapServer
-#    riverQzjUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/shuiyu2/MapServer
-#    otherUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/other/MapServer
-#    bgtxUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/bgtx/MapServer
-#    hxUrl: http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/hxaa/FeatureServer/0
-#    hxSearchUrl:  http://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/river/hxaa/MapServer
+    hxSearchUrl:  https://gis2.sy.gov/arcgis/rest/services/SY/HXAA/MapServer
+#    temppolygonUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
+#    riverUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu/MapServer
+#    riverQzjUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu2/MapServer
+#    otherUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/qt/MapServer
+#    bgtxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/BGTX/MapServer
+#    hxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/FeatureServer/0
+#    hxSearchUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/MapServer
   token:
     username: siteadmin
     password: d/AyzpE4K+tj+oPt+6zRBQ==
     #password: kGGHjSUL0cAUij1rDbNJbg==
-    referer: gis2.sy.gov/index
 
-project:
-  host: gis2.sy.gov
-
-
-# config start
 server:
   port: 8080
   tomcat:

@@ -4,34 +4,36 @@
 
 <div th:replace="static/common/common_header :: common_header"/>
 <body>
-<script th:inline="javascript"  >
+<script th:inline="javascript">
     var gloablConfig = {
-        mapHost:[[${mapConfig.host}]],
+        prourl: [[${mapConfig.prourl}]],
         mapServerPort: [[${mapConfig.port}]],
-        xmHost:[[${mapConfig.xmhost}]],
-        outputDwgUrl:[[${mapConfig.outputDwgUrl}]],
-        outputDwgDownloadUrl:[[${mapConfig.outputDwgDownloadUrl}]],
-        outputallDwgUrl:[[${mapConfig.outputallDwgUrl}]],
-        featureToCadDownloadUrl:[[${mapConfig.featureToCadDownloadUrl}]],
-        featureToCadurl:[[${mapConfig.featureToCadurl}]],
-        temppolygonUrl:[[${mapConfig.temppolygonUrl}]],
-        riverUrl:[[${mapConfig.riverUrl}]],
-        otherUrl:[[${mapConfig.otherUrl}]],
-        bgtxUrl:[[${mapConfig.bgtxUrl}]],
-        hxSearchUrl:[[${mapConfig.hxSearchUrl}]],
-        hxUrl:[[${mapConfig.hxUrl}]],
-        geometryServerUrl:[[${mapConfig.geometryServerUrl}]],
-        proToken:[[${mapConfig.token}]]
+        xmHost: [[${mapConfig.xmhost}]],
+        outputDwgUrl: [[${mapConfig.outputDwgUrl}]],
+        outputDwgDownloadUrl: [[${mapConfig.outputDwgDownloadUrl}]],
+        outputallDwgUrl: [[${mapConfig.outputallDwgUrl}]],
+        featureToCadDownloadUrl: [[${mapConfig.featureToCadDownloadUrl}]],
+        featureToCadurl: [[${mapConfig.featureToCadurl}]],
+        temppolygonUrl: [[${mapConfig.temppolygonUrl}]],
+        riverUrl: [[${mapConfig.riverUrl}]],
+        otherUrl: [[${mapConfig.otherUrl}]],
+        bgtxUrl: [[${mapConfig.bgtxUrl}]],
+        hxSearchUrl: [[${mapConfig.hxSearchUrl}]],
+        hxUrl: [[${mapConfig.hxUrl}]],
+        geometryServerUrl: [[${mapConfig.geometryServerUrl}]],
+        proToken: [[${mapConfig.token}]]
     }
-    var BASE_URL = "http://"+gloablConfig.xmHost+":"+gloablConfig.mapServerPort+"/";
+    var BASE_URL = "http://" + gloablConfig.xmHost + ":" + gloablConfig.mapServerPort + "/";
 </script>
 
 <div id="loadingMask" style="display:none;">
     <div class="liadloging">
-            <div class="ldlConten">
-                <img src="/static/img/loading.gif"/>
-                <p>加载中请稍后......</p>
-            </div>
+            
+        <div class="ldlConten">
+                    <img src="/static/img/loading.gif"/>
+                    <p>加载中请稍后......</p>
+               
+        </div>
     </div>
     <div class="floatLayer"></div>
 </div>
@@ -39,36 +41,44 @@
     <div class="mask" id="mask"></div>
     <div id="tcBox"></div>
 </div>
-<div class="toast" id="toast" ></div>
-<div  id="tempdiv" style="display: none"></div>
-<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/index.css')}"  />
+<div class="toast" id="toast"></div>
+<div id="tempdiv" style="display: none"></div>
+<link rel="stylesheet" type="text/css" media="all" th:href="${urls.getForLookupPath('/static/css/index.css')}"/>
 <script type="text/javascript" src="/static/js/echartsMin.js"></script>
 <script src="/static/js/jquery.js"></script>
 <script src="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <link rel="stylesheet" href="/static/js/thirdlib/toast/css/toast.css">
+<link rel="stylesheet" href="/static/css/jquery.toast.min.css">
 <script src="/static/js/thirdlib/toast/js/toast.js"></script>
-<link rel="stylesheet" type="text/css" media="all" href="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
+
+<script src="/static/js/clipboard.min.js"></script>
+<script src="/static/js/custom_event.js"></script>
+<script src="/static/js/tools/toolbar.js"></script>
+<script src="/static/js/tools/jquery.toast.min.js"></script>
+
+<link rel="stylesheet" type="text/css" media="all"
+      href="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <script src="/static/js/thirdlib/shp2geojson/shapefile.js"></script>
 
-<script type="text/javascript" src="/static/js/tools/html2canvas.js" ></script>
-<script type="text/javascript" src="/static/js/tools/jquery.jqprint-0.3.js" ></script>
-<link rel="stylesheet" href="/static/js/thirdlib/4.20/esri/css/main.css" />
+<script type="text/javascript" src="/static/js/tools/html2canvas.js"></script>
+<script type="text/javascript" src="/static/js/tools/jquery.jqprint-0.3.js"></script>
+<link rel="stylesheet" href="/static/js/thirdlib/4.20/esri/css/main.css"/>
 <script src="/static/js/thirdlib/4.20/init.js"></script>
 <script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
 
 <div id="baobiaoBox" style="display: none;"></div>
 <div class="indexTitleBox ">
     <div class="indexTitle W40">
-        <div class="indexTitleText">水域动态监管信息化系统</div>
+        <div class="indexTitleText">水域动态监管信息化平台</div>
         <div class="indexSubtitleText">Water condition monitoring system</div>
     </div>
     <div class="indexTitleButton W40">
         <a class="indexButton indexButtonSy indexButtonClick" id="sy" th:href="@{index}">首页</a>
-        <a class="indexButton indexButtonXmgl"  id="xmgl">项目管理</a>
+        <a class="indexButton indexButtonXmgl" id="xmgl">项目管理</a>
     </div>
     <div class="indexUser">
         <div>您好,</div>
-        <div class="ml20 mr60">管理员</div>
+        <div class="ml20 mr60">[[${trueName}]]</div>
     </div>
 </div>
 
@@ -79,7 +89,7 @@
     </div>
     <div class="searchBox" id="searchBox">
         <div class="searchInputBox">
-            <input placeholder="输入名称或者河道编码" class="searchInput" id ="searchInput">
+            <input placeholder="输入名称或者河道编码" class="searchInput" id="searchInput">
             <img src="/static/img/qinkong.png" class="qinkong" style="display: none" id="qinkong">
             <div class="fxButoon" id="fxButoon"></div>
             <div class="searchButton" id="searchButton"></div>
@@ -97,13 +107,13 @@
         <div class="infoList" id="infoDetail" style="display: none;"></div>
     </div>
 
-    <div class="topRightBox" id="topRightBox"  style="display: none">
+    <div class="topRightBox" id="topRightBox" style="display: none">
         <div class="xcListbox" id="xcListbox" style="display: none;">
             <div class="xcTitle">
                 <img src="/static/img/xctx.png">
                 <div class="">巡查提醒</div>
             </div>
-            <div class="xcListItem" th:each="item,stat:${projectList}" >
+            <div class="xcListItem" th:each="item,stat:${projectList}">
                 <div class="boxh">
                     <div>[[${item.pname}]]</div>
                 </div>
@@ -113,7 +123,7 @@
         </div>
         <div class="tucengSelectBox" id="tucengSelectBox" style="display: none">
             <div class="tucengSelectTitle">
-                <img src="/static/img/tuceng.png">
+                <img src="/static/img/tuceng2.png">
                 <div class="ml15">图层选择</div>
             </div>
             <div class="slideBox" id="slideBox" style="display: none">
@@ -125,15 +135,24 @@
             </div>
         </div>
         <div>
-            <div class="topRightButton button1" id="xcList" ></div>
-            <div class="topRightButton button2" id="baobiao"> </div>
-            <div class="bottomRightButton button3" id="tuceng"></div>
+            <div class="topRightButton button1" id="xcList"></div>
+            <div class="topRightButton button2" id="baobiao"></div>
+            <div class="topRightButton button3" id="tuceng"></div>
+            <div class="topRightButton tools" id="tools"></div>
+            <div class="indexToolsBox" style="display: none">
+                <div class="cj" id="distanceButton" title="测量距离"></div>
+                <div class="cm" id="areaButton" title="测量面积"></div>
+                <div class="hm" name="drawPolygon" title="画面"></div>
+                <div class="hd" name="drawPoint" title="画点"></div>
+                <div class="hqd" name="getGraphicPoint" title="获取点坐标"></div>
+                <div class="hqm" name="getGraphicPolygon" title="获取面坐标"></div>
+            </div>
         </div>
     </div>
     <div class="bottomRightBox" id="bottomRightBox" style="display: none">
 
     </div>
-    <div id="viewDiv"> </div>
+    <div id="viewDiv"></div>
 </div>
 
 <div id="fxTc" class="fxTc" style="display: none">
@@ -143,11 +162,11 @@
             <div class="miaohui"></div>
             <div>直接描绘</div>
         </div>
-        <div class="button fxbuttonbox"  id="addShp" style="margin-left:50px;">
+        <div class="button fxbuttonbox" id="addShp" style="margin-left:50px;">
             <div class="tianjia"></div>
             <div>添加图形文件</div>
         </div>
-        <div class="button fxbuttonbox"  id="addText" style="margin-left:50px;">
+        <div class="button fxbuttonbox" id="addText" style="margin-left:50px;">
             <div class="addText"></div>
             <div>添加文本</div>
         </div>
@@ -161,11 +180,13 @@
         <textarea id="txtInput" placeholder="请粘贴坐标串信息"></textarea>
         <div class="txtButtonBox">
             <div id="queding">确定</div>
-            <div class="ml20"  id="cancel">关闭</div>
+            <div class="ml20" id="cancel">关闭</div>
         </div>
     </div>
 </div>
-<input type="file" id="shpFile"  accept=".shp" style="display: none">
+
+<div class="jwdBox" id="jwd">x:121,y:121</div>
+<input type="file" id="shpFile" accept=".shp" style="display: none">
 <div class="fxTishi" id="fxTishi" style="display: none">
     <div class="titleBox">
         <div>绘制叠加分析</div>
@@ -181,6 +202,7 @@
 
     </div>
 </div>
+<div id="showDlg"></div>
 <script th:src="${urls.getForLookupPath('/static/js/tools/common.js')}"></script>
 <script th:src="${urls.getForLookupPath('/static/js/index.js')}"></script>
 </body>

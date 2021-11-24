@@ -50,6 +50,10 @@ public class SyRvaa {
 
     @Transient
     private  float intersectionArea;
+
+    @Transient
+    private  float intersectionLength;
+
     @Transient
     private  int layerId;
 

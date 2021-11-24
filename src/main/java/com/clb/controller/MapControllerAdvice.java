@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,14 +23,14 @@ public class MapControllerAdvice {
     ArcgisClient arcgisClient;
 
 
-    @Value("${arcgis.host}")
-    private String arcgisMapHost;
+
 
     @Value("${server.port}")
     private String port;
 
-    @Value("${project.host}")
-    private String xmHost;
+    @Value("${arcgis.prourl}")
+    private String prourl;
+
 
     @Value("${arcgis.outputDwgUrl}")
     private String outputDwgUrl;
@@ -69,16 +72,18 @@ public class MapControllerAdvice {
     @Value("${arcgis.token.password}")
     private String password;
 
-    @Value("${arcgis.token.referer}")
-    private String referer;
+
 
     @ModelAttribute(value = "mapConfig")
-    public Map<String, Object> mydata() {
+    public Map<String, Object> mydata(HttpServletRequest request) throws UnknownHostException {
         Map<String, Object> map = new HashMap<>();
-        map.put("host", arcgisMapHost);
+
+        String referer = request.getServerName()+":"+port ;
+        String xmhost = request.getServerName();
 
         map.put("port", port);
-        map.put("xmhost", xmHost);
+        map.put("prourl", prourl);
+        map.put("xmhost", xmhost);
         map.put("outputDwgUrl", outputDwgUrl);
         map.put("outputDwgDownloadUrl", outputDwgDownloadUrl);
         map.put("outputallDwgUrl", outputallDwgUrl);

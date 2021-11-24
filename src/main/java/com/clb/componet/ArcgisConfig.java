@@ -12,10 +12,5 @@ import org.springframework.stereotype.Component;
         @Value("${arcgis.prourl}")
         private String prourl;
 
-        @Value("${arcgis.host}")
-        private String ip;
-
-        @Value("${project.host}")
-        private String appHost;
 
     }

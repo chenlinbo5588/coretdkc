@@ -4,7 +4,14 @@ var shuiyuFind;
 var shuiyuFindparams;
 var find;
 var findparams;
+
 var drawTool;
+var graphicsLayer;
+//画图状态
+var drawing = false;
+
+var activeWidget;
+
 var identifyparams;
 var identifyTask;
 var rightmap;
@@ -75,8 +82,9 @@ function initIndexMap() {
         "esri/geometry/Point",
         "esri/identity/IdentityManager",
         "esri/WebMap",
+        "esri/widgets/Sketch/SketchViewModel",
     ], (Map, MapView, IdentifyTask, IdentifyParameters, FeatureLayer, GraphicsLayer, Graphic, TileLayer, urlUtils, esriConfig, WebTileLayer, QueryTask, Query, MapImageLayer,
-        FindTask, FindParameters, LayerList, Draw, SpatialReference, webMercatorUtils, TileInfo, Point, IdentityManager,WebMap) => {
+        FindTask, FindParameters, LayerList, Draw, SpatialReference, webMercatorUtils, TileInfo, Point, IdentityManager,WebMap,SketchViewModel) => {
 
         // esriConfig.portalUrl = "https://j1e2z89dc5bgu24.arcgis.cn/arcgis"
         // IdentityManager.registerToken({
@@ -86,10 +94,9 @@ function initIndexMap() {
         // "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/sharing/rest/content/items/c6e5e4cc2b494d4a82d264b0665d95ba"
 
         IdentityManager.registerToken({
-            server: "https://gis2.sy.gov/arcgis/rest/services",
+            server: "https://"+gloablConfig.prourl+"/arcgis/rest/services",
             token: gloablConfig.proToken
         });
-        console.log(gloablConfig.proToken);
         var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
 
         var tileInfo = new TileInfo({
@@ -349,9 +356,9 @@ function initIndexMap() {
             returnGeometry: true,
         });
 
-
+        graphicsLayer = new GraphicsLayer();
         map = new Map({
-            layers: [tiledLayer, tiledLayer_poi, other, river],
+            layers: [tiledLayer, tiledLayer_poi, other, river,graphicsLayer],
             spatialReference: {
                 wkid: 4326
             },
@@ -375,11 +382,20 @@ function initIndexMap() {
                 wkid: 4326
             },
         });
-
+        var sketchViewModel=new SketchViewModel({
+            view:view,//视图
+            layer:graphicsLayer,//需要修改的要素所在的图层
+            updateOnGraphicClick:true,//是否使用默认的点击选择图形进行更新
+            defaultUpdateOptions: {
+                toggleToolOnClick: true // 是否开启reshape状态
+            }
+        });
 
         view.ui.remove('attribution')
         view.ui.remove("zoom");
 
+        //初始化测距工具
+        initcltools();
 
         view.ui.add(document.getElementById("topRightBox"), {
             position: "top-right",
@@ -403,6 +419,16 @@ function initIndexMap() {
             console.log(view.scale);
             console.log(e.mapPoint.x + "," + e.mapPoint.y);
             // getOpenImg(e.mapPoint.x,+e.mapPoint.y);
+        });
+        view.on("pointer-move", function (e){
+            let point = view.toMap({x: e.x, y: e.y});
+
+
+            $("#jwd").html("x: "+parseFloat(point.x.toFixed(4))+" ,y: "+parseFloat(point.y.toFixed(4)));
+        });
+        view.ui.add(document.getElementById("jwd"), {
+            position: "bottom-right",
+            index: 0,
         });
 
         view.when(function () {
@@ -466,34 +492,40 @@ function initIndexMap() {
         });
 
         function executeIdentifyTask(event) {
-            view.graphics.removeAll();
+            if(drawing == true){
 
-            identifyparams.geometry = event.mapPoint;
-            identifyparams.mapExtent = view.extent;
-            $("#viewDiv").css("cursor", "wait");
-            identifyTask
-                .execute(identifyparams)
-                .then(function (response) {
-                    var results = response.results;
-                    if (results.length > 0) {
-                        var result = results[0].feature;
-                        var layerId = results[0].layerId;
-                        var identification = result.attributes.identification;
-                        view.goTo(result.geometry.extent.expand(1)).then(function () {
-                            $.get(BASE_URL + "river/water/info/ic?identification=" + identification + "&layerId=" + layerId, function (resp) {
+            }else{
 
 
-                                $(".infoList").hide();
-                                $("#close").show();
-                                $("#infoDetail").show();
-                                $("#infoDetail").html(resp);
-                            })
-                            result.symbol = selectionSymbolR;
-                            view.graphics.add(result);
-                        });
-                    }
-                    $("#viewDiv").css("cursor", "auto");
-                })
+                identifyparams.geometry = event.mapPoint;
+                identifyparams.mapExtent = view.extent;
+                $("#viewDiv").css("cursor", "wait");
+                identifyTask
+                    .execute(identifyparams)
+                    .then(function (response) {
+                        var results = response.results;
+                        if (results.length > 0) {
+                            view.graphics.removeAll();
+                            var result = results[0].feature;
+                            var layerId = results[0].layerId;
+                            var identification = result.attributes.identification;
+                            view.goTo(result.geometry.extent.expand(1)).then(function () {
+                                $.get(BASE_URL + "river/water/info/ic?identification=" + identification + "&layerId=" + layerId, function (resp) {
+
+
+                                    $(".infoList").hide();
+                                    $("#close").show();
+                                    $("#infoDetail").show();
+                                    $("#infoDetail").html(resp);
+                                })
+                                result.symbol = selectionSymbolR;
+                                view.graphics.add(result);
+                            });
+                        }
+                        $("#viewDiv").css("cursor", "auto");
+                    })
+            }
+
         }
     });
 }
@@ -703,7 +735,7 @@ function fxByPolygon(polygon, fxview) {
 }
 
 function fxPolygon(event) {
-
+    drawing = false;
     require([
         "esri/geometry/Polygon",
         "esri/geometry/geometryEngine",

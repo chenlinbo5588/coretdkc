@@ -32,14 +32,9 @@ public class ArcgisClientImpl implements ArcgisClient {
     @Autowired
     SyTokenRepository syTokenRepository;
 
-
-
-
     public String getArcgisServerUrl() {
         return "https://" + arcgisConfig.getProurl();
     }
-
-
 
     @Override
     public ArcgisToken fetchToken(String username, String password, String referer) {

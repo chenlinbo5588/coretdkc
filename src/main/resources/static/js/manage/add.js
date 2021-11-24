@@ -26,8 +26,6 @@ function initDatepicker() {
 $(function () {
 
     initMap();
-
-
     function initMap() {
 
         projectId = id;
