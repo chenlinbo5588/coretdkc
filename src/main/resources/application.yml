@@ -12,35 +12,35 @@ ticketValidateUrl: https://sgpt.zjwater.com/oapi/water-manage-auth/api/ssologin/
 sptUrl: https://sgpt.zjwater.com
 
 arcgis:
-  prourl: j1e2z89dc5bgu24.arcgis.cn
-#  prourl: gis2.sy.gov
-#  outputDwgUrl: https://gis2.sy.gov/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
-#  outputDwgDownloadUrl:  http://www.myarcgis.com/download/
-#  outputallDwgUrl:  https://gis2.sy.gov/arcgis/rest/services/tools/outputPolygon/GPServer/outputCadPolygon
-#  featureToCadDownloadUrl:  http://www.myarcgis.com/download/
-#  featureToCadurl: https://gis2.sy.gov/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
-#  geometryServerUrl: https://gis2.sy.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer
-  outputDwgUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
-  outputDwgDownloadUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/directories/arcgisjobs/tools/outputCAD_gpserver/
-  outputallDwgUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCadPolygon/GPServer/outputCadPolygon
-  featureToCadDownloadUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/directories/arcgisjobs/tools/featuretocad_gpserver/
-  featureToCadurl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
-  geometryServerUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/Utilities/Geometry/GeometryServer
+#  prourl: j1e2z89dc5bgu24.arcgis.cn
+  prourl: gis2.sy.gov
+  outputDwgUrl: https://gis2.sy.gov/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
+  outputDwgDownloadUrl:  http://www.myarcgis.com/download/
+  outputallDwgUrl:  https://gis2.sy.gov/arcgis/rest/services/tools/outputPolygon/GPServer/outputCadPolygon
+  featureToCadDownloadUrl:  http://www.myarcgis.com/download/
+  featureToCadurl: https://gis2.sy.gov/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
+  geometryServerUrl: https://gis2.sy.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer
+#  outputDwgUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
+#  outputDwgDownloadUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/directories/arcgisjobs/tools/outputCAD_gpserver/
+#  outputallDwgUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCadPolygon/GPServer/outputCadPolygon
+#  featureToCadDownloadUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/directories/arcgisjobs/tools/featuretocad_gpserver/
+#  featureToCadurl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
+#  geometryServerUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/Utilities/Geometry/GeometryServer
   featureUrl:
-#    temppolygonUrl: https://gis2.sy.gov/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
-#    riverUrl: https://gis2.sy.gov/arcgis/rest/services/SY/shuiyu/MapServer
-#    riverQzjUrl: https://gis2.sy.gov/arcgis/rest/services/SY/shuiyu2/MapServer
-#    otherUrl: https://gis2.sy.gov/arcgis/rest/services/SY/qt/MapServer
-#    bgtxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/BGTX/MapServer
-#    hxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/HXAA/FeatureServer/0
-#    hxSearchUrl:  https://gis2.sy.gov/arcgis/rest/services/SY/HXAA/MapServer
-    temppolygonUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
-    riverUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu/MapServer
-    riverQzjUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu2/MapServer
-    otherUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/qt/MapServer
-    bgtxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/BGTX/MapServer
-    hxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/FeatureServer/0
-    hxSearchUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/MapServer
+    temppolygonUrl: https://gis2.sy.gov/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
+    riverUrl: https://gis2.sy.gov/arcgis/rest/services/SY/shuiyu/MapServer
+    riverQzjUrl: https://gis2.sy.gov/arcgis/rest/services/SY/shuiyu2/MapServer
+    otherUrl: https://gis2.sy.gov/arcgis/rest/services/SY/qt/MapServer
+    bgtxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/BGTX/MapServer
+    hxUrl: https://gis2.sy.gov/arcgis/rest/services/SY/HXAA/FeatureServer/0
+    hxSearchUrl:  https://gis2.sy.gov/arcgis/rest/services/SY/HXAA/MapServer
+#    temppolygonUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
+#    riverUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu/MapServer
+#    riverQzjUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu2/MapServer
+#    otherUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/qt/MapServer
+#    bgtxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/BGTX/MapServer
+#    hxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/FeatureServer/0
+#    hxSearchUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/MapServer
   token:
     username: siteadmin
     password: d/AyzpE4K+tj+oPt+6zRBQ==
