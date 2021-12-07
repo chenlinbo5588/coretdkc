@@ -201,7 +201,6 @@ function drawPoint(evt) {
     ], (Polyline, Graphic, geometryEngine, Point) => {
 
 
-        graphicsLayer.add();
         const point = {
             type: "point",
             longitude: evt.coordinates[0],
@@ -447,6 +446,9 @@ function initcltools(){
         document
             .getElementById("distanceButton")
             .addEventListener("click", function () {
+                if(drawing == true){
+
+                }
                 setActiveWidget(null);
                 if (!this.classList.contains("active")) {
                     setActiveWidget("distance");
@@ -454,7 +456,6 @@ function initcltools(){
                     setActiveButton(null);
                 }
             });
-
         document
             .getElementById("areaButton")
             .addEventListener("click", function () {
@@ -467,6 +468,10 @@ function initcltools(){
             });
 
         function setActiveWidget(type) {
+            if(drawTool !=null){
+                view.graphics.removeAll();
+                drawTool.destroy();
+            }
             drawing = true;
             switch (type) {
                 case "distance":
@@ -514,7 +519,6 @@ function initcltools(){
             // focus the view to activate keyboard shortcuts for sketching
             view.focus();
             var elements = document.getElementsByClassName("active");
-
             for (var i = 0; i < elements.length; i++) {
                 elements[i].classList.remove("active");
             }
@@ -688,7 +692,17 @@ function initcltools(){
 
         $("div[name=getGraphicPoint]").bind('click',getPanPoints);
         $("div[name=getGraphicPolygon]").bind('click',getPanPolygon);
+        $("div[name=clearGraphic]").bind('click',function (){
+            graphicsLayer.removeAll();
+        });
         $("div[name=drawPolygon]").bind('click',function (){
+
+            if (activeWidget) {
+                view.ui.remove(activeWidget);
+                activeWidget.destroy();
+                activeWidget = null;
+            }
+
             drawing =true;
             var action = drawTool.create("polygon", {mode: "click"});
             action.on("vertex-add", function (evt) {
@@ -706,8 +720,13 @@ function initcltools(){
 
         });
         $("div[name=drawPoint]").bind('click',function (){
+            if (activeWidget) {
+                view.ui.remove(activeWidget);
+                activeWidget.destroy();
+                activeWidget = null;
+            }
             drawing =true;
-            var action = drawTool.create("point", {mode: "click"});
+            action = drawTool.create("point", {mode: "click"});
             action.on("draw-complete", function (evt) {
                 drawPoint(evt);
             });

@@ -843,7 +843,7 @@ a {
     justify-content: center;
     align-items: center;
     width: 45px;
-    height:260px;
+    height:305px;
     margin-left: 5px;
     background-color: #06024875;
  }
@@ -893,6 +893,10 @@ a {
     background-image: url(/static/img/icon/extractPolygon.png);
     background-repeat: no-repeat;
 }
+.indexToolsBox .ql{
+    background-image: url(/static/img/icon/clear.png);
+    background-repeat: no-repeat;
+}
 .ui-dialog{
     z-index:2001 !important;
 }
@@ -906,4 +910,5 @@ a {
     width: 200px;
     height: 30px;
     line-height: 30px;
+    margin-right:40px;
 }
