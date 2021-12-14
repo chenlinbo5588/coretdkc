@@ -129,8 +129,8 @@ function initIndexMap() {
                 {level: 16, levelValue: 16, resolution: 2.1457672119140625e-005, scale: 9017.8708819198619},
                 {level: 17, levelValue: 17, resolution: 1.0728836059570313e-005, scale: 4508.9354409599309},
                 {level: 18, levelValue: 18, resolution: 5.3644180297851563e-006, scale: 2254.4677204799655},
-                {level: 19, levelValue: 19, resolution: 2.68220901489257815e-006, scale: 1127.23386023998275},
-                {level: 20, levelValue: 20, resolution: 1.341104507446289075e-006, scale: 563.616930119991375}
+                // {level: 19, levelValue: 19, resolution: 2.68220901489257815e-006, scale: 1127.23386023998275},
+                // {level: 20, levelValue: 20, resolution: 1.341104507446289075e-006, scale: 563.616930119991375}
             ]
         });
 
@@ -175,7 +175,6 @@ function initIndexMap() {
 
         temppolygon = new FeatureLayer({
             url: gloablConfig.temppolygonUrl,
-
         });
 
         river = new MapImageLayer({
@@ -423,7 +422,6 @@ function initIndexMap() {
         view.on("pointer-move", function (e){
             let point = view.toMap({x: e.x, y: e.y});
 
-
             $("#jwd").html("x: "+parseFloat(point.x.toFixed(4))+" ,y: "+parseFloat(point.y.toFixed(4)));
         });
         view.ui.add(document.getElementById("jwd"), {
@@ -495,8 +493,6 @@ function initIndexMap() {
             if(drawing == true){
 
             }else{
-
-
                 identifyparams.geometry = event.mapPoint;
                 identifyparams.mapExtent = view.extent;
                 $("#viewDiv").css("cursor", "wait");
@@ -511,16 +507,16 @@ function initIndexMap() {
                             var identification = result.attributes.identification;
                             view.goTo(result.geometry.extent.expand(1)).then(function () {
                                 $.get(BASE_URL + "river/water/info/ic?identification=" + identification + "&layerId=" + layerId, function (resp) {
-
-
                                     $(".infoList").hide();
                                     $("#close").show();
                                     $("#infoDetail").show();
                                     $("#infoDetail").html(resp);
                                 })
-                                result.symbol = selectionSymbolR;
-                                view.graphics.add(result);
+                                // result.symbol = selectionSymbolR;
+                                // view.graphics.add(result);
                             });
+                        }else{
+                            view.graphics.removeAll();
                         }
                         $("#viewDiv").css("cursor", "auto");
                     })
@@ -821,7 +817,6 @@ function showfxPolygon(data, view) {
                 }
             })
         });
-        ;
         $("#fxList").show();
     });
 

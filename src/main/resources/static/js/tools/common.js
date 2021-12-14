@@ -187,8 +187,6 @@ function drawPolygon(evt) {
         } else {
             view.graphics.add(graphic);
         }
-
-
     });
 }
 

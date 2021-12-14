@@ -1,5 +1,6 @@
 var baobiaoSelect = false;
 var xmgl = false;
+var animate =true
 $(document).bind("ajaxSend", function () {
     $("#loadingMask").show();
 }).bind("ajaxComplete", function () {
@@ -9,7 +10,6 @@ $(document).bind("ajaxSend", function () {
 
 $(function () {
 
-    var animate = false;
     init();
 
     function init() {
@@ -22,24 +22,39 @@ $(function () {
         $(this).addClass("cblclick");
     });
     $("#leftBox").mouseenter(function () {
-        if (!xmgl) {
-            $("#searchBox").hide();
-            $(this).animate({width: "300px"}, function () {
-            });
-        } else {
-            $(this).animate({width: "300px"}, function () {
-            });
+        console.log(animate);
+        if(animate){
+            animate =false;
+            console.log(111);
+            if (!xmgl) {
+                $("#searchBox").hide();
+                $(this).animate({width: "300px"},150, function () {
+                    animate =true;
+                });
+            } else {
+                $(this).animate({width: "300px"},150, function () {
+                    animate =true;
+                });
+            }
         }
+
 
     });
     $("#leftBox").mouseleave(function () {
-        if (!xmgl) {
-            $(this).animate({width: "60px"}, function () {
-                $("#searchBox").show();
-            });
-        } else {
-            $(this).animate({width: "60px"}, function () {
-            });
+        console.log(animate);
+        if(animate) {
+            animate = false;
+            if (!xmgl) {
+                $(this).animate({width: "60px"},150, function () {
+                    $("#searchBox").show();
+                    animate = true;
+
+                });
+            } else {
+                $(this).animate({width: "60px"},150, function () {
+                    animate = true;
+                });
+            }
         }
     });
     $("#searchInput").bind("input propertychange", function () {
