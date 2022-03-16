@@ -30,7 +30,6 @@ public class SyLkaa {
     private String remark;
     private String ssqx;
     private Integer objectid;
-    private String identification;
     private String contdiff;
     private String spcl;
 

@@ -43,12 +43,12 @@ public interface RiverService {
     public  List<SyOwaa> getOwLikeNameOrBm(String value);
 
 
-    public SyRvaa getRvaaByIdentification(String identification);
-    public SyOwaa getOwaaByIdentification(String identification);
-    public SyRsaa getRsaaByIdentification(String identification);
-    public SyLkaa getLkaaByIdentification(String identification);
-    public SyHpaa getHpaaByIdentification(String identification);
-    public SyAcaa getAcaaByIdentification(String identification);
+    public SyRvaa getRvaaBycode(String code);
+    public SyOwaa getOwaaBycode(String code);
+    public SyRsaa getRsaaBycode(String code);
+    public SyLkaa getLkaaBycode(String code);
+    public SyHpaa getHpaaBycode(String code);
+    public SyAcaa getAcaaBycode(String code);
 
     public List<ChangeWaterarea> getChangeWaterareaOrderBgdate();
 

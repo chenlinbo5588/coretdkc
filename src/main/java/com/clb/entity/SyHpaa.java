@@ -32,7 +32,6 @@ public class SyHpaa {
     private String ssqx;
     private String contdiff;
     private String spcl;
-    private String identification;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

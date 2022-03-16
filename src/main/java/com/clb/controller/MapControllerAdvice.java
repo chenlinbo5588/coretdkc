@@ -28,9 +28,6 @@ public class MapControllerAdvice {
     @Value("${server.port}")
     private String port;
 
-    @Value("${arcgis.prourl}")
-    private String prourl;
-
 
     @Value("${arcgis.outputDwgUrl}")
     private String outputDwgUrl;
@@ -78,11 +75,10 @@ public class MapControllerAdvice {
     public Map<String, Object> mydata(HttpServletRequest request) throws UnknownHostException {
         Map<String, Object> map = new HashMap<>();
 
-        String referer = request.getServerName()+":"+port ;
+//        String referer = request.getServerName()+":"+port ;
         String xmhost = request.getServerName();
 
         map.put("port", port);
-        map.put("prourl", prourl);
         map.put("xmhost", xmhost);
         map.put("outputDwgUrl", outputDwgUrl);
         map.put("outputDwgDownloadUrl", outputDwgDownloadUrl);
@@ -98,19 +94,11 @@ public class MapControllerAdvice {
         map.put("riverQzjUrl", riverQzjUrl);
         map.put("geometryServerUrl", geometryServerUrl);
 
-        ArcgisToken token = arcgisClient.fetchToken(username,password,referer);
+        ArcgisToken token = arcgisClient.fetchToken(username,password,"192.168.200.148:8080");
         map.put("token",token.getToken());
+//        map.put("token","token");
 
         return map;
     }
-
-
-//    @ModelAttribute
-//    public String maphost(Model model)
-//    {
-//        model.addAttribute("mapHost",arcgisMapHost);
-//        return arcgisMapHost;
-//    }
-
 
 }

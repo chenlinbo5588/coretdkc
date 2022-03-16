@@ -338,8 +338,8 @@ public class RiverServiceImpl implements RiverService {
         return sum;
     }
 
-    public SyRvaa getRvaaByIdentification(String identification) {
-        String filer = "identification==" + identification;
+    public SyRvaa getRvaaBycode(String code) {
+        String filer = "code==" + code;
         if (syRvaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syRvaaRepository.findAll(toSpecification(filer)).get(0);
         } else {
@@ -347,8 +347,8 @@ public class RiverServiceImpl implements RiverService {
         }
     }
 
-    public SyOwaa getOwaaByIdentification(String identification) {
-        String filer = "identification==" + identification;
+    public SyOwaa getOwaaBycode(String code) {
+        String filer = "code==" + code;
 
         if (syOwaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syOwaaRepository.findAll(toSpecification(filer)).get(0);
@@ -357,8 +357,8 @@ public class RiverServiceImpl implements RiverService {
         }
     }
 
-    public SyRsaa getRsaaByIdentification(String identification) {
-        String filer = "identification==" + identification;
+    public SyRsaa getRsaaBycode(String code) {
+        String filer = "code==" + code;
 
         if (syRsaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syRsaaRepository.findAll(toSpecification(filer)).get(0);
@@ -367,8 +367,8 @@ public class RiverServiceImpl implements RiverService {
         }
     }
 
-    public SyLkaa getLkaaByIdentification(String identification) {
-        String filer = "identification==" + identification;
+    public SyLkaa getLkaaBycode(String code) {
+        String filer = "code==" + code;
         if (syLkaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syLkaaRepository.findAll(toSpecification(filer)).get(0);
         } else {
@@ -376,8 +376,8 @@ public class RiverServiceImpl implements RiverService {
         }
     }
 
-    public SyHpaa getHpaaByIdentification(String identification) {
-        String filer = "identification==" + identification;
+    public SyHpaa getHpaaBycode(String code) {
+        String filer = "code==" + code;
         if (syHpaaRepository.findAll(toSpecification(filer)).size() > 0) {
             return syHpaaRepository.findAll(toSpecification(filer)).get(0);
         } else {
@@ -385,8 +385,8 @@ public class RiverServiceImpl implements RiverService {
         }
     }
 
-    public SyAcaa getAcaaByIdentification(String identification) {
-        String filer = "identification==" + identification;
+    public SyAcaa getAcaaBycode(String code) {
+        String filer = "code==" + code;
         if (syAcaaRepositoryaa.findAll(toSpecification(filer)).size() > 0) {
             return syAcaaRepositoryaa.findAll(toSpecification(filer)).get(0);
         } else {
@@ -420,32 +420,32 @@ public class RiverServiceImpl implements RiverService {
 
 
     public List<SyRvaa> getRvLikeNameOrBm(String value) {
-        String filer = "name=like=" + value + ",identification=like=" + value;
+        String filer = "name=like=" + value + ",code=like=" + value;
         return syRvaaRepository.findAll(toSpecification(filer));
     }
 
     public List<SyRsaa> getRsLikeNameOrBm(String value) {
-        String filer = "name=like=" + value + ",identification=like=" + value;
+        String filer = "name=like=" + value + ",code=like=" + value;
         return syRsaaRepository.findAll(toSpecification(filer));
     }
 
     public List<SyLkaa> getLkLikeNameOrBm(String value) {
-        String filer = "name=like=" + value + ",identification=like=" + value;
+        String filer = "name=like=" + value + ",code=like=" + value;
         return syLkaaRepository.findAll(toSpecification(filer));
     }
 
     public List<SyHpaa> getHpLikeNameOrBm(String value) {
-        String filer = "name=like=" + value + ",identification=like=" + value;
+        String filer = "name=like=" + value + ",code=like=" + value;
         return syHpaaRepository.findAll(toSpecification(filer));
     }
 
     public List<SyAcaa> getAcLikeNameOrBm(String value) {
-        String filer = "name=like=" + value + ",identification=like=" + value;
+        String filer = "name=like=" + value + ",code=like=" + value;
         return syAcaaRepositoryaa.findAll(toSpecification(filer));
     }
 
     public List<SyOwaa> getOwLikeNameOrBm(String value) {
-        String filer = "name=like=" + value + ",identification=like=" + value;
+        String filer = "name=like=" + value + ",code=like=" + value;
         return syOwaaRepository.findAll(toSpecification(filer));
     }
 

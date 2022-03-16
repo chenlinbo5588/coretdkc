@@ -37,7 +37,6 @@ public class SyRsaa {
     private String spcl;
     private String remark;
     private String ssqx;
-    private String identification;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

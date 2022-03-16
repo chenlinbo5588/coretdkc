@@ -6,7 +6,7 @@
 <body>
 <script th:inline="javascript">
     var gloablConfig = {
-        prourl: [[${mapConfig.prourl}]],
+
         mapServerPort: [[${mapConfig.port}]],
         xmHost: [[${mapConfig.xmhost}]],
         outputDwgUrl: [[${mapConfig.outputDwgUrl}]],
@@ -62,15 +62,15 @@
 
 <script type="text/javascript" src="/static/js/tools/html2canvas.js"></script>
 <script type="text/javascript" src="/static/js/tools/jquery.jqprint-0.3.js"></script>
-<link rel="stylesheet" href="/static/js/thirdlib/4.20/esri/css/main.css"/>
-<script src="/static/js/thirdlib/4.20/init.js"></script>
+<link rel="stylesheet" href="https://gis2.cxzhsl.cn/myarcgis/esri/css/main.css"/>
+<script src="https://gis2.cxzhsl.cn/myarcgis/init.js"></script>
 <script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
 
 <div id="baobiaoBox" style="display: none;"></div>
 <div class="indexTitleBox ">
     <div class="indexTitle W40">
-        <div class="indexTitleText">水域动态监管信息化平台</div>
-        <div class="indexSubtitleText">Water condition monitoring system</div>
+        <div class="indexTitleText">慈溪市水域一张图</div>
+        <div class="indexSubtitleText">A map of CiXi Water area</div>
     </div>
     <div class="indexTitleButton W40">
         <a class="indexButton indexButtonSy indexButtonClick" id="sy" th:href="@{index}">首页</a>

@@ -313,10 +313,10 @@ function selectfxResult(view, data) {
                 $("[name=itemClick]").removeClass("itemClick");
                 $(this).addClass("itemClick");
 
-                var identification = $(this).data("identification");
+                var code = $(this).data("code");
                 //view.graphics.removeAll();
                 for (var i = 0; i < fxdata.length; i++) {
-                    if (identification == fxdata[i].attributes.identification) {
+                    if (code == fxdata[i].attributes.code) {
                         if (fxSlectData != undefined) {
                             view.graphics.remove(fxSlectData);
                         }
@@ -545,7 +545,6 @@ function initcltools(){
                 regAr = /^(.*)$/igm;
             }
 
-
             mt = txt.match(regAr);
             //console.log(mt);
             if(mt && mt.length != 0){
@@ -568,7 +567,6 @@ function initcltools(){
                         }
                     }
                 }
-
 
                 if(autoDropDH){
                     for(i = 0; i < rings.length; i++ ){
@@ -594,10 +592,6 @@ function initcltools(){
 
             return targetRing;
         }
-
-
-
-
 
         function getPanPoints(){
             var graphicsList = graphicsLayer.graphics.items, i = 0, j = 0;
@@ -849,7 +843,7 @@ function dowloadOutputfxDwg(sj) {
                             if (flag == 6) {
                                 var params2 = {
                                     inputFeature: JSON.stringify(featureSet),
-                                    daochuUrl: "D:/project/sdk/4.20/4.20/download/" + gpjobInfo.jobId,
+                                    daochuUrl: "C:/inetpub/wwwroot/4.20/4.20/download/" + gpjobInfo.jobId,
                                     f: "JSON",
                                 };
 
@@ -902,12 +896,11 @@ function dowloadOutputDwg(id) {
         var outputGpurl = gloablConfig.outputDwgUrl;
         var downloadurl = gloablConfig.outputDwgDownloadUrl;
 
-        //http://192.168.5.120/arcgis/rest/directories/arcgisjobs/outputCAD_gpserver/j48042049f1dd4cc8a5aa3cf5d1038a3e/scratch/ExportCAD.DWG
 
         var gp = new Geoprocessor(outputGpurl);
         var params = {
             projectId: id,
-            daochuUrl: "D:/project/sdk/4.20/4.20/download/红线"+id,
+            daochuUrl: "C:/inetpub/wwwroot/4.20/4.20/download/红线"+id,
         };
         var query = new Query();
         query.where = "projectId = '" + id + "'";
@@ -969,7 +962,7 @@ function getOpenImg(x, y) {
         var param = river.createExportImageParameters(result.extent, 1700, 1000);
 
         //url需修改
-        var url = "http://gis2.sy.gov:8080/river/proxy?http://gis2.sy.gov/arcgis/rest/services/SY/shuiyu2/MapServer/export?bbox=" + param.bbox + "&bboxSR=" + param.bboxSR + "&dpi=96&f=image&gdbVersion=" + param.gdbVersion + "&imageSR=" + param.imageSR + "&size=" + param.size + "&transparent=" + param.transparent;
+        var url = "http://192.168.200.148:8080/river/proxy?https://gis2.cxzhsl.cn/arcgis/rest/services/SY/shuiyu2/MapServer/export?bbox=" + param.bbox + "&bboxSR=" + param.bboxSR + "&dpi=96&f=image&gdbVersion=" + param.gdbVersion + "&imageSR=" + param.imageSR + "&size=" + param.size + "&transparent=" + param.transparent;
         window.location = url;
 
     });

@@ -24,7 +24,6 @@ public class SyOwaa {
     private String type;
     private String remark;
     private String ssqx;
-    private String identification;
     private String contdiff;
     private String spcl;
     @Id

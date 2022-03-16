@@ -42,7 +42,6 @@ public class SyRvaa {
     private Integer objectid;
     private String contdiff;
     private String spcl;
-    private String identification;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -32,9 +32,9 @@ public class ArcgisClientImpl implements ArcgisClient {
     @Autowired
     SyTokenRepository syTokenRepository;
 
-    public String getArcgisServerUrl() {
-        return "https://" + arcgisConfig.getProurl();
-    }
+//    public String getArcgisServerUrl() {
+//        return "https://" + arcgisConfig.getProurl();
+//    }
 
     @Override
     public ArcgisToken fetchToken(String username, String password, String referer) {
@@ -73,7 +73,7 @@ public class ArcgisClientImpl implements ArcgisClient {
             params.add("referer", referer);
             params.add("expiration", "1440");
 
-            ResponseEntity<String> result = restTemplate.postForEntity(getArcgisServerUrl() + "/arcgis/sharing/rest/generateToken", params, String.class);
+            ResponseEntity<String> result = restTemplate.postForEntity("https://gis2.cxzhsl.cn/arcgis/tokens/", params, String.class);
             Gson gson = new Gson();
 
             try {

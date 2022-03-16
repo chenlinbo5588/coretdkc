@@ -94,9 +94,10 @@ function initIndexMap() {
         // "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/sharing/rest/content/items/c6e5e4cc2b494d4a82d264b0665d95ba"
 
         IdentityManager.registerToken({
-            server: "https://"+gloablConfig.prourl+"/arcgis/rest/services",
+            server: "https://gis2.cxzhsl.cn/arcgis/rest/services",
             token: gloablConfig.proToken
         });
+
         var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
 
         var tileInfo = new TileInfo({
@@ -327,7 +328,7 @@ function initIndexMap() {
         });
         shuiyuFindparams = new FindParameters({
             layerIds: [1, 3, 5, 7, 9, 11],
-            searchFields: ["identification"],
+            searchFields: ["code"],
             returnGeometry: true,
         });
         selectionSymbolR = {
@@ -351,7 +352,7 @@ function initIndexMap() {
         });
         findparams = new FindParameters({
             layerIds: [0, 1, 2],
-            searchFields: ["identification"],
+            searchFields: ["code"],
             returnGeometry: true,
         });
 
@@ -504,9 +505,10 @@ function initIndexMap() {
                             view.graphics.removeAll();
                             var result = results[0].feature;
                             var layerId = results[0].layerId;
-                            var identification = result.attributes.identification;
+                            var code = result.attributes['编码'];
+                            console.log(result);
                             view.goTo(result.geometry.extent.expand(1)).then(function () {
-                                $.get(BASE_URL + "river/water/info/ic?identification=" + identification + "&layerId=" + layerId, function (resp) {
+                                $.get(BASE_URL + "river/water/info/ic?code=" + code + "&layerId=" + layerId, function (resp) {
                                     $(".infoList").hide();
                                     $("#close").show();
                                     $("#infoDetail").show();
@@ -715,7 +717,7 @@ function fxByPolygon(polygon, fxview) {
                             var area = parseFloat(geometryEngine.geodesicArea(intersect, "square-meters"));
                             var item = {};
                             item.layerId = results[i].layerId;
-                            item.identification = result.attributes.identification;
+                            item.code = result.attributes['编码'];
                             item.area = area;
                             data.push(item);
                             result.symbol = selectionSymbolY;
@@ -765,7 +767,7 @@ function fxPolygon(event) {
                         var area = parseFloat(geometryEngine.geodesicArea(intersect, "square-meters"));
                         var item = {};
                         item.layerId = results[i].layerId;
-                        item.identification = result.attributes.identification;
+                        item.code = result.attributes['编码'];
                         item.area = area;
                         data.push(item);
                         result.symbol = selectionSymbolY;
@@ -791,10 +793,10 @@ function showfxPolygon(data, view) {
             $("[name=itemClick]").click(function () {
                 $("[name=itemClick]").removeClass("itemClick");
                 $(this).addClass("itemClick");
-                var identification = $(this).data("identification");
+                var code = $(this).data("code");
                 //view.graphics.removeAll();
                 for (var i = 0; i < fxdata.length; i++) {
-                    if (identification == fxdata[i].attributes.identification) {
+                    if (code == fxdata[i].attributes.code) {
                         if (fxSlectData != undefined) {
                             view.graphics.remove(fxSlectData);
                         }

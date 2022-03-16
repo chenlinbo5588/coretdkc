@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
     @Data
     public class ArcgisConfig {
 
-        @Value("${arcgis.prourl}")
-        private String prourl;
+
 
 
     }

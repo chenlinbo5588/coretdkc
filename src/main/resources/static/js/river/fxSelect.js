@@ -58,10 +58,10 @@ $(function () {
         $("[name=itemClick]").removeClass("itemClick");
         $(this).addClass("itemClick");
 
-        var identification = $(this).data("identification");
+        var code = $(this).data("code");
         //view.graphics.removeAll();
         for (var i = 0; i < fxdata.length; i++) {
-            if (identification == fxdata[i].attributes.identification) {
+            if (code == fxdata[i].attributes.code) {
                 if (fxSlectData != undefined) {
                     view.graphics.remove(fxSlectData);
                 }
