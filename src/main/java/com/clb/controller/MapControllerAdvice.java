@@ -23,7 +23,28 @@ public class MapControllerAdvice {
     ArcgisClient arcgisClient;
 
 
+    @Value("${arcgis.featureUrl.tdtJjUrl}")
+    private String tdtJjUrl;
 
+    @Value("${arcgis.featureUrl.tdtJjZjUrl}")
+    private String tdtJjZjUrl;
+
+    @Value("${arcgis.featureUrl.tdtYxUrl}")
+    private String tdtYxUrl;
+    @Value("${arcgis.featureUrl.tdtYxZjUrl}")
+    private String tdtYxZjUrl;
+    @Value("${arcgis.featureUrl.tdtDxUrl}")
+    private String tdtDxUrl;
+    @Value("${arcgis.featureUrl.tdtNbDzUrl}")
+    private String tdtNbDzUrl;
+
+
+    @Value("${arcgis.accessKey}")
+    private String accessKey;
+    @Value("${arcgis.secretKey}")
+    private String secretKey;
+    @Value("${arcgis.tdtToken}")
+    private String tdtToken;
 
     @Value("${server.port}")
     private String port;
@@ -69,6 +90,9 @@ public class MapControllerAdvice {
     @Value("${arcgis.token.password}")
     private String password;
 
+    @Value("${arcgis.referer}")
+    private String referer;
+
 
 
     @ModelAttribute(value = "mapConfig")
@@ -94,7 +118,18 @@ public class MapControllerAdvice {
         map.put("riverQzjUrl", riverQzjUrl);
         map.put("geometryServerUrl", geometryServerUrl);
 
-        ArcgisToken token = arcgisClient.fetchToken(username,password,"192.168.200.148:8080");
+        map.put("tdtJjUrl", tdtJjUrl);
+        map.put("tdtJjZjUrl", tdtJjZjUrl);
+        map.put("tdtYxUrl", tdtYxUrl);
+        map.put("tdtYxZjUrl", tdtYxZjUrl);
+        map.put("tdtDxUrl", tdtDxUrl);
+        map.put("tdtNbDzUrl", tdtNbDzUrl);
+        map.put("ak", accessKey);
+        map.put("sk", secretKey);
+        map.put("tdtToken", tdtToken);
+
+
+        ArcgisToken token = arcgisClient.fetchToken(username,password,referer);
         map.put("token",token.getToken());
 //        map.put("token","token");
 

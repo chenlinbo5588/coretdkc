@@ -6,7 +6,6 @@
 <body>
 <script th:inline="javascript">
     var gloablConfig = {
-
         mapServerPort: [[${mapConfig.port}]],
         xmHost: [[${mapConfig.xmhost}]],
         outputDwgUrl: [[${mapConfig.outputDwgUrl}]],
@@ -21,7 +20,16 @@
         hxSearchUrl: [[${mapConfig.hxSearchUrl}]],
         hxUrl: [[${mapConfig.hxUrl}]],
         geometryServerUrl: [[${mapConfig.geometryServerUrl}]],
-        proToken: [[${mapConfig.token}]]
+        proToken: [[${mapConfig.token}]],
+        tdtJjUrl: [[${mapConfig.tdtJjUrl}]],
+        tdtJjZjUrl: [[${mapConfig.tdtJjZjUrl}]],
+        tdtYxUrl: [[${mapConfig.tdtYxUrl}]],
+        tdtYxZjUrl: [[${mapConfig.tdtYxZjUrl}]],
+        tdtDxUrl: [[${mapConfig.tdtDxUrl}]],
+        tdtNbDzUrl: [[${mapConfig.tdtNbDzUrl}]],
+        tdtToken: [[${mapConfig.tdtToken}]],
+        ak: [[${mapConfig.ak}]],
+        sk: [[${mapConfig.sk}]],
     }
     var BASE_URL = "http://" + gloablConfig.xmHost + ":" + gloablConfig.mapServerPort + "/";
 </script>
@@ -59,12 +67,20 @@
 <link rel="stylesheet" type="text/css" media="all"
       href="/static/js/thirdlib/jquery-ui-1.12.1.custom/jquery-ui.css"></link>
 <script src="/static/js/thirdlib/shp2geojson/shapefile.js"></script>
-
+<script src="/static/js/jsrsasign-all-min.js"></script>
 <script type="text/javascript" src="/static/js/tools/html2canvas.js"></script>
 <script type="text/javascript" src="/static/js/tools/jquery.jqprint-0.3.js"></script>
 <link rel="stylesheet" href="https://gis2.cxzhsl.cn/myarcgis/esri/css/main.css"/>
 <script src="https://gis2.cxzhsl.cn/myarcgis/init.js"></script>
 <script th:src="${urls.getForLookupPath('/static/js/map.js')}"></script>
+<script type="text/javascript">
+    window._AMapSecurityConfig = {
+        securityJsCode:'e716d77103a69528b38fa4b95e1e7bb7',
+    }
+</script>
+<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=8e260673db08f39852a3659849445d6d&plugin=AMap.Autocomplete"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=8e260673db08f39852a3659849445d6d&plugin=AMap.PlaceSearch"></script>
 
 <div id="baobiaoBox" style="display: none;"></div>
 <div class="indexTitleBox ">
@@ -108,19 +124,6 @@
     </div>
 
     <div class="topRightBox" id="topRightBox" style="display: none">
-        <div class="xcListbox" id="xcListbox" style="display: none;">
-            <div class="xcTitle">
-                <img src="/static/img/xctx.png">
-                <div class="">巡查提醒</div>
-            </div>
-            <div class="xcListItem" th:each="item,stat:${projectList}">
-                <div class="boxh">
-                    <div>[[${item.pname}]]</div>
-                </div>
-                <div class="xcTime">上次巡查时间: [[${item.getXcDateTime()}]]</div>
-                <div class="xcButton" th:data-id="${item.id}" name="xcButton">跳转</div>
-            </div>
-        </div>
         <div class="tucengSelectBox" id="tucengSelectBox" style="display: none">
             <div class="tucengSelectTitle">
                 <img src="/static/img/tuceng2.png">
@@ -135,7 +138,7 @@
             </div>
         </div>
         <div>
-            <div class="topRightButton button1" id="xcList"></div>
+<!--            <div class="topRightButton button1" id="xcList"></div>-->
             <div class="topRightButton button2" id="baobiao"></div>
             <div class="topRightButton button3" id="tuceng"></div>
             <div class="topRightButton tools" id="tools"></div>

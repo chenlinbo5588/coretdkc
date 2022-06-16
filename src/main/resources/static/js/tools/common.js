@@ -204,15 +204,7 @@ function drawPoint(evt) {
             longitude: evt.coordinates[0],
             latitude: evt.coordinates[1]
         };
-        const markerSymbol = {
-            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-            color: [226, 119, 40],
-            outline: {
-                // autocasts as new SimpleLineSymbol()
-                color: [255, 255, 255],
-                width: 2
-            }
-        };
+
 
         // Create a graphic and add the geometry and symbol to it
         const pointGraphic = new Graphic({
@@ -818,7 +810,6 @@ function dowloadOutputfxDwg(sj) {
             // outputFile: "分析图形",
             f: "JSON",
         };
-        console.log(params);
 
         var outputString = ["outputrv", "outputac", "outputhp", "outputlk", "outputow", "outputrs"];
         showMessage('导出中,需要大概几分钟时间,请耐心等待', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
@@ -875,6 +866,8 @@ function dowloadOutputfxDwg(sj) {
                     }
                 } else if (request.jobStatus == "job-failed") {
                     showMessage('导出失败,请联系管理员', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+                }else{
+                    console.log(request);
                 }
 
             });
@@ -985,4 +978,10 @@ function closeCj() {
     } else {
     }
 
+}
+function base64UrlEncode(str) {
+    var encodedSource = CryptoJS.enc.Base64.stringify(str);
+    var reg = new RegExp('/', 'g');
+    encodedSource = encodedSource.replace(/=+$/, '').replace(/\+/g, '-').replace(reg, '_');
+    return encodedSource;
 }

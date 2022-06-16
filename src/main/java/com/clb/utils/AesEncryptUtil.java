@@ -1,139 +1,66 @@
 package com.clb.utils;
 
-import com.clb.constant.EncryptedString;
-import org.apache.shiro.codec.Base64;
-import org.springframework.stereotype.Component;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 
-/**
- * AES 加密
- */
 
 public class AesEncryptUtil {
 
-    //使用AES-128-CBC加密模式，key需要为16位,key和iv可以相同！
-    private static String KEY = EncryptedString.key;
-    private static String IV = EncryptedString.iv;
 
-    /**
-     * 加密方法
-     * @param data  要加密的数据
-     * @param key 加密key
-     * @param iv 加密iv
-     * @return 加密的结果
-     * @throws Exception
-     */
-    public static String encrypt(String data, String key, String iv) throws Exception {
+    private final static String sKey="uUXsN6okXYqsh0BB";
+
+    public static String encrypt(String sSrc, String sKey) {
+
         try {
+            byte[] raw = sKey.getBytes(StandardCharsets.UTF_8);
+            SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
 
-            Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");//"算法/模式/补码方式"NoPadding PkcsPadding
-            int blockSize = cipher.getBlockSize();
+            //"算法/模式/补码方式"
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+            byte[] encrypted = cipher.doFinal(sSrc.getBytes(StandardCharsets.UTF_8));
 
-            byte[] dataBytes = data.getBytes();
-            int plaintextLength = dataBytes.length;
-            if (plaintextLength % blockSize != 0) {
-                plaintextLength = plaintextLength + (blockSize - (plaintextLength % blockSize));
-            }
-
-            byte[] plaintext = new byte[plaintextLength];
-            System.arraycopy(dataBytes, 0, plaintext, 0, dataBytes.length);
-
-            SecretKeySpec keyspec = new SecretKeySpec(key.getBytes(), "AES");
-            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes());
-
-            cipher.init(Cipher.ENCRYPT_MODE, keyspec, ivspec);
-            byte[] encrypted = cipher.doFinal(plaintext);
-
-            return Base64.encodeToString(encrypted);
-
+            //此处使用BASE64做转码功能，同时能起到2次加密的作用。
+            return new Base64().encodeToString(encrypted);
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
+        }
+    }
+    public static String encrypt(String sSrc) {
+        String sKey = AesEncryptUtil.sKey;
+        try {
+            byte[] raw = sKey.getBytes(StandardCharsets.UTF_8);
+            SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
+
+            //"算法/模式/补码方式"
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+            byte[] encrypted = cipher.doFinal(sSrc.getBytes(StandardCharsets.UTF_8));
+
+            //此处使用BASE64做转码功能，同时能起到2次加密的作用。
+            return new Base64().encodeToString(encrypted);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
-    /**
-     * 解密方法
-     * @param data 要解密的数据
-     * @param key  解密key
-     * @param iv 解密iv
-     * @return 解密的结果
-     * @throws Exception
-     */
-    public static String desEncrypt(String data, String key, String iv) throws Exception {
+    public static String desEncrypt(String sSrc) {
         try {
-			byte[] encrypted1 = Base64.decode(data);
+            byte[] raw = sKey.getBytes(StandardCharsets.UTF_8);
+            SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 
-            Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
-            SecretKeySpec keyspec = new SecretKeySpec(key.getBytes(), "AES");
-            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes());
-
-            cipher.init(Cipher.DECRYPT_MODE, keyspec, ivspec);
-
+            cipher.init(Cipher.DECRYPT_MODE, skeySpec);
+            //先用base64解密
+            byte[] encrypted1 = new Base64().decode(sSrc);
             byte[] original = cipher.doFinal(encrypted1);
-
-            String originalString = byteToStr(original);
+            String originalString = new String(original, StandardCharsets.UTF_8);
             return originalString;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
         }
     }
-
-    /**
-     * 使用默认的key和iv加密
-     * @param data
-     * @return
-     * @throws Exception
-     */
-    public static String encrypt(String data) throws Exception {
-        return encrypt(data, KEY, IV);
-    }
-
-    /**
-     * 使用默认的key和iv解密
-     * @param data
-     * @return
-     * @throws Exception
-     */
-    public static String desEncrypt(String data) throws Exception {
-        return desEncrypt(data, KEY, IV);
-    }
-
-    public static String byteToStr(byte[] buffer) {
-        try {
-            int length = 0;
-            for (int i = 0; i < buffer.length; ++i) {
-                if (buffer[i] == 0) {
-                    length = i;
-                    break;
-                }
-            }
-            return new String(buffer, 0, length, "UTF-8");
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
-
-//    /**
-//     * 测试
-//     */
-//    public static void main(String args[]) throws Exception {
-//        String test1 = "sa";
-//        String test =new String(test1.getBytes(),"UTF-8");
-//        String data = null;
-//        String key =  KEY;
-//        String iv = IV;
-//        // /g2wzfqvMOeazgtsUVbq1kmJawROa6mcRAzwG1/GeJ4=
-//        data = encrypt(test, key, iv);
-//        System.out.println("数据："+test);
-//        System.out.println("加密："+data);
-//        String jiemi =desEncrypt(data, key, iv).trim();
-//        System.out.println("解密："+jiemi);
-//    }
-
 }

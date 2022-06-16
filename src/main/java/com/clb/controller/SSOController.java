@@ -101,6 +101,8 @@ public class SSOController {
     @RequestMapping("/ssoTokenCheck")
     public String validateTicketByCustomConfig(String ticket, HttpServletRequest request,HttpServletResponse response) throws Exception {
 
+//        "ticket":"ticket_164791541144414974e26d0fb480389cefcc9d450915b","sign":"79f95e6d2dd75b816f281c3d4447162029967bdf","nonce":"rvvKs8E1","timestamp":1647915409240}
+
         String appkey = this.appkey;
         String appsecret = this.appsecret;
         String ticketValidateUrl = this.ticketValidateUrl;

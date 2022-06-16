@@ -1,10 +1,7 @@
 package com.clb.controller;
 
 import com.clb.constant.DateConstant;
-import com.clb.dto.FxData;
-import com.clb.dto.FxTableData;
-import com.clb.dto.Tubiao;
-import com.clb.dto.WaterTj;
+import com.clb.dto.*;
 import com.clb.entity.*;
 import com.clb.service.RiverService;
 import com.google.common.reflect.TypeToken;
@@ -28,7 +25,42 @@ public class RiverController extends BaseController {
     @Resource
     RiverService riverService;
 
+    @PostMapping("/poiSearch")
+    public String poiSearch(HttpServletRequest request, ModelMap map, String keywords, String data) {
 
+        Gson gson = new Gson();
+
+        if(keywords !=null && !keywords.equals("")){
+            GdInfo info = gson.fromJson(data, GdInfo.class);
+            map.put("info",info.getTips());
+
+            List<SyRvaa> syRvaas = new ArrayList<SyRvaa>();
+            List<SyHpaa> syHpaas = new ArrayList<SyHpaa>();
+            List<SyAcaa> syAcaas = new ArrayList<SyAcaa>();
+            List<SyOwaa> syOwaas = new ArrayList<SyOwaa>();
+            List<SyLkaa> syLkaas = new ArrayList<SyLkaa>();
+            List<SyRsaa> syRsaas = new ArrayList<SyRsaa>();
+
+            List<SyRvaa> rvList = riverService.getRvLikeNameOrBm(keywords);
+            List<SyRsaa> rsList = riverService.getRsLikeNameOrBm(keywords);
+            List<SyHpaa> hpList = riverService.getHpLikeNameOrBm(keywords);
+            List<SyAcaa> acList = riverService.getAcLikeNameOrBm(keywords);
+            List<SyOwaa> owList = riverService.getOwLikeNameOrBm(keywords);
+            List<SyLkaa> lkList = riverService.getLkLikeNameOrBm(keywords);
+
+            map.put("value",keywords);
+            map.put("rvList",rvList);
+            map.put("rsList",rsList);
+            map.put("hpList",hpList);
+            map.put("acList",acList);
+            map.put("owList",owList);
+            map.put("lkList",lkList);
+        }else{
+            map.put("info",null);
+            map.put("value",null);
+        }
+        return "html/river/list";
+    }
 
     @RequestMapping("/indexSearch")
     public String indexSearch(HttpServletRequest request, ModelMap map) {

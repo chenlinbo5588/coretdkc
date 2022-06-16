@@ -11,6 +11,8 @@ appsecret: 7a53ca1ab59147d1
 ticketValidateUrl: https://sgpt.zjwater.com/oapi/water-manage-auth/api/ssologin/validateTicket
 sptUrl: https://sgpt.zjwater.com
 
+
+
 arcgis:
 #  prourl: j1e2z89dc5bgu24.arcgis.cn
   outputDwgUrl: https://gis2.cxzhsl.cn/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
@@ -19,13 +21,18 @@ arcgis:
   featureToCadDownloadUrl:  https://gis2.cxzhsl.cn/myarcgis/download/
   featureToCadurl: https://gis2.cxzhsl.cn/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
   geometryServerUrl: https://gis2.cxzhsl.cn/arcgis/rest/services/Utilities/Geometry/GeometryServer
-#  outputDwgUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCAD/GPServer/outputCAD
-#  outputDwgDownloadUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/directories/arcgisjobs/tools/outputCAD_gpserver/
-#  outputallDwgUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/outputCadPolygon/GPServer/outputCadPolygon
-#  featureToCadDownloadUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/directories/arcgisjobs/tools/featuretocad_gpserver/
-#  featureToCadurl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/tools/featureToCad/GPServer/featureToCad
-#  geometryServerUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/Utilities/Geometry/GeometryServer
+  accessKey: 27c463b0e5ba4b5e8cefee48cf60dfce
+  secretKey: 56a84949937d4f9b8cd3d6a166b2d757
+  tdtToken: fac43bd612f98b93bacda49ccb3af69c
+  referer: 192.168.200.147
+
   featureUrl:
+    tdtJjUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220315000001/services/wmts/emap/default/oss
+    tdtJjZjUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220323000008/services/wmts/emap_lab/default/oss
+    tdtYxUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220406000002/services/wmts/imgmap/default/oss
+    tdtYxZjUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220411000002/services/wmts/imgmap_lab/default/oss
+    tdtDxUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220406000007/services/wmts/zjemap_ter/default/oss
+    tdtNbDzUrl: https://interface.zjzwfw.gov.cn/gateway/component/routing/agent.htm
     temppolygonUrl: https://gis2.cxzhsl.cn/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
     riverUrl: https://gis2.cxzhsl.cn/arcgis/rest/services/SY/shuiyu/MapServer
     riverQzjUrl: https://gis2.cxzhsl.cn/arcgis/rest/services/SY/shuiyu2/MapServer
@@ -33,20 +40,13 @@ arcgis:
     bgtxUrl: https://gis2.cxzhsl.cn/arcgis/rest/services/SY/BGTX/MapServer
     hxUrl: https://gis2.cxzhsl.cn/arcgis/rest/services/SY/HXAA/FeatureServer/0
     hxSearchUrl:  https://gis2.cxzhsl.cn/arcgis/rest/services/SY/HXAA/MapServer
-#    temppolygonUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/tempPolygon/FeatureServer/0
-#    riverUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu/MapServer
-#    riverQzjUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/shuiyu2/MapServer
-#    otherUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/qt/MapServer
-#    bgtxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/BGTX/MapServer
-#    hxUrl: https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/FeatureServer/0
-#    hxSearchUrl:  https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services/SY/HXAA/MapServer
   token:
     username: siteadmin
-    password: 451H1E2+UOcvtZtajdxAmQ==
-    #password: kGGHjSUL0cAUij1rDbNJbg==
+    password: sYBRQGpsgtciMZapyV6G4A==
+    #密码:cxzhsl@2022
 
 server:
-  port: 8084
+  port: 8088
   tomcat:
     max-swallow-size: -1
   error:
@@ -69,8 +69,6 @@ mybatis:
   configuration:
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
 file:
   upload:
     temporarypath: D:/temp/
@@ -104,8 +102,6 @@ spring:
         format_sql: true
         # 这个配置与show-sql: true配置重复，只配置一个即可
         show_sql: true
-
-
   thymeleaf:
     enabled: true
     cache: false

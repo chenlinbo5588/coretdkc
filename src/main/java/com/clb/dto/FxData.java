@@ -7,9 +7,7 @@ import java.util.List;
 public class FxData {
 
     private  String layerId;
-
     private  String code;
     private  float area;
-
 
 }

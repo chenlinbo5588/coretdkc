@@ -25,7 +25,6 @@ $(function () {
         console.log(animate);
         if(animate){
             animate =false;
-            console.log(111);
             if (!xmgl) {
                 $("#searchBox").hide();
                 $(this).animate({width: "300px"},150, function () {
@@ -78,25 +77,7 @@ $(function () {
         $(".infoList").hide();
 
     })
-    $("#searchButton").click(function () {
-        var value = $("#searchInput").val();
-        if (value == "") {
-            $(".infoList").each(function (){
-                var id = $(this).attr("id");
-                if(id =='back' || id =='close' ){
-                }else{
-                    $(this).empty();
-                }
-            });
-            $(".infoList").hide();
-        } else {
-            $.get(BASE_URL + "river/indexSearch?value=" + value, function (resp) {
-                $(".infoList").hide();
-                $("#infoList").show();
-                $("#infoList").html(resp);
-            })
-        }
-    })
+    $("#searchButton").click(autoInput());
     $("#baobiao").click(function () {
         if (baobiaoSelect == false) {
             $.get(BASE_URL + "river/baobiao?type=" + "河道", function (resp) {

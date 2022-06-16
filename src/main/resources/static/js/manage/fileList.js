@@ -81,7 +81,6 @@ $(function () {
                     processData : false,
                     contentType : false,
                     success : function(result) {
-                        console.log("1212");
                         console.log(result);
 
                     }

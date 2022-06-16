@@ -22,13 +22,11 @@ public class HttpHelper {
         BufferedReader br = null;
         String result = null;
 
-        Properties prop = System.getProperties();
-        prop.setProperty("http.proxyHost", "192.168.202.50");
-        prop.setProperty("http.proxyPort", "8887");
-
-
-        prop.setProperty("https.proxyHost", "192.168.202.50");
-        prop.setProperty("https.proxyPort", "8887");
+//        Properties prop = System.getProperties();
+//        prop.setProperty("http.proxyHost", "192.168.202.50");
+//        prop.setProperty("http.proxyPort", "8887");
+//        prop.setProperty("https.proxyHost", "192.168.202.50");
+//        prop.setProperty("https.proxyPort", "8887");
 
 
         try {

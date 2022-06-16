@@ -1,6 +1,12 @@
-server:
-  port: 8080
-
+arcgis:
+  referer: http://172.19.71.250:81
+  featureUrl:
+    tdtJjUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220315000001/services/wmts/emap/default/oss
+    tdtJjZjUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220323000008/services/wmts/emap_lab/default/oss
+    tdtYxUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220406000002/services/wmts/imgmap/default/oss
+    tdtYxZjUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220411000002/services/wmts/imgmap_lab/default/oss
+    tdtDxUrl: https://bcdsg.zj.gov.cn:8443/restapi/prod/IC33000020220406000007/services/wmts/zjemap_ter/default/oss
+    tdtNbDzUrl: https://interface.zjzwfw.gov.cn/gateway/component/routing/agent.htm
 spring:
   datasource:
     url: jdbc:mysql://localhost:5432/vueblog2?useUnicode=true&characterEncoding=utf-8

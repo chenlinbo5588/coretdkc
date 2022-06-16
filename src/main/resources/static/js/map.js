@@ -4,11 +4,21 @@ var shuiyuFind;
 var shuiyuFindparams;
 var find;
 var findparams;
-
+//天地图对象
+var tiledLayer_tdt_dz;
+var tiledLayer_tdt_yx;
+var tiledLayer;
+var tiledLayer_poi;
+var tiledLayer_jj;
+var tiledLayer_jj_poi;
+var tiledLayer_dx;
+var tiledLayer_nb_dz;
 var drawTool;
 var graphicsLayer;
 //画图状态
 var drawing = false;
+var markerSymbol;
+var textSymbol;
 
 var activeWidget;
 
@@ -35,7 +45,7 @@ var container = "";
 
 function defineActions(event) {
     var item = event.item;
-    if (item.title == "天地图" || item.title == "天地图标注" || item.title == "Qt" || item.title == "Shuiyu" || item.title == "BGTX" ) {
+    if (item.title == "天地图" || item.title == "天地图标注" || item.title == "Qt" || item.title == "Shuiyu" || item.title == "BGTX") {
         layerItemList.push(item.layer);
         item.actionsSections = [
             [
@@ -82,23 +92,43 @@ function initIndexMap() {
         "esri/geometry/Point",
         "esri/identity/IdentityManager",
         "esri/WebMap",
+        "esri/layers/GroupLayer",
         "esri/widgets/Sketch/SketchViewModel",
     ], (Map, MapView, IdentifyTask, IdentifyParameters, FeatureLayer, GraphicsLayer, Graphic, TileLayer, urlUtils, esriConfig, WebTileLayer, QueryTask, Query, MapImageLayer,
-        FindTask, FindParameters, LayerList, Draw, SpatialReference, webMercatorUtils, TileInfo, Point, IdentityManager,WebMap,SketchViewModel) => {
+        FindTask, FindParameters, LayerList, Draw, SpatialReference, webMercatorUtils, TileInfo, Point, IdentityManager, WebMap, GroupLayer, SketchViewModel) => {
 
-        // esriConfig.portalUrl = "https://j1e2z89dc5bgu24.arcgis.cn/arcgis"
-        // IdentityManager.registerToken({
-        //     server: "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/rest/services",
-        //     token: "kobCYUp9hm0vwNW_okH5imIr9l8ON5XhlAyaLFPy4sO7FUQ2EvzeGjJDyqoaJzIF2ffEm6dEIynnGi5QxrugtXV0hEjeg3HyuhMmSoohDhT3ifqRSSrnzbgCDDEPG529lvoF0W4usr51gIk4TLGqMzt0avoefobpNzaLcRdLDds."
-        // });
-        // "https://j1e2z89dc5bgu24.arcgis.cn/arcgis/sharing/rest/content/items/c6e5e4cc2b494d4a82d264b0665d95ba"
+        esriConfig.fontsUrl = "https://gis2.cxzhsl.cn/myarcgis/arcgisFont"
 
         IdentityManager.registerToken({
             server: "https://gis2.cxzhsl.cn/arcgis/rest/services",
             token: gloablConfig.proToken
         });
 
-        var tdt_token = "fac43bd612f98b93bacda49ccb3af69c";
+        let header = JSON.stringify({
+            "alg": "HS256",
+            "typ": "JWT"
+        })
+
+
+        let ak = gloablConfig.ak;
+        let sk = gloablConfig.sk;
+
+        let payload = JSON.stringify({
+            "key": ak,
+            "exp": new Date().setHours(new Date().getHours() + 1)
+        });
+
+        let before_sign = base64UrlEncode(CryptoJS.enc.Utf8.parse(header)) + '.' + base64UrlEncode(CryptoJS.enc.Utf8.parse(payload));
+        let signature = CryptoJS.HmacSHA256(before_sign, sk);
+        signature = base64UrlEncode(signature);
+        let final_sign = before_sign + '.' + signature;
+
+        const tdtyx = gloablConfig.tdtYxUrl + '?jwt=' + final_sign + '&x-bg-auth-type=jwt_auth'
+        const tdtyxzj = gloablConfig.tdtYxZjUrl + '?jwt=' + final_sign + '&x-bg-auth-type=jwt_auth'
+        const tdtjj = gloablConfig.tdtJjUrl + '?jwt=' + final_sign + '&x-bg-auth-type=jwt_auth'
+        const tdtjjzj = gloablConfig.tdtJjZjUrl + '?jwt=' + final_sign + '&x-bg-auth-type=jwt_auth'
+        const tdtdx = gloablConfig.tdtDxUrl + '?jwt=' + final_sign + '&x-bg-auth-type=jwt_auth'
+        const tdtnbdz = gloablConfig.tdtNbDzUrl + '?jwt=' + final_sign + '&x-bg-auth-type=jwt_auth'
 
         var tileInfo = new TileInfo({
             dpi: 90.71428571427429,
@@ -130,56 +160,126 @@ function initIndexMap() {
                 {level: 16, levelValue: 16, resolution: 2.1457672119140625e-005, scale: 9017.8708819198619},
                 {level: 17, levelValue: 17, resolution: 1.0728836059570313e-005, scale: 4508.9354409599309},
                 {level: 18, levelValue: 18, resolution: 5.3644180297851563e-006, scale: 2254.4677204799655},
-                // {level: 19, levelValue: 19, resolution: 2.68220901489257815e-006, scale: 1127.23386023998275},
-                // {level: 20, levelValue: 20, resolution: 1.341104507446289075e-006, scale: 563.616930119991375}
+                {level: 19, levelValue: 19, resolution: 2.68220901489257815e-006, scale: 1127.23386023998275},
+                {level: 20, levelValue: 20, resolution: 1.341104507446289075e-006, scale: 563.616930119991375}
             ]
         });
 
-        var tiledLayer = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=img_c&X={col}&Y={row}&L={level}&tk=" + tdt_token, {
-            title: "天地图",
+        tiledLayer_tdt_yx = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=img_c&X={col}&Y={row}&L={level}&tk=" + gloablConfig.tdtToken, {
+            title: "天地图影像地图",
             subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
             tileInfo: tileInfo,
+            visible: true,
             spatialReference: {
                 wkid: 4326
             },
         });
-
-        var tiledLayer2 = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=img_c&X={col}&Y={row}&L={level}&tk=" + tdt_token, {
-            title: "天地图",
-            subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
-            tileInfo: tileInfo,
-            spatialReference: {
-                wkid: 4326
-            },
-        });
-
-
-        var tiledLayer_poi = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=cva_c&X={col}&Y={row}&L={level}&tk=" + tdt_token, {
-            title: "天地图标注",
-            subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
-            tileInfo: tileInfo,
-            spatialReference: {
-                wkid: 4326
-            },
-            visible: false,
-        });
-
-        var tiledLayer_poi2 = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=cva_c&X={col}&Y={row}&L={level}&tk=" + tdt_token, {
-            title: "天地图标注",
+        tiledLayer_tdt_dz = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=vec_c&X={col}&Y={row}&L={level}&tk=" + gloablConfig.tdtToken, {
+            title: "天地图电子地图",
             subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
             tileInfo: tileInfo,
             visible: false,
             spatialReference: {
                 wkid: 4326
             },
+
         });
+        tiledLayer = new WebTileLayer(tdtyx + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=emap&STYLE=default&TILEMATRIXSET=esritilematirx&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}&FORMAT=image%2Fpng", {
+            title: "浙地信影像地图",
+            tileInfo: tileInfo,
+            visible: false,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+        tiledLayer_dx = new WebTileLayer(tdtdx + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=emap&STYLE=default&TILEMATRIXSET=esritilematirx&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}&FORMAT=image%2Fpng", {
+            title: "浙地信地形地图",
+            tileInfo: tileInfo,
+            visible: false,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+        tiledLayer_nb_dz = new WebTileLayer(tdtnbdz + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=emap&STYLE=default&TILEMATRIXSET=esritilematirx&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}&FORMAT=image%2Fpng", {
+            title: "宁波全域电子地图",
+            tileInfo: tileInfo,
+            visible: false,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+        tiledLayer_poi = new WebTileLayer(tdtyxzj + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=emap_lab&STYLE=default&TILEMATRIXSET=esritilematirx&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}&FORMAT=image%2Fjpgpng&height=256&width=256&tileSize=256", {
+            title: "浙地信影像地图标注",
+            tileInfo: tileInfo,
+            visible: false,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+
+        tiledLayer_jj = new WebTileLayer(tdtjj + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=emap&STYLE=default&TILEMATRIXSET=esritilematirx&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}&FORMAT=image%2Fpng", {
+            title: "浙地信电子地图",
+            tileInfo: tileInfo,
+            visible: false,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+        tiledLayer_jj_poi = new WebTileLayer(tdtjjzj + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=emap_lab&STYLE=default&TILEMATRIXSET=esritilematirx&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}&FORMAT=image%2Fjpgpng&height=256&width=256&tileSize=256", {
+            title: "浙地信电子地图标注",
+            tileInfo: tileInfo,
+            visible: false,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+
+        var tiledLayer_tdt_yx2 = new WebTileLayer("http://{subDomain}.tianditu.com/DataServer?T=img_c&X={col}&Y={row}&L={level}&tk=" + gloablConfig.tdtToken, {
+            title: "天地图影像地图",
+            subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
+            tileInfo: tileInfo,
+            visible: true,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+        var tiledLayer_poi2 = new WebTileLayer(tdtyxzj + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=emap_lab&STYLE=default&TILEMATRIXSET=esritilematirx&TILEMATRIX={level}&TILEROW={row}&TILECOL={col}&FORMAT=image%2Fjpgpng&height=256&width=256&tileSize=256", {
+            title: "浙地信影像地图标注",
+            tileInfo: tileInfo,
+            visible: false,
+            spatialReference: {
+                wkid: 4326
+            },
+        });
+        markerSymbol = {
+            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+            // type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+            color: [226, 119, 40],
+            outline: {
+                // autocasts as new SimpleLineSymbol()
+                color: [255, 255, 255],
+                width: 2
+            }
+        };
+        textSymbol={
+            type:"text",
+            color:"#2152AC",
+            haloColor:"#ffffff",
+            haloSize:1,
+            backgroundColor:"#ffffff",
+            borderLineSize:1,
+            borderLineColor:"#2152AC",
+            text:"天河区",
+            font:{
+                size:12,
+            }
+        };
 
         temppolygon = new FeatureLayer({
             url: gloablConfig.temppolygonUrl,
         });
 
         river = new MapImageLayer({
-
             url: gloablConfig.riverUrl,
             sublayers: [{
                 id: 13,
@@ -356,9 +456,16 @@ function initIndexMap() {
             returnGeometry: true,
         });
 
-        graphicsLayer = new GraphicsLayer();
+        graphicsLayer = new GraphicsLayer({title: "绘图用图层"});
+
+        var dtGroupLayer = new GroupLayer({
+            title: "地图图层",
+            visible: true,
+            visibilityMode: "independent",
+            layers: [tiledLayer, tiledLayer_jj, tiledLayer_dx, tiledLayer_tdt_yx, tiledLayer_tdt_dz, tiledLayer_poi, tiledLayer_jj_poi],
+        });
         map = new Map({
-            layers: [tiledLayer, tiledLayer_poi, other, river,graphicsLayer],
+            layers: [dtGroupLayer, other, river, graphicsLayer],
             spatialReference: {
                 wkid: 4326
             },
@@ -366,7 +473,7 @@ function initIndexMap() {
 
 
         rightmap = new Map({
-            layers: [tiledLayer2, tiledLayer_poi2, bgtx],
+            layers: [tiledLayer_tdt_yx2, tiledLayer_poi2, bgtx],
             spatialReference: {
                 wkid: 4326
             },
@@ -382,10 +489,10 @@ function initIndexMap() {
                 wkid: 4326
             },
         });
-        var sketchViewModel=new SketchViewModel({
-            view:view,//视图
-            layer:graphicsLayer,//需要修改的要素所在的图层
-            updateOnGraphicClick:true,//是否使用默认的点击选择图形进行更新
+        var sketchViewModel = new SketchViewModel({
+            view: view,//视图
+            layer: graphicsLayer,//需要修改的要素所在的图层
+            updateOnGraphicClick: true,//是否使用默认的点击选择图形进行更新
             defaultUpdateOptions: {
                 toggleToolOnClick: true // 是否开启reshape状态
             }
@@ -416,14 +523,12 @@ function initIndexMap() {
         view.on("click", function (e) {
             // geom = webMercatorUtils.xyToLngLat(e.mapPoint.x, e.mapPoint.y);
             // console.log(geom[0], geom[1]);
-            console.log(view.scale);
-            console.log(e.mapPoint.x + "," + e.mapPoint.y);
             // getOpenImg(e.mapPoint.x,+e.mapPoint.y);
         });
-        view.on("pointer-move", function (e){
+        view.on("pointer-move", function (e) {
             let point = view.toMap({x: e.x, y: e.y});
 
-            $("#jwd").html("x: "+parseFloat(point.x.toFixed(4))+" ,y: "+parseFloat(point.y.toFixed(4)));
+            $("#jwd").html("x: " + parseFloat(point.x.toFixed(4)) + " ,y: " + parseFloat(point.y.toFixed(4)));
         });
         view.ui.add(document.getElementById("jwd"), {
             position: "bottom-right",
@@ -491,9 +596,9 @@ function initIndexMap() {
         });
 
         function executeIdentifyTask(event) {
-            if(drawing == true){
+            if (drawing == true) {
 
-            }else{
+            } else {
                 identifyparams.geometry = event.mapPoint;
                 identifyparams.mapExtent = view.extent;
                 $("#viewDiv").css("cursor", "wait");
@@ -517,7 +622,7 @@ function initIndexMap() {
                                 // result.symbol = selectionSymbolR;
                                 // view.graphics.add(result);
                             });
-                        }else{
+                        } else {
                             view.graphics.removeAll();
                         }
                         $("#viewDiv").css("cursor", "auto");
@@ -958,7 +1063,85 @@ function initProjectView(contain, id) {
 
 }
 
+function autoInput() {
+    var keywords = $("#searchInput").val();
+    AMap.plugin('AMap.Autocomplete', function () {
+        var autoOptions = {
+            city: '全国'
+        }
+        var autoComplete = new AMap.Autocomplete(autoOptions);
+        autoComplete.search(keywords, function (status, result) {
+            if (status == "complete" || result == "NO_PARAMS") {
+                var param = {
+                    data: JSON.stringify(result),
+                    keywords: keywords,
+                }
+                $.ajax({
+                    url: '/river/poiSearch',
+                    type: 'post',
+                    dataType: "json",
+                    data: param,
+                    global: false,
+                    complete: function (resp) {
+                        $(".infoList").hide();
+                        $("#infoList").show();
+                        $("#infoList").html(resp.responseText);
+                    }
+                });
+            }
+        })
+    })
+}
+
+function autoSearch(keywords) {
+    require([
+        "esri/Graphic",
+    ], function (Graphic) {
+        AMap.plugin('AMap.PlaceSearch', function () {
+            var autoOptions = {
+                city: '全国'
+            }
+            var placeSearch = new AMap.PlaceSearch(autoOptions);
+            placeSearch.search(keywords, function (status, result) {
+                console.log(result);
+                if (result.info == "OK") {
+                    view.goTo({
+                        target: [result.poiList.pois[0].location.lng, result.poiList.pois[0].location.lat],
+                        zoom: 13,
+                    }).then(function () {
+                        graphicsLayer.removeAll();
+                        const point = {
+                            type: "point",
+                            longitude: result.poiList.pois[0].location.lng,
+                            latitude: result.poiList.pois[0].location.lat
+                        };
+                        const text = {
+                            type: "point",
+                            longitude: result.poiList.pois[0].location.lng,
+                            latitude: result.poiList.pois[0].location.lat+0.003
+                        };
+                        textSymbol.text = keywords;
+                        const pointGraphic = new Graphic({
+                            geometry: point,
+                            symbol: markerSymbol
+                        });
+                        const textGraphic = new Graphic({
+                            geometry: text,
+                            symbol: textSymbol
+                        });
+                        graphicsLayer.add(pointGraphic);
+                        graphicsLayer.add(textGraphic);
+                    })
+                }else{
+                    showMessage('该搜索内容无点位信息，跳转失败', 2000, true, 'bounceInUp-hastrans', 'bounceOutDown-hastrans');
+                }
+            })
+        })
+    });
+}
+
 $(function () {
+    document.getElementById("searchInput").oninput = autoInput;
     initIndexMap();
 })
 
